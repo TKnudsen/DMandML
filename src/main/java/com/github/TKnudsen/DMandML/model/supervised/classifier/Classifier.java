@@ -10,6 +10,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
@@ -109,11 +110,8 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 		if (labelDistribution == null)
 			return 0;
 
-		double max = Double.NEGATIVE_INFINITY;
-		for (String label : labelDistribution.keySet())
-			max = Math.max(max, labelDistribution.get(label));
-
-		return max;
+		Double[] array = (Double[]) labelDistribution.entrySet().toArray();
+		return MathFunctions.getMax(array);
 	}
 
 	@Override
