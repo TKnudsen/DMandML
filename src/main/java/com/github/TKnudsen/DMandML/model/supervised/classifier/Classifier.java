@@ -27,7 +27,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public abstract class Classifier<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IProbablisticClassifier<O, FV> {
 
@@ -110,24 +110,25 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 		if (labelDistribution == null)
 			return 0;
 
-		Double[] array = (Double[]) labelDistribution.entrySet().toArray();
+		Double[] array = labelDistribution.values().toArray(new Double[0]);
 		return MathFunctions.getMax(array);
 	}
 
 	@Override
 	public double getLabelProbabilityMargin(FV featureVector) {
-		Map<String, Double> labelDistribution = getLabelDistribution(featureVector);
-		if (labelDistribution == null)
+		Map<String, Double> probabilities = getLabelDistribution(featureVector);
+
+		if (probabilities == null)
 			return 0;
 
-		double max = Double.NEGATIVE_INFINITY;
-		double second = Double.NaN;
-		for (String label : labelDistribution.keySet())
-			if (max <= labelDistribution.get(label)) {
+		double max = Double.MIN_VALUE;
+		double second = Double.MIN_VALUE;
+		for (double value : probabilities.values())
+			if (max <= value) {
 				second = max;
-				max = labelDistribution.get(label);
-			} else if (second <= labelDistribution.get(label))
-				second = labelDistribution.get(label);
+				max = value;
+			} else if (second <= value)
+				second = value;
 
 		return max - second;
 	}

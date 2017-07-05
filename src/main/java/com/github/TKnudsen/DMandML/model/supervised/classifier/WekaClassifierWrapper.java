@@ -119,7 +119,6 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 
 	@Override
 	protected void buildClassifier() {
-		// somewhat redundant...
 		labelDistributionResult = new ArrayList<Map<String, Double>>();
 		labelDistributionMap = new HashMap<>();
 
