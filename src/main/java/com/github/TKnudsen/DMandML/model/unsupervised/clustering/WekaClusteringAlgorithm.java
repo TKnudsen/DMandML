@@ -3,8 +3,6 @@ package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorClusterResult;
@@ -59,7 +57,8 @@ public abstract class WekaClusteringAlgorithm implements IClusteringAlgorithm<Nu
 
 	protected abstract void initializeClusteringAlgorithm();
 
-	protected void calculateClustering() throws Throwable {
+	@Override
+	public void calculateClustering() {
 		initializeClusteringAlgorithm();
 
 		try {
