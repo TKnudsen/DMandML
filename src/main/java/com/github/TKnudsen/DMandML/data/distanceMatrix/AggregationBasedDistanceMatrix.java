@@ -20,6 +20,10 @@ import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.
  * <p>
  * Description: Distance matrix that uses aggregation to avoid space allocation
  * problems. The aggregation level is a user parameter.
+ * 
+ * Please note that aggregation reduces the precision of distance computation.
+ * Depending on the aggregation level the distance results can be inaccurate by
+ * several percent.
  * </p>
  * 
  * <p>

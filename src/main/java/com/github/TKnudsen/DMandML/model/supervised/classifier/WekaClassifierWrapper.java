@@ -85,7 +85,7 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 		if (testData.size() != featureVectors.size())
 			throw new IllegalArgumentException("WekaConversion failed");
 
-		testData = WekaConversion.addLabelAttributeToInstance(testData, labelAlphabet);
+		testData = WekaConversion.addLabelAttributeToInstance(testData, "class", labelAlphabet);
 		if (testData.size() != testData.size())
 			throw new IllegalArgumentException("WekaConversion failed");
 

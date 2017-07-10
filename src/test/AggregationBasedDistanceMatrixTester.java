@@ -9,6 +9,22 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector
 
 import main.java.com.github.TKnudsen.DMandML.data.distanceMatrix.AggregationBasedDistanceMatrix;
 
+/**
+ * <p>
+ * Title: AggregationBasedDistanceMatrixTester
+ * </p>
+ * 
+ * <p>
+ * Description: little tester for the AggregationBasedDistanceMatrix data structure.
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * @version 1.01
+ */
 public class AggregationBasedDistanceMatrixTester {
 	public static void main(String[] args) {
 		int n = 10;

@@ -19,8 +19,8 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public interface IRegression<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends ILearningModel<O, X, Double> {
-	public Double getAccuracy(X featureVector);
+	// public Double getAccuracy(X featureVector);
 }

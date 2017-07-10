@@ -35,8 +35,11 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 	protected List<FV> trainFeatureVectors;
 
 	/**
-	 * the attribute that will be looked up in the feature vectors. Notice that
+	 * the attribute that will be looked up in the feature vectors. Note that
 	 * this is an attribute in the features. not a feature in itself.
+	 * 
+	 * Similarly, the class attribute, e.g., in WEKA will always be "class"
+	 * instead of classAttribute.
 	 */
 	protected String classAttribute = "class";
 
@@ -50,6 +53,11 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 	protected abstract void prepareData();
 
 	protected abstract void resetResults();
+
+	/**
+	 * allows individual execution of classifiers
+	 */
+	protected abstract void buildClassifier();
 
 	public abstract List<Map<String, Double>> getLabelDistributionResult();
 
@@ -98,11 +106,6 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 
 		buildClassifier();
 	}
-
-	/**
-	 * allows individual execution of classifiers
-	 */
-	protected abstract void buildClassifier();
 
 	@Override
 	public double getLabelProbabilityMax(FV featureVector) {
