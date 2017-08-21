@@ -24,7 +24,7 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
@@ -57,8 +57,8 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 			return null;
 		}
 		if (labelDistributionMap.get(featureVector) == null) {
-			System.err.println("WekaClassifierWrapper: feature vector not tested yet");
-			return null;
+			List<FV> lst = new ArrayList<>();
+			test(lst);
 		}
 
 		return labelDistributionMap.get(featureVector);
