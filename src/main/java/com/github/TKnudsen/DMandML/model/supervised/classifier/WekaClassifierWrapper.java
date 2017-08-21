@@ -2,8 +2,11 @@ package main.java.com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
@@ -30,7 +33,8 @@ import weka.core.Instances;
  * @author Juergen Bernard
  * @version 1.05
  */
-public abstract class WekaClassifierWrapper<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends Classifier<O, FV> {
+public abstract class WekaClassifierWrapper<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>>
+		extends Classifier<O, FV> {
 
 	protected weka.classifiers.Classifier wekaClassifier;
 
@@ -48,6 +52,58 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 
 	public WekaClassifierWrapper(weka.classifiers.Classifier wekaClassifier) {
 		this.wekaClassifier = wekaClassifier;
+	}
+
+	public void trainWithWeights(List<FV> featureVectors, List<String> labels, double[] weights) {
+		if (featureVectors == null || labels == null)
+			throw new NullPointerException();
+		if (featureVectors.size() != labels.size())
+			throw new IllegalArgumentException();
+
+		this.trainFeatureVectors = new ArrayList<>(featureVectors);
+		for (int i = 0; i < featureVectors.size(); i++)
+			trainFeatureVectors.get(i).add(classAttribute, labels.get(i));
+
+		this.labelAlphabet = new ArrayList<>(new HashSet<>(labels));
+
+		initializeClassifier();
+
+		prepareData();
+
+		for (int i = 0; i < trainData.size(); i++) {
+			trainData.get(i).setWeight(weights[i]);
+		}
+
+		resetResults();
+
+		buildClassifier();
+	}
+	
+	public void trainWithWeights(List<FV> featureVectors, String targetVariable, double[] weights) {
+		if (featureVectors == null)
+			throw new NullPointerException();
+
+		this.trainFeatureVectors = new ArrayList<>(featureVectors);
+		this.classAttribute = targetVariable;
+
+		Set<String> labels = new LinkedHashSet<>();
+		for (int i = 0; i < featureVectors.size(); i++)
+			if (trainFeatureVectors.get(i) != null)
+				if (trainFeatureVectors.get(i).getAttribute(targetVariable) != null)
+					labels.add(trainFeatureVectors.get(i).getAttribute(targetVariable).toString());
+		this.labelAlphabet = new ArrayList<>(labels);
+
+		initializeClassifier();
+
+		prepareData();
+
+		for (int i = 0; i < trainData.size(); i++) {
+			trainData.get(i).setWeight(weights[i]);
+		}
+		
+		resetResults();
+
+		buildClassifier();
 	}
 
 	@Override
@@ -130,7 +186,8 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 		try {
 			wekaClassifier.buildClassifier(trainData);
 		} catch (Exception e) {
-			System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName() + "<- sent an exception: " + e.getMessage());
+			System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName() + "<- sent an exception: "
+					+ e.getMessage());
 			e.printStackTrace();
 		}
 	}
