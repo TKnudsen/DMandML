@@ -114,6 +114,7 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 		}
 		if (labelDistributionMap.get(featureVector) == null) {
 			List<FV> lst = new ArrayList<>();
+			lst.add(featureVector);
 			test(lst);
 		}
 
