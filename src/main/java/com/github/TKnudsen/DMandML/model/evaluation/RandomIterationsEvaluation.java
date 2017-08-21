@@ -1,0 +1,93 @@
+package main.java.com.github.TKnudsen.DMandML.model.evaluation;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+
+import main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
+import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+
+/**
+ * @author Christian Ritter
+ *
+ */
+public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
+		extends AbstractEvaluation<O, X, Y, L> {
+
+	private int iterations;
+	private double split = 0.66;
+	private List<X> trainset;
+	private List<X> testset;
+	private List<Y> trainTruth;
+	private List<Y> testTruth;
+
+	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations) {
+		super(performanceMeasures);
+		this.iterations = iterations;
+	}
+
+	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations,
+			double split) {
+		super(performanceMeasures);
+		this.iterations = iterations;
+		this.split = split;
+	}
+
+	@Override
+	public List<List<Double>> evaluate(L learner, List<X> featureVectors, List<Y> groundTruth) {
+		if (learner == null)
+			throw new IllegalArgumentException("Learning Model must not be null");
+		if (featureVectors == null || groundTruth == null || featureVectors.size() != groundTruth.size())
+			throw new IllegalArgumentException("Lists are null or of unequal size!");
+
+		List<List<Double>> res = new ArrayList<>();
+		for (int i = 0; i < iterations; i++) {
+			trainset = new ArrayList<>();
+			testset = new ArrayList<>();
+			trainTruth = new ArrayList<>();
+			testTruth = new ArrayList<>();
+			calcRandomTrainAndTestSets(featureVectors, groundTruth);
+			learner.train(trainset, trainTruth);
+			res.add(calcPerformances(learner.test(testset), testTruth));
+		}
+		return res;
+	}
+
+	private void calcRandomTrainAndTestSets(List<X> featureVectors, List<Y> groundTruth) {
+		trainset = new ArrayList<>();
+		testset = new ArrayList<>();
+		trainTruth = new ArrayList<>();
+		testTruth = new ArrayList<>();
+		List<Integer> indices = new ArrayList<>();
+		for (int i = 0; i < featureVectors.size(); i++) {
+			indices.add(i);
+		}
+		int s = (int) Math.round(split * featureVectors.size());
+		while (trainset.size() <= s) {
+			int r = (int) (Math.random() * indices.size());
+			int ind = indices.get(r);
+			trainset.add(featureVectors.get(ind));
+			trainTruth.add(groundTruth.get(ind));
+			indices.remove(r);
+		}
+		// a bit sloppy. check whether all possible labels are covered in a
+		// classification task
+		if (groundTruth.get(0) instanceof String) {
+			Set<Y> all = new HashSet<>(groundTruth);
+			Set<Y> train = new HashSet<>(trainTruth);
+			if (all.size() != train.size()) {
+				calcRandomTrainAndTestSets(featureVectors, groundTruth);
+			}
+		}
+
+		for (int i : indices) {
+			testset.add(featureVectors.get(i));
+			testTruth.add(groundTruth.get(i));
+		}
+	}
+
+}
