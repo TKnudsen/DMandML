@@ -56,7 +56,7 @@ public class KMeans extends WekaClusteringAlgorithm {
 
 		String[] opts = new String[7];
 		opts[0] = "-N";
-		opts[1] = "" + k;
+		opts[1] = "" + getK();
 		opts[2] = "-S";
 		opts[3] = "" + getSeed();
 		opts[4] = "-V";
@@ -86,7 +86,7 @@ public class KMeans extends WekaClusteringAlgorithm {
 	public void setSeed(int seed) {
 		this.seed = seed;
 
-		initializeClusteringAlgorithm();
+		// initializeClusteringAlgorithm();
 	}
 
 	public int getIterations() {
@@ -96,7 +96,7 @@ public class KMeans extends WekaClusteringAlgorithm {
 	public void setIterations(int iterations) {
 		this.iterations = iterations;
 
-		initializeClusteringAlgorithm();
+		// initializeClusteringAlgorithm();
 	}
 
 	public int getK() {
@@ -106,6 +106,6 @@ public class KMeans extends WekaClusteringAlgorithm {
 	public void setK(int k) {
 		this.k = k;
 
-		initializeClusteringAlgorithm();
+		// initializeClusteringAlgorithm();
 	}
 }

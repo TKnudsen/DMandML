@@ -259,6 +259,7 @@ public class NumericalFeatureVectorCluster extends Cluster<NumericalFeatureVecto
 		return this.distancesToCentroidStatistics.getMean();
 	}
 
+	@Override
 	public double getVariance() {
 		if (distancesToCentroidStatistics == null)
 			calcStats();

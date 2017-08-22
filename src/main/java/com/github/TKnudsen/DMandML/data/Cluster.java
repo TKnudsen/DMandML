@@ -115,7 +115,9 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 
 	@Override
 	public int size() {
-		return elements.size();
+		if (elements != null)
+			return elements.size();
+		return 0;
 	}
 
 	@Override

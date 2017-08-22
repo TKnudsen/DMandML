@@ -82,6 +82,13 @@ public interface ICluster<T extends IDObject> {
 	public Set<T> getElements();
 
 	/**
+	 * variance information produced by the elements of the cluster.
+	 * 
+	 * @return
+	 */
+	public double getVariance();
+
+	/**
 	 * we are interested in the T's that are contained in clusters. The
 	 * constellation of these guys should also determine the equals function
 	 * 

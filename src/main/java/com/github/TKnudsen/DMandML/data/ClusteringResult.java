@@ -98,15 +98,6 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 	}
 
 	@Override
-	public List<C> getClusters() {
-		return clusters;
-	}
-
-	public Map<Long, C> getClustersAsMap() {
-		return clusterDataStore;
-	}
-
-	@Override
 	public int getClusterIndex(T object) {
 		C cluster = getCluster(object);
 		if (cluster == null)
@@ -200,6 +191,15 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 		}
 
 		return hash;
+	}
+
+	@Override
+	public List<C> getClusters() {
+		return clusters;
+	}
+
+	public Map<Long, C> getClustersAsMap() {
+		return clusterDataStore;
 	}
 
 	@Override
