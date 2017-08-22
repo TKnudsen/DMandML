@@ -2,6 +2,7 @@ package main.java.com.github.TKnudsen.DMandML.model.evaluation;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
@@ -20,13 +21,14 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.02
  */
-public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
+public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
+		extends AbstractModelEvaluation<O, X, Y, L> {
 
 	private int k;
 	private boolean shuffle = false;
@@ -46,7 +48,7 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 	}
 
 	@Override
-	public List<List<Double>> evaluate(L learner, List<X> featureVectors, List<Y> groundTruth) {
+	public void evaluate(L learner, List<X> featureVectors, List<Y> groundTruth) {
 		if (learner == null)
 			throw new IllegalArgumentException("Learning Model must not be null");
 		if (featureVectors == null || groundTruth == null || featureVectors.size() != groundTruth.size())
@@ -54,6 +56,12 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 
 		if (shuffle)
 			Collections.shuffle(featureVectors);
+
+		performanceValues = new HashMap<>();
+		for (IPerformanceMeasure<Y> pm : getPerformanceMeasures()) {
+			performanceValues.put(pm, new ArrayList<>());
+		}
+
 		List<List<X>> groups = new ArrayList<>();
 		List<List<Y>> truth = new ArrayList<>();
 		double w = 1.0 * featureVectors.size() / k;
@@ -61,7 +69,6 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 			groups.add(featureVectors.subList(((int) Math.round(i * w)), ((int) Math.round((i + 1) * w))));
 			truth.add(groundTruth.subList(((int) Math.round(i * w)), ((int) Math.round((i + 1) * w))));
 		}
-		List<List<Double>> res = new ArrayList<>();
 		for (int i = 0; i < k; i++) {
 			List<X> trainset = new ArrayList<>();
 			List<X> testset = new ArrayList<>();
@@ -77,8 +84,20 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 				}
 			}
 			learner.train(trainset, trainTruth);
-			res.add(calculatePerformances(learner.test(testset), testTruth));
+			List<Double> vals = calculatePerformances(learner.test(testset), testTruth);
+			for (int j = 0; j < vals.size(); j++) {
+				performanceValues.get(getPerformanceMeasures().get(j)).add(vals.get(j));
+			}
 		}
-		return res;
+	}
+
+	@Override
+	protected void initDefaultPerformanceMeasures() {
+		throw new UnsupportedOperationException("KFoldCrossValidation: Empty performance measure are not supported yet.");
+	}
+
+	@Override
+	protected Double cumulate(List<Double> values) {
+		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
 	}
 }

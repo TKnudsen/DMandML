@@ -1,6 +1,7 @@
 package main.java.com.github.TKnudsen.DMandML.model.evaluation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
@@ -48,13 +49,17 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 	}
 
 	@Override
-	public List<List<Double>> evaluate(L learner, List<X> featureVectors, List<Y> groundTruth) {
+	public void evaluate(L learner, List<X> featureVectors, List<Y> groundTruth) {
 		if (learner == null)
 			throw new IllegalArgumentException("Learning Model must not be null");
 		if (featureVectors == null || groundTruth == null || featureVectors.size() != groundTruth.size())
 			throw new IllegalArgumentException("Lists are null or of unequal size!");
 
-		List<List<Double>> res = new ArrayList<>();
+		performanceValues = new HashMap<>();
+		for (IPerformanceMeasure<Y> pm : getPerformanceMeasures()) {
+			performanceValues.put(pm, new ArrayList<>());
+		}
+
 		for (int i = 0; i < iterations; i++) {
 			trainset = new ArrayList<>();
 			testset = new ArrayList<>();
@@ -62,9 +67,11 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 			testTruth = new ArrayList<>();
 			calcRandomTrainAndTestSets(featureVectors, groundTruth);
 			learner.train(trainset, trainTruth);
-			res.add(calculatePerformances(learner.test(testset), testTruth));
+			List<Double> vals = calculatePerformances(learner.test(testset), testTruth);
+			for (int j = 0; j < vals.size(); j++) {
+				performanceValues.get(getPerformanceMeasures().get(j)).add(vals.get(j));
+			}
 		}
-		return res;
 	}
 
 	private void calcRandomTrainAndTestSets(List<X> featureVectors, List<Y> groundTruth) {
@@ -98,6 +105,16 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 			testset.add(featureVectors.get(i));
 			testTruth.add(groundTruth.get(i));
 		}
+	}
+
+	@Override
+	protected void initDefaultPerformanceMeasures() {
+		throw new UnsupportedOperationException("RandomIterationsEvaluation: Empty performance measure are not supported yet.");
+	}
+
+	@Override
+	protected Double cumulate(List<Double> values) {
+		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
 	}
 
 }

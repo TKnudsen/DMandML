@@ -2,6 +2,7 @@ package main.java.com.github.TKnudsen.DMandML.model.evaluation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
@@ -19,15 +20,17 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.01
  */
-public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> implements IModelEvaluation<O, X, Y, L> {
+public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
+		implements IModelEvaluation<O, X, Y, L> {
 
 	private List<? extends IPerformanceMeasure<Y>> performanceMeasures;
+	protected Map<IPerformanceMeasure<Y>, List<Double>> performanceValues;
 
 	public AbstractModelEvaluation() {
 		this.setPerformanceMeasures(null);
@@ -42,8 +45,6 @@ public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector
 			initDefaultPerformanceMeasures();
 	}
 
-	protected abstract void initDefaultPerformanceMeasures();
-
 	protected List<Double> calculatePerformances(List<Y> assignments, List<Y> groundTruth) {
 		List<Double> res = new ArrayList<>();
 
@@ -56,11 +57,23 @@ public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector
 		return res;
 	}
 
-	public List<? extends IPerformanceMeasure<Y>> getPerformanceMeasures() {
-		return performanceMeasures;
+	public List<IPerformanceMeasure<Y>> getPerformanceMeasures() {
+		return new ArrayList<>(performanceMeasures);
 	}
+
+	protected abstract void initDefaultPerformanceMeasures();
 
 	public void setPerformanceMeasures(List<? extends IPerformanceMeasure<Y>> performanceMeasures) {
 		this.performanceMeasures = performanceMeasures;
 	}
+
+	public List<Double> getPerformance(IPerformanceMeasure<Y> performanceMeasure) {
+		return performanceValues.get(performanceMeasure);
+	}
+
+	public Double getCumulatedPerformance(IPerformanceMeasure<Y> performanceMeasure) {
+		return cumulate(performanceValues.get(performanceMeasure));
+	}
+
+	protected abstract Double cumulate(List<Double> values);
 }

@@ -18,7 +18,7 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
@@ -45,7 +45,7 @@ public interface IModelEvaluation<O, X extends AbstractFeatureVector<O, ? extend
 	 * 
 	 * @return
 	 */
-	List<IPerformanceMeasure<?>> getPerformanceMeasures();
+	List<IPerformanceMeasure<Y>> getPerformanceMeasures();
 
 	/**
 	 * retrieves the result of a particular PerformanceMeasure
@@ -53,7 +53,7 @@ public interface IModelEvaluation<O, X extends AbstractFeatureVector<O, ? extend
 	 * @param performanceMeasure
 	 * @return
 	 */
-	Double getPerformance(IPerformanceMeasure<?> performanceMeasure);
+	Double getCumulatedPerformance(IPerformanceMeasure<Y> performanceMeasure);
 
 	/**
 	 * retrieves the a List of results of a particular PerformanceMeasure
@@ -62,5 +62,5 @@ public interface IModelEvaluation<O, X extends AbstractFeatureVector<O, ? extend
 	 * @param performanceMeasure
 	 * @return
 	 */
-	List<Double> getPerformance(IPerformanceMeasure<?> performanceMeasure);
+	List<Double> getPerformance(IPerformanceMeasure<Y> performanceMeasure);
 }
