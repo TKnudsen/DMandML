@@ -75,6 +75,7 @@ public class KMeans extends WekaClusteringAlgorithm {
 		return "KMeans";
 	}
 
+	@Override
 	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
 		return new EuclideanDistanceMeasure();
 	}
