@@ -11,21 +11,35 @@ import main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure
 import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
- * @author Christian Ritter
- *
+ * <p>
+ * Title: KFoldCrossValidation
+ * </p>
+ * 
+ * <p>
+ * Description:
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Christian Ritter, Juergen Bernard
+ * @version 1.02
  */
-public class kFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
-		extends AbstractEvaluation<O, X, Y, L> {
+public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
 
 	private int k;
 	private boolean shuffle = false;
-	
-	public kFoldCrossValidation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int k) {
-		super(performanceMeasures);
-		this.k = k;
+
+	public KFoldCrossValidation(int k) {
+		this(null, k, false);
 	}
-	
-	public kFoldCrossValidation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int k, boolean shuffle) {
+
+	public KFoldCrossValidation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int k) {
+		this(performanceMeasures, k, false);
+	}
+
+	public KFoldCrossValidation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int k, boolean shuffle) {
 		super(performanceMeasures);
 		this.k = k;
 		this.shuffle = shuffle;
@@ -63,7 +77,7 @@ public class kFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 				}
 			}
 			learner.train(trainset, trainTruth);
-			res.add(calcPerformances(learner.test(testset), testTruth));
+			res.add(calculatePerformances(learner.test(testset), testTruth));
 		}
 		return res;
 	}

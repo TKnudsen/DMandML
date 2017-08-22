@@ -12,11 +12,22 @@ import main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure
 import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
- * @author Christian Ritter
- *
+ * <p>
+ * Title: RandomIterationsEvaluation
+ * </p>
+ * 
+ * <p>
+ * Description:
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Christian Ritter, Juergen Bernard
+ * @version 1.02
  */
-public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
-		extends AbstractEvaluation<O, X, Y, L> {
+public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
 
 	private int iterations;
 	private double split = 0.66;
@@ -30,8 +41,7 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 		this.iterations = iterations;
 	}
 
-	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations,
-			double split) {
+	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations, double split) {
 		super(performanceMeasures);
 		this.iterations = iterations;
 		this.split = split;
@@ -52,7 +62,7 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 			testTruth = new ArrayList<>();
 			calcRandomTrainAndTestSets(featureVectors, groundTruth);
 			learner.train(trainset, trainTruth);
-			res.add(calcPerformances(learner.test(testset), testTruth));
+			res.add(calculatePerformances(learner.test(testset), testTruth));
 		}
 		return res;
 	}
