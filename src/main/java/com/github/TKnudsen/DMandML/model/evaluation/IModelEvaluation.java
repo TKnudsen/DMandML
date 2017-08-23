@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 import main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
@@ -24,7 +25,7 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * @author Christian Ritter, Juergen Bernard
  * @version 1.01
  */
-public interface IModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> {
+public interface IModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends ISelfDescription {
 
 	/**
 	 * Evaluates the performance of a learning algorithm on a given dataset

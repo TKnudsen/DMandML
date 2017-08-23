@@ -20,4 +20,14 @@ public class Accuracy implements IClassificationPerformanceMeasure {
 		return 1.0 * correct / values.size();
 	}
 
+	@Override
+	public String getName() {
+		return "Accuracy";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Calculates the accuracy of a classification result";
+	}
+
 }

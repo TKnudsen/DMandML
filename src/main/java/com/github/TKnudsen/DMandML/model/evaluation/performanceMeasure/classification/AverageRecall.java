@@ -28,5 +28,15 @@ public class AverageRecall implements IClassificationPerformanceMeasure {
 		else
 			return perf / c;
 	}
+	
+	@Override
+	public String getName() {
+		return "Average Recall";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Calculates the average recall over all classes of a classification result";
+	}
 
 }

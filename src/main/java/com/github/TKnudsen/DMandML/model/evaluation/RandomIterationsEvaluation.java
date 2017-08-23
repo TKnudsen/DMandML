@@ -117,4 +117,14 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
 	}
 
+	@Override
+	public String getName() {
+		return "Random Iterations Evaluation";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Performs several iterations of evaluation with random training instances chosen at each iteration.";
+	}
+
 }

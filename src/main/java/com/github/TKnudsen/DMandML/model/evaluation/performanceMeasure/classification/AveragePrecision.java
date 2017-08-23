@@ -29,4 +29,14 @@ public class AveragePrecision implements IClassificationPerformanceMeasure {
 			return perf / c;
 	}
 
+	@Override
+	public String getName() {
+		return "Average Precision";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Calculates the average precision over all classes of a classification result";
+	}
+
 }

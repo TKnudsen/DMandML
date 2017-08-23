@@ -35,5 +35,15 @@ public class ClassPrecision implements IClassificationPerformanceMeasure {
 		else
 			return 1.0 * tp / (tp + fp);
 	}
+	
+	@Override
+	public String getName() {
+		return className + " Precision";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Calculates the precision of a given class of a classification result";
+	}
 
 }

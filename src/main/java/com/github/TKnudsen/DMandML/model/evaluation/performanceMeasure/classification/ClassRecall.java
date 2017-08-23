@@ -36,4 +36,14 @@ public class ClassRecall implements IClassificationPerformanceMeasure {
 			return 1.0 * tp / (tp + fn);
 	}
 
+	@Override
+	public String getName() {
+		return className + " Recall";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Calculates the recall of a given class of a classification result";
+	}
+
 }

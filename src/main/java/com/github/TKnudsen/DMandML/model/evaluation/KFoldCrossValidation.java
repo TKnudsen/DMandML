@@ -27,8 +27,7 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * @author Christian Ritter, Juergen Bernard
  * @version 1.02
  */
-public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
-		extends AbstractModelEvaluation<O, X, Y, L> {
+public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
 
 	private int k;
 	private boolean shuffle = false;
@@ -99,5 +98,15 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 	@Override
 	protected Double cumulate(List<Double> values) {
 		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
+	}
+
+	@Override
+	public String getName() {
+		return "k-fold Cross Validation";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Splits the data set into k subsets and evaluates k times using each subset as training set once.";
 	}
 }
