@@ -12,6 +12,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 
+import main.java.com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
 import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
@@ -32,14 +33,12 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  */
 public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluationIO<O, X, Y, L> {
 
-	@Override
-	public String getName() {
-		return "CSV Model Evaluation IO";
+	public CSVModelEvaluationIO() {
+		super();
 	}
 
-	@Override
-	public String getDescription() {
-		return "Exports / imports evaluation results from / to CSV-files.";
+	public CSVModelEvaluationIO(IModelEvaluation<O, X, Y, L> modelEvaluation) {
+		super(modelEvaluation);
 	}
 
 	@Override
@@ -97,6 +96,16 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 	}
 
 	@Override
+	public String getDescription() {
+		return "Exports / imports evaluation results from / to CSV-files.";
+	}
+
+	@Override
+	public String getName() {
+		return "CSV Model Evaluation IO";
+	}
+
+	@Override
 	public void importResult(String directory) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File(directory)));
@@ -143,7 +152,7 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 			}
 
 			for (int i = 1; i < vals.length; i++) {
-				getCumulatedPerformanceValues().put(pmNames.get(i), Double.valueOf(vals[i]));
+				getCumulatedPerformanceValues().put(pmNames.get(i - 1), Double.valueOf(vals[i]));
 			}
 
 			line = br.readLine();
@@ -153,9 +162,11 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 				vals = line.split(",");
 
 				for (int i = 1; i < vals.length; i++) {
-					getPerformanceValues().get(pmNames.get(i)).add(Double.valueOf(vals[i])); 
+					if (getPerformanceValues().get(pmNames.get(i - 1)) == null)
+						getPerformanceValues().put(pmNames.get(i - 1), new ArrayList<>());
+					getPerformanceValues().get(pmNames.get(i - 1)).add(Double.valueOf(vals[i]));
 				}
-				br.readLine();
+				line = br.readLine();
 			}
 
 			br.close();
