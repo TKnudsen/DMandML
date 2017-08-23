@@ -1,6 +1,7 @@
 package main.java.com.github.TKnudsen.DMandML.model.evaluation.io;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ public abstract class AbstractModelEvaluationIO<O, X extends AbstractFeatureVect
 	private Map<String, String> metaData;
 	private IModelEvaluation<O, X, Y, L> modelEvaluation;
 	private Map<String, List<Double>> performanceValues;
+	private List<String> orderedPerformanceMeasureList;
 
 	public AbstractModelEvaluationIO() {
 		this(null);
@@ -45,6 +47,7 @@ public abstract class AbstractModelEvaluationIO<O, X extends AbstractFeatureVect
 		metaData = new HashMap<>();
 		cumulatedPerformanceValues = new HashMap<>();
 		performanceValues = new HashMap<>();
+		setOrderedPerformanceMeasureList(new ArrayList<>());
 		if (modelEvaluation != null) {
 			initMeasureMaps();
 			metaData.put("modelEvaluation", modelEvaluation.getName());
@@ -143,4 +146,18 @@ public abstract class AbstractModelEvaluationIO<O, X extends AbstractFeatureVect
 		}
 	}
 
+	/**
+	 * @return the orderedPerformanceMeasureList
+	 */
+	public List<String> getOrderedPerformanceMeasureList() {
+		return orderedPerformanceMeasureList;
+	}
+
+	/**
+	 * @param orderedPerformanceMeasureList
+	 *            the orderedPerformanceMeasureList to set
+	 */
+	public void setOrderedPerformanceMeasureList(List<String> orderedPerformanceMeasureList) {
+		this.orderedPerformanceMeasureList = orderedPerformanceMeasureList;
+	}
 }

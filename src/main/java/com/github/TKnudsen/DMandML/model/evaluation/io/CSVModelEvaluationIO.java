@@ -54,30 +54,30 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 		}
 		sb.append(System.lineSeparator());
 
-		List<String> pmNames = new ArrayList<>();
+		setOrderedPerformanceMeasureList(new ArrayList<>());
 		// column names
 		sb.append("index");
 		for (String pm : getPerformanceValues().keySet()) {
 			sb.append(",");
 			sb.append(pm);
-			pmNames.add(pm);
+			getOrderedPerformanceMeasureList().add(pm);
 		}
 		sb.append(System.lineSeparator());
 
 		// cumulated values
 		sb.append("cumulated");
-		for (String pm : pmNames) {
+		for (String pm : getOrderedPerformanceMeasureList()) {
 			sb.append(",");
 			sb.append(String.valueOf(getCumulatedPerformanceValue(pm)));
 		}
 		sb.append(System.lineSeparator());
 
 		// single values
-		if (pmNames.size() > 0) {
-			int n = getPerformanceValue(pmNames.get(0)).size();
+		if (getOrderedPerformanceMeasureList().size() > 0) {
+			int n = getPerformanceValue(getOrderedPerformanceMeasureList().get(0)).size();
 			for (int i = 0; i < n; i++) {
 				sb.append(i);
-				for (String pm : pmNames) {
+				for (String pm : getOrderedPerformanceMeasureList()) {
 					sb.append(",");
 					sb.append(getPerformanceValue(pm).get(i));
 				}
@@ -131,7 +131,7 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 			line = br.readLine();
 
 			// read performance measure names
-			List<String> pmNames = new ArrayList<>();
+			setOrderedPerformanceMeasureList(new ArrayList<>());
 			vals = line.split(",");
 			if (vals.length == 0 || !vals[0].equals("index")) {
 				br.close();
@@ -139,7 +139,7 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 			}
 
 			for (int i = 1; i < vals.length; i++) {
-				pmNames.add(vals[i]);
+				getOrderedPerformanceMeasureList().add(vals[i]);
 			}
 
 			line = br.readLine();
@@ -152,7 +152,7 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 			}
 
 			for (int i = 1; i < vals.length; i++) {
-				getCumulatedPerformanceValues().put(pmNames.get(i - 1), Double.valueOf(vals[i]));
+				getCumulatedPerformanceValues().put(getOrderedPerformanceMeasureList().get(i - 1), Double.valueOf(vals[i]));
 			}
 
 			line = br.readLine();
@@ -162,9 +162,9 @@ public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extend
 				vals = line.split(",");
 
 				for (int i = 1; i < vals.length; i++) {
-					if (getPerformanceValues().get(pmNames.get(i - 1)) == null)
-						getPerformanceValues().put(pmNames.get(i - 1), new ArrayList<>());
-					getPerformanceValues().get(pmNames.get(i - 1)).add(Double.valueOf(vals[i]));
+					if (getPerformanceValues().get(getOrderedPerformanceMeasureList().get(i - 1)) == null)
+						getPerformanceValues().put(getOrderedPerformanceMeasureList().get(i - 1), new ArrayList<>());
+					getPerformanceValues().get(getOrderedPerformanceMeasureList().get(i - 1)).add(Double.valueOf(vals[i]));
 				}
 				line = br.readLine();
 			}
