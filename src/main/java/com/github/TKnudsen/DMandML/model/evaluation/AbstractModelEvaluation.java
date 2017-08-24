@@ -26,8 +26,7 @@ import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * @author Christian Ritter, Juergen Bernard
  * @version 1.01
  */
-public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>>
-		implements IModelEvaluation<O, X, Y, L> {
+public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> implements IModelEvaluation<O, X, Y, L> {
 
 	private List<? extends IPerformanceMeasure<Y>> performanceMeasures;
 	protected Map<IPerformanceMeasure<Y>, List<Double>> performanceValues;
@@ -45,16 +44,13 @@ public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector
 			initDefaultPerformanceMeasures();
 	}
 
-	protected List<Double> calculatePerformances(List<Y> assignments, List<Y> groundTruth) {
-		List<Double> res = new ArrayList<>();
-
+	protected void calculatePerformances(List<Y> assignments, List<Y> groundTruth) {
 		if (getPerformanceMeasures() == null)
 			throw new IllegalArgumentException("ModelEvaluation: performance measures not set.");
 
 		for (IPerformanceMeasure<Y> pm : getPerformanceMeasures()) {
-			res.add(pm.calcPerformance(assignments, groundTruth));
+			performanceValues.get(pm).add(pm.calcPerformance(assignments, groundTruth));
 		}
-		return res;
 	}
 
 	public List<IPerformanceMeasure<Y>> getPerformanceMeasures() {

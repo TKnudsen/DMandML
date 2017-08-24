@@ -74,7 +74,7 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 			List<Y> trainTruth = new ArrayList<>();
 			List<Y> testTruth = new ArrayList<>();
 			for (int j = 0; j < groups.size(); j++) {
-				if (j == k) {
+				if (j == i) {
 					testset.addAll(groups.get(j));
 					testTruth.addAll(truth.get(j));
 				} else {
@@ -83,10 +83,7 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 				}
 			}
 			learner.train(trainset, trainTruth);
-			List<Double> vals = calculatePerformances(learner.test(testset), testTruth);
-			for (int j = 0; j < vals.size(); j++) {
-				performanceValues.get(getPerformanceMeasures().get(j)).add(vals.get(j));
-			}
+			calculatePerformances(learner.test(testset), testTruth);
 		}
 	}
 
@@ -97,7 +94,7 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 
 	@Override
 	protected Double cumulate(List<Double> values) {
-		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
+		return values.stream().reduce(0.0, (x, y) -> x + y) / values.size();
 	}
 
 	@Override

@@ -67,10 +67,7 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 			testTruth = new ArrayList<>();
 			calcRandomTrainAndTestSets(featureVectors, groundTruth);
 			learner.train(trainset, trainTruth);
-			List<Double> vals = calculatePerformances(learner.test(testset), testTruth);
-			for (int j = 0; j < vals.size(); j++) {
-				performanceValues.get(getPerformanceMeasures().get(j)).add(vals.get(j));
-			}
+			calculatePerformances(learner.test(testset), testTruth);
 		}
 	}
 
@@ -114,7 +111,7 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 
 	@Override
 	protected Double cumulate(List<Double> values) {
-		return values.stream().reduce(0.0, (x, y) -> x = y) / values.size();
+		return values.stream().reduce(0.0, (x, y) -> x + y) / values.size();
 	}
 
 	@Override

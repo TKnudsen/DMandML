@@ -40,6 +40,9 @@ public class ClassFMeasure implements IClassificationPerformanceMeasure {
 		double r = cr.calcPerformance(values, groundTruth);
 		double p = cp.calcPerformance(values, groundTruth);
 
+		// if recall and precision is 0 f-measure is also 0
+		if (p + r == 0)
+			return 0.0;
 		double beta2 = beta * beta;
 		return (1 + beta2) * p * r / (beta2 * p + r);
 	}
