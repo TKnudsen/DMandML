@@ -17,6 +17,11 @@ import weka.core.Instances;
  * 
  * <p>
  * Description: abstract baseline routine for WEKA-base clustering routines.
+ * 
+ * For more information see: Dan Pelleg, Andrew W. Moore: X-means: Extending
+ * K-means with Efficient Estimation of the Number of Clusters. In: Seventeenth
+ * International Conference on Machine Learning, 727-734, 2000.
+ * 
  * </p>
  * 
  * <p>

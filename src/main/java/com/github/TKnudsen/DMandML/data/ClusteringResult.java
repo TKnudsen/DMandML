@@ -171,7 +171,7 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 
 	@Override
 	public String getName() {
-		return "Cluster Result Set";
+		return "ClusterResult";
 	}
 
 	@Override

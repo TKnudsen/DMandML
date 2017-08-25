@@ -26,13 +26,11 @@ import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFe
  */
 public class ClusteringResultTools {
 
-	void foor()
-	{
+	void foor() {
 		NumericalFeatureVectorClusterResult x = null;
-        NumericalFeatureVectorCluster y = getLargestCluster(x);
+		NumericalFeatureVectorCluster y = getLargestCluster(x);
 	}
-	
-	
+
 	/**
 	 * Retrieves the largest cluster from a ClusterResult.
 	 * 
@@ -53,7 +51,13 @@ public class ClusteringResultTools {
 		return ret;
 	}
 
-	public List<IDObject> getClusteredElements(IClusteringResult<IDObject, Cluster<IDObject>> clusteringResult) {
+	/**
+	 * retrieves all elements of all clusters in a ClusterResult.
+	 * 
+	 * @param clusterResult
+	 * @return
+	 */
+	public static List<IDObject> getClusteredElements(IClusteringResult<IDObject, Cluster<IDObject>> clusteringResult) {
 		List<IDObject> features = new ArrayList<>();
 
 		if (clusteringResult == null)
@@ -65,6 +69,55 @@ public class ClusteringResultTools {
 		for (int i = 0; i < clusteringResult.getClusters().size(); i++)
 			features.addAll(clusteringResult.getClusters().get(i).getElements());
 		return features;
+	}
+
+	/**
+	 * retrieves all elements of all clusters in a ClusterResult.
+	 * 
+	 * @param clusterResult
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(ClusteringResult<T, Cluster<T>> clusterResult) {
+		List<T> elements = new ArrayList<>();
+
+		for (Cluster<T> c : clusterResult.getClusters())
+			elements.addAll(c.getElements());
+
+		return elements;
+	}
+
+	/**
+	 * Retrieves the cluster for a given object. If getClusterMapping is null
+	 * (if object was not part of the clustering routine) AND
+	 * retrievNearestWhenUnassigned is set true, the method retrieves the
+	 * nearest cluster for the object.
+	 * 
+	 * @param fv
+	 * @param retrieveNearestWhenUnassigned
+	 *            if a cluster is retrieved in case no assignment is exists.
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> C getCluster(ClusteringResult<T, C> clusterResult, T fv, boolean retrieveNearestWhenUnassigned) {
+		if (fv == null)
+			return null;
+
+		C c = clusterResult.getCluster(fv);
+
+		if (c != null)
+			return c;
+
+		if (!retrieveNearestWhenUnassigned)
+			return null;
+
+		double dist = Double.POSITIVE_INFINITY - 1;
+		for (C cluster : clusterResult.getClusters()) {
+			double d = cluster.getCentroidDistance(fv);
+			if (d < dist) {
+				c = cluster;
+				dist = d;
+			}
+		}
+		return c;
 	}
 
 }

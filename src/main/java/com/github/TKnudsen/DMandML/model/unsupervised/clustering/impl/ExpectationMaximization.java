@@ -42,7 +42,7 @@ public class ExpectationMaximization extends WekaClusteringAlgorithm {
 		this(k, 100);
 	}
 
-	protected ExpectationMaximization(int k, int maxIterations) {
+	public ExpectationMaximization(int k, int maxIterations) {
 		setK(k);
 		setMaxIterations(maxIterations);
 	}
