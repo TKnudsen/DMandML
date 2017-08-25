@@ -19,9 +19,9 @@ import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFe
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-interface INumericalClusteringAlgorithm extends IClusteringAlgorithm<NumericalFeatureVector> {
+public interface INumericalClusteringAlgorithm extends IClusteringAlgorithm<NumericalFeatureVector> {
 
 	public IClusteringResult<NumericalFeatureVector, NumericalFeatureVectorCluster> getClusterResultSet();
 }

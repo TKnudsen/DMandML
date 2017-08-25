@@ -28,7 +28,7 @@ public interface IClusteringAlgorithm<F extends IDObject> {
 	public IDistanceMeasure<F> getDistanceMeasure();
 
 	public List<F> getFeatureVectors();
-	
+
 	public void calculateClustering();
 
 	public IClusteringResult<F, ?> getClusterResultSet();

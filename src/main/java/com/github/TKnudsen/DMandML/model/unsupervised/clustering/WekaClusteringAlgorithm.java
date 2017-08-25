@@ -29,9 +29,9 @@ import weka.core.Instances;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public abstract class WekaClusteringAlgorithm implements IClusteringAlgorithm<NumericalFeatureVector> {
+public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlgorithm {
 
 	/**
 	 * data to be clustered
