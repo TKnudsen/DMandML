@@ -95,6 +95,8 @@ public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 
 	@Override
 	protected void initializeDistanceMatrix() {
+		min = Double.MAX_VALUE;
+		max = Double.MIN_VALUE;
 		distanceMapping = new HashMap<>();
 		for (int i = 0; i < objects.size(); i++) {
 			T o1 = objects.get(i);
@@ -102,8 +104,12 @@ public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 			for (int j = i + 1; j < objects.size(); j++) {
 				T o2 = objects.get(j);
 				double dist = distanceMeasure.getDistance(o1, o2);
-				if (dist < threshold)
+				if (dist < threshold) {
 					distanceMapping.get(o1).put(o2, dist);
+					if (min > dist)
+						min = dist;
+				} else
+					max = threshold;
 			}
 		}
 	}
