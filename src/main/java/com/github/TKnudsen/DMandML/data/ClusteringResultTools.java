@@ -1,7 +1,9 @@
 package main.java.com.github.TKnudsen.DMandML.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 
@@ -118,6 +120,35 @@ public class ClusteringResultTools {
 			}
 		}
 		return c;
+	}
+
+	/**
+	 * retrieves the relative distribution of distances of a given object to the
+	 * clusters of a ClusteringResult.
+	 * 
+	 * @param clusterResult
+	 * @param fv
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistanceDistribution(ClusteringResult<T, C> clusterResult, T fv) {
+		if (clusterResult == null)
+			return null;
+
+		Map<C, Double> distanceDistribution = new HashMap<>();
+
+		double distanceSum = 0.0;
+
+		for (C c : clusterResult) {
+			double centroidDistance = c.getCentroidDistance(fv);
+			distanceDistribution.put(c, centroidDistance);
+			distanceSum += centroidDistance;
+		}
+
+		Map<C, Double> returnDistribution = new HashMap<>();
+		for (C c : clusterResult)
+			returnDistribution.put(c, distanceSum / distanceDistribution.get(c));
+
+		return returnDistribution;
 	}
 
 }
