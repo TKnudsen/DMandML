@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
@@ -23,17 +23,14 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * @author Christian Ritter
  * @version 1.01
  */
-public class SparseDistanceMatrix<T> implements IDistanceMatrix<T> {
+public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 
 	private Map<T, Map<T, Double>> distanceMapping;
-	private IDistanceMeasure<T> distanceMeasure;
-	private List<T> objects;
 	private double threshold;
 
 	public SparseDistanceMatrix(List<T> objects, IDistanceMeasure<T> distanceMeasure, double threshold) {
+		super(objects, distanceMeasure);
 		this.threshold = threshold;
-		this.objects = objects;
-		this.distanceMeasure = distanceMeasure;
 		initializeDistanceMatrix();
 	}
 
@@ -49,7 +46,9 @@ public class SparseDistanceMatrix<T> implements IDistanceMatrix<T> {
 
 	@Override
 	public double getDistance(T o1, T o2) {
-		if (o1.equals(o2))
+		if (o1 == null || o2 == null)
+			return threshold;
+		else if (o1.equals(o2))
 			return 0.0;
 		else if (objects.indexOf(o1) < objects.indexOf(o1)) {
 			Double dist = distanceMapping.get(o1).get(o2);
@@ -94,7 +93,8 @@ public class SparseDistanceMatrix<T> implements IDistanceMatrix<T> {
 		return "SparseDistanceMatrix";
 	}
 
-	private void initializeDistanceMatrix() {
+	@Override
+	protected void initializeDistanceMatrix() {
 		distanceMapping = new HashMap<>();
 		for (int i = 0; i < objects.size(); i++) {
 			T o1 = objects.get(i);
