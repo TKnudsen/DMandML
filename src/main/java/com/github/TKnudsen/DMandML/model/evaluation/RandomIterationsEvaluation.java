@@ -83,10 +83,9 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 		int s = (int) Math.round(split * featureVectors.size());
 		while (trainset.size() <= s) {
 			int r = (int) (Math.random() * indices.size());
-			int ind = indices.get(r);
+			int ind = indices.remove(r);
 			trainset.add(featureVectors.get(ind));
 			trainTruth.add(groundTruth.get(ind));
-			indices.remove(r);
 		}
 		// a bit sloppy. check whether all possible labels are covered in a
 		// classification task
@@ -106,7 +105,7 @@ public class RandomIterationsEvaluation<O, X extends AbstractFeatureVector<O, ? 
 
 	@Override
 	protected void initDefaultPerformanceMeasures() {
-		throw new UnsupportedOperationException("RandomIterationsEvaluation: Empty performance measure are not supported yet.");
+		throw new UnsupportedOperationException("RandomIterationsEvaluation: Empty performance measures are not supported yet.");
 	}
 
 	@Override

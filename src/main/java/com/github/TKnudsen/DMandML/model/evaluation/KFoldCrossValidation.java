@@ -89,7 +89,7 @@ public class KFoldCrossValidation<O, X extends AbstractFeatureVector<O, ? extend
 
 	@Override
 	protected void initDefaultPerformanceMeasures() {
-		throw new UnsupportedOperationException("KFoldCrossValidation: Empty performance measure are not supported yet.");
+		throw new UnsupportedOperationException("KFoldCrossValidation: Empty performance measures are not supported yet.");
 	}
 
 	@Override
