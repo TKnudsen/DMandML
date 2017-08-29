@@ -77,6 +77,9 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 
 		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "distance measure may not be null");
 
+		this.name = "Cluster with " + elements.size() + " elements";
+		this.description = "Cluster with " + elements.size() + " elements";
+
 		calculateCentroid();
 	}
 
@@ -86,6 +89,8 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 
 		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "distance measure may not be null");
 
+		if (name == null || description == null)
+			throw new IllegalArgumentException("Cluster: name or description was null");
 		this.name = name;
 		this.description = description;
 
