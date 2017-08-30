@@ -15,7 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * <p>
- * Description: data structure for clustering results.
+ * Description: data structure for clustering results. Basic implementation.
  * </p>
  * 
  * <p>
