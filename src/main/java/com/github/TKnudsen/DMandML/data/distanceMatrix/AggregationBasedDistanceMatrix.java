@@ -52,7 +52,7 @@ public class AggregationBasedDistanceMatrix extends DistanceMatrix<NumericalFeat
 
 	protected void aggregateData() {
 		kmeans = new KMeans(aggregationLevel);
-		kmeans.setFeatureVectors((List<NumericalFeatureVector>) objects);
+		kmeans.setFeatureVectors((List<NumericalFeatureVector>) getElements());
 
 		kmeans.calculateClustering();
 

@@ -50,13 +50,13 @@ public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 			return threshold;
 		else if (o1.equals(o2))
 			return 0.0;
-		else if (objects.indexOf(o1) < objects.indexOf(o1)) {
+		else if (getElements().indexOf(o1) < getElements().indexOf(o1)) {
 			Double dist = distanceMapping.get(o1).get(o2);
 			if (dist == null)
 				return threshold;
 			else
 				return dist;
-		} else if (objects.indexOf(o2) < objects.indexOf(o1)) {
+		} else if (getElements().indexOf(o2) < getElements().indexOf(o1)) {
 			Double dist = distanceMapping.get(o2).get(o1);
 			if (dist == null)
 				return threshold;
@@ -68,13 +68,13 @@ public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 
 	@Override
 	public double[][] getDistanceMatrix() {
-		int s = objects.size();
+		int s = getElements().size();
 		double[][] res = new double[s][s];
 		for (int i = 0; i < s; i++) {
-			T o1 = objects.get(i);
+			T o1 = getElements().get(i);
 			res[i][i] = 0.0;
 			for (int j = i + 1; j < s; j++) {
-				T o2 = objects.get(j);
+				T o2 = getElements().get(j);
 				Double dist = distanceMapping.get(o1).get(o2);
 				if (dist == null) {
 					res[i][j] = threshold;
@@ -98,11 +98,11 @@ public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 		updateMinDistance(Double.MAX_VALUE, null, null);
 		updateMaxDistance(Double.MIN_VALUE, null, null);
 		distanceMapping = new HashMap<>();
-		for (int i = 0; i < objects.size(); i++) {
-			T o1 = objects.get(i);
+		for (int i = 0; i < getElements().size(); i++) {
+			T o1 = getElements().get(i);
 			distanceMapping.put(o1, new HashMap<>());
-			for (int j = i + 1; j < objects.size(); j++) {
-				T o2 = objects.get(j);
+			for (int j = i + 1; j < getElements().size(); j++) {
+				T o2 = getElements().get(j);
 				double dist = distanceMeasure.getDistance(o1, o2);
 				if (dist < threshold) {
 					distanceMapping.get(o1).put(o2, dist);
