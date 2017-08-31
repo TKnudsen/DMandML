@@ -1,7 +1,10 @@
 package main.java.com.github.TKnudsen.DMandML.model.supervised.regression;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
@@ -24,8 +27,8 @@ import weka.core.Instances;
  * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
- * @author Juergen Bernard
- * @version 1.02
+ * @author Juergen Bernard, Christian Ritter
+ * @version 1.03
  */
 public abstract class WekaRegressionWrapper<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends Regression<O, FV> {
 
@@ -33,10 +36,16 @@ public abstract class WekaRegressionWrapper<O extends Object, FV extends Abstrac
 
 	protected Instances instances;
 
+	private Map<String, Set<String>> featureAlphabets;
+
+	public WekaRegressionWrapper() {
+		featureAlphabets = new HashMap<>();
+	}
+
 	@Override
 	protected void prepareData() {
 		if (getTargetValues() != null)
-			instances = WekaConversion.getRegressionValueInstances(trainFeatureVectors, getTargetValues());
+			instances = WekaConversion.getRegressionValueInstances(trainFeatureVectors, getTargetValues(), featureAlphabets);
 		else if (getTargetAttribute() != null) {
 			instances = WekaConversion.getInstances(trainFeatureVectors, false);
 
@@ -110,5 +119,13 @@ public abstract class WekaRegressionWrapper<O extends Object, FV extends Abstrac
 			}
 
 		return values;
+	}
+
+	public void putFeatureAlphabet(String featureName, Set<String> alphabet) {
+		featureAlphabets.put(featureName, alphabet);
+	}
+
+	public void setFeatureAlphabets(Map<String, Set<String>> featureAlphabets) {
+		this.featureAlphabets = featureAlphabets;
 	}
 }

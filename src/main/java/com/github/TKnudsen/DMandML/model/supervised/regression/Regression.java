@@ -20,7 +20,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public abstract class Regression<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IRegression<O, FV> {
 
@@ -51,6 +51,8 @@ public abstract class Regression<O, FV extends AbstractFeatureVector<O, ? extend
 
 	@Override
 	public void train(List<FV> featureVectors, List<Double> targetValues) {
+		resetResults();
+		
 		setTrainFeatureVectors(featureVectors);
 
 		setTargetValues(targetValues);
@@ -59,13 +61,13 @@ public abstract class Regression<O, FV extends AbstractFeatureVector<O, ? extend
 
 		prepareData();
 
-		resetResults();
-
 		buildRegression();
 	}
 
 	@Override
 	public void train(List<FV> featureVectors, String targetVariable) {
+		resetResults();
+		
 		setTrainFeatureVectors(featureVectors);
 
 		setTargetAttribute(targetVariable);
@@ -73,8 +75,6 @@ public abstract class Regression<O, FV extends AbstractFeatureVector<O, ? extend
 		initializeRegression();
 
 		prepareData();
-
-		resetResults();
 
 		buildRegression();
 	}
