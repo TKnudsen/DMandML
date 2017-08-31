@@ -8,7 +8,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 
 /**
  * <p>
- * Title: DecisionStump
+ * Title: ZeroR
  * </p>
  * 
  * <p>
@@ -16,20 +16,20 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class DecisionStump<O, FV extends AbstractFeatureVector<O, Feature<O>>> extends WekaRegressionWrapper<O, FV> {
+public class BasicZeroR<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends WekaRegressionWrapper<O, FV> {
 
 	private boolean debug = false;
 
 	@Override
 	public String getDescription() {
-		return "WEKA's implementation of the DecisionStump regression algorithm.";
+		return "WEKA's implementation of the ZeroR regression algorithm.";
 	}
 
 	@Override
 	public String getName() {
-		return "DecisionStump";
+		return "ZeroR";
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class DecisionStump<O, FV extends AbstractFeatureVector<O, Feature<O>>> e
 
 	@Override
 	protected void initializeRegression() {
-		wekaRegressionModel = new weka.classifiers.trees.DecisionStump();
+		wekaRegressionModel = new weka.classifiers.rules.ZeroR();
 
 		List<String> aryOpts = new ArrayList<String>();
 

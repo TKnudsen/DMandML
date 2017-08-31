@@ -16,9 +16,9 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class M5P<O, FV extends AbstractFeatureVector<O, Feature<O>>> extends WekaRegressionWrapper<O, FV> {
+public class BasicM5P<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends WekaRegressionWrapper<O, FV> {
 
 	private int minimumNumberOfInstances = 4;
 	private boolean safeInstances = false;

@@ -16,9 +16,9 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class RandomTree<O, FV extends AbstractFeatureVector<O, Feature<O>>> extends WekaRegressionWrapper<O, FV> {
+public class BasicRandomTree<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends WekaRegressionWrapper<O, FV> {
 
 
 	private boolean allowUnclassifiedInstances = false;
