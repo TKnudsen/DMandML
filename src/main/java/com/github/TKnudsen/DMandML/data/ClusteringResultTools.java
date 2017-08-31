@@ -130,7 +130,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistanceDistribution(ClusteringResult<T, C> clusterResult, T fv) {
+	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(ClusteringResult<T, C> clusterResult, T fv) {
 		if (clusterResult == null)
 			return null;
 
@@ -146,7 +146,7 @@ public class ClusteringResultTools {
 
 		Map<C, Double> returnDistribution = new HashMap<>();
 		for (C c : clusterResult)
-			returnDistribution.put(c, distanceSum / distanceDistribution.get(c));
+			returnDistribution.put(c, distanceDistribution.get(c) / distanceSum);
 
 		return returnDistribution;
 	}
