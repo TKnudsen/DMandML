@@ -55,7 +55,7 @@ public class WekaClusteringTools {
 			}
 			List<NumericalFeatureVectorCluster> clusters = new ArrayList<>();
 			for (Integer i : fvs.keySet())
-				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusterer.getClass().toString() + (i + 1)));
+				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusterer.getClass().getSimpleName() + (i + 1)));
 
 			return new NumericalFeatureVectorClusterResult(clusters);
 

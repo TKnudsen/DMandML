@@ -2,6 +2,7 @@ package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 
 import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
@@ -54,14 +55,12 @@ public class Cobweb extends WekaClusteringAlgorithm {
 
 	@Override
 	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		// TODO Auto-generated method stub
-		return null;
+		return new EuclideanDistanceMeasure();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Cobweb";
 	}
 
 	@Override
