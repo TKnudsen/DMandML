@@ -36,7 +36,7 @@ public abstract class WekaRegressionWrapper<O extends Object, FV extends Abstrac
 	@Override
 	protected void prepareData() {
 		if (getTargetValues() != null)
-			instances = WekaConversion.getLabeledInstances(trainFeatureVectors, getTargetValues());
+			instances = WekaConversion.getRegressionValueInstances(trainFeatureVectors, getTargetValues());
 		else if (getTargetAttribute() != null) {
 			instances = WekaConversion.getInstances(trainFeatureVectors, false);
 
