@@ -4,7 +4,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IIDObjectDistanceMeasure;
 
-import main.java.com.github.TKnudsen.DMandML.data.Cluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>

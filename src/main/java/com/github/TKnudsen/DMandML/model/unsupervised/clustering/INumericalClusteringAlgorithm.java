@@ -2,8 +2,8 @@ package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 
-import main.java.com.github.TKnudsen.DMandML.data.IClusteringResult;
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorCluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
 
 /**
  * <p>

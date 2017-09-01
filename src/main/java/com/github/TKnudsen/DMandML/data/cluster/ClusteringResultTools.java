@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data;
+package main.java.com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,8 +7,8 @@ import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorCluster;
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorClusterResult;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 
 /**
  * <p>

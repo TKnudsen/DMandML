@@ -6,8 +6,8 @@ import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 
-import main.java.com.github.TKnudsen.DMandML.data.Cluster;
-import main.java.com.github.TKnudsen.DMandML.data.ClusteringResult;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
 
 /**
  * <p>

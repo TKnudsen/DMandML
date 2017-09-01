@@ -7,8 +7,8 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorCluster;
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorClusterResult;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 import weka.core.Instance;
 import weka.core.Instances;
 

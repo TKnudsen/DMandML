@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data;
+package main.java.com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
 import java.util.HashMap;

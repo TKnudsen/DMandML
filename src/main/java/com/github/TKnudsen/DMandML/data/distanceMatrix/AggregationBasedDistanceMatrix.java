@@ -7,9 +7,9 @@ import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
-import main.java.com.github.TKnudsen.DMandML.data.Cluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 import main.java.com.github.TKnudsen.DMandML.data.clustering.ClusterResultWithClusterLookupSupport;
-import main.java.com.github.TKnudsen.DMandML.data.features.numerical.NumericalFeatureVectorClusterResult;
 import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
 
 /**
@@ -47,7 +47,9 @@ public class AggregationBasedDistanceMatrix extends DistanceMatrix<NumericalFeat
 	public AggregationBasedDistanceMatrix(List<NumericalFeatureVector> objects, IDistanceMeasure<NumericalFeatureVector> distanceMeasure, int aggregationLevel) {
 		super(objects, distanceMeasure);
 
-		this.aggregationLevel = aggregationLevel;
+		throw new IllegalArgumentException("AggregationBasedDistanceMatrix: design pitfall. initialize is executed before aggregationLevel is set.");
+
+		// this.aggregationLevel = aggregationLevel;
 	}
 
 	protected void aggregateData() {

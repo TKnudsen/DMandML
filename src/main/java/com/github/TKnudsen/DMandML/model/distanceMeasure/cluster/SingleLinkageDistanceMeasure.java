@@ -3,7 +3,7 @@ package main.java.com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
-import main.java.com.github.TKnudsen.DMandML.data.Cluster;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>

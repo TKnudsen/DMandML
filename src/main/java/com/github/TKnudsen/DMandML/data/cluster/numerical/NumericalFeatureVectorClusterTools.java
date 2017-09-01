@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data.features.numerical;
+package main.java.com.github.TKnudsen.DMandML.data.cluster.numerical;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,7 +8,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 
-import main.java.com.github.TKnudsen.DMandML.data.Centroid;
+import main.java.com.github.TKnudsen.DMandML.data.cluster.Centroid;
 
 /**
  * <p>

@@ -1,10 +1,12 @@
-package main.java.com.github.TKnudsen.DMandML.data;
+package main.java.com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
@@ -71,6 +73,11 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 	 */
 	protected int dimensionality = -1;
 
+	/**
+	 * cluster variance
+	 */
+	protected double variance = Double.NaN;
+
 	public Cluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure) {
 		this.ID = MathFunctions.randomLong();
 		this.elements = new LinkedHashSet<>(elements);
@@ -97,7 +104,44 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 		calculateCentroid();
 	}
 
-	protected abstract void calculateCentroid();
+	protected void calculateCentroid() {
+		if (centroid == null) {
+			double min = Double.MAX_VALUE;
+			T candidate = null;
+
+			Random random = new Random();
+			int numInit = Math.min(10, (int) Math.ceil(Math.sqrt(size())));
+
+			List<T> elementList = ClusterTools.getElementList(this);
+			for (T fv : getElements()) {
+				double dist = 0;
+				for (int i = 0; i < numInit; i++) {
+					T element = elementList.get(random.nextInt(size()));
+					dist += getDistanceMeasure().getDistance(element, fv);
+				}
+				if (dist < min) {
+					min = dist;
+					candidate = fv;
+				}
+			}
+
+			centroid = new Centroid<T>(this, candidate);
+		}
+	}
+
+	@Override
+	public double getVariance() {
+		if (Double.isNaN(variance)) {
+			calculateCentroid();
+			double acc = 0;
+			for (T cps : getElements())
+				acc += Math.pow(getCentroidDistance(cps), 2);
+
+			variance = acc / (double) size();
+		}
+
+		return variance;
+	}
 
 	@Override
 	public long getID() {

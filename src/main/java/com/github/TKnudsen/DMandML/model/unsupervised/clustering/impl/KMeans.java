@@ -33,10 +33,11 @@ public class KMeans extends WekaClusteringAlgorithm {
 	private int seed = 10;
 
 	public KMeans() {
+		this(2, 17);
 	}
 
 	public KMeans(int k) {
-		this.k = k;
+		this(k, 17);
 	}
 
 	public KMeans(int k, int seed) {
