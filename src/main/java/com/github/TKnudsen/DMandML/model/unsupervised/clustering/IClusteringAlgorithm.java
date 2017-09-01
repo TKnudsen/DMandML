@@ -1,11 +1,11 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ import main.java.com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.07
+ * @version 1.08
  */
 public interface IClusteringAlgorithm<F extends IDObject> {
 
@@ -31,7 +31,7 @@ public interface IClusteringAlgorithm<F extends IDObject> {
 
 	public void calculateClustering();
 
-	public IClusteringResult<F, ?> getClusterResultSet();
+	public IClusteringResult<F, ? extends Cluster<F>> getClusteringResult();
 
 	public String getName();
 }

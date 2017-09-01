@@ -1,9 +1,8 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
  * <p>
@@ -23,5 +22,7 @@ import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFea
  */
 public interface INumericalClusteringAlgorithm extends IClusteringAlgorithm<NumericalFeatureVector> {
 
-	public IClusteringResult<NumericalFeatureVector, NumericalFeatureVectorCluster> getClusterResultSet();
+	// TODO changing Cluster<NumericalFeatureVector> to NumericalFVC causes
+	// problems when using the classes. Unfortunately.
+	public IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusteringResult();
 }

@@ -1,9 +1,8 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
  * <p>

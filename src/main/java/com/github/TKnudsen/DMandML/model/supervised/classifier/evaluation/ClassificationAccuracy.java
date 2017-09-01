@@ -1,10 +1,9 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.classifier.evaluation;
+package com.github.TKnudsen.DMandML.model.supervised.classifier.evaluation;
 
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 public class ClassificationAccuracy implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 

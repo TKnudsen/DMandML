@@ -1,9 +1,8 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.regression;
+package com.github.TKnudsen.DMandML.model.supervised.regression;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-
-import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
  * <p>

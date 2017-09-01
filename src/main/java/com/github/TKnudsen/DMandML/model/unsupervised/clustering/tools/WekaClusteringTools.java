@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.tools;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering.tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,11 @@ import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
 
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 import weka.core.Instance;
 import weka.core.Instances;
 
@@ -30,7 +32,7 @@ import weka.core.Instances;
  * @version 1.07
  */
 public class WekaClusteringTools {
-	public static NumericalFeatureVectorClusterResult getClusterResultOutOfWekaClusterer(weka.clusterers.AbstractClusterer clusterer, Instances data, List<NumericalFeatureVector> featureVectors) {
+	public static IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusterResultOutOfWekaClusterer(weka.clusterers.AbstractClusterer clusterer, Instances data, List<NumericalFeatureVector> featureVectors) {
 
 		try {
 			if (data == null && featureVectors != null) {
@@ -53,11 +55,11 @@ public class WekaClusteringTools {
 					System.out.println("");
 				}
 			}
-			List<NumericalFeatureVectorCluster> clusters = new ArrayList<>();
+			List<Cluster<NumericalFeatureVector>> clusters = new ArrayList<>();
 			for (Integer i : fvs.keySet())
 				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusterer.getClass().getSimpleName() + (i + 1)));
 
-			return new NumericalFeatureVectorClusterResult(clusters);
+			return new ClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>>(clusters);
 
 		} catch (Exception e) {
 			e.printStackTrace();

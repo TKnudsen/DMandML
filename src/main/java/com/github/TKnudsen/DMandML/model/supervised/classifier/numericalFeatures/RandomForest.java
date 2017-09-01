@@ -1,11 +1,10 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.classifier.numericalFeatures;
+package com.github.TKnudsen.DMandML.model.supervised.classifier.numericalFeatures;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
 
 /**
  * <p>

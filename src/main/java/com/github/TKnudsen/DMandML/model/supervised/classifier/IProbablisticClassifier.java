@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.classifier;
+package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.Map;
 

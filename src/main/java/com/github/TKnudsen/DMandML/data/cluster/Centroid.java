@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster;
+package com.github.TKnudsen.DMandML.data.cluster;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IMasterProvider;

@@ -1,12 +1,11 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster.general;
+package com.github.TKnudsen.DMandML.data.cluster.general;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 public class GeneralCluster extends Cluster<IDObject> {
 

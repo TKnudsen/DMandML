@@ -1,16 +1,15 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.splitting;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering.splitting;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.ClusterTools;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
-import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;
-import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ClusterTools;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
 
 /**
  * <p>
@@ -69,7 +68,7 @@ public class KMeansBasedClusterSplitting implements IClusterSplittingAlgorithm<N
 	public List<Cluster<NumericalFeatureVector>> splitCluster(Cluster<NumericalFeatureVector> cluster) {
 		kmeans = new KMeans(splitCount, 17, ClusterTools.getElementList(cluster));
 		kmeans.calculateClustering();
-		IClusteringResult<NumericalFeatureVector, ?> clusterResultSet = kmeans.getClusterResultSet();
+		IClusteringResult<NumericalFeatureVector, ?> clusterResultSet = kmeans.getClusteringResult();
 
 		List<Cluster<NumericalFeatureVector>> ret = new ArrayList<>();
 

@@ -1,13 +1,12 @@
-package main.java.com.github.TKnudsen.DMandML.data.clustering;
+package com.github.TKnudsen.DMandML.data.clustering;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
 
 /**
  * <p>

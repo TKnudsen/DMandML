@@ -1,8 +1,7 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.regression.numericFeatures;
+package com.github.TKnudsen.DMandML.model.supervised.regression.numericFeatures;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.model.supervised.regression.BasicM5P;
+import com.github.TKnudsen.DMandML.model.supervised.regression.BasicM5P;
 
 /**
  * <p>

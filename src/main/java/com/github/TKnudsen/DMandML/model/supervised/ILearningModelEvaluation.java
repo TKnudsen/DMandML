@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised;
+package com.github.TKnudsen.DMandML.model.supervised;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster;
+package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 
 /**
  * <p>
@@ -79,7 +78,7 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(ClusteringResult<T, Cluster<T>> clusterResult) {
+	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(IClusteringResult<T, Cluster<T>> clusterResult) {
 		List<T> elements = new ArrayList<>();
 
 		for (Cluster<T> c : clusterResult.getClusters())
@@ -99,7 +98,7 @@ public class ClusteringResultTools {
 	 *            if a cluster is retrieved in case no assignment is exists.
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getCluster(ClusteringResult<T, C> clusterResult, T fv, boolean retrieveNearestWhenUnassigned) {
+	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv, boolean retrieveNearestWhenUnassigned) {
 		if (fv == null)
 			return null;
 
@@ -130,7 +129,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(ClusteringResult<T, C> clusterResult, T fv) {
+	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv) {
 		if (clusterResult == null)
 			return null;
 

@@ -1,6 +1,6 @@
-package main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.classification;
+package com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.classification;
 
-import main.java.com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
+import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
  * @author Christian Ritter

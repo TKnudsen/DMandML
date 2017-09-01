@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.evaluation.io;
+package com.github.TKnudsen.DMandML.model.evaluation.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-
-import main.java.com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
-import main.java.com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
+import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
  * <p>

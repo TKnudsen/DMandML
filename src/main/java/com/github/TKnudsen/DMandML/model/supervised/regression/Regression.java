@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.regression;
+package com.github.TKnudsen.DMandML.model.supervised.regression;
 
 import java.util.List;
 

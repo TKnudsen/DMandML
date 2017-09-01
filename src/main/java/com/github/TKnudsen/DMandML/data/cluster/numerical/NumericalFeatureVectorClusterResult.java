@@ -1,10 +1,9 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster.numerical;
+package com.github.TKnudsen.DMandML.data.cluster.numerical;
 
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
+package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
-
-import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
  * <p>

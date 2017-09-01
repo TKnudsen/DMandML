@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster.numerical;
+package com.github.TKnudsen.DMandML.data.cluster.numerical;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -15,9 +15,8 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Centroid;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.Centroid;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 
 /**

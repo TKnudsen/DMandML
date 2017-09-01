@@ -1,12 +1,11 @@
-package main.java.com.github.TKnudsen.DMandML.data.cluster.mixed;
+package com.github.TKnudsen.DMandML.data.cluster.mixed;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>

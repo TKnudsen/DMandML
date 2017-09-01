@@ -7,7 +7,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 
-import main.java.com.github.TKnudsen.DMandML.data.distanceMatrix.AggregationBasedDistanceMatrix;
+import com.github.TKnudsen.DMandML.data.distanceMatrix.AggregationBasedDistanceMatrix;
 
 /**
  * <p>

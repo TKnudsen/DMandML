@@ -1,8 +1,7 @@
-package main.java.com.github.TKnudsen.DMandML.model.supervised.regression.mixedFeatures;
+package com.github.TKnudsen.DMandML.model.supervised.regression.mixedFeatures;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
-
-import main.java.com.github.TKnudsen.DMandML.model.supervised.regression.BasicDecisionStump;
+import com.github.TKnudsen.DMandML.model.supervised.regression.BasicDecisionStump;
 
 /**
  * <p>

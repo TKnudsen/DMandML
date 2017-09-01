@@ -1,4 +1,4 @@
-package main.java.com.github.TKnudsen.DMandML.data.distanceMatrix;
+package com.github.TKnudsen.DMandML.data.distanceMatrix;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,11 +6,10 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import main.java.com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import main.java.com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
-import main.java.com.github.TKnudsen.DMandML.data.clustering.ClusterResultWithClusterLookupSupport;
-import main.java.com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import com.github.TKnudsen.DMandML.data.clustering.ClusterResultWithClusterLookupSupport;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
 
 /**
  * <p>
@@ -58,8 +57,8 @@ public class AggregationBasedDistanceMatrix extends DistanceMatrix<NumericalFeat
 
 		kmeans.calculateClustering();
 
-		NumericalFeatureVectorClusterResult clusterResultSet = kmeans.getClusterResultSet();
-		this.clusteringResult = new ClusterResultWithClusterLookupSupport(clusterResultSet.getClusters());
+		IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> clusteringResult = kmeans.getClusteringResult();
+		this.clusteringResult = new ClusterResultWithClusterLookupSupport(clusteringResult.getClusters());
 	}
 
 	protected ClusterResultWithClusterLookupSupport<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusterResult() {
