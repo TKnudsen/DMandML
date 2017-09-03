@@ -122,6 +122,29 @@ public class ClusteringResultTools {
 	}
 
 	/**
+	 * Retrieves the cluster for a given object. The cluster name is used to
+	 * retrieve a particular cluster.
+	 * 
+	 * @param clusterResult
+	 * @param fv
+	 * @param clusterName
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, String clusterName) {
+		if (clusterResult == null)
+			return null;
+
+		if (clusterName == null)
+			throw new IllegalArgumentException("ClusteringResultTools.getCluster: clusterName string was null");
+
+		for (C cluster : clusterResult.getClusters())
+			if (cluster.getName() != null && cluster.getName().equals(clusterResult))
+				return cluster;
+
+		return null;
+	}
+
+	/**
 	 * retrieves the relative distribution of distances of a given object to the
 	 * clusters of a ClusteringResult.
 	 * 
