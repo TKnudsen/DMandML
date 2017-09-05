@@ -138,7 +138,7 @@ public class ClusteringResultTools {
 			throw new IllegalArgumentException("ClusteringResultTools.getCluster: clusterName string was null");
 
 		for (C cluster : clusterResult.getClusters())
-			if (cluster.getName() != null && cluster.getName().equals(clusterResult))
+			if (cluster.getName() != null && cluster.getName().equals(clusterName))
 				return cluster;
 
 		return null;
@@ -152,7 +152,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv) {
+	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
 		if (clusterResult == null)
 			return null;
 
@@ -166,7 +166,11 @@ public class ClusteringResultTools {
 			distanceSum += centroidDistance;
 		}
 
+		if (!normalizeToProbabilities)
+			return distanceDistribution;
+
 		Map<C, Double> returnDistribution = new HashMap<>();
+
 		for (C c : clusterResult)
 			returnDistribution.put(c, distanceDistribution.get(c) / distanceSum);
 
