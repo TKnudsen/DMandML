@@ -8,6 +8,7 @@ import java.util.Map;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
 
 /**
  * <p>
@@ -152,7 +153,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> Map<C, Double> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
+	public static <T extends IDObject, C extends Cluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
 		if (clusterResult == null)
 			return null;
 
@@ -167,14 +168,38 @@ public class ClusteringResultTools {
 		}
 
 		if (!normalizeToProbabilities)
-			return distanceDistribution;
+			return new ClusterDistanceDistribution<T, C>(distanceDistribution);
 
 		Map<C, Double> returnDistribution = new HashMap<>();
 
 		for (C c : clusterResult)
 			returnDistribution.put(c, distanceDistribution.get(c) / distanceSum);
 
-		return returnDistribution;
+		return new ClusterDistanceDistribution<T, C>(returnDistribution);
+	}
+
+	/**
+	 * retrieves the relative distribution of distances of a given object to the
+	 * clusters of a ClusteringResult.
+	 * 
+	 * @param clusterResult
+	 * @param fv
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> List<Double> getClusterDistanceDistribution(IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
+		if (clusterResult == null)
+			return null;
+
+		List<Double> clusterDistances = new ArrayList<>();
+
+		for (int i = 0; i < clusterResult.size() - 1; i++)
+			for (int j = i + 1; j < clusterResult.size(); j++) {
+				Cluster<T> c1 = clusterResult.getClusters().get(i);
+				Cluster<T> c2 = clusterResult.getClusters().get(j);
+				clusterDistances.add(clusterDistanceMeasure.getDistance(c1, c2));
+			}
+
+		return clusterDistances;
 	}
 
 }

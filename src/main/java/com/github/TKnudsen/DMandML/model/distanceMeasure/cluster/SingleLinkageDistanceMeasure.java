@@ -20,14 +20,14 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class SingleLinkageDistanceMeasure extends ClusterDistanceMeasure<IDObject> {
+public class SingleLinkageDistanceMeasure<T extends IDObject> extends ClusterDistanceMeasure<T> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2706781830339589800L;
 
-	public SingleLinkageDistanceMeasure(IDistanceMeasure<IDObject> distanceMeasure) {
+	public SingleLinkageDistanceMeasure(IDistanceMeasure<T> distanceMeasure) {
 		super(distanceMeasure);
 	}
 
@@ -47,10 +47,10 @@ public class SingleLinkageDistanceMeasure extends ClusterDistanceMeasure<IDObjec
 	}
 
 	@Override
-	public double getDistance(Cluster<IDObject> c1, Cluster<IDObject> c2) {
+	public double getDistance(Cluster<T> c1, Cluster<T> c2) {
 		double distance = Double.MAX_VALUE;
-		for (IDObject dp1 : c1.getElements())
-			for (IDObject dp2 : c2.getElements())
+		for (T dp1 : c1.getElements())
+			for (T dp2 : c2.getElements())
 				distance = Math.min(distance, getDistanceMeasure().getDistance(dp1, dp2));
 
 		return distance;
