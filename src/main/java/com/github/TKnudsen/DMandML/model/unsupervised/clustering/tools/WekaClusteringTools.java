@@ -32,7 +32,8 @@ import weka.core.Instances;
  * @version 1.07
  */
 public class WekaClusteringTools {
-	public static IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusterResultOutOfWekaClusterer(weka.clusterers.AbstractClusterer clusterer, Instances data, List<NumericalFeatureVector> featureVectors) {
+	public static IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusterResultFromWekaClusterer(weka.clusterers.AbstractClusterer clusterer, Instances data, List<NumericalFeatureVector> featureVectors,
+			String clusteringName) {
 
 		try {
 			if (data == null && featureVectors != null) {
@@ -57,7 +58,7 @@ public class WekaClusteringTools {
 			}
 			List<Cluster<NumericalFeatureVector>> clusters = new ArrayList<>();
 			for (Integer i : fvs.keySet())
-				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusterer.getClass().getSimpleName() + ", Cluster " + (i + 1)));
+				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusteringName + " Cluster " + i));
 
 			return new ClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>>(clusters);
 

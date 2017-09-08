@@ -3,12 +3,9 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
-import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.tools.WekaClusteringTools;
 
 import weka.clusterers.AbstractClusterer;
@@ -71,7 +68,7 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 		initializeClusteringAlgorithm();
 
 		try {
-			clusterResult = WekaClusteringTools.getClusterResultOutOfWekaClusterer(wekaClusterer, data, featureVectors);
+			clusterResult = WekaClusteringTools.getClusterResultFromWekaClusterer(wekaClusterer, data, featureVectors, getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
