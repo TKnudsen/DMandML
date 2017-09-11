@@ -20,7 +20,7 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
 
 /**
  * <p>
- * Title: MultiDimensionalScaling
+ * Title: MDS
  * </p>
  * 
  * <p>
