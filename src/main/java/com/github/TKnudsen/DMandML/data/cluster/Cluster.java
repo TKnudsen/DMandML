@@ -50,7 +50,7 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 	/**
 	 * data objects contained by the cluster
 	 */
-	private final Set<T> elements;
+	protected final Set<T> elements;
 
 	/**
 	 * distance measure for the calculation of centroid distances, etc.

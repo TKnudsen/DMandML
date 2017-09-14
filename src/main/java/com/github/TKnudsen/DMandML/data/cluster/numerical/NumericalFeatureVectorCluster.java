@@ -365,7 +365,9 @@ public class NumericalFeatureVectorCluster extends Cluster<NumericalFeatureVecto
 		return featureVectorCentroidDistancesLong;
 	}
 
+	
 	public Map<NumericalFeatureVector, Double> getFeatureVectorCentroidDistancesMap() {
+		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv)).forEach(fv -> getCentroidDistance(fv)); //stellt sicher, das alle fv in der map sind
 		return featureVectorCentroidDistancesFV;
 	}
 
