@@ -184,12 +184,16 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 		if (trainData.size() < 2)
 			throw new IllegalArgumentException("at least two training instances required");
 
-		try {
-			wekaClassifier.buildClassifier(trainData);
-		} catch (Exception e) {
-			System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName() + "<- sent an exception: "
-					+ e.getMessage());
-			e.printStackTrace();
+		if (trainData.classAttribute().numValues() == 1) {
+			System.err.println("Training data contains only a single class. Not applying " + wekaClassifier);
+		} else {
+			try {
+				wekaClassifier.buildClassifier(trainData);
+			} catch (Exception e) {
+				System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName()
+						+ "<- sent an exception: " + e.getMessage());
+				e.printStackTrace();
+			}
 		}
 	}
 
