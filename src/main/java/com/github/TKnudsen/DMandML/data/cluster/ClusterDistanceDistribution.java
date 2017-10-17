@@ -35,5 +35,4 @@ public class ClusterDistanceDistribution<T extends IDObject, C extends Cluster<T
 	public Double get(C cluster) {
 		return clusterDistances.get(cluster);
 	}
-
 }
