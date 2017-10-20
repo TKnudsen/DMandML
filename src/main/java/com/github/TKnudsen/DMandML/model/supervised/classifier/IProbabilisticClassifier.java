@@ -7,11 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 
 /**
  * <p>
- * Title: IProbablisticClassifier
+ * Title: IProbabilisticClassifier
  * </p>
  * 
  * <p>
- * Description: characteristics of a probablistic classifier
+ * Description: characteristics of a probabilistic classifier
  * </p>
  * 
  * <p>
@@ -21,7 +21,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * @author Juergen Bernard
  * @version 1.02
  */
-public interface IProbablisticClassifier<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends IClassifier<O, X> {
+public interface IProbabilisticClassifier<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends IClassifier<O, X> {
 
 	public Map<String, Double> getLabelDistribution(X featureVector);
 

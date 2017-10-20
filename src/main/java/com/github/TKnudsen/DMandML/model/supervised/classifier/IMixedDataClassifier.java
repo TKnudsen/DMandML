@@ -19,6 +19,6 @@ import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFe
  * @author Juergen Bernard
  * @version 1.02
  */
-public interface IMixedDataClassifier extends IProbablisticClassifier<Object, MixedDataFeatureVector> {
+public interface IMixedDataClassifier extends IProbabilisticClassifier<Object, MixedDataFeatureVector> {
 
 }

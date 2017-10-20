@@ -20,6 +20,6 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface INumericalDataClassifier extends IProbablisticClassifier<Double, NumericalFeatureVector> {
+public interface INumericalDataClassifier extends IProbabilisticClassifier<Double, NumericalFeatureVector> {
 
 }

@@ -29,7 +29,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * @author Juergen Bernard
  * @version 1.02
  */
-public abstract class Classifier<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IProbablisticClassifier<O, FV> {
+public abstract class Classifier<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IProbabilisticClassifier<O, FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;
