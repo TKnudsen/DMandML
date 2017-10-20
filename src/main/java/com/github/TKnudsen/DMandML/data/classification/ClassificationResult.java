@@ -6,6 +6,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ * Title: ClassificationResult
+ * </p>
+ * 
+ * <p>
+ * Description:
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * @version 1.02
+ */
 public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private final Map<X, String> labels;

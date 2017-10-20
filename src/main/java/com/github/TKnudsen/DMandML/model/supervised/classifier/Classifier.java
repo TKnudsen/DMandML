@@ -2,6 +2,7 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
+import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
 /**
  * <p>
@@ -105,6 +108,17 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 		resetResults();
 
 		buildClassifier();
+	}
+
+	@Override
+	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
+		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
+		for (FV fv : featureVectors)
+			labelDistributionMap.put(fv, getLabelDistribution(fv));
+
+		IProbabilisticClassificationResult<FV> result = new ProbabilisticClassificationResult<>(labelDistributionMap);
+
+		return result;
 	}
 
 	@Override

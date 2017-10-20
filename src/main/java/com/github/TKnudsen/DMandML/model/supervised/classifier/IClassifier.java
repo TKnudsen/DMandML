@@ -1,7 +1,10 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
+import java.util.List;
+
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
@@ -23,7 +26,6 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  */
 public interface IClassifier<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends ILearningModel<O, X, String> {
 
-	// public IClassificationResult<X> createClassificationResult(List<X>
-	// featureVectors);
+	public IClassificationResult<X> createClassificationResult(List<X> featureVectors);
 
 }

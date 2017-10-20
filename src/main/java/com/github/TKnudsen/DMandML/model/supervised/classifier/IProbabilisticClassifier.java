@@ -1,9 +1,12 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
+import java.util.List;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 
 /**
  * <p>
@@ -28,4 +31,6 @@ public interface IProbabilisticClassifier<O, X extends AbstractFeatureVector<O, 
 	public double getLabelProbabilityMax(X featureVector);
 
 	public double getLabelProbabilityMargin(X featureVector);
+
+	public IProbabilisticClassificationResult<X> createClassificationResult(List<X> featureVectors);
 }
