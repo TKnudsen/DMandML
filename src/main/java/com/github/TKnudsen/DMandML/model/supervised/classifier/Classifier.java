@@ -11,7 +11,6 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
@@ -122,35 +121,6 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 	}
 
 	@Override
-	public double getLabelProbabilityMax(FV featureVector) {
-		Map<String, Double> labelDistribution = getLabelDistribution(featureVector);
-		if (labelDistribution == null)
-			return 0;
-
-		Double[] array = labelDistribution.values().toArray(new Double[0]);
-		return MathFunctions.getMax(array);
-	}
-
-	@Override
-	public double getLabelProbabilityMargin(FV featureVector) {
-		Map<String, Double> probabilities = getLabelDistribution(featureVector);
-
-		if (probabilities == null)
-			return 0;
-
-		double max = Double.MIN_VALUE;
-		double second = Double.MIN_VALUE;
-		for (double value : probabilities.values())
-			if (max <= value) {
-				second = max;
-				max = value;
-			} else if (second <= value)
-				second = value;
-
-		return max - second;
-	}
-
-	@Override
 	public String getName() {
 		return this.getClass().getSimpleName();
 	}
@@ -181,6 +151,7 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 		this.trainFeatureVectors = trainFeatureVectors;
 	}
 
+	@Override
 	public List<String> getLabelAlphabet() {
 		return labelAlphabet;
 	}

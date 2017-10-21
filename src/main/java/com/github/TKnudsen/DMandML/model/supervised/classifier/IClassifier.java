@@ -22,10 +22,12 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.05
+ * @version 1.06
  */
 public interface IClassifier<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends ILearningModel<O, X, String> {
 
 	public IClassificationResult<X> createClassificationResult(List<X> featureVectors);
+
+	public List<String> getLabelAlphabet();
 
 }
