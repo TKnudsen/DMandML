@@ -214,7 +214,11 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : labelUncertainties.keySet())
+<<<<<<< HEAD
 			labelDistributionMap.put(fv, LabelDistributionTools.mergeLabelUncertainties(labelUncertainties.get(fv)).getValueDistribution());
+=======
+			labelDistributionMap.put(fv, LabelDistributionTools.mergelabelDistributions(labelUncertainties.get(fv)).getValueDistribution());
+>>>>>>> branch 'master' of https://github.com/TKnudsen/DMandML.git
 
 		return new ProbabilisticClassificationResult<>(labelDistributionMap);
 	}

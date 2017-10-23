@@ -27,6 +27,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 public class LabelDistributionTools {
 
 	/**
+<<<<<<< HEAD
 	 * merges a series of LabelUncertaintys.
 	 * 
 	 * @param labelDistributions
@@ -47,6 +48,28 @@ public class LabelDistributionTools {
 					valueDistributions.put(label, new ArrayList<>());
 
 				valueDistributions.get(label).add(labelUncertainty.getValueDistribution().get(label));
+=======
+	 * merges a series of LabelDistributions.
+	 * 
+	 * @param labelDistributions
+	 * @return
+	 */
+	public static LabelDistribution mergelabelDistributions(Collection<LabelDistribution> labelDistributions) {
+		if (labelDistributions == null)
+			return null;
+
+		Map<String, List<Double>> valueDistributions = new LinkedHashMap<>();
+
+		for (LabelDistribution labelDistribution : labelDistributions) {
+			if (labelDistribution == null)
+				continue;
+
+			for (String label : labelDistribution.getLabelSet()) {
+				if (valueDistributions.get(label) == null)
+					valueDistributions.put(label, new ArrayList<>());
+
+				valueDistributions.get(label).add(labelDistribution.getValueDistribution().get(label));
+>>>>>>> branch 'master' of https://github.com/TKnudsen/DMandML.git
 			}
 		}
 
