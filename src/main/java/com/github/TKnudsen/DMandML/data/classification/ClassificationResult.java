@@ -1,5 +1,6 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -25,6 +26,8 @@ import java.util.Map;
 public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private final Map<X, String> labels;
+
+	Map<String, List<X>> classDistributions;
 
 	public ClassificationResult(List<X> featureVectors, List<String> labels) {
 		this(zip(featureVectors, labels));
@@ -52,6 +55,25 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 		}
 
 		return map;
+	}
+
+	@Override
+	public Map<String, List<X>> getClassDistributions() {
+		if (classDistributions == null)
+			calculateClassDistributions();
+
+		return classDistributions;
+	}
+
+	private void calculateClassDistributions() {
+		classDistributions = new LinkedHashMap<>();
+
+		for (X x : labels.keySet()) {
+			if (classDistributions.get(labels.get(x)) == null)
+				classDistributions.put(labels.get(x), new ArrayList<>());
+
+			classDistributions.get(labels.get(x)).add(x);
+		}
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,11 +18,13 @@ import java.util.Collection;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public interface IClassificationResult<X> {
 
 	public Collection<X> getFeatures();
 
 	public String getClass(X featureVector);
+
+	public Map<String, List<X>> getClassDistributions();
 }

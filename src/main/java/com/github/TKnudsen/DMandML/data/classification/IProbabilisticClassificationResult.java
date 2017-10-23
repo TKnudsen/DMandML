@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
-import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncertainty;
-
 /**
  * <p>
  * Title: IProbabilisticClassificationResult
@@ -20,5 +18,5 @@ import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncert
  */
 public interface IProbabilisticClassificationResult<X> extends IClassificationResult<X> {
 
-	public LabelUncertainty getLabelDistribution(X x);
+	public LabelDistribution getLabelDistribution(X x);
 }

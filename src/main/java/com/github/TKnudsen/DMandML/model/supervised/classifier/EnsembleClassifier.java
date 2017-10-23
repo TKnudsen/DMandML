@@ -11,10 +11,10 @@ import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncertainty;
-import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncertaintyTools;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
+import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
 import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
 /**
@@ -199,7 +199,7 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 	@Override
 	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
 
-		Map<FV, Collection<LabelUncertainty>> labelUncertainties = new LinkedHashMap<>();
+		Map<FV, Collection<LabelDistribution>> labelUncertainties = new LinkedHashMap<>();
 
 		if (classifierEnsemble != null)
 			for (Classifier<O, FV> classifier : classifierEnsemble) {
@@ -214,7 +214,7 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : labelUncertainties.keySet())
-			labelDistributionMap.put(fv, LabelUncertaintyTools.mergeLabelUncertainties(labelUncertainties.get(fv)).getValueDistribution());
+			labelDistributionMap.put(fv, LabelDistributionTools.mergeLabelUncertainties(labelUncertainties.get(fv)).getValueDistribution());
 
 		return new ProbabilisticClassificationResult<>(labelDistributionMap);
 	}

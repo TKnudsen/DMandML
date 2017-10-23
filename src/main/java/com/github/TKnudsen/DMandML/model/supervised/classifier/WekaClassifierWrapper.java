@@ -3,7 +3,6 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +11,8 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.tools.IndexTools;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
 import weka.core.Instances;
 
@@ -112,7 +108,7 @@ public abstract class WekaClassifierWrapper<O extends Object, FV extends Abstrac
 	@Override
 	public Map<String, Double> getLabelDistribution(FV featureVector) {
 		if (labelDistributionMap == null) {
-			System.err.println("WekaClassifierWrapper: no model created yet");
+//			System.err.println("WekaClassifierWrapper: no model created yet");
 			return null;
 		}
 		if (labelDistributionMap.get(featureVector) == null) {
