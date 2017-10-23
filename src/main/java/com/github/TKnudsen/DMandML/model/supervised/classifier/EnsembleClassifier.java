@@ -199,26 +199,22 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 	@Override
 	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
 
-		Map<FV, Collection<LabelDistribution>> labelUncertainties = new LinkedHashMap<>();
+		Map<FV, Collection<LabelDistribution>> labelDistributions = new LinkedHashMap<>();
 
 		if (classifierEnsemble != null)
 			for (Classifier<O, FV> classifier : classifierEnsemble) {
 				IProbabilisticClassificationResult<FV> classificationResult = classifier.createClassificationResult(featureVectors);
 				for (FV fv : featureVectors) {
-					if (labelUncertainties.get(fv) == null)
-						labelUncertainties.put(fv, new ArrayList<>());
+					if (labelDistributions.get(fv) == null)
+						labelDistributions.put(fv, new ArrayList<>());
 
-					labelUncertainties.get(fv).add(classificationResult.getLabelDistribution(fv));
+					labelDistributions.get(fv).add(classificationResult.getLabelDistribution(fv));
 				}
 			}
 
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
-		for (FV fv : labelUncertainties.keySet())
-<<<<<<< HEAD
-			labelDistributionMap.put(fv, LabelDistributionTools.mergeLabelUncertainties(labelUncertainties.get(fv)).getValueDistribution());
-=======
-			labelDistributionMap.put(fv, LabelDistributionTools.mergelabelDistributions(labelUncertainties.get(fv)).getValueDistribution());
->>>>>>> branch 'master' of https://github.com/TKnudsen/DMandML.git
+		for (FV fv : labelDistributions.keySet())
+			labelDistributionMap.put(fv, LabelDistributionTools.mergeLabelDistributions(labelDistributions.get(fv)).getValueDistribution());
 
 		return new ProbabilisticClassificationResult<>(labelDistributionMap);
 	}
