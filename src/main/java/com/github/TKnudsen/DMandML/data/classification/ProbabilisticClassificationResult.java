@@ -1,10 +1,7 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncertainty;
 
 /**
  * <p>
@@ -24,7 +21,7 @@ import com.github.TKnudsen.ComplexDataObject.data.uncertainty.string.LabelUncert
  */
 public class ProbabilisticClassificationResult<X> extends ClassificationResult<X> implements IProbabilisticClassificationResult<X> {
 
-	Map<X, LabelUncertainty> labelDistributionMap;
+	Map<X, LabelDistribution> labelDistributionMap;
 
 	/**
 	 * constructor stores a refernce on the object.
@@ -38,21 +35,21 @@ public class ProbabilisticClassificationResult<X> extends ClassificationResult<X
 	}
 
 	@Override
-	public LabelUncertainty getLabelDistribution(X x) {
+	public LabelDistribution getLabelDistribution(X x) {
 		return labelDistributionMap.get(x);
 	}
 
-	protected static <X> Map<X, LabelUncertainty> createLabelDistributionMap(Map<X, Map<String, Double>> labelDistributionMap) {
-		Map<X, LabelUncertainty> tmpLabelDistributionMap = new LinkedHashMap<>();
+	protected static <X> Map<X, LabelDistribution> createLabelDistributionMap(Map<X, Map<String, Double>> labelDistributionMap) {
+		Map<X, LabelDistribution> tmpLabelDistributionMap = new LinkedHashMap<>();
 
 		for (X x : labelDistributionMap.keySet())
-			tmpLabelDistributionMap.put(x, new LabelUncertainty(labelDistributionMap.get(x)));
+			tmpLabelDistributionMap.put(x, new LabelDistribution(labelDistributionMap.get(x)));
 
 		return tmpLabelDistributionMap;
 	}
 
 	protected static <X> Map<X, String> createLabelsMap(Map<X, Map<String, Double>> labelDistributionMap) {
-		Map<X, LabelUncertainty> map = createLabelDistributionMap(labelDistributionMap);
+		Map<X, LabelDistribution> map = createLabelDistributionMap(labelDistributionMap);
 
 		Map<X, String> labelsMap = new LinkedHashMap<>();
 
