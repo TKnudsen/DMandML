@@ -165,6 +165,9 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 		for (int d = 0; d < values.length; d++)
 			features.add(new NumericalFeature("Dim " + d, values[d]));
 
+		while (features.size() < outputDimensionality)
+			features.add(new NumericalFeature("Dim_" + features.size(), 0.0));
+
 		NumericalFeatureVector outputFeatureVector = new NumericalFeatureVector(features);
 		return outputFeatureVector;
 	}
