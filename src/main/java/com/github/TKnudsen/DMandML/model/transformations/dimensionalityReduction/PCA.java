@@ -162,7 +162,7 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 		double[] values = transformed.toDoubleArray();
 
 		List<NumericalFeature> features = new ArrayList<>();
-		for (int d = 0; d < values.length; d++)
+		for (int d = 0; d < Math.min(values.length, outputDimensionality); d++)
 			features.add(new NumericalFeature("Dim " + d, values[d]));
 
 		while (features.size() < outputDimensionality)
