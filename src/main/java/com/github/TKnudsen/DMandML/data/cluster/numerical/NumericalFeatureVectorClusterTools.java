@@ -19,7 +19,7 @@ import com.github.TKnudsen.DMandML.data.cluster.Centroid;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard

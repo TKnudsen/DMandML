@@ -13,7 +13,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFe
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jürgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard

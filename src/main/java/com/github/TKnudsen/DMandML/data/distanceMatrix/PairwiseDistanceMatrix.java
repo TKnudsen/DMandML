@@ -21,7 +21,7 @@ import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix
  * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
- * @author Christian Ritter, Jürgen Bernard
+ * @author Christian Ritter, Juergen Bernard
  * @version 1.03
  */
 public class PairwiseDistanceMatrix<T> implements IDistanceMatrix<T> {
