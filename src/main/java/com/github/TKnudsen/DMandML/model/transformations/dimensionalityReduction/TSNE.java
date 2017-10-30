@@ -58,12 +58,13 @@ public class TSNE extends DimensionalityReduction<Double, NumericalFeatureVector
 	 */
 	private int interationsMax = 100;
 
-	public TSNE(List<NumericalFeatureVector> featureVectors) {
-		this(featureVectors, 20.0, 100);
+	public TSNE(List<NumericalFeatureVector> featureVectors, int outputDimensionality) {
+		this(featureVectors, outputDimensionality, 20.0, 100);
 	}
 
-	public TSNE(List<NumericalFeatureVector> featureVectors, double perplexity, int interationsMax) {
+	public TSNE(List<NumericalFeatureVector> featureVectors, int outputDimensionality, double perplexity, int interationsMax) {
 		this.featureVectors = featureVectors;
+		this.outputDimensionality = outputDimensionality;
 		this.perplexity = perplexity;
 		this.interationsMax = interationsMax;
 	}
