@@ -117,20 +117,6 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 	 * provides a low-dimensional representation of X
 	 */
 	@Override
-	public List<NumericalFeatureVector> transform(NumericalFeatureVector input) {
-		if (mapping != null && mapping.get(input) != null)
-			return Arrays.asList(new NumericalFeatureVector[] { mapping.get(input) });
-		else {
-			List<NumericalFeatureVector> lst = new ArrayList<>();
-			lst.add(input);
-			return transform(lst);
-		}
-	}
-
-	/**
-	 * provides a low-dimensional representation of X
-	 */
-	@Override
 	public List<NumericalFeatureVector> transform(List<NumericalFeatureVector> inputObjects) {
 		if (mapping == null || pca == null)
 			throw new NullPointerException("PCA: model not calculated yet.");

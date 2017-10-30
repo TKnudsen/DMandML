@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -88,38 +87,6 @@ public class MDS<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> ex
 		this.featureVectors = distanceMatrix.getElements();
 
 		this.outputDimensionality = outputDimensionality;
-	}
-
-	/**
-	 * provides a low-dimensional representation of X
-	 */
-	@Override
-	public List<NumericalFeatureVector> transform(X input) {
-		if (mapping != null && mapping.get(input) != null)
-			return Arrays.asList(new NumericalFeatureVector[] { mapping.get(input) });
-		else {
-			List<X> lst = new ArrayList<>();
-			lst.add(input);
-			return transform(lst);
-		}
-	}
-
-	/**
-	 * provides a low-dimensional representation of X
-	 */
-	@Override
-	public List<NumericalFeatureVector> transform(List<X> inputObjects) {
-		if (mapping == null)
-			throw new NullPointerException("MDS: model not calculated yet.");
-
-		List<NumericalFeatureVector> output = new ArrayList<>();
-		for (X x : inputObjects)
-			if (mapping.containsKey(x))
-				output.add(mapping.get(x));
-			else
-				System.err.println("MDS: feature vector identified that was not used to calculate MDS. Mapping not supported yet. Ignore.");
-
-		return output;
 	}
 
 	/**

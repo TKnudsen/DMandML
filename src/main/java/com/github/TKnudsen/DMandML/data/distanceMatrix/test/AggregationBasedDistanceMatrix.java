@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.distanceMatrix;
+package com.github.TKnudsen.DMandML.data.distanceMatrix.test;
 
 import java.util.HashMap;
 import java.util.List;
