@@ -87,11 +87,14 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	}
 
 	public void setFeatureVectors(List<NumericalFeatureVector> featureVectors) {
+		
 		this.featureVectors = featureVectors;
 
 		if (featureVectors == null)
 			data = null;
 		else
 			data = WekaConversion.getInstances(featureVectors, false);
+		
+		clusterResult = null;
 	}
 }
