@@ -28,6 +28,8 @@ public interface IClusteringAlgorithm<F extends IDObject> {
 	public IDistanceMeasure<F> getDistanceMeasure();
 
 	public List<F> getFeatureVectors();
+	
+	public void setFeatureVectors(List<F> featureVectors) ;
 
 	public void calculateClustering();
 
