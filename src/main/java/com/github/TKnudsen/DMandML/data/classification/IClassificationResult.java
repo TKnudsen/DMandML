@@ -18,11 +18,11 @@ import java.util.Map;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public interface IClassificationResult<X> {
 
-	public Collection<X> getFeatures();
+	public Collection<X> getFeatureVectors();
 
 	public String getClass(X featureVector);
 

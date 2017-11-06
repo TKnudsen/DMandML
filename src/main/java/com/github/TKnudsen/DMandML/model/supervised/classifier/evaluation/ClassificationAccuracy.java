@@ -5,6 +5,24 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
+/**
+ * <p>
+ * Title: ClassificationAccuracy
+ * </p>
+ * 
+ * <p>
+ * Description: Accuracy measure for a series of test objects. Accuracy is
+ * defined by the number of objects predicted correctly divided by the number of
+ * all tested objects.
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * @version 1.01
+ */
 public class ClassificationAccuracy implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 
 	@Override

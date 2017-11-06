@@ -38,7 +38,7 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	}
 
 	@Override
-	public Collection<X> getFeatures() {
+	public Collection<X> getFeatureVectors() {
 		return labels.keySet();
 	}
 
