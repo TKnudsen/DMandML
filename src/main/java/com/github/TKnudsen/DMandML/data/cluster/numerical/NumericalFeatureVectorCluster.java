@@ -18,7 +18,6 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
-
 /**
  * <p>
  * Title: NumericalFeatureVectorCluster
@@ -365,9 +364,9 @@ public class NumericalFeatureVectorCluster extends Cluster<NumericalFeatureVecto
 		return featureVectorCentroidDistancesLong;
 	}
 
-	
 	public Map<NumericalFeatureVector, Double> getFeatureVectorCentroidDistancesMap() {
-		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv)).forEach(fv -> getCentroidDistance(fv)); //stellt sicher, das alle fv in der map sind
+		// stellt sicher, das alle fv in der map sind
+		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv)).forEach(fv -> getCentroidDistance(fv));
 		return featureVectorCentroidDistancesFV;
 	}
 
