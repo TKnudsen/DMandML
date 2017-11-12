@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.cluster.numerical;
+package com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -17,6 +17,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
 
 /**
  * <p>
@@ -32,9 +33,9 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class NumericalFeatureVectorCluster extends Cluster<NumericalFeatureVector> {
+public class NumericalFeatureVectorCluster extends FeatureVectorCluster<NumericalFeatureVector> {
 
 	private StatisticsSupport distancesToCentroidStatistics;
 	private StatisticsSupport[] dataStatisticsPerDimension = null;

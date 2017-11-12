@@ -57,4 +57,30 @@ public class LabelDistributionTools {
 
 		return new LabelDistribution(valueDistribution);
 	}
+
+	/**
+	 * Provides a new Map with distributions adding up to 1.
+	 * 
+	 * @return
+	 */
+	public static Map<String, Double> normalizeLabelDistribution(Map<String, Double> distribution) {
+		if (distribution == null)
+			return null;
+
+		double sum = 0;
+		for (String label : distribution.keySet())
+			sum += distribution.get(label);
+
+		if (Double.isNaN(sum)) {
+			System.err.println("LabelDistributionTools.normalizeLabelDistribution applied with NaN values.");
+			return null;
+		}
+
+		Map<String, Double> normalized = new LinkedHashMap<>();
+
+		for (String label : normalized.keySet())
+			normalized.put(label, normalized.get(label) / sum);
+
+		return normalized;
+	}
 }
