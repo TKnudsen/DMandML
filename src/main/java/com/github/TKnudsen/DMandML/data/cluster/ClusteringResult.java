@@ -37,7 +37,7 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 	/**
 	 * @param clusters
 	 */
-	public ClusteringResult(List<C> clusters) {
+	public ClusteringResult(List<? extends C> clusters) {
 		this.clusters = new ArrayList<>(clusters);
 
 		for (C c : clusters)

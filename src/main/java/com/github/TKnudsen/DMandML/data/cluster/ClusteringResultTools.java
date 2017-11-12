@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
 
 /**
@@ -30,7 +31,7 @@ public class ClusteringResultTools {
 
 	void foor() {
 		NumericalFeatureVectorClusterResult x = null;
-		NumericalFeatureVectorCluster y = getLargestCluster(x);
+		FeatureVectorCluster<NumericalFeatureVector> largestCluster = getLargestCluster(x);
 	}
 
 	/**

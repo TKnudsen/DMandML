@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.cluster.numerical;
+package com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical;
 
 import java.util.ArrayList;
 import java.util.Iterator;
