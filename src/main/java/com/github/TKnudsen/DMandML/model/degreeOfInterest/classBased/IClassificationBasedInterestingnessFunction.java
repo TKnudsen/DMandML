@@ -1,8 +1,8 @@
-package com.github.TKnudsen.DMandML.model.guidance.classificationBased;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
-import com.github.TKnudsen.DMandML.model.guidance.IInterestingnesFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.IInterestingnesFunction;
 
 /**
  * <p>

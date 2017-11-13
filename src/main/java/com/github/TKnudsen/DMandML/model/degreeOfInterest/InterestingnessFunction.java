@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.guidance;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 
 import java.util.Map;
 

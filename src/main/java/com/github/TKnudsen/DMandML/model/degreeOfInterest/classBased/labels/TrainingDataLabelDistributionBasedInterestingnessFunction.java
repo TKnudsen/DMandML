@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.guidance.classificationBased.labels;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.labels;
 
 import java.util.LinkedHashMap;
 import java.util.List;
