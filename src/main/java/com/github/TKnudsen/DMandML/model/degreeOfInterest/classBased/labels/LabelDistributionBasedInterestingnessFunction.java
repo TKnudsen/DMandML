@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.guidance.classificationBased.labels;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.labels;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -13,7 +13,7 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
-import com.github.TKnudsen.DMandML.model.guidance.classificationBased.ClassificationBasedInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.ClassificationBasedInterestingnessFunction;
 import com.google.common.collect.ImmutableMap;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.guidance;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;

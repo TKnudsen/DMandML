@@ -1,8 +1,8 @@
-package com.github.TKnudsen.DMandML.model.guidance.dataBased;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
-import com.github.TKnudsen.DMandML.model.guidance.IInterestingnesFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.IInterestingnesFunction;
 
 /**
  * <p>

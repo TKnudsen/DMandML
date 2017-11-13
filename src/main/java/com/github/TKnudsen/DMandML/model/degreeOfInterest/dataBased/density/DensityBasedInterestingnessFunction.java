@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.guidance.dataBased.density;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.density;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +10,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-import com.github.TKnudsen.DMandML.model.guidance.InterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.guidance.dataBased.IDataBasedInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.InterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedInterestingnessFunction;
 
 /**
  * <p>
