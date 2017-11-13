@@ -3,7 +3,7 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
 
 /**
  * <p>
@@ -21,23 +21,22 @@ import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier
  * @author Juergen Bernard
  * @version 1.02
  */
-public abstract class InterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> implements IInterestingnesFunction<FV> {
+public abstract class DegreeOfInterestFunction<FV extends AbstractFeatureVector<?, ?>> implements IDegreeOfInterestFunction<FV> {
 
-	private FeatureVectorSupplier<FV> featureVectorSupplier;
+	private IFeatureVectorSupplier<FV> featureVectorSupplier;
 
 	protected Map<FV, Double> interestingnessScores;
 
-	public InterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier) {
+	public DegreeOfInterestFunction(IFeatureVectorSupplier<FV> featureVectorSupplier) {
 		this.featureVectorSupplier = featureVectorSupplier;
 	}
 
 	public abstract void run();
 
 	@Override
-	public double getInterestingness(FV featureVector) {
+	public Double apply(FV featureVector) {
 		if (interestingnessScores == null) {
-			System.err.println(getName() + ": Interestingness functions not calculated yet");
-			return Double.NaN;
+			run();
 		}
 
 		return interestingnessScores.get(featureVector);
@@ -57,7 +56,7 @@ public abstract class InterestingnessFunction<FV extends AbstractFeatureVector<?
 	}
 
 	@Override
-	public FeatureVectorSupplier<FV> getFeatureVectorSupplier() {
+	public IFeatureVectorSupplier<FV> getFeatureVectorSupplier() {
 		return featureVectorSupplier;
 	}
 }

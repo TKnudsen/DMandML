@@ -22,12 +22,12 @@ import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class MixedDataFeatureVectorCluster extends FeatureVectorCluster<MixedDataFeatureVector> {
 
 	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements, IDistanceMeasure<MixedDataFeatureVector> distanceMeasure) {
-		super(elements, distanceMeasure);
+		this(elements, distanceMeasure, "", "");
 	}
 
 	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements, IDistanceMeasure<MixedDataFeatureVector> distanceMeasure, String name, String description) {

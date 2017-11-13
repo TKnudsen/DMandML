@@ -12,7 +12,8 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * <p>
- * Description:
+ * Description: Super class for Featurevectors. Is not abstract any more to
+ * engage general use of feature vectors in a more abstract way.
  * </p>
  * 
  * <p>
@@ -20,16 +21,21 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public abstract class FeatureVectorCluster<FV extends AbstractFeatureVector<?, ?>> extends Cluster<FV> {
+public class FeatureVectorCluster<FV extends AbstractFeatureVector<?, ?>> extends Cluster<FV> {
 
 	public FeatureVectorCluster(Collection<? extends FV> elements, IDistanceMeasure<FV> distanceMeasure) {
-		super(elements, distanceMeasure);
+		this(elements, distanceMeasure, "", "");
 	}
 
 	public FeatureVectorCluster(Collection<? extends FV> elements, IDistanceMeasure<FV> distanceMeasure, String name, String description) {
 		super(elements, distanceMeasure, name, description);
+	}
+
+	@Override
+	public Cluster<FV> clone() {
+		return new FeatureVectorCluster<>(getElements(), distanceMeasure);
 	}
 
 }
