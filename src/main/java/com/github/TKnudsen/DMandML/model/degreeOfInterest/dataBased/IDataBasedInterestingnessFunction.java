@@ -2,7 +2,7 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.IInterestingnesFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.IInterestingnesFunctio
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface IDataBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends IInterestingnesFunction<FV> {
+public interface IDataBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends IDegreeOfInterestFunction<FV> {
 
 	public IFeatureVectorSupplier<FV> getFeatureVectorSupplier();
 
