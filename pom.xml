@@ -23,6 +23,7 @@
 	</scm>
 
 	<properties>
+		<project.build.sourceEncoding>cp1250</project.build.sourceEncoding>
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 		<commons-math3.version>3.4.1</commons-math3.version>
