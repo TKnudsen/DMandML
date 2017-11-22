@@ -96,7 +96,20 @@
 			<artifactId>smile-math</artifactId>
 			<version>1.4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jujutsu</groupId>
+			<artifactId>tsne</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>local-mvn-repository</id>
+			<name>data</name>
+			<url>file://local-mvn-repository</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
