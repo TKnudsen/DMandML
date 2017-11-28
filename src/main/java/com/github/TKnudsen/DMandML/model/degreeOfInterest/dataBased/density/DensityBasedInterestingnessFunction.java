@@ -11,7 +11,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedDegreeOfInterestFunction;
 
 /**
  * <p>
@@ -30,7 +30,7 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedIn
  * @author Juergen Bernard
  * @version 1.01
  */
-public class DensityBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedInterestingnessFunction<FV> {
+public class DensityBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
 
 	private int nearestNeighborCount;
 

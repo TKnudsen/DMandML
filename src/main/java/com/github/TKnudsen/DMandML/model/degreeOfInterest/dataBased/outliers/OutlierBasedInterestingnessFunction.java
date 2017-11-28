@@ -3,7 +3,7 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.outliers;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.unsupervised.outliers.IFeatureVectorOutlierAnalysisAlgorithm;
 
 /**
@@ -22,7 +22,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.IFeatureVectorOut
  * @author Juergen Bernard
  * @version 1.01
  */
-public class OutlierBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedInterestingnessFunction<FV> {
+public class OutlierBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
 
 	private IFeatureVectorOutlierAnalysisAlgorithm<FV> outlierAnalysisAlgorithm;
 
