@@ -141,18 +141,25 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 			int count = -1;
 			String winningLabel = null;
 
-			List<String> labelAlphabet = getLabelAlphabet();
-			if (labelAlphabet != null) {
-				for (String label : labelAlphabet)
-					if (winningLabels.get(fv).get(label) != null)
-						if (winningLabels.get(fv).get(label) > count) {
-							winningLabel = label;
-							count = winningLabels.get(fv).get(label);
-						}
+			for (String label : winningLabels.get(fv).keySet()) {
+				if (winningLabels.get(fv).get(label) > count) {
+					winningLabel = label;
+					count = winningLabels.get(fv).get(label);
+				}
+			}
 
-				labels.add(winningLabel);
-			} else
-				labels.add(null);
+			labels.add(winningLabel);
+
+			// List<String> labelAlphabet = getLabelAlphabet();
+			// if (labelAlphabet != null) {
+			// for (String label : labelAlphabet)
+			// if (winningLabels.get(fv).get(label) != null)
+			// if (winningLabels.get(fv).get(label) > count) {
+			// winningLabel = label;
+			// count = winningLabels.get(fv).get(label);
+			// }
+			//
+			// labels.add(winningLabel);
 		}
 
 		return labels;
