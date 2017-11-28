@@ -110,12 +110,15 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 	public List<String> test(List<FV> featureVectors) {
 		Map<FV, Map<String, Integer>> winningLabels = new LinkedHashMap<>();
 
+		boolean returnEmpty = true;
 		if (classifierEnsemble != null)
 			for (Classifier<O, FV> classifier : classifierEnsemble) {
 				List<String> winning = classifier.test(featureVectors);
 
 				if (winning == null || winning.size() != featureVectors.size())
 					continue;
+
+				returnEmpty = false;
 
 				for (int i = 0; i < featureVectors.size(); i++) {
 					FV fv = featureVectors.get(i);
@@ -129,13 +132,17 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 
 		List<String> labels = new ArrayList<>();
 
+		// this is what individeual classifiers are also doing.
+		if (returnEmpty)
+			return labels;
+
 		for (int i = 0; i < featureVectors.size(); i++) {
 			FV fv = featureVectors.get(i);
 			int count = -1;
 			String winningLabel = null;
 
 			List<String> labelAlphabet = getLabelAlphabet();
-			if (labelAlphabet != null)
+			if (labelAlphabet != null) {
 				for (String label : labelAlphabet)
 					if (winningLabels.get(fv).get(label) != null)
 						if (winningLabels.get(fv).get(label) > count) {
@@ -143,7 +150,9 @@ public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVect
 							count = winningLabels.get(fv).get(label);
 						}
 
-			labels.add(winningLabel);
+				labels.add(winningLabel);
+			} else
+				labels.add(null);
 		}
 
 		return labels;

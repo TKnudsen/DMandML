@@ -22,7 +22,7 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunct
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface IDataBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends IDegreeOfInterestFunction<FV> {
+public interface IDataBasedDegreeOfInterestFunction<FV extends AbstractFeatureVector<?, ?>> extends IDegreeOfInterestFunction<FV> {
 
 	public IFeatureVectorSupplier<FV> getFeatureVectorSupplier();
 
