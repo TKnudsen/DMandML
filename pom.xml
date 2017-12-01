@@ -104,13 +104,22 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>local-mvn-repository</id>
-			<name>data</name>
-			<url>file://local-mvn-repository</url>
-		</repository>
-	</repositories>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>local-mvn-repository</id>
+					<name>data</name>
+					<url>file://local-mvn-repository</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
 
 	<build>
 		<plugins>
