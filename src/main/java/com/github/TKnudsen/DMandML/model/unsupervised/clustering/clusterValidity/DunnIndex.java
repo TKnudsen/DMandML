@@ -41,7 +41,7 @@ public class DunnIndex<FV extends AbstractFeatureVector<?, ?>> implements IClust
 
 	private IFeatureVectorDistanceMeasure<FV> featureVectorDistanceMeasure;
 
-	private Double silhouetteIndex;
+	private Double dunnIndex;
 
 	public DunnIndex(IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> clusteringResultSupplier, IFeatureVectorDistanceMeasure<FV> featureVectorDistanceMeasure) {
 
@@ -91,27 +91,27 @@ public class DunnIndex<FV extends AbstractFeatureVector<?, ?>> implements IClust
 				count++;
 			}
 
-		silhouetteIndex = silhouette / count;
+		dunnIndex = silhouette / count;
 	}
 
 	@Override
 	public double getClusterValidity() {
-		if (silhouetteIndex == null) {
+		if (dunnIndex == null) {
 			System.err.println(getName() + ": index not calculated yet.");
 			return Double.NaN;
 		}
 
-		return silhouetteIndex.doubleValue();
+		return dunnIndex.doubleValue();
 	}
 
 	@Override
 	public String getName() {
-		return "Silouette Clustering Index";
+		return "Dunn Clustering Index";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Measures how similar instances are to their own clusters (cohesion/compactness) compared to other clusters (separation)";
+		return "Cluster validity measure based on cluster compactness and separation measures";
 	}
 
 	@Override
