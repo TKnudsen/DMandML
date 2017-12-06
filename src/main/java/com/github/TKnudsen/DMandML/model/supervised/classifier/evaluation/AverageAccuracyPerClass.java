@@ -56,9 +56,10 @@ public class AverageAccuracyPerClass implements IClassifierEvaluation<Double, Nu
 			double correct = 0;
 
 			for (int i = 0; i < instances.size(); i++) {
-				if (instances.get(i) != null && instances.get(i).getAttribute(targetVariable) != null) {
-					String label = instances.get(i).getAttribute(targetVariable).toString();
-					if (label.equals(test.get(i)))
+				NumericalFeatureVector fv = instances.get(i);
+				if (fv != null && fv.getAttribute(targetVariable) != null) {
+					String label = fv.getAttribute(targetVariable).toString();
+					if (label.equals(classLabel))
 						correct++;
 					count++;
 				}
