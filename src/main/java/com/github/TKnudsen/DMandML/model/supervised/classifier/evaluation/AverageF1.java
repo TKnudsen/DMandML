@@ -19,8 +19,8 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * Description:
  * </p>
  * 
- * @author Christian Ritter
- * @version 1.01
+ * @author Christian Ritter, Juergen Bernard
+ * @version 1.02
  */
 public class AverageF1 implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 
@@ -72,5 +72,15 @@ public class AverageF1 implements IClassifierEvaluation<Double, NumericalFeature
 		else
 			return f1Values.stream().reduce(0.0, (x, y) -> x + y).doubleValue() / f1Values.size();
 
+	}
+
+	@Override
+	public String getName() {
+		return "average f1";
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 }

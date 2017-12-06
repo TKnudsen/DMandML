@@ -19,8 +19,8 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * Description:
  * </p>
  * 
- * @author Christian Ritter
- * @version 1.01
+ * @author Christian Ritter, Juergen Bernard
+ * @version 1.02
  */
 public class AveragePrecision implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 
@@ -61,5 +61,15 @@ public class AveragePrecision implements IClassifierEvaluation<Double, Numerical
 			return 0.0;
 		else
 			return precisionValues.stream().reduce(0.0, (x, y) -> x + y).doubleValue() / precisionValues.size();
+	}
+
+	@Override
+	public String getName() {
+		return "average precision";
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 }
