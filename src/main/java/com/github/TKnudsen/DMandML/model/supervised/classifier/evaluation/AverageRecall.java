@@ -19,8 +19,8 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * Description:
  * </p>
  * 
- * @author Christian Ritter
- * @version 1.01
+ * @author Christian Ritter, Juergen Bernard
+ * @version 1.02
  */
 public class AverageRecall implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 
@@ -56,10 +56,20 @@ public class AverageRecall implements IClassifierEvaluation<Double, NumericalFea
 			if (trues.get(s) != 0.0)
 				recallValues.add(truepositives.get(s) / trues.get(s));
 		}
-		
-		if(recallValues.size() < 1)
+
+		if (recallValues.size() < 1)
 			return 0.0;
 		else
-			return recallValues.stream().reduce(0.0, (x,y) -> x + y).doubleValue() / recallValues.size();
+			return recallValues.stream().reduce(0.0, (x, y) -> x + y).doubleValue() / recallValues.size();
+	}
+
+	@Override
+	public String getName() {
+		return "average recall";
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 }

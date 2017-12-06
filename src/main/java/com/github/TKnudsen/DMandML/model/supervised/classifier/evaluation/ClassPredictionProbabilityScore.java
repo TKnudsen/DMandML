@@ -61,4 +61,14 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Do
 
 		return predictionSum / count;
 	}
+
+	@Override
+	public String getName() {
+		return "class prediction average score";
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
+	}
 }

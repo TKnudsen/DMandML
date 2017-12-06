@@ -21,7 +21,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class ClassificationAccuracy implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
 
@@ -47,6 +47,16 @@ public class ClassificationAccuracy implements IClassifierEvaluation<Double, Num
 		}
 
 		return correct / count;
+	}
+
+	@Override
+	public String getName() {
+		return "accuracy";
+	}
+
+	@Override
+	public String getDescription() {
+		return "returns the ratio of correctly predicted instances";
 	}
 
 }
