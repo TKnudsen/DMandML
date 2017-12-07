@@ -71,7 +71,6 @@ public class AverageF1 implements IClassifierEvaluation<Double, NumericalFeature
 			return 0.0;
 		else
 			return f1Values.stream().reduce(0.0, (x, y) -> x + y).doubleValue() / f1Values.size();
-
 	}
 
 	@Override
