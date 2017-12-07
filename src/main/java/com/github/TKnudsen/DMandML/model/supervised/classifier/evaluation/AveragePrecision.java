@@ -26,10 +26,10 @@ public class AveragePrecision implements IClassifierEvaluation<Double, Numerical
 
 	@Override
 	public double getQuality(IClassifier<Double, NumericalFeatureVector> model, List<NumericalFeatureVector> testData, String targetVariable) {
-		Set<String> labels = testData.stream().map(x -> x.getAttribute(targetVariable).toString()).collect(Collectors.toSet());
+		Set<String> labelAlphabet = testData.stream().map(x -> x.getAttribute(targetVariable).toString()).collect(Collectors.toSet());
 		Map<String, Double> truepositives = new HashMap<>();
 		Map<String, Double> positives = new HashMap<>();
-		for (String l : labels) {
+		for (String l : labelAlphabet) {
 			truepositives.put(l, 0.0);
 			positives.put(l, 0.0);
 		}
