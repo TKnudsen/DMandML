@@ -353,12 +353,12 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 
 	@Override
 	public String toString() {
-		return "Cluster " + getName() + ". Centroid: " + centroid.toString();
+		return "Cluster " + getName() + ", size: " + size() + ". Centroid: " + centroid.toString();
 	}
 
 	@Override
 	public String getDescription() {
-		return "Cluster " + getName() + ". Centroid: " + centroid.toString();
+		return getName();
 	}
 
 	public Map<Long, Double> getFeatureVectorCentroidDistances() {
