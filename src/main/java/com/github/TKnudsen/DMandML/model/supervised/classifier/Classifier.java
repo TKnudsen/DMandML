@@ -74,15 +74,7 @@ public abstract class Classifier<O extends Object, FV extends AbstractFeatureVec
 		for (int i = 0; i < featureVectors.size(); i++)
 			trainFeatureVectors.get(i).add(classAttribute, labels.get(i));
 
-		this.labelAlphabet = new ArrayList<>(new HashSet<>(labels));
-
-		initializeClassifier();
-
-		prepareData();
-
-		resetResults();
-
-		buildClassifier();
+		train(featureVectors, classAttribute);
 	}
 
 	@Override
