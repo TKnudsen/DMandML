@@ -3,8 +3,6 @@ package com.github.TKnudsen.DMandML.data.classification;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.TKnudsen.ComplexDataObject.data.uncertainty.IUncertaintyQualitative;
-
 /**
  * <p>
  * Title: LabelDistribution
@@ -19,9 +17,9 @@ import com.github.TKnudsen.ComplexDataObject.data.uncertainty.IUncertaintyQualit
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class LabelDistribution implements IUncertaintyQualitative<String> {
+public class LabelDistribution {
 
 	private Map<String, Double> valueDistribution;
 
@@ -63,12 +61,10 @@ public class LabelDistribution implements IUncertaintyQualitative<String> {
 		return rep;
 	}
 
-	@Override
 	public String getRepresentant() {
 		return representant;
 	}
 
-	@Override
 	public Map<String, Double> getValueDistribution() {
 		return valueDistribution;
 	}
