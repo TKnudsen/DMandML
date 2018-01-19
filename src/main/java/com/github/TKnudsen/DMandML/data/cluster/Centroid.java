@@ -21,7 +21,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * @version 1.01
  */
 
-public class Centroid<T extends IDObject> implements IDObject, ISelfDescription, IMasterProvider {
+public class Centroid<T extends IDObject> implements ISelfDescription, IMasterProvider {
 
 	private T data;
 	protected Cluster<T> cluster;

@@ -2,7 +2,7 @@ package com.github.TKnudsen.DMandML.data.cluster.featureFV;
 
 import java.util.Collection;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
@@ -23,7 +23,7 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class FeatureVectorCluster<FV extends AbstractFeatureVector<?, ?>> extends Cluster<FV> {
+public class FeatureVectorCluster<FV extends IDObject> extends Cluster<FV> {
 
 	public FeatureVectorCluster(Collection<? extends FV> elements, IDistanceMeasure<FV> distanceMeasure) {
 		this(elements, distanceMeasure, "", "");
