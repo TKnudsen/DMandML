@@ -7,6 +7,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
@@ -29,7 +30,7 @@ import com.github.TKnudsen.DMandML.data.cluster.ClusterTools;
  * @author Juergen Bernard
  * @version 1.01
  */
-public abstract class ClusterCompactnessMeasure<FV extends AbstractFeatureVector<?, ?>> implements IFeatureVectorClusterMeasure<FV> {
+public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements IFeatureVectorClusterMeasure<FV> {
 
 	protected StatisticsSupport getDistancesToCentroid(Cluster<FV> cluster) {
 
