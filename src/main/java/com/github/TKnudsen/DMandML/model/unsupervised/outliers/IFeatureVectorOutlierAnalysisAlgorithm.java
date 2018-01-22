@@ -1,6 +1,5 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
@@ -19,7 +18,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface IFeatureVectorOutlierAnalysisAlgorithm<FV extends AbstractFeatureVector<?, ?>> extends IOutlierAnalysisAlgorithm<FV>, ISelfDescription {
+public interface IFeatureVectorOutlierAnalysisAlgorithm<FV> extends IOutlierAnalysisAlgorithm<FV>, ISelfDescription {
 
 	@Override
 	public double getOutlierScore(FV featureVector);

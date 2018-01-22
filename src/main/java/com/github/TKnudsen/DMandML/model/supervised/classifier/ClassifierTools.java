@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>
@@ -19,10 +18,12 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * 
  * @author Juergen Bernard
  * @version 1.01
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
 public class ClassifierTools {
 
-	public static <O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> Classifier<O, FV> createParameterizedCopy(WekaClassifierWrapper<O, FV> classifier) throws Exception {
+	public static <O, FV extends IFeatureVectorObject<?, ?>> Classifier<O, FV> createParameterizedCopy(WekaClassifierWrapper<O, FV> classifier) throws Exception {
 		WekaClassifierWrapper<O, FV> classifierNew = classifier.getClass().asSubclass(WekaClassifierWrapper.class).newInstance();
 
 		classifierNew.wekaClassifier = (weka.classifiers.AbstractClassifier) weka.classifiers.AbstractClassifier.makeCopy(classifierNew.wekaClassifier);

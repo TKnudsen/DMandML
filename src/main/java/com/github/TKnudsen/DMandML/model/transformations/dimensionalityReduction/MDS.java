@@ -9,7 +9,6 @@ import java.util.Random;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
@@ -38,8 +37,10 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * 
  * @author Juergen Bernard, Christian Ritter
  * @version 1.03
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public class MDS<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends DimensionalityReduction<O, X> {
+public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<O, X> {
 
 	/**
 	 * Euclidean distance metric for double[]

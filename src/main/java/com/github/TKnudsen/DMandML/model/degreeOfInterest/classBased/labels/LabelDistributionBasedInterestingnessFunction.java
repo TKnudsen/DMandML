@@ -5,8 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
@@ -37,7 +37,7 @@ import com.google.common.collect.ImmutableMap;
  * @author Juergen Bernard
  * @version 1.01
  */
-public abstract class LabelDistributionBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
+public abstract class LabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
 
 	private Map<String, Double> targetLabelDistribution;
 

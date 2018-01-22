@@ -2,8 +2,6 @@ package com.github.TKnudsen.DMandML.model.supervised;
 
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
@@ -22,8 +20,10 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * 
  * @author Juergen Bernard
  * @version 1.04
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface ILearningModel<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y> extends ISelfDescription {
+public interface ILearningModel<O, X, Y> extends ISelfDescription {
 
 	public void train(List<X> featureVectors, List<Y> labels);
 

@@ -3,8 +3,8 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.labels;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 
 /**
@@ -25,7 +25,7 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * @author Juergen Bernard
  * @version 1.02
  */
-public class PredictedLabelDistributionBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
+public class PredictedLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
 
 	public PredictedLabelDistributionBasedInterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier, Map<String, Double> targetLabelDistribution) {
 		super(featureVectorSupplier, classificationResultSupplier, targetLabelDistribution);
