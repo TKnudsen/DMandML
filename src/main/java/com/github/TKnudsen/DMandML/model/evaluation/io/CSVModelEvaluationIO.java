@@ -8,8 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
@@ -28,8 +28,10 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * 
  * @author Christian Ritter
  * @version 1.01
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public class CSVModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluationIO<O, X, Y, L> {
+public class CSVModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluationIO<O, X, Y, L> {
 
 	public CSVModelEvaluationIO() {
 		super();

@@ -2,8 +2,6 @@ package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
 /**
  * <p>
  * Title: IOutlierAnalysisAlgorithm
@@ -20,7 +18,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface IOutlierAnalysisAlgorithm<O extends IDObject> {
+public interface IOutlierAnalysisAlgorithm<O> {
 
 	public void setData(List<O> data);
 

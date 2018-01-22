@@ -3,8 +3,7 @@ package com.github.TKnudsen.DMandML.model.supervised.regression;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>
@@ -17,8 +16,10 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * 
  * @author Christian Ritter
  * @version 1.02
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicLinearRegression<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends WekaRegressionWrapper<O, FV> {
+public class BasicLinearRegression<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
 
 	private boolean additionalStats = false;
 	private boolean conserveMemory = false;

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
@@ -35,7 +35,7 @@ import com.github.TKnudsen.DMandML.data.cluster.featureFV.IFeatureVectorClusteri
  * @author Juergen Bernard
  * @version 1.01
  */
-public class DunnIndex<FV extends AbstractFeatureVector<?, ?>> implements IClusterValidityMeasure<FV> {
+public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements IClusterValidityMeasure<FV> {
 
 	private IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> clusteringResultSupplier;
 

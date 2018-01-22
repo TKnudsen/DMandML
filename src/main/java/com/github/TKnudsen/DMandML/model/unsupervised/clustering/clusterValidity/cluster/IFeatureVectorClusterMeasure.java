@@ -18,6 +18,8 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
  * 
  * @author Juergen Bernard
  * @version 1.01
+ * 
+ * TODO_GENERICS This is now equivalent to IClusterMeasure
  */
 public interface IFeatureVectorClusterMeasure<FV extends IDObject> extends IClusterMeasure<FV> {
 

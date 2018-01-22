@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
@@ -28,8 +26,10 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * 
  * @author Christian Ritter
  * @version 1.01
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class AbstractModelEvaluationIO<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> implements ISelfDescription {
+public abstract class AbstractModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> implements ISelfDescription {
 
 	private Map<String, Double> cumulatedPerformanceValues;
 	private Map<String, String> metaData;

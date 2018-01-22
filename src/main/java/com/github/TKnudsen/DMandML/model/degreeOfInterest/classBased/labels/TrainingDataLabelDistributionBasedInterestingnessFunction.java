@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.ITrainingDataSupplier;
 
@@ -27,7 +27,7 @@ import com.github.TKnudsen.DMandML.data.classification.ITrainingDataSupplier;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class TrainingDataLabelDistributionBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
+public class TrainingDataLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
 
 	private ITrainingDataSupplier<FV> trainingDataSupplier;
 	private String classAttribute;
