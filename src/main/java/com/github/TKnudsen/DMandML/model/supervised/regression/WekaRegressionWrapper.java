@@ -23,13 +23,12 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.03
+ * @version 1.04
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
 public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?>> extends Regression<FV> {
 
@@ -46,7 +45,8 @@ public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?
 	@Override
 	protected void prepareData() {
 		if (getTargetValues() != null)
-			instances = WekaConversion.getRegressionValueInstances(trainFeatureVectors, getTargetValues(), featureAlphabets);
+			instances = WekaConversion.getRegressionValueInstances(trainFeatureVectors, getTargetValues(),
+					featureAlphabets);
 		else if (getTargetAttribute() != null) {
 			instances = WekaConversion.getInstances(trainFeatureVectors, false);
 
