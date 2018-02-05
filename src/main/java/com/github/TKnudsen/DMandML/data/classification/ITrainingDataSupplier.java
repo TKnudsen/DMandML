@@ -1,7 +1,7 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>
@@ -20,7 +20,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplie
  * @author Juergen Bernard
  * @version 1.01
  */
-public interface ITrainingDataSupplier<FV extends AbstractFeatureVector<?, ?>> extends IFeatureVectorSupplier<FV> {
+public interface ITrainingDataSupplier<FV extends IFeatureVectorObject<?, ?>> extends IFeatureVectorSupplier<FV> {
 
 	public String getClassAttribute();
 }

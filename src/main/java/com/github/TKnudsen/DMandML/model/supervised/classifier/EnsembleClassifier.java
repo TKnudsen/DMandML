@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
@@ -32,8 +31,10 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * 
  * @author Juergen Bernard
  * @version 1.01
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public class EnsembleClassifier<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends Classifier<O, FV> {
+public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extends Classifier<O, FV> {
 
 	private Collection<Classifier<O, FV>> classifierEnsemble;
 

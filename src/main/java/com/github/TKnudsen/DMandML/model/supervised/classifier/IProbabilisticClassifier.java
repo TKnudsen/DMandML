@@ -3,8 +3,6 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 
 /**
@@ -22,8 +20,10 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * 
  * @author Juergen Bernard
  * @version 1.02
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface IProbabilisticClassifier<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends IClassifier<O, X> {
+public interface IProbabilisticClassifier<O, X> extends IClassifier<O, X> {
 
 	public Map<String, Double> getLabelDistribution(X featureVector);
 

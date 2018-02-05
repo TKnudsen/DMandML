@@ -3,8 +3,7 @@ package com.github.TKnudsen.DMandML.model.supervised.regression;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>
@@ -21,8 +20,10 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
  * 
  * @author Juergen Bernard
  * @version 1.03
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class Regression<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IRegression<O, FV> {
+public abstract class Regression<O, FV extends IFeatureVectorObject<?, ?>> implements IRegression<O, FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;

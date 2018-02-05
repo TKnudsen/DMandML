@@ -211,7 +211,6 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 		if (!(obj instanceof IClusteringResult<?, ?>))
 			return false;
 
-		@SuppressWarnings("unchecked")
 		IClusteringResult<?, ?> other = (IClusteringResult<?, ?>) obj;
 
 		return clusters.equals(other.getClusters());

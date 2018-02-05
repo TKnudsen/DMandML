@@ -3,8 +3,7 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 import weka.classifiers.meta.AdaBoostM1;
 
@@ -19,8 +18,10 @@ import weka.classifiers.meta.AdaBoostM1;
  * 
  * @author Christian Ritter
  * @version 1.01
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicAdaBoost<O, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends WekaClassifierWrapper<O, FV> {
+public class BasicAdaBoost<O, FV extends IFeatureVectorObject<?, ?>> extends WekaClassifierWrapper<O, FV> {
 
 	private String baseClassifier = "weka.classifiers.trees.DecisionStump";
 

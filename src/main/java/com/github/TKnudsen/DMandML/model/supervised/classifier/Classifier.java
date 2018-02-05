@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -9,8 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
@@ -30,8 +28,10 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * 
  * @author Juergen Bernard
  * @version 1.02
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class Classifier<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> implements IProbabilisticClassifier<O, FV> {
+public abstract class Classifier<O, FV extends IFeatureVectorObject<?, ?>> implements IProbabilisticClassifier<O, FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;
