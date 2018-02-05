@@ -15,11 +15,9 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.01
- * 
- * TODO_GENERICS Parameter "O" is not used any more
+ * @version 1.02
  */
-public class BasicREPTree<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
+public class BasicREPTree<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 
 	private int minimumInstancesPerLeaf = 2;
 

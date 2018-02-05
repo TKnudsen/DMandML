@@ -16,15 +16,14 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Jürgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface IModelEvaluation<O, X, Y, L extends ILearningModel<O, X, Y>> extends ISelfDescription {
+public interface IModelEvaluation<X, Y, L extends ILearningModel<X, Y>> extends ISelfDescription {
 
 	/**
 	 * Evaluates the performance of a learning algorithm on a given dataset
@@ -35,8 +34,8 @@ public interface IModelEvaluation<O, X, Y, L extends ILearningModel<O, X, Y>> ex
 	 *            the feature vectors of the data set
 	 * @param groundTruth
 	 *            the true value that should be assigned to each feature vector
-	 * @return a list containing a list with performance values for each
-	 *         iteration of evaluation
+	 * @return a list containing a list with performance values for each iteration
+	 *         of evaluation
 	 */
 	void evaluate(L learner, List<X> featureVectors, List<Y> groundTruth);
 

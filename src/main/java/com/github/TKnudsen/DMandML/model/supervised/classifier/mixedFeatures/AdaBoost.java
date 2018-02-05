@@ -9,12 +9,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.BasicAdaBoost;
  * </p>
  * 
  * <p>
- * Description: A wrapper class for weka's AdaBoost implementation for {@link MixedDataFeatureVector}.
+ * Description: A wrapper class for weka's AdaBoost implementation for
+ * {@link MixedDataFeatureVector}.
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class AdaBoost extends BasicAdaBoost<Object, MixedDataFeatureVector> {
+public class AdaBoost extends BasicAdaBoost<MixedDataFeatureVector> {
 
 }

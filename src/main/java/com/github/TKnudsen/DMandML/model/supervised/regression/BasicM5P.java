@@ -15,11 +15,10 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicM5P<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
+public class BasicM5P<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 
 	private int minimumNumberOfInstances = 4;
 	private boolean safeInstances = false;
@@ -65,28 +64,32 @@ public class BasicM5P<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegr
 	}
 
 	/**
-	 * @param minimumNumberOfInstances the minimumNumberOfInstances to set
+	 * @param minimumNumberOfInstances
+	 *            the minimumNumberOfInstances to set
 	 */
 	public void setMinimumNumberOfInstances(int minimumNumberOfInstances) {
 		this.minimumNumberOfInstances = minimumNumberOfInstances;
 	}
 
 	/**
-	 * @param safeInstances the safeInstances to set
+	 * @param safeInstances
+	 *            the safeInstances to set
 	 */
 	public void setSafeInstances(boolean safeInstances) {
 		this.safeInstances = safeInstances;
 	}
 
 	/**
-	 * @param useUnprunedTree the useUnprunedTree to set
+	 * @param useUnprunedTree
+	 *            the useUnprunedTree to set
 	 */
 	public void setUseUnprunedTree(boolean useUnprunedTree) {
 		this.useUnprunedTree = useUnprunedTree;
 	}
 
 	/**
-	 * @param useUnsmoothedPredictions the useUnsmoothedPredictions to set
+	 * @param useUnsmoothedPredictions
+	 *            the useUnsmoothedPredictions to set
 	 */
 	public void setUseUnsmoothedPredictions(boolean useUnsmoothedPredictions) {
 		this.useUnsmoothedPredictions = useUnsmoothedPredictions;

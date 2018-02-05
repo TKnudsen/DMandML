@@ -11,19 +11,19 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * 
  * <p>
  * Description: basic algorithmic model that learns label information for
- * features. Both features and labels are to be defined in extending interfaces / implementing classes.
+ * features. Both features and labels are to be defined in extending interfaces
+ * / implementing classes.
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface ILearningModel<O, X, Y> extends ISelfDescription {
+public interface ILearningModel<X, Y> extends ISelfDescription {
 
 	public void train(List<X> featureVectors, List<Y> labels);
 

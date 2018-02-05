@@ -15,18 +15,15 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
- * TODO_GENERICS Parameter "S extends String" !??! REMOVE THIS! 
  */
-public interface IClassifierEvaluation<O, FV, S extends String> extends ISelfDescription{
+public interface IClassifierEvaluation<FV> extends ISelfDescription {
 
-	public double getQuality(IClassifier<O, FV> model, List<FV> testData, S targetVariable);
-	
-	
+	public double getQuality(IClassifier<FV> model, List<FV> testData, String targetVariable);
+
 }

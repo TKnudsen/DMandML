@@ -21,13 +21,14 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 J�rgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
- * @version 1.02
+ * @version 1.04
  */
-public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
+public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? extends Feature<O>>, Y, L extends ILearningModel<X, Y>>
+		extends AbstractModelEvaluation<X, Y, L> {
 
 	private int iterations;
 	private double split = 0.66;
@@ -41,7 +42,8 @@ public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? e
 		this.iterations = iterations;
 	}
 
-	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations, double split) {
+	public RandomIterationsEvaluation(List<? extends IPerformanceMeasure<Y>> performanceMeasures, int iterations,
+			double split) {
 		super(performanceMeasures);
 		this.iterations = iterations;
 		this.split = split;
@@ -104,7 +106,8 @@ public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? e
 
 	@Override
 	protected void initDefaultPerformanceMeasures() {
-		throw new UnsupportedOperationException("RandomIterationsEvaluation: Empty performance measures are not supported yet.");
+		throw new UnsupportedOperationException(
+				"RandomIterationsEvaluation: Empty performance measures are not supported yet.");
 	}
 
 	@Override

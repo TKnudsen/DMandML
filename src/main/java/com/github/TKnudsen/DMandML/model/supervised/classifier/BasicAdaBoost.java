@@ -17,11 +17,10 @@ import weka.classifiers.meta.AdaBoostM1;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicAdaBoost<O, FV extends IFeatureVectorObject<?, ?>> extends WekaClassifierWrapper<O, FV> {
+public class BasicAdaBoost<FV extends IFeatureVectorObject<?, ?>> extends WekaClassifierWrapper<FV> {
 
 	private String baseClassifier = "weka.classifiers.trees.DecisionStump";
 

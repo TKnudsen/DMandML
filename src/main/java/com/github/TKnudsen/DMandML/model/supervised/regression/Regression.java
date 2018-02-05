@@ -15,25 +15,24 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class Regression<O, FV extends IFeatureVectorObject<?, ?>> implements IRegression<O, FV> {
+public abstract class Regression<FV extends IFeatureVectorObject<?, ?>> implements IRegression<FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;
 
 	/**
-	 * the attribute that will be looked up in the feature vectors. Note that
-	 * this is an attribute in the features. not a feature in itself.
+	 * the attribute that will be looked up in the feature vectors. Note that this
+	 * is an attribute in the features. not a feature in itself.
 	 * 
-	 * Similarly, the class attribute, e.g., in WEKA will always be "class"
-	 * instead of classAttribute.
+	 * Similarly, the class attribute, e.g., in WEKA will always be "class" instead
+	 * of classAttribute.
 	 */
 	protected String targetAttribute = "class";
 
@@ -53,7 +52,7 @@ public abstract class Regression<O, FV extends IFeatureVectorObject<?, ?>> imple
 	@Override
 	public void train(List<FV> featureVectors, List<Double> targetValues) {
 		resetResults();
-		
+
 		setTrainFeatureVectors(featureVectors);
 
 		setTargetValues(targetValues);
@@ -68,7 +67,7 @@ public abstract class Regression<O, FV extends IFeatureVectorObject<?, ?>> imple
 	@Override
 	public void train(List<FV> featureVectors, String targetVariable) {
 		resetResults();
-		
+
 		setTrainFeatureVectors(featureVectors);
 
 		setTargetAttribute(targetVariable);

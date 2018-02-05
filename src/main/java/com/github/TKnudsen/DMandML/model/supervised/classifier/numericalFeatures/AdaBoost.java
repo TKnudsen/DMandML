@@ -9,12 +9,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.BasicAdaBoost;
  * </p>
  * 
  * <p>
- * Description: A wrapper class for weka's AdaBoost implementation for {@link NumericalFeatureVector}.
+ * Description: A wrapper class for weka's AdaBoost implementation for
+ * {@link NumericalFeatureVector}.
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class AdaBoost extends BasicAdaBoost<Double, NumericalFeatureVector> {
+public class AdaBoost extends BasicAdaBoost<NumericalFeatureVector> {
 
 }

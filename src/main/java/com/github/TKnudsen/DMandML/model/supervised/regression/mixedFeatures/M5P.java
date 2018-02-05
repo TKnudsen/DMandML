@@ -13,8 +13,8 @@ import com.github.TKnudsen.DMandML.model.supervised.regression.BasicM5P;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class M5P extends BasicM5P<Object, MixedDataFeatureVector> {
+public class M5P extends BasicM5P<MixedDataFeatureVector> {
 
 }

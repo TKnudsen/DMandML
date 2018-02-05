@@ -15,11 +15,10 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicDecisionStump<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
+public class BasicDecisionStump<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 
 	private boolean debug = false;
 

@@ -21,21 +21,21 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
+ *          TODO_GENERICS Parameter "O" is not used any more
  */
-public class CSVModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluationIO<O, X, Y, L> {
+public class CSVModelEvaluationIO<X, Y, L extends ILearningModel<X, Y>> extends AbstractModelEvaluationIO<X, Y, L> {
 
 	public CSVModelEvaluationIO() {
 		super();
 	}
 
-	public CSVModelEvaluationIO(IModelEvaluation<O, X, Y, L> modelEvaluation) {
+	public CSVModelEvaluationIO(IModelEvaluation<X, Y, L> modelEvaluation) {
 		super(modelEvaluation);
 	}
 
@@ -150,7 +150,8 @@ public class CSVModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> ex
 			}
 
 			for (int i = 1; i < vals.length; i++) {
-				getCumulatedPerformanceValues().put(getOrderedPerformanceMeasureList().get(i - 1), Double.valueOf(vals[i]));
+				getCumulatedPerformanceValues().put(getOrderedPerformanceMeasureList().get(i - 1),
+						Double.valueOf(vals[i]));
 			}
 
 			line = br.readLine();
@@ -162,7 +163,8 @@ public class CSVModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> ex
 				for (int i = 1; i < vals.length; i++) {
 					if (getPerformanceValues().get(getOrderedPerformanceMeasureList().get(i - 1)) == null)
 						getPerformanceValues().put(getOrderedPerformanceMeasureList().get(i - 1), new ArrayList<>());
-					getPerformanceValues().get(getOrderedPerformanceMeasureList().get(i - 1)).add(Double.valueOf(vals[i]));
+					getPerformanceValues().get(getOrderedPerformanceMeasureList().get(i - 1))
+							.add(Double.valueOf(vals[i]));
 				}
 				line = br.readLine();
 			}

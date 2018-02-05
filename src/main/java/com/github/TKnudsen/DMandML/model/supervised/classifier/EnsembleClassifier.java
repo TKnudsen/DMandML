@@ -26,58 +26,57 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extends Classifier<O, FV> {
+public class EnsembleClassifier<FV extends IFeatureVectorObject<?, ?>> extends Classifier<FV> {
 
-	private Collection<Classifier<O, FV>> classifierEnsemble;
+	private Collection<Classifier<FV>> classifierEnsemble;
 
 	@SuppressWarnings("unused")
 	private EnsembleClassifier() {
 	}
 
-	public EnsembleClassifier(Collection<Classifier<O, FV>> classifierEnsemble) {
+	public EnsembleClassifier(Collection<Classifier<FV>> classifierEnsemble) {
 		this.classifierEnsemble = classifierEnsemble;
 	}
 
 	@Override
 	protected void initializeClassifier() {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.initializeClassifier();
 	}
 
 	@Override
 	protected void prepareData() {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.prepareData();
 	}
 
 	@Override
 	protected void buildClassifier() {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.buildClassifier();
 	}
 
 	@Override
 	protected void resetResults() {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.resetResults();
 	}
 
 	@Override
 	public void train(List<FV> featureVectors, List<String> labels) {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.train(featureVectors, labels);
 
 		refreshLabelAlphabet();
@@ -86,7 +85,7 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 	@Override
 	public void train(List<FV> featureVectors, String targetVariable) {
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble)
+			for (Classifier<FV> classifier : classifierEnsemble)
 				classifier.train(featureVectors, targetVariable);
 
 		refreshLabelAlphabet();
@@ -95,7 +94,7 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 	private void refreshLabelAlphabet() {
 		Set<String> labelAlphabet = new HashSet<>();
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble) {
+			for (Classifier<FV> classifier : classifierEnsemble) {
 				List<String> labels = classifier.getLabelAlphabet();
 				if (labels != null)
 					labelAlphabet.addAll(labels);
@@ -113,7 +112,7 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 
 		boolean returnEmpty = true;
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble) {
+			for (Classifier<FV> classifier : classifierEnsemble) {
 				List<String> winning = classifier.test(featureVectors);
 
 				if (winning == null || winning.size() != featureVectors.size())
@@ -172,7 +171,7 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 		Map<String, List<Double>> labelDistributions = new HashMap<>();
 
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble) {
+			for (Classifier<FV> classifier : classifierEnsemble) {
 
 				Map<String, Double> labelDistribution = classifier.getLabelDistribution(featureVector);
 
@@ -205,7 +204,8 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 	@Override
 	public List<Map<String, Double>> getLabelDistributionResult() {
 		try {
-			throw new Exception("EnsembleClassifier: method results depends on correcly ordered results in the classifiers. Correctness of results cannot be guaranteed.");
+			throw new Exception(
+					"EnsembleClassifier: method results depends on correcly ordered results in the classifiers. Correctness of results cannot be guaranteed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -219,8 +219,9 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 		Map<FV, Collection<LabelDistribution>> labelDistributions = new LinkedHashMap<>();
 
 		if (classifierEnsemble != null)
-			for (Classifier<O, FV> classifier : classifierEnsemble) {
-				IProbabilisticClassificationResult<FV> classificationResult = classifier.createClassificationResult(featureVectors);
+			for (Classifier<FV> classifier : classifierEnsemble) {
+				IProbabilisticClassificationResult<FV> classificationResult = classifier
+						.createClassificationResult(featureVectors);
 				for (FV fv : featureVectors) {
 					if (labelDistributions.get(fv) == null)
 						labelDistributions.put(fv, new ArrayList<>());
@@ -231,7 +232,8 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : labelDistributions.keySet())
-			labelDistributionMap.put(fv, LabelDistributionTools.mergeLabelDistributions(labelDistributions.get(fv)).getValueDistribution());
+			labelDistributionMap.put(fv,
+					LabelDistributionTools.mergeLabelDistributions(labelDistributions.get(fv)).getValueDistribution());
 
 		return new ProbabilisticClassificationResult<>(labelDistributionMap);
 	}
@@ -246,11 +248,11 @@ public class EnsembleClassifier<O, FV extends IFeatureVectorObject<?, ?>> extend
 		return labelAlphabet;
 	}
 
-	public Collection<Classifier<O, FV>> getClassifierEnsemble() {
+	public Collection<Classifier<FV>> getClassifierEnsemble() {
 		return classifierEnsemble;
 	}
 
-	public void setClassifierEnsemble(Collection<Classifier<O, FV>> classifierEnsemble) {
+	public void setClassifierEnsemble(Collection<Classifier<FV>> classifierEnsemble) {
 		this.classifierEnsemble = classifierEnsemble;
 	}
 

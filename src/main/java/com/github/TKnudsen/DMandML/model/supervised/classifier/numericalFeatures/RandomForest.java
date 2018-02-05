@@ -17,13 +17,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class RandomForest extends WekaClassifierWrapper<Double, NumericalFeatureVector> {
+public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> {
 
 	/**
 	 * The number of iterations to be performed.
@@ -31,8 +31,8 @@ public class RandomForest extends WekaClassifierWrapper<Double, NumericalFeature
 	private int numIterations = 100;
 
 	/**
-	 * number of randomly chosen attributes. If 0, int(log_2(#predictors) + 1)
-	 * is used.
+	 * number of randomly chosen attributes. If 0, int(log_2(#predictors) + 1) is
+	 * used.
 	 */
 	private int numFeatures = 0;
 

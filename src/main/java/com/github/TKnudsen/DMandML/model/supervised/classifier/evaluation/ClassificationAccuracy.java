@@ -21,12 +21,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class ClassificationAccuracy implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
+public class ClassificationAccuracy implements IClassifierEvaluation<NumericalFeatureVector> {
 
 	@Override
-	public double getQuality(IClassifier<Double, NumericalFeatureVector> model, List<NumericalFeatureVector> testData, String targetVariable) {
+	public double getQuality(IClassifier<NumericalFeatureVector> model, List<NumericalFeatureVector> testData,
+			String targetVariable) {
 		double count = 0;
 		double correct = 0;
 

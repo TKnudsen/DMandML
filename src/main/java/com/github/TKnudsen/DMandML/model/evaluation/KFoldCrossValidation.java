@@ -19,15 +19,15 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Jï¿½rgen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Jürgen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class KFoldCrossValidation<O, X extends IFeatureVectorObject<?, ?>, Y, L extends ILearningModel<O, X, Y>> extends AbstractModelEvaluation<O, X, Y, L> {
+public class KFoldCrossValidation<X extends IFeatureVectorObject<?, ?>, Y, L extends ILearningModel<X, Y>>
+		extends AbstractModelEvaluation<X, Y, L> {
 
 	private int k;
 	private boolean shuffle = false;
@@ -89,7 +89,8 @@ public class KFoldCrossValidation<O, X extends IFeatureVectorObject<?, ?>, Y, L 
 
 	@Override
 	protected void initDefaultPerformanceMeasures() {
-		throw new UnsupportedOperationException("KFoldCrossValidation: Empty performance measures are not supported yet.");
+		throw new UnsupportedOperationException(
+				"KFoldCrossValidation: Empty performance measures are not supported yet.");
 	}
 
 	@Override

@@ -20,13 +20,15 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class AverageRecall implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
+public class AverageRecall implements IClassifierEvaluation<NumericalFeatureVector> {
 
 	@Override
-	public double getQuality(IClassifier<Double, NumericalFeatureVector> model, List<NumericalFeatureVector> testData, String targetVariable) {
-		Set<String> labels = testData.stream().map(x -> x.getAttribute(targetVariable).toString()).collect(Collectors.toSet());
+	public double getQuality(IClassifier<NumericalFeatureVector> model, List<NumericalFeatureVector> testData,
+			String targetVariable) {
+		Set<String> labels = testData.stream().map(x -> x.getAttribute(targetVariable).toString())
+				.collect(Collectors.toSet());
 		Map<String, Double> truepositives = new HashMap<>();
 		Map<String, Double> trues = new HashMap<>();
 		for (String l : labels) {

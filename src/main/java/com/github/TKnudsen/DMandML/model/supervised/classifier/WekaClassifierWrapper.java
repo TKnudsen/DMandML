@@ -26,15 +26,14 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.05
+ * @version 1.06
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class WekaClassifierWrapper<O, FV extends IFeatureVectorObject<?, ?>> extends Classifier<O, FV> {
+public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?>> extends Classifier<FV> {
 
 	protected weka.classifiers.Classifier wekaClassifier;
 
@@ -109,7 +108,7 @@ public abstract class WekaClassifierWrapper<O, FV extends IFeatureVectorObject<?
 	@Override
 	public Map<String, Double> getLabelDistribution(FV featureVector) {
 		if (labelDistributionMap == null) {
-//			System.err.println("WekaClassifierWrapper: no model created yet");
+			// System.err.println("WekaClassifierWrapper: no model created yet");
 			return null;
 		}
 		if (labelDistributionMap.get(featureVector) == null) {
@@ -190,7 +189,8 @@ public abstract class WekaClassifierWrapper<O, FV extends IFeatureVectorObject<?
 			try {
 				wekaClassifier.buildClassifier(trainData);
 			} catch (Exception e) {
-				System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName() + "<- sent an exception: " + e.getMessage());
+				System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName()
+						+ "<- sent an exception: " + e.getMessage());
 				e.printStackTrace();
 			}
 		}

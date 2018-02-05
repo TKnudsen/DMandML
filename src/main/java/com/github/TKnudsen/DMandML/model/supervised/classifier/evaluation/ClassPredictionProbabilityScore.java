@@ -19,16 +19,17 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Double, NumericalFeatureVector, String> {
+public class ClassPredictionProbabilityScore implements IClassifierEvaluation<NumericalFeatureVector> {
 
 	@Override
-	public double getQuality(IClassifier<Double, NumericalFeatureVector> model, List<NumericalFeatureVector> testData, String targetVariable) {
+	public double getQuality(IClassifier<NumericalFeatureVector> model, List<NumericalFeatureVector> testData,
+			String targetVariable) {
 		double count = 0;
 		double predictionSum = 0;
 
@@ -46,7 +47,8 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Do
 			for (int i = 0; i < testData.size(); i++) {
 				if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {
 
-					LabelDistribution labelDistribution = probablisticClassificationResult.getLabelDistribution(testData.get(i));
+					LabelDistribution labelDistribution = probablisticClassificationResult
+							.getLabelDistribution(testData.get(i));
 
 					String label = testData.get(i).getAttribute(targetVariable).toString();
 
@@ -57,7 +59,8 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Do
 			}
 
 		} else
-			throw new IllegalArgumentException("ClassPredictionProbabilityScore: Classifier did not produce a probablistic classification result");
+			throw new IllegalArgumentException(
+					"ClassPredictionProbabilityScore: Classifier did not produce a probablistic classification result");
 
 		return predictionSum / count;
 	}

@@ -13,8 +13,8 @@ import com.github.TKnudsen.DMandML.model.supervised.regression.BasicLinearRegres
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class LinearRegression extends BasicLinearRegression<Double, NumericalFeatureVector> {
+public class LinearRegression extends BasicLinearRegression<NumericalFeatureVector> {
 
 }
