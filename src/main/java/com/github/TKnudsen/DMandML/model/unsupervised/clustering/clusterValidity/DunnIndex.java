@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorClusteringResult;
@@ -29,21 +29,22 @@ import com.github.TKnudsen.DMandML.data.cluster.featureFV.IFeatureVectorClusteri
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements IClusterValidityMeasure<FV> {
 
 	private IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> clusteringResultSupplier;
 
-	private IFeatureVectorDistanceMeasure<FV> featureVectorDistanceMeasure;
+	private IDistanceMeasure<FV> featureVectorDistanceMeasure;
 
 	private Double dunnIndex;
 
-	public DunnIndex(IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> clusteringResultSupplier, IFeatureVectorDistanceMeasure<FV> featureVectorDistanceMeasure) {
+	public DunnIndex(IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> clusteringResultSupplier,
+			IDistanceMeasure<FV> featureVectorDistanceMeasure) {
 
 		this.clusteringResultSupplier = clusteringResultSupplier;
 		this.featureVectorDistanceMeasure = featureVectorDistanceMeasure;
@@ -78,8 +79,10 @@ public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements ICluste
 
 		for (Cluster<FV> cluster : clusters)
 			for (FV featureVector : cluster) {
-				double distInner = featureVectorDistanceMeasure.getDistance(featureVector, cluster.getCentroid().getData());
-				double distOuter = featureVectorDistanceMeasure.getDistance(featureVector, nearestCluster.get(featureVector).getCentroid().getData());
+				double distInner = featureVectorDistanceMeasure.getDistance(featureVector,
+						cluster.getCentroid().getData());
+				double distOuter = featureVectorDistanceMeasure.getDistance(featureVector,
+						nearestCluster.get(featureVector).getCentroid().getData());
 
 				if (distInner < distOuter)
 					silhouette += (1 - distInner / distOuter);

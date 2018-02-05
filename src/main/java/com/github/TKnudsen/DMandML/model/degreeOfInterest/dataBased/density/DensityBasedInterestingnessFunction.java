@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
@@ -24,21 +24,21 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedDe
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class DensityBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
 		extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
 
 	private int nearestNeighborCount;
 
-	private IFeatureVectorDistanceMeasure<FV> distanceMeasure;
+	private IDistanceMeasure<FV> distanceMeasure;
 
 	public DensityBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier, int nearestNeighborCount,
-			IFeatureVectorDistanceMeasure<FV> distanceMeasure) {
+			IDistanceMeasure<FV> distanceMeasure) {
 		super(featureVectorSupplier);
 
 		this.nearestNeighborCount = nearestNeighborCount;
@@ -94,11 +94,11 @@ public class DensityBasedInterestingnessFunction<FV extends IFeatureVectorObject
 		resetInterestingnessScores();
 	}
 
-	public IFeatureVectorDistanceMeasure<FV> getDistanceMeasure() {
+	public IDistanceMeasure<FV> getDistanceMeasure() {
 		return distanceMeasure;
 	}
 
-	public void setDistanceMeasure(IFeatureVectorDistanceMeasure<FV> distanceMeasure) {
+	public void setDistanceMeasure(IDistanceMeasure<FV> distanceMeasure) {
 		this.distanceMeasure = distanceMeasure;
 	}
 

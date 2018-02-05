@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.FeatureVectorDistanceMeasureFactory;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
@@ -32,7 +32,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
 		extends ClassificationBasedInterestingnessFunction<FV> {
@@ -63,7 +63,7 @@ public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVec
 
 		IProbabilisticClassificationResult<FV> classificationResult = this.getClassificationResultSupplier().get();
 		Map<String, List<FV>> classDistributions = classificationResult.getClassDistributions();
-		IFeatureVectorDistanceMeasure<FV> distanceMeasure = null;
+		IDistanceMeasure<FV> distanceMeasure = null;
 
 		for (String label : classDistributions.keySet()) {
 			List<FV> fvs = classDistributions.get(label);
