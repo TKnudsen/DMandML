@@ -23,24 +23,22 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * 
  * <p>
  * Description: Multi-dimensional Scaling (MDS) is a non-linear dimension
- * reduction algorithm proposed by Joseph B. KRUSKAL in 1964:
- * "Multidimensional scaling by optimizing goodness of fit to a nonmetric hypothesis"
- * In Psychometrika 29, 1 (1964).
+ * reduction algorithm proposed by Joseph B. KRUSKAL in 1964: "Multidimensional
+ * scaling by optimizing goodness of fit to a nonmetric hypothesis" In
+ * Psychometrika 29, 1 (1964).
  * 
  * The principal idea is to iteratively optimize the low-dimensional (often 2D)
  * positions of objects with respect to pairwise distances in the original space
  * and a stress-minimization function.
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.03
- * 
- * TODO_GENERICS Parameter "O" is not used any more
+ * @version 1.04
  */
-public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<O, X> {
+public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
 	/**
 	 * Euclidean distance metric for double[]
@@ -132,7 +130,8 @@ public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends Dimensionalit
 		for (int x = 0; x < lowDimensionalPoints.size(); x++) {
 			distanceMatrix[x][x] = 0;
 			for (int y = 0; y < x; y++) {
-				double distance = doubleDistanceMeasure.getDistance(lowDimensionalPoints.get(x), lowDimensionalPoints.get(y));
+				double distance = doubleDistanceMeasure.getDistance(lowDimensionalPoints.get(x),
+						lowDimensionalPoints.get(y));
 				distanceMatrix[x][y] = distance;
 				distanceMatrix[y][x] = distance;
 			}
@@ -195,7 +194,8 @@ public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends Dimensionalit
 		dmMax = distanceMatrix.getMaxDistance();
 
 		// initialize points of the low-dimensional embedding
-		List<double[]> lowDimensionalPoints = initializeLowDimensionalPoints(outputDimensionality, featureVectors.size());
+		List<double[]> lowDimensionalPoints = initializeLowDimensionalPoints(outputDimensionality,
+				featureVectors.size());
 
 		for (int iteration = 0; iteration < maxIterations; iteration++) {
 			double[][] pointDistances = calculatePointDistances(lowDimensionalPoints);
@@ -216,8 +216,9 @@ public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends Dimensionalit
 					for (int j = 0; j < lowDimensionalPoints.size(); j++) {
 						if (j == i)
 							continue;
-						newPointCoordinates[d] += lowDimensionalPoints.get(i)[d]
-								+ (pointDistances[i][j] - normMinMax(distanceMatrix.getDistance(featureVectors.get(i), featureVectors.get(j)))) * (lowDimensionalPoints.get(j)[d] - lowDimensionalPoints.get(i)[d]);
+						newPointCoordinates[d] += lowDimensionalPoints.get(i)[d] + (pointDistances[i][j]
+								- normMinMax(distanceMatrix.getDistance(featureVectors.get(i), featureVectors.get(j))))
+								* (lowDimensionalPoints.get(j)[d] - lowDimensionalPoints.get(i)[d]);
 					}
 					newPointCoordinates[d] /= (lowDimensionalPoints.size() - 1);
 				}
@@ -231,7 +232,9 @@ public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends Dimensionalit
 		}
 
 		for (int i = 0; i < featureVectors.size(); i++) {
-			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(lowDimensionalPoints.get(i), featureVectors.get(i).getName(), featureVectors.get(i).getDescription());
+			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(
+					lowDimensionalPoints.get(i), featureVectors.get(i).getName(),
+					featureVectors.get(i).getDescription());
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
 			while (attributeIterator.hasNext()) {
 				String attribute = attributeIterator.next();

@@ -33,13 +33,13 @@ import com.jujutsu.utils.TSneUtils;
  * 
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class TSNE extends DimensionalityReduction<Double, NumericalFeatureVector> {
+public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 
 	// Input data
 	/**
@@ -62,7 +62,8 @@ public class TSNE extends DimensionalityReduction<Double, NumericalFeatureVector
 		this(featureVectors, outputDimensionality, 20.0, 200);
 	}
 
-	public TSNE(List<NumericalFeatureVector> featureVectors, int outputDimensionality, double perplexity, int interationsMax) {
+	public TSNE(List<NumericalFeatureVector> featureVectors, int outputDimensionality, double perplexity,
+			int interationsMax) {
 		this.featureVectors = featureVectors;
 		this.outputDimensionality = outputDimensionality;
 		this.perplexity = perplexity;
@@ -93,7 +94,8 @@ public class TSNE extends DimensionalityReduction<Double, NumericalFeatureVector
 
 		// apply T-SNE
 		TSne tsne = new SimpleTSne();
-		TSneConfiguration config = TSneUtils.buildConfig(inputAsDoubleMatrix, outputDimensionality, dimensionality, perplexity, interationsMax);
+		TSneConfiguration config = TSneUtils.buildConfig(inputAsDoubleMatrix, outputDimensionality, dimensionality,
+				perplexity, interationsMax);
 		double[][] outputAsDoubleMatrix = tsne.tsne(config);
 
 		// convert to low-dim FeatureVectors
@@ -101,7 +103,8 @@ public class TSNE extends DimensionalityReduction<Double, NumericalFeatureVector
 			NumericalFeatureVector inputFeatureVector = featureVectors.get(i);
 
 			double[] outputVector = outputAsDoubleMatrix[i];
-			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(outputVector, inputFeatureVector.getName(), inputFeatureVector.getDescription());
+			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(outputVector,
+					inputFeatureVector.getName(), inputFeatureVector.getDescription());
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
 			while (attributeIterator.hasNext()) {
 				String attribute = attributeIterator.next();

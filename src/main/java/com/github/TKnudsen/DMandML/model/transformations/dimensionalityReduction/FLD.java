@@ -15,16 +15,15 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * 
  * Instances of this class may be created with the {@link FLDs} class
  */
-public class FLD implements IDimensionalityReduction<Double, NumericalFeatureVector>
-{
+public class FLD implements IDimensionalityReduction<NumericalFeatureVector> {
 	private final int outputDimensionality;
-	private final Map<NumericalFeatureVector, NumericalFeatureVector> highToLow; 
-	
+	private final Map<NumericalFeatureVector, NumericalFeatureVector> highToLow;
+
 	FLD(int outputDimensionality, Map<NumericalFeatureVector, NumericalFeatureVector> highToLow) {
 		this.outputDimensionality = outputDimensionality;
 		this.highToLow = highToLow;
 	}
-	
+
 	@Override
 	public List<NumericalFeatureVector> transform(NumericalFeatureVector numericalFeatureVector) {
 		return transform(Collections.singletonList(numericalFeatureVector));
@@ -32,10 +31,9 @@ public class FLD implements IDimensionalityReduction<Double, NumericalFeatureVec
 
 	@Override
 	public List<NumericalFeatureVector> transform(List<NumericalFeatureVector> numericalFeatureVectors) {
-		
+
 		List<NumericalFeatureVector> result = new ArrayList<NumericalFeatureVector>();
-		for (NumericalFeatureVector high : numericalFeatureVectors)
-		{
+		for (NumericalFeatureVector high : numericalFeatureVectors) {
 			result.add(highToLow.get(high));
 		}
 		return result;
@@ -55,10 +53,10 @@ public class FLD implements IDimensionalityReduction<Double, NumericalFeatureVec
 	public Map<NumericalFeatureVector, NumericalFeatureVector> getMapping() {
 		return Collections.unmodifiableMap(highToLow);
 	}
-	
+
 	@Override
 	public void calculateDimensionalityReduction() {
 		// TODO Auto-generated method stub
 	}
-	
+
 }
