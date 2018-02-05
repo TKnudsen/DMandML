@@ -37,13 +37,13 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector> {
+public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
 	/**
 	 * whether or not the PCA model will normalize the data at start
@@ -53,9 +53,9 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 	/**
 	 * parameter that can be used as a criterion of convergence. Principal
 	 * components are built until the minimum remaining variance is achieved.
-	 * Example: let's say 60% of the variance shall be preserved for a given
-	 * data set. then d principal components are needed to achieve at least 60%
-	 * variance preservation.
+	 * Example: let's say 60% of the variance shall be preserved for a given data
+	 * set. then d principal components are needed to achieve at least 60% variance
+	 * preservation.
 	 */
 	private double minimumRemainingVariance;
 
@@ -74,7 +74,8 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 		this(featureVectors, normalize, Double.NaN, outputDimensionality);
 	}
 
-	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance, int outputDimensionality) {
+	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance,
+			int outputDimensionality) {
 		this.featureVectors = featureVectors;
 		this.normalize = normalize;
 		this.minimumRemainingVariance = minimumRemainingVariance;
@@ -89,7 +90,8 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 		if (!normalize)
 			parameters.add("-D");
 
-		if (!Double.isNaN(minimumRemainingVariance) && minimumRemainingVariance > 0.0 && minimumRemainingVariance <= 1.0) {
+		if (!Double.isNaN(minimumRemainingVariance) && minimumRemainingVariance > 0.0
+				&& minimumRemainingVariance <= 1.0) {
 			parameters.add("-R");
 			parameters.add("" + minimumRemainingVariance);
 		}
@@ -126,7 +128,8 @@ public class PCA extends DimensionalityReduction<Double, NumericalFeatureVector>
 			if (mapping.containsKey(fv))
 				output.add(mapping.get(fv));
 			else {
-				Instances instances = WekaConversion.getInstances(new ArrayList<NumericalFeatureVector>(Arrays.asList(fv)), false);
+				Instances instances = WekaConversion
+						.getInstances(new ArrayList<NumericalFeatureVector>(Arrays.asList(fv)), false);
 				Iterator<Instance> iterator = instances.iterator();
 				if (iterator.hasNext()) {
 					try {
