@@ -7,8 +7,8 @@ import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
 
 /**

@@ -7,9 +7,9 @@ import java.util.Map;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorClusteringResult;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.IFeatureVectorClusteringResultSupplier;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.IFeatureVectorClusteringResultSupplier;
 
 /**
  * <p>

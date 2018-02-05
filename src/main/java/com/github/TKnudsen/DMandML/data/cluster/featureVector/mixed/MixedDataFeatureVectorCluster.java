@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.cluster.featureFV.mixed;
+package com.github.TKnudsen.DMandML.data.cluster.featureVector.mixed;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
 /**
  * <p>
