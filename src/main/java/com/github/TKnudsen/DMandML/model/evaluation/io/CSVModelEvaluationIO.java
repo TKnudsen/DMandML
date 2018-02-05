@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.evaluation.IModelEvaluation;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 

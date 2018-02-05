@@ -1,8 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 
+import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
@@ -15,19 +16,20 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public abstract class DegreeOfInterestFunction<FV extends IFeatureVectorObject<?, ?>> implements IDegreeOfInterestFunction<FV> {
+public abstract class DegreeOfInterestFunction<FV extends IFeatureVectorObject<?, ?>>
+		implements IDegreeOfInterestFunction<FV> {
 
-	private IFeatureVectorSupplier<FV> featureVectorSupplier;
+	private Supplier<List<FV>> featureVectorSupplier;
 
 	protected Map<FV, Double> interestingnessScores;
 
-	public DegreeOfInterestFunction(IFeatureVectorSupplier<FV> featureVectorSupplier) {
+	public DegreeOfInterestFunction(Supplier<List<FV>> featureVectorSupplier) {
 		this.featureVectorSupplier = featureVectorSupplier;
 	}
 
@@ -56,7 +58,7 @@ public abstract class DegreeOfInterestFunction<FV extends IFeatureVectorObject<?
 	}
 
 	@Override
-	public IFeatureVectorSupplier<FV> getFeatureVectorSupplier() {
+	public Supplier<List<FV>> getFeatureVectorSupplier() {
 		return featureVectorSupplier;
 	}
 }

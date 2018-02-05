@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
