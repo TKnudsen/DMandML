@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
@@ -30,13 +30,15 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedDe
  * @author Juergen Bernard
  * @version 1.01
  */
-public class DensityBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
+public class DensityBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
 
 	private int nearestNeighborCount;
 
 	private IFeatureVectorDistanceMeasure<FV> distanceMeasure;
 
-	public DensityBasedInterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier, int nearestNeighborCount, IFeatureVectorDistanceMeasure<FV> distanceMeasure) {
+	public DensityBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier, int nearestNeighborCount,
+			IFeatureVectorDistanceMeasure<FV> distanceMeasure) {
 		super(featureVectorSupplier);
 
 		this.nearestNeighborCount = nearestNeighborCount;
@@ -78,7 +80,8 @@ public class DensityBasedInterestingnessFunction<FV extends IFeatureVectorObject
 		StatisticsSupport distanceMeansStatistics = new StatisticsSupport(maxDistanceMeans);
 
 		for (FV fv : featureVectorList)
-			interestingnessScores.put(fv, (1 - MathFunctions.linearScale(distanceMeansStatistics.getMin(), distanceMeansStatistics.getMax(), interestingnessScores.get(fv))));
+			interestingnessScores.put(fv, (1 - MathFunctions.linearScale(distanceMeansStatistics.getMin(),
+					distanceMeansStatistics.getMax(), interestingnessScores.get(fv))));
 	}
 
 	public int getNearestNeighborCount() {

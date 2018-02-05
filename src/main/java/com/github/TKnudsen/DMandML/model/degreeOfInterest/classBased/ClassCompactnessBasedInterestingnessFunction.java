@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.FeatureVectorDistanceMeasureFactory;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
@@ -28,22 +28,26 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
+public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends ClassificationBasedInterestingnessFunction<FV> {
 
 	ClusterCompactnessMeasure<FV> clusterCompactnessMeasure;
 	private double maxValueOfDiversity = Double.NaN;
 
-	public ClassCompactnessBasedInterestingnessFunction(IFeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+	public ClassCompactnessBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
 		this(featureVectorSupplier, classificationResultSupplier, new AveragePairwiseDistanceCompactnessMeasure<>());
 	}
 
-	public ClassCompactnessBasedInterestingnessFunction(IFeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier, ClusterCompactnessMeasure<FV> clusterCompactnessMeasure) {
+	public ClassCompactnessBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			ClusterCompactnessMeasure<FV> clusterCompactnessMeasure) {
 		super(featureVectorSupplier, classificationResultSupplier);
 
 		this.clusterCompactnessMeasure = clusterCompactnessMeasure;
@@ -67,7 +71,8 @@ public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVec
 			if (distanceMeasure == null)
 				distanceMeasure = FeatureVectorDistanceMeasureFactory.createDistanceMeasure(fvs);
 
-			double classCompactness = clusterCompactnessMeasure.getMeasure(new FeatureVectorCluster<>(fvs, distanceMeasure));
+			double classCompactness = clusterCompactnessMeasure
+					.getMeasure(new FeatureVectorCluster<>(fvs, distanceMeasure));
 			compactnessScores.add(classCompactness);
 			for (FV fv : fvs)
 				scores.put(fv, classCompactness);
@@ -80,7 +85,8 @@ public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVec
 
 		for (FV fv : featureVectorList)
 			if (scores.containsKey(fv))
-				interestingnessScores.put(fv, (1 - MathFunctions.linearScale(0, compactnessScoresStatistics.getMax(), scores.get(fv))));
+				interestingnessScores.put(fv,
+						(1 - MathFunctions.linearScale(0, compactnessScoresStatistics.getMax(), scores.get(fv))));
 			else {
 				interestingnessScores.put(fv, 0.0);
 				System.err.println("ClassCompactnessBasedInterestingnessFunction: unknown FV");

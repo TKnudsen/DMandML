@@ -1,8 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
@@ -21,13 +22,14 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public interface IDegreeOfInterestFunction<FV extends IFeatureVectorObject<?, ?>> extends Function<FV, Double>, ISelfDescription {
+public interface IDegreeOfInterestFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends Function<FV, Double>, ISelfDescription {
 
-	public IFeatureVectorSupplier<FV> getFeatureVectorSupplier();
+	public Supplier<List<FV>> getFeatureVectorSupplier();
 }

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
@@ -31,17 +31,20 @@ import com.google.common.collect.ImmutableMap;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public abstract class LabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
+public abstract class LabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends ClassificationBasedInterestingnessFunction<FV> {
 
 	private Map<String, Double> targetLabelDistribution;
 
-	public LabelDistributionBasedInterestingnessFunction(IFeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier, Map<String, Double> targetLabelDistribution) {
+	public LabelDistributionBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			Map<String, Double> targetLabelDistribution) {
 		super(featureVectorSupplier, classificationResultSupplier);
 
 		this.targetLabelDistribution = LabelDistributionTools.normalizeLabelDistribution(targetLabelDistribution);
@@ -49,8 +52,8 @@ public abstract class LabelDistributionBasedInterestingnessFunction<FV extends I
 
 	@Override
 	/**
-	 * calculate the difference between targeted and observed label
-	 * distribution. then reccomend instances that would balance the deviance.
+	 * calculate the difference between targeted and observed label distribution.
+	 * then reccomend instances that would balance the deviance.
 	 */
 	public void run() {
 		IProbabilisticClassificationResult<FV> classificationResult = getClassificationResultSupplier().get();
@@ -84,7 +87,8 @@ public abstract class LabelDistributionBasedInterestingnessFunction<FV extends I
 		StatisticsSupport statistics = new StatisticsSupport(scores.values());
 		interestingnessScores = new LinkedHashMap<>();
 		for (FV fv : featureVectorList)
-			interestingnessScores.put(fv, MathFunctions.linearScale(statistics.getMin(), statistics.getMax(), scores.get(fv)));
+			interestingnessScores.put(fv,
+					MathFunctions.linearScale(statistics.getMin(), statistics.getMax(), scores.get(fv)));
 	}
 
 	protected abstract Map<String, Double> calculateObservedLabelDistribution();

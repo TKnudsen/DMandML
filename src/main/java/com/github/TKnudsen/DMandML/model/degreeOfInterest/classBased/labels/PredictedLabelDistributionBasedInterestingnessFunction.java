@@ -1,9 +1,10 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.labels;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 
@@ -19,15 +20,18 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class PredictedLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
+public class PredictedLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends LabelDistributionBasedInterestingnessFunction<FV> {
 
-	public PredictedLabelDistributionBasedInterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier, Map<String, Double> targetLabelDistribution) {
+	public PredictedLabelDistributionBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			Map<String, Double> targetLabelDistribution) {
 		super(featureVectorSupplier, classificationResultSupplier, targetLabelDistribution);
 	}
 

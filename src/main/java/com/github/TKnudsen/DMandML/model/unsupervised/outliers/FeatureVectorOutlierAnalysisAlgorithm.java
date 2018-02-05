@@ -3,8 +3,6 @@ package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
 /**
  * <p>
  * Title: FeatureVectorOutlierAnalysisAlgorithm

@@ -3,8 +3,8 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.labels;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.ITrainingDataSupplier;
@@ -21,23 +21,26 @@ import com.github.TKnudsen.DMandML.data.classification.ITrainingDataSupplier;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class TrainingDataLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends LabelDistributionBasedInterestingnessFunction<FV> {
+public class TrainingDataLabelDistributionBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends LabelDistributionBasedInterestingnessFunction<FV> {
 
 	private ITrainingDataSupplier<FV> trainingDataSupplier;
 	private String classAttribute;
 
-	public TrainingDataLabelDistributionBasedInterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier, Map<String, Double> targetLabelDistribution,
-			ITrainingDataSupplier<FV> trainingDataSupplier) {
+	public TrainingDataLabelDistributionBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			Map<String, Double> targetLabelDistribution, ITrainingDataSupplier<FV> trainingDataSupplier) {
 		super(featureVectorSupplier, classificationResultSupplier, targetLabelDistribution);
 
 		if (trainingDataSupplier == null)
-			throw new NullPointerException("TrainingDataLabelDistributionBasedInterestingnessFunction: trainingDataSupplier is null.");
+			throw new NullPointerException(
+					"TrainingDataLabelDistributionBasedInterestingnessFunction: trainingDataSupplier is null.");
 
 		this.trainingDataSupplier = trainingDataSupplier;
 		classAttribute = trainingDataSupplier.getClassAttribute();

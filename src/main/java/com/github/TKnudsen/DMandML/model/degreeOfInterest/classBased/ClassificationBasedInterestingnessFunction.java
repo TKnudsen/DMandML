@@ -1,6 +1,8 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
@@ -15,17 +17,19 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFuncti
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public abstract class ClassificationBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends DegreeOfInterestFunction<FV> implements IClassificationBasedInterestingnessFunction<FV> {
+public abstract class ClassificationBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends DegreeOfInterestFunction<FV> implements IClassificationBasedInterestingnessFunction<FV> {
 
 	IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier;
 
-	public ClassificationBasedInterestingnessFunction(IFeatureVectorSupplier<FV> featureVectorSupplier, IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+	public ClassificationBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
 		super(featureVectorSupplier);
 
 		this.classificationResultSupplier = classificationResultSupplier;

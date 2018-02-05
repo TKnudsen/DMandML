@@ -1,6 +1,8 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.outliers;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.FeatureVectorSupplier;
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.dataBased.IDataBasedDegreeOfInterestFunction;
@@ -22,11 +24,13 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.IFeatureVectorOut
  * @author Juergen Bernard
  * @version 1.01
  */
-public class OutlierBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
+public class OutlierBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
+		extends DegreeOfInterestFunction<FV> implements IDataBasedDegreeOfInterestFunction<FV> {
 
 	private IFeatureVectorOutlierAnalysisAlgorithm<FV> outlierAnalysisAlgorithm;
 
-	public OutlierBasedInterestingnessFunction(FeatureVectorSupplier<FV> featureVectorSupplier, IFeatureVectorOutlierAnalysisAlgorithm<FV> outlierAnalysisAlgorithm) {
+	public OutlierBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
+			IFeatureVectorOutlierAnalysisAlgorithm<FV> outlierAnalysisAlgorithm) {
 		super(featureVectorSupplier);
 
 		if (outlierAnalysisAlgorithm == null)
