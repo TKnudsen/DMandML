@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.model.supervised.regression;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
@@ -19,7 +17,9 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * 
  * @author Juergen Bernard
  * @version 1.03
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface IRegression<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>> extends ILearningModel<O, X, Double> {
+public interface IRegression<O, X> extends ILearningModel<O, X, Double> {
 	// public Double getAccuracy(X featureVector);
 }

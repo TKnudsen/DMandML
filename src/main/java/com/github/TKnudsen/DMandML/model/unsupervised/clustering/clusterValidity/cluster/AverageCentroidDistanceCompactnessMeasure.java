@@ -1,6 +1,6 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
@@ -21,7 +21,7 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * @author Juergen Bernard
  * @version 1.01
  */
-public class AverageCentroidDistanceCompactnessMeasure<FV extends AbstractFeatureVector<?, ?>> extends ClusterCompactnessMeasure<FV> {
+public class AverageCentroidDistanceCompactnessMeasure<FV extends IFeatureVectorObject<?, ?>> extends ClusterCompactnessMeasure<FV> {
 
 	@Override
 	public double getMeasure(Cluster<FV> cluster) {

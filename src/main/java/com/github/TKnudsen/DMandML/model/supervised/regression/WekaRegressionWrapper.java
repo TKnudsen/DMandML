@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import weka.classifiers.AbstractClassifier;
@@ -29,8 +28,10 @@ import weka.core.Instances;
  * 
  * @author Juergen Bernard, Christian Ritter
  * @version 1.03
+ * 
+ * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class WekaRegressionWrapper<O extends Object, FV extends AbstractFeatureVector<O, ? extends Feature<O>>> extends Regression<O, FV> {
+public abstract class WekaRegressionWrapper<O, FV extends IFeatureVectorObject<?, ?>> extends Regression<O, FV> {
 
 	protected AbstractClassifier wekaRegressionModel;
 

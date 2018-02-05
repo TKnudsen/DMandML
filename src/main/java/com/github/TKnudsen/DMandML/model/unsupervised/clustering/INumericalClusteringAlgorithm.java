@@ -23,6 +23,7 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 public interface INumericalClusteringAlgorithm extends IClusteringAlgorithm<NumericalFeatureVector> {
 
 	// TODO changing Cluster<NumericalFeatureVector> to NumericalFVC causes
-	// problems when using the classes. Unfortunately.
+	// problems when using the classes. Unfortunately. 
+	// TODO_GENERICS No, that's fine.
 	public IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusteringResult();
 }

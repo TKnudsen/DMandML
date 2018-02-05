@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
@@ -25,7 +23,7 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * @author Christian Ritter, Juergen Bernard
  * @version 1.01
  */
-public abstract class AbstractModelEvaluation<O, X extends AbstractFeatureVector<O, ? extends Feature<O>>, Y, L extends ILearningModel<O, X, Y>> implements IModelEvaluation<O, X, Y, L> {
+public abstract class AbstractModelEvaluation<O, X, Y, L extends ILearningModel<O, X, Y>> implements IModelEvaluation<O, X, Y, L> {
 
 	private List<? extends IPerformanceMeasure<Y>> performanceMeasures;
 	protected Map<IPerformanceMeasure<Y>, List<Double>> performanceValues;

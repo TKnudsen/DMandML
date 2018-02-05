@@ -1,6 +1,6 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorClusteringResult;
 import com.github.TKnudsen.DMandML.data.cluster.featureFV.IFeatureVectorClusteringResultSupplier;
@@ -20,8 +20,10 @@ import com.github.TKnudsen.DMandML.data.cluster.featureFV.IFeatureVectorClusteri
  * 
  * @author Juergen Bernard
  * @version 1.03
+ * 
+ * TODO_GENERIC The "getClusterResultSet" method does not seem to be used, and makes this very specific
  */
-public interface IClusterValidityMeasure<FV extends AbstractFeatureVector<?, ?>> extends ISelfDescription {
+public interface IClusterValidityMeasure<FV extends IFeatureVectorObject<?, ?>> extends ISelfDescription {
 
 	public IFeatureVectorClusteringResultSupplier<FeatureVectorClusteringResult<FV>> getClusterResultSet();
 

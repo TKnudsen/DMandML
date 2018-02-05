@@ -3,7 +3,7 @@ package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector
  * @author Juergen Bernard
  * @version 1.01
  */
-public abstract class FeatureVectorOutlierAnalysisAlgorithm<FV extends AbstractFeatureVector<?, ?>> implements IFeatureVectorOutlierAnalysisAlgorithm<FV> {
+public abstract class FeatureVectorOutlierAnalysisAlgorithm<FV> implements IFeatureVectorOutlierAnalysisAlgorithm<FV> {
 
 	private List<FV> featureVectors;
 

@@ -6,8 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.IFeatureVectorSupplier;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.FeatureVectorDistanceMeasureFactory;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
@@ -34,7 +34,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity
  * @author Juergen Bernard
  * @version 1.01
  */
-public class ClassCompactnessBasedInterestingnessFunction<FV extends AbstractFeatureVector<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
+public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends ClassificationBasedInterestingnessFunction<FV> {
 
 	ClusterCompactnessMeasure<FV> clusterCompactnessMeasure;
 	private double maxValueOfDiversity = Double.NaN;

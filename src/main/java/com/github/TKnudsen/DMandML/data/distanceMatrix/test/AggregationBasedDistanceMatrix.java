@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
-import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
@@ -34,7 +34,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class AggregationBasedDistanceMatrix<FV extends AbstractFeatureVector<?, ?>> extends DistanceMatrix<FV> {
+public class AggregationBasedDistanceMatrix<FV extends IFeatureVectorObject<?, ?>> extends DistanceMatrix<FV> {
 
 	private int aggregationLevel = 1000;
 
