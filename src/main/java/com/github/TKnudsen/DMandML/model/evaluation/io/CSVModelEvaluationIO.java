@@ -25,9 +25,8 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.02
+ * @version 1.03
  * 
- *          TODO_GENERICS Parameter "O" is not used any more
  */
 public class CSVModelEvaluationIO<X, Y, L extends ILearningModel<X, Y>> extends AbstractModelEvaluationIO<X, Y, L> {
 
