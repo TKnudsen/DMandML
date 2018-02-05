@@ -13,8 +13,8 @@ import com.github.TKnudsen.DMandML.model.supervised.regression.BasicDecisionStum
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class DecisionStump extends BasicDecisionStump<Double, NumericalFeatureVector> {
+public class DecisionStump extends BasicDecisionStump<NumericalFeatureVector> {
 
 }

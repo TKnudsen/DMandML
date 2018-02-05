@@ -13,8 +13,8 @@ import com.github.TKnudsen.DMandML.model.supervised.regression.BasicZeroR;
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  */
-public class ZeroR extends BasicZeroR<Double, NumericalFeatureVector> {
+public class ZeroR extends BasicZeroR<NumericalFeatureVector> {
 
 }

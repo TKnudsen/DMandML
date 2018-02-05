@@ -15,11 +15,10 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicLinearRegression<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
+public class BasicLinearRegression<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 
 	private boolean additionalStats = false;
 	private boolean conserveMemory = false;
@@ -97,7 +96,8 @@ public class BasicLinearRegression<O, FV extends IFeatureVectorObject<?, ?>> ext
 	}
 
 	/**
-	 * @param conserveMemory the conserveMemory to set
+	 * @param conserveMemory
+	 *            the conserveMemory to set
 	 */
 	public void setConserveMemory(boolean conserveMemory) {
 		this.conserveMemory = conserveMemory;
@@ -159,7 +159,8 @@ public class BasicLinearRegression<O, FV extends IFeatureVectorObject<?, ?>> ext
 		aryOpts.add(String.valueOf(getRidgeParameter()));
 
 		if (isConserveMemory())
-			aryOpts.add("-minimal"); // Conserve memory, don't keep dataset header and means/stdevs (default: keep data)
+			aryOpts.add("-minimal"); // Conserve memory, don't keep dataset header and means/stdevs (default: keep
+										// data)
 
 		if (isAdditionalStats())
 			aryOpts.add("-additional-stats"); // Output additional statistics
@@ -168,7 +169,8 @@ public class BasicLinearRegression<O, FV extends IFeatureVectorObject<?, ?>> ext
 			aryOpts.add("-output-debug-info"); // Enables debug mode
 
 		if (isDoNotCheckClassifierCapabilities())
-			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is built (use with caution)
+			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
+														// built (use with caution)
 
 		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
 

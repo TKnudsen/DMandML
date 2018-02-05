@@ -15,12 +15,10 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<O, FV> {
-
+public class BasicRandomTree<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 
 	private boolean allowUnclassifiedInstances = false;
 	private int backfittingFolds = 0;
@@ -47,7 +45,7 @@ public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends W
 	public double getClassVarianceProportion() {
 		return classVarianceProportion;
 	}
-	
+
 	/**
 	 * @return the decimalPlaces
 	 */
@@ -122,77 +120,88 @@ public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends W
 	}
 
 	/**
-	 * @param allowUnclassifiedInstances the allowUnclassifiedInstances to set
+	 * @param allowUnclassifiedInstances
+	 *            the allowUnclassifiedInstances to set
 	 */
 	public void setAllowUnclassifiedInstances(boolean allowUnclassifiedInstances) {
 		this.allowUnclassifiedInstances = allowUnclassifiedInstances;
 	}
 
 	/**
-	 * @param backfittingFolds the backfittingFolds to set
+	 * @param backfittingFolds
+	 *            the backfittingFolds to set
 	 */
 	public void setBackfittingFolds(int backfittingFolds) {
 		this.backfittingFolds = backfittingFolds;
 	}
 
 	/**
-	 * @param breakTiesRandomly the breakTiesRandomly to set
+	 * @param breakTiesRandomly
+	 *            the breakTiesRandomly to set
 	 */
 	public void setBreakTiesRandomly(boolean breakTiesRandomly) {
 		this.breakTiesRandomly = breakTiesRandomly;
 	}
 
 	/**
-	 * @param classVarianceProportion the classVarianceProportion to set
+	 * @param classVarianceProportion
+	 *            the classVarianceProportion to set
 	 */
 	public void setClassVarianceProportion(double classVarianceProportion) {
 		this.classVarianceProportion = classVarianceProportion;
 	}
 
 	/**
-	 * @param debug the debug to set
+	 * @param debug
+	 *            the debug to set
 	 */
 	public void setDebug(boolean debug) {
 		this.debug = debug;
 	}
 
 	/**
-	 * @param decimalPlaces the decimalPlaces to set
+	 * @param decimalPlaces
+	 *            the decimalPlaces to set
 	 */
 	public void setDecimalPlaces(int decimalPlaces) {
 		this.decimalPlaces = decimalPlaces;
 	}
 
 	/**
-	 * @param doNotCheckCapabilities the doNotCheckCapabilities to set
+	 * @param doNotCheckCapabilities
+	 *            the doNotCheckCapabilities to set
 	 */
 	public void setDoNotCheckCapabilities(boolean doNotCheckCapabilities) {
 		this.doNotCheckCapabilities = doNotCheckCapabilities;
 	}
 
 	/**
-	 * @param maximumTreeDepth the maximumTreeDepth to set
+	 * @param maximumTreeDepth
+	 *            the maximumTreeDepth to set
 	 */
 	public void setMaximumTreeDepth(int maximumTreeDepth) {
 		this.maximumTreeDepth = maximumTreeDepth;
 	}
 
 	/**
-	 * @param minimumInstancesPerLeaf the minimumInstancesPerLeaf to set
+	 * @param minimumInstancesPerLeaf
+	 *            the minimumInstancesPerLeaf to set
 	 */
 	public void setMinimumInstancesPerLeaf(int minimumInstancesPerLeaf) {
 		this.minimumInstancesPerLeaf = minimumInstancesPerLeaf;
 	}
 
 	/**
-	 * @param randomlyInvestigatedAttributes the randomlyInvestigatedAttributes to set
+	 * @param randomlyInvestigatedAttributes
+	 *            the randomlyInvestigatedAttributes to set
 	 */
 	public void setRandomlyInvestigatedAttributes(int randomlyInvestigatedAttributes) {
 		this.randomlyInvestigatedAttributes = randomlyInvestigatedAttributes;
 	}
 
 	/**
-	 * @param randomSeed the randomSeed to set
+	 * @param randomSeed
+	 *            the randomSeed to set
 	 */
 	public void setRandomSeed(int randomSeed) {
 		this.randomSeed = randomSeed;
@@ -206,22 +215,23 @@ public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends W
 
 		aryOpts.add("-K"); // Number of attributes to randomly investigate (default 0)
 		aryOpts.add(String.valueOf(getRandomlyInvestigatedAttributes()));
-		
+
 		aryOpts.add("-M"); // Set minimum number of instances per leaf (default 1)
 		aryOpts.add(String.valueOf(getMinimumInstancesPerLeaf()));
-		
-		aryOpts.add("-V"); // Set minimum numeric class variance proportion of train variance for split (default 1e-3)
+
+		aryOpts.add("-V"); // Set minimum numeric class variance proportion of train variance for split
+							// (default 1e-3)
 		aryOpts.add(String.valueOf(getClassVarianceProportion()));
-		
+
 		aryOpts.add("-S"); // Seed for random number generator (default 1)
 		aryOpts.add(String.valueOf(getRandomSeed()));
-		
+
 		aryOpts.add("-depth"); // The maximum depth of the tree, 0 for unlimited (default 0)
 		aryOpts.add(String.valueOf(getMaximumTreeDepth()));
-		
+
 		aryOpts.add("-N"); // Number of folds for backfitting (default 0, no backfitting)
 		aryOpts.add(String.valueOf(getBackfittingFolds()));
-		
+
 		if (isAllowUnclassifiedInstances())
 			aryOpts.add("-U"); // Allow unclassified instances
 
@@ -232,10 +242,12 @@ public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends W
 			aryOpts.add("-output-debug-info"); // Enables debug mode
 
 		if (isDoNotCheckCapabilities())
-			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is built (use with caution)
+			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
+														// built (use with caution)
 
-			aryOpts.add("-num-decimal-places"); // The number of decimal places for the output of numbers in the model (default 2)
-			aryOpts.add(String.valueOf(getDecimalPlaces()));
+		aryOpts.add("-num-decimal-places"); // The number of decimal places for the output of numbers in the model
+											// (default 2)
+		aryOpts.add(String.valueOf(getDecimalPlaces()));
 
 		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
 
@@ -245,5 +257,5 @@ public class BasicRandomTree<O, FV extends IFeatureVectorObject<?, ?>> extends W
 			e.printStackTrace();
 		}
 	}
-	
+
 }

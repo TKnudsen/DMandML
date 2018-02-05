@@ -23,25 +23,24 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class Classifier<O, FV extends IFeatureVectorObject<?, ?>> implements IProbabilisticClassifier<O, FV> {
+public abstract class Classifier<FV extends IFeatureVectorObject<?, ?>> implements IProbabilisticClassifier<FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;
 
 	/**
-	 * the attribute that will be looked up in the feature vectors. Note that
-	 * this is an attribute in the features. not a feature in itself.
+	 * the attribute that will be looked up in the feature vectors. Note that this
+	 * is an attribute in the features. not a feature in itself.
 	 * 
-	 * Similarly, the class attribute, e.g., in WEKA will always be "class"
-	 * instead of classAttribute.
+	 * Similarly, the class attribute, e.g., in WEKA will always be "class" instead
+	 * of classAttribute.
 	 */
 	protected String classAttribute = "class";
 

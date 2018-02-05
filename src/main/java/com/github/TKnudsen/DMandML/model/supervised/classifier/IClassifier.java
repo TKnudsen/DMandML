@@ -16,15 +16,14 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.06
+ * @version 1.07
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface IClassifier<O, X> extends ILearningModel<O, X, String> {
+public interface IClassifier<X> extends ILearningModel<X, String> {
 
 	public IClassificationResult<X> createClassificationResult(List<X> featureVectors);
 

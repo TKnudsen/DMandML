@@ -17,13 +17,14 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter, Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public abstract class AbstractModelEvaluation<O, X, Y, L extends ILearningModel<O, X, Y>> implements IModelEvaluation<O, X, Y, L> {
+public abstract class AbstractModelEvaluation<X, Y, L extends ILearningModel<X, Y>>
+		implements IModelEvaluation<X, Y, L> {
 
 	private List<? extends IPerformanceMeasure<Y>> performanceMeasures;
 	protected Map<IPerformanceMeasure<Y>, List<Double>> performanceValues;

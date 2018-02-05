@@ -21,19 +21,18 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Christian Ritter
- * @version 1.01
+ * @version 1.02
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class AbstractModelEvaluationIO<O, X, Y, L extends ILearningModel<O, X, Y>> implements ISelfDescription {
+public abstract class AbstractModelEvaluationIO<X, Y, L extends ILearningModel<X, Y>> implements ISelfDescription {
 
 	private Map<String, Double> cumulatedPerformanceValues;
 	private Map<String, String> metaData;
-	private IModelEvaluation<O, X, Y, L> modelEvaluation;
+	private IModelEvaluation<X, Y, L> modelEvaluation;
 	private Map<String, List<Double>> performanceValues;
 	private List<String> orderedPerformanceMeasureList;
 
@@ -41,7 +40,7 @@ public abstract class AbstractModelEvaluationIO<O, X, Y, L extends ILearningMode
 		this(null);
 	}
 
-	public AbstractModelEvaluationIO(IModelEvaluation<O, X, Y, L> modelEvaluation) {
+	public AbstractModelEvaluationIO(IModelEvaluation<X, Y, L> modelEvaluation) {
 		this.setModelEvaluation(modelEvaluation);
 		metaData = new HashMap<>();
 		cumulatedPerformanceValues = new HashMap<>();
@@ -85,7 +84,7 @@ public abstract class AbstractModelEvaluationIO<O, X, Y, L extends ILearningMode
 	/**
 	 * @return the modelEvaluation
 	 */
-	public IModelEvaluation<O, X, Y, L> getModelEvaluation() {
+	public IModelEvaluation<X, Y, L> getModelEvaluation() {
 		return modelEvaluation;
 	}
 
@@ -126,7 +125,7 @@ public abstract class AbstractModelEvaluationIO<O, X, Y, L extends ILearningMode
 	 * @param modelEvaluation
 	 *            the modelEvaluation to set
 	 */
-	public void setModelEvaluation(IModelEvaluation<O, X, Y, L> modelEvaluation) {
+	public void setModelEvaluation(IModelEvaluation<X, Y, L> modelEvaluation) {
 		this.modelEvaluation = modelEvaluation;
 	}
 

@@ -15,15 +15,14 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface IProbabilisticClassifier<O, X> extends IClassifier<O, X> {
+public interface IProbabilisticClassifier<X> extends IClassifier<X> {
 
 	public Map<String, Double> getLabelDistribution(X featureVector);
 

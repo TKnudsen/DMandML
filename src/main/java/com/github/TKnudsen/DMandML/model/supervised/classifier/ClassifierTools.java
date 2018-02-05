@@ -13,20 +13,21 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
- * 
- * TODO_GENERICS Parameter "O" is not used any more
+ * @version 1.02
  */
 public class ClassifierTools {
 
-	public static <O, FV extends IFeatureVectorObject<?, ?>> Classifier<O, FV> createParameterizedCopy(WekaClassifierWrapper<O, FV> classifier) throws Exception {
-		WekaClassifierWrapper<O, FV> classifierNew = classifier.getClass().asSubclass(WekaClassifierWrapper.class).newInstance();
+	public static <FV extends IFeatureVectorObject<?, ?>> Classifier<FV> createParameterizedCopy(
+			WekaClassifierWrapper<FV> classifier) throws Exception {
+		WekaClassifierWrapper<FV> classifierNew = classifier.getClass().asSubclass(WekaClassifierWrapper.class)
+				.newInstance();
 
-		classifierNew.wekaClassifier = (weka.classifiers.AbstractClassifier) weka.classifiers.AbstractClassifier.makeCopy(classifierNew.wekaClassifier);
+		classifierNew.wekaClassifier = (weka.classifiers.AbstractClassifier) weka.classifiers.AbstractClassifier
+				.makeCopy(classifierNew.wekaClassifier);
 		return classifierNew;
 	}
 }

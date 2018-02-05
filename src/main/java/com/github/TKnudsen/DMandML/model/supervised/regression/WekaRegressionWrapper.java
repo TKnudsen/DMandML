@@ -31,7 +31,7 @@ import weka.core.Instances;
  * 
  * TODO_GENERICS Parameter "O" is not used any more
  */
-public abstract class WekaRegressionWrapper<O, FV extends IFeatureVectorObject<?, ?>> extends Regression<O, FV> {
+public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?>> extends Regression<FV> {
 
 	protected AbstractClassifier wekaRegressionModel;
 

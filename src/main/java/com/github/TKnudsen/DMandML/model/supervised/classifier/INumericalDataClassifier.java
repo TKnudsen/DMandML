@@ -14,12 +14,12 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public interface INumericalDataClassifier extends IProbabilisticClassifier<Double, NumericalFeatureVector> {
+public interface INumericalDataClassifier extends IProbabilisticClassifier<NumericalFeatureVector> {
 
 }

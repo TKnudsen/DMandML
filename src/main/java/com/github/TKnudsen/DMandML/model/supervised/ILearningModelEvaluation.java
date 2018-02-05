@@ -14,15 +14,14 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  * 
- * TODO_GENERICS Parameter "O" is not used any more
  */
-public interface ILearningModelEvaluation<O, X extends IFeatureVectorObject<?, ?>, Y> {
+public interface ILearningModelEvaluation<X extends IFeatureVectorObject<?, ?>, Y> {
 
-	public double getQuality(ILearningModel<O, X, Y> model, List<X> testData, Y targetVariable);
+	public double getQuality(ILearningModel<X, Y> model, List<X> testData, Y targetVariable);
 }
