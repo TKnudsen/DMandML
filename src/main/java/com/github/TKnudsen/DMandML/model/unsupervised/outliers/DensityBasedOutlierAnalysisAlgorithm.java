@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.IFeatureVectorDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 
@@ -19,19 +19,20 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutlierAnalysisAlgorithm<FV> {
 
 	private int nearestNeighborCount;
 
-	private IFeatureVectorDistanceMeasure<FV> distanceMeasure;
+	private IDistanceMeasure<FV> distanceMeasure;
 
-	public DensityBasedOutlierAnalysisAlgorithm(List<FV> featureVectors, int nearestNeighborCount, IFeatureVectorDistanceMeasure<FV> distanceMeasure) {
+	public DensityBasedOutlierAnalysisAlgorithm(List<FV> featureVectors, int nearestNeighborCount,
+			IDistanceMeasure<FV> distanceMeasure) {
 		super(featureVectors);
 
 		this.nearestNeighborCount = nearestNeighborCount;
@@ -67,7 +68,8 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutli
 		StatisticsSupport distanceMeansStatistics = new StatisticsSupport(maxDistanceMeans);
 
 		for (FV fv : featureVectorList)
-			outlierScores.put(fv, MathFunctions.linearScale(0, distanceMeansStatistics.getMax(), outlierScores.get(fv)));
+			outlierScores.put(fv,
+					MathFunctions.linearScale(0, distanceMeansStatistics.getMax(), outlierScores.get(fv)));
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutli
 	@Override
 	public void setData(List<FV> data) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
