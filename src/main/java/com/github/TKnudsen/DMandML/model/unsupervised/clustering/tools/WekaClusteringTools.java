@@ -9,7 +9,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical.NumericalFeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorCluster;
 
 import weka.core.Instance;
 import weka.core.Instances;

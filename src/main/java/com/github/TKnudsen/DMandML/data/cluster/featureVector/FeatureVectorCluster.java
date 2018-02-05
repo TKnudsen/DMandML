@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.cluster.featureFV;
+package com.github.TKnudsen.DMandML.data.cluster.featureVector;
 
 import java.util.Collection;
 

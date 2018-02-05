@@ -6,8 +6,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFe
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.mixed.MixedDataFeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical.NumericalFeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.mixed.MixedDataFeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**

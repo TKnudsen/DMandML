@@ -14,7 +14,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster.AveragePairwiseDistanceCompactnessMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster.ClusterCompactnessMeasure;
 

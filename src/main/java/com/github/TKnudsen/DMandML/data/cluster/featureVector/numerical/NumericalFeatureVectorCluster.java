@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.data.cluster.featureFV.numerical;
+package com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -17,7 +17,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureFV.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
 /**
  * <p>
