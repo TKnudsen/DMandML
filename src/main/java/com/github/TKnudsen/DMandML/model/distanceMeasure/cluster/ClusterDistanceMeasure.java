@@ -2,7 +2,6 @@ package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IIDObjectDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
@@ -15,13 +14,13 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public abstract class ClusterDistanceMeasure<T extends IDObject> implements IIDObjectDistanceMeasure<Cluster<T>> {
+public abstract class ClusterDistanceMeasure<T extends IDObject> implements IDistanceMeasure<Cluster<T>> {
 
 	/**
 	 * 
