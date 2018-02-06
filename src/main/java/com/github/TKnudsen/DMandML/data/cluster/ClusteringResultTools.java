@@ -7,6 +7,8 @@ import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
@@ -40,7 +42,8 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getLargestCluster(IClusteringResult<T, C> clusterResult) {
+	public static <T extends IDObject, C extends Cluster<T>> C getLargestCluster(
+			IClusteringResult<T, C> clusterResult) {
 		if (clusterResult == null)
 			return null;
 
@@ -80,7 +83,8 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(IClusteringResult<T, Cluster<T>> clusterResult) {
+	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(
+			IClusteringResult<T, Cluster<T>> clusterResult) {
 		List<T> elements = new ArrayList<>();
 
 		for (Cluster<T> c : clusterResult.getClusters())
@@ -90,17 +94,18 @@ public class ClusteringResultTools {
 	}
 
 	/**
-	 * Retrieves the cluster for a given object. If getClusterMapping is null
-	 * (if object was not part of the clustering routine) AND
-	 * retrievNearestWhenUnassigned is set true, the method retrieves the
-	 * nearest cluster for the object.
+	 * Retrieves the cluster for a given object. If getClusterMapping is null (if
+	 * object was not part of the clustering routine) AND
+	 * retrievNearestWhenUnassigned is set true, the method retrieves the nearest
+	 * cluster for the object.
 	 * 
 	 * @param fv
 	 * @param retrieveNearestWhenUnassigned
 	 *            if a cluster is retrieved in case no assignment is exists.
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv, boolean retrieveNearestWhenUnassigned) {
+	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv,
+			boolean retrieveNearestWhenUnassigned) {
 		if (fv == null)
 			return null;
 
@@ -132,7 +137,8 @@ public class ClusteringResultTools {
 	 * @param clusterName
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, String clusterName) {
+	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult,
+			String clusterName) {
 		if (clusterResult == null)
 			return null;
 
@@ -154,7 +160,8 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
+	public static <T extends IDObject, C extends Cluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(
+			IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
 		if (clusterResult == null)
 			return null;
 
@@ -180,6 +187,45 @@ public class ClusteringResultTools {
 	}
 
 	/**
+	 * creates a probability distribution using distances to clusters. These
+	 * distances are, e.g., provided with instances in the environment of the
+	 * clustering result.
+	 * 
+	 * @param distanceDistribution
+	 * @return
+	 */
+	public static <T extends IDObject, C extends Cluster<T>> ProbabilityDistribution<C> getProbabilityDistributionBasedOnDistanceDistribution(
+			ClusterDistanceDistribution<T, C> distanceDistribution) {
+
+		StatisticsSupport statistics = new StatisticsSupport(distanceDistribution.getClusterDistances().values());
+
+		// uses median cluster distance as threshold
+		double maxOrbitDistance = statistics.getMean();
+
+		Map<C, Double> probabilityMap = new HashMap<>();
+		double sum = 0;
+		for (C c : distanceDistribution.keySet()) {
+			double dist = distanceDistribution.get(c);
+			if (dist > maxOrbitDistance)
+				probabilityMap.put(c, 0.0);
+			else
+				probabilityMap.put(c, maxOrbitDistance / dist);
+
+			sum += probabilityMap.get(c);
+		}
+
+		// normalization to reveal probabilities adding up to 1.0
+		if (sum > 0)
+			for (C c : probabilityMap.keySet())
+				probabilityMap.put(c, probabilityMap.get(c) / sum);
+		else
+			return null;
+
+		ProbabilityDistribution<C> probabilityDistribution = new ProbabilityDistribution<>(probabilityMap);
+		return probabilityDistribution;
+	}
+
+	/**
 	 * retrieves the relative distribution of distances of a given object to the
 	 * clusters of a ClusteringResult.
 	 * 
@@ -187,7 +233,8 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<Double> getClusterDistanceDistribution(IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
+	public static <T extends IDObject, C extends Cluster<T>> List<Double> getClusterDistanceDistribution(
+			IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
 		if (clusterResult == null)
 			return null;
 

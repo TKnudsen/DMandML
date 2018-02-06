@@ -3,26 +3,31 @@ package com.github.TKnudsen.DMandML.data.classification;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
+
 /**
  * <p>
  * Title: LabelDistribution
  * </p>
  * 
  * <p>
- * Description: data model for distributions of labels.
+ * Description: data model for distributions of labels. Must add up to 100%
+ * (probability distribution).
  * </p>
  * 
  * <p>
- * Copyright: Copyright (c) 2015-2017
+ * Copyright: Copyright (c) 2015-2018
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class LabelDistribution {
+public class LabelDistribution extends ProbabilityDistribution<String> {
 
-	private Map<String, Double> valueDistribution;
-
+	/**
+	 * the label representing the distribution does not necessarily need to be the
+	 * most likely label.
+	 */
 	private String representant;
 
 	/**
@@ -38,27 +43,10 @@ public class LabelDistribution {
 	}
 
 	public LabelDistribution(Map<String, Double> valueDistribution, String representant) {
-		this.valueDistribution = valueDistribution;
-		this.representant = representant;
+		super(valueDistribution);
 
 		if (representant == null)
-			this.representant = calculateRepresentant();
-	}
-
-	private String calculateRepresentant() {
-		String rep = null;
-		Double repRatio = 0.0;
-
-		if (valueDistribution == null)
-			return null;
-
-		for (String value : valueDistribution.keySet())
-			if (valueDistribution.get(value) > repRatio) {
-				rep = value;
-				repRatio = valueDistribution.get(value);
-			}
-
-		return rep;
+			this.representant = getMostLikelyItem();
 	}
 
 	public String getRepresentant() {
@@ -66,10 +54,10 @@ public class LabelDistribution {
 	}
 
 	public Map<String, Double> getValueDistribution() {
-		return valueDistribution;
+		return getProbabilityDistribution();
 	}
 
 	public Set<String> getLabelSet() {
-		return valueDistribution.keySet();
+		return keySet();
 	}
 }

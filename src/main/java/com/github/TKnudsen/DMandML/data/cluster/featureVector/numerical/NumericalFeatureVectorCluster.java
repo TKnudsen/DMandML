@@ -63,7 +63,8 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 		initialize();
 	}
 
-	public NumericalFeatureVectorCluster(Collection<? extends NumericalFeatureVector> featureVectors, IDistanceMeasure<NumericalFeatureVector> distanceMeasure, String name, String description) {
+	public NumericalFeatureVectorCluster(Collection<? extends NumericalFeatureVector> featureVectors,
+			IDistanceMeasure<NumericalFeatureVector> distanceMeasure, String name, String description) {
 		super(featureVectors, distanceMeasure, name, description);
 
 		this.ID = MathFunctions.randomLong();
@@ -128,14 +129,14 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	public Centroid<NumericalFeatureVector> getCentroid() {
 		if (size() == 0)
 			return null;
-		if (this.centroid == null && this.centroid.getData().getVector() == null || this.centroid.getData().getVector().length == 0)
+		if (this.centroid == null && this.centroid.getData().getVector() == null
+				|| this.centroid.getData().getVector().length == 0)
 			calculateCentroid();
 		return centroid;
 	}
 
 	/**
-	 * Adds a data point. open question. should the classID of the FV also be
-	 * set?!
+	 * Adds a data point. open question. should the classID of the FV also be set?!
 	 * 
 	 * @param feature
 	 */
@@ -155,7 +156,8 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 		super.remove(feature);
 
 		this.featureVectorRankingTreeSet = null;
-		if (this.featureVectorCentroidDistancesLong != null && this.featureVectorCentroidDistancesLong.get(feature.getID()) != null)
+		if (this.featureVectorCentroidDistancesLong != null
+				&& this.featureVectorCentroidDistancesLong.get(feature.getID()) != null)
 			this.featureVectorCentroidDistancesLong.remove(feature.getID());
 		if (this.featureVectorCentroidDistancesFV != null && this.featureVectorCentroidDistancesFV.get(feature) != null)
 			this.featureVectorCentroidDistancesFV.remove(feature);
@@ -190,14 +192,27 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 		if (this.featureVectorCentroidDistancesFV == null)
 			featureVectorCentroidDistancesFV = new ConcurrentHashMap<>();
 
-		if (this.featureVectorCentroidDistancesLong.get(fv.getID()) == null || featureVectorCentroidDistancesFV.get(fv) == null) {
-			double d = getDistanceMeasure().getDistance(fv, this.centroid.getData());
-			this.featureVectorCentroidDistancesLong.put(fv.getID(), d);
-			this.featureVectorCentroidDistancesFV.put(fv, d);
+		if (this.featureVectorCentroidDistancesLong.get(fv.getID()) == null
+				|| featureVectorCentroidDistancesFV.get(fv) == null) {
+			if (this.getElements().contains(fv)) {
+				try {
+					double d = getDistanceMeasure().getDistance(fv, this.getCentroid().getData());
+					this.featureVectorCentroidDistancesLong.put(fv.getID(), d);
+					this.featureVectorCentroidDistancesFV.put(fv, d);
+				} catch (Exception e) {
+					System.err.println(
+							"Error when calculating centroid distance. I will try to calculate the distance anyway");
+					return getDistanceMeasure().getDistance(fv, getCentroid().getData());
+				}
+			} else {
+				System.err.println("FV not contained in this cluster. I will calculate the distance anyway");
+				return getDistanceMeasure().getDistance(fv, getCentroid().getData());
+			}
 		}
 		try {
-			if (this.featureVectorCentroidDistancesLong == null || this.featureVectorCentroidDistancesLong.get(fv.getID()) == null)
-				return getDistanceMeasure().getDistance(fv, this.centroid.getData());
+			if (this.featureVectorCentroidDistancesLong == null
+					|| this.featureVectorCentroidDistancesLong.get(fv.getID()) == null)
+				return getDistanceMeasure().getDistance(fv, this.getCentroid().getData());
 			else
 				return this.featureVectorCentroidDistancesLong.get(fv.getID());
 		} catch (Exception e) {
@@ -229,11 +244,13 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 
 		for (NumericalFeatureVector f : getElements())
 			try {
-				featureVectorRankingTreeSet.add(new EntryWithComparableKey<Double, NumericalFeatureVector>(getCentroidDistance(f), f));
+				featureVectorRankingTreeSet
+						.add(new EntryWithComparableKey<Double, NumericalFeatureVector>(getCentroidDistance(f), f));
 			} catch (NullPointerException np) {
 				np.printStackTrace();
 				System.out.println("hmmh!");
-				featureVectorRankingTreeSet.add(new EntryWithComparableKey<Double, NumericalFeatureVector>(getCentroidDistance(f), f));
+				featureVectorRankingTreeSet
+						.add(new EntryWithComparableKey<Double, NumericalFeatureVector>(getCentroidDistance(f), f));
 			}
 	}
 
@@ -266,14 +283,14 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	}
 
 	public NumericalFeatureVector asFeatureVector(String name) {
-		if (centroid == null)
+		if (getCentroid() == null)
 			return null;
-		if (centroid.getData().getVector() == null)
+		if (getCentroid().getData().getVector() == null)
 			return null;
 
 		// NumericalFeatureVector fv = new NumericalFeatureVector(null, name,
 		// centroid.getData().getVector().clone());
-		return centroid.getData();
+		return getCentroid().getData();
 	}
 
 	/**
@@ -289,7 +306,10 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 		double minDist = Double.POSITIVE_INFINITY;
 		double maxDist = Double.NEGATIVE_INFINITY;
 		try {
-			if (featureVectorRankingTreeSet != null && featureVectorRankingTreeSet.size() > 0 && featureVectorRankingTreeSet.first() != null && featureVectorRankingTreeSet.first().getKey() != null && featureVectorRankingTreeSet.last() != null
+			if (featureVectorRankingTreeSet != null && featureVectorRankingTreeSet.size() > 0
+					&& featureVectorRankingTreeSet.first() != null
+					&& featureVectorRankingTreeSet.first().getKey() != null
+					&& featureVectorRankingTreeSet.last() != null
 					&& featureVectorRankingTreeSet.last().getKey() != null) {
 				minDist = featureVectorRankingTreeSet.first().getKey();
 				maxDist = featureVectorRankingTreeSet.last().getKey();
@@ -353,7 +373,7 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 
 	@Override
 	public String toString() {
-		return "Cluster " + getName() + ", size: " + size() + ". Centroid: " + centroid.toString();
+		return "Cluster " + getName() + ", size: " + size() + ". Centroid: " + getCentroid().toString();
 	}
 
 	@Override
@@ -367,7 +387,8 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 
 	public Map<NumericalFeatureVector, Double> getFeatureVectorCentroidDistancesMap() {
 		// stellt sicher, das alle fv in der map sind
-		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv)).forEach(fv -> getCentroidDistance(fv));
+		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv))
+				.forEach(fv -> getCentroidDistance(fv));
 		return featureVectorCentroidDistancesFV;
 	}
 
