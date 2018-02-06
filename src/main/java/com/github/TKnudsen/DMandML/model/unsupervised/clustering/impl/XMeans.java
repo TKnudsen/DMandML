@@ -41,7 +41,7 @@ public class XMeans extends WekaClusteringAlgorithm {
 	private int k;
 
 	protected XMeans() {
-		this(2, 10, null);
+		this(1, 10, null);
 	}
 
 	public XMeans(int k_min, int k_max, List<NumericalFeatureVector> featureVectors) {

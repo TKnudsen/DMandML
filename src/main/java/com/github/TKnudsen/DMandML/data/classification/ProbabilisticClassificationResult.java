@@ -13,18 +13,19 @@ import java.util.Map;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class ProbabilisticClassificationResult<X> extends ClassificationResult<X> implements IProbabilisticClassificationResult<X> {
+public class ProbabilisticClassificationResult<X> extends ClassificationResult<X>
+		implements IProbabilisticClassificationResult<X> {
 
 	Map<X, LabelDistribution> labelDistributionMap;
 
 	/**
-	 * constructor stores a refernce on the object.
+	 * constructor stores a reference on the object.
 	 * 
 	 * @param labelDistributionMap
 	 */
@@ -39,7 +40,8 @@ public class ProbabilisticClassificationResult<X> extends ClassificationResult<X
 		return labelDistributionMap.get(x);
 	}
 
-	protected static <X> Map<X, LabelDistribution> createLabelDistributionMap(Map<X, Map<String, Double>> labelDistributionMap) {
+	protected static <X> Map<X, LabelDistribution> createLabelDistributionMap(
+			Map<X, Map<String, Double>> labelDistributionMap) {
 		Map<X, LabelDistribution> tmpLabelDistributionMap = new LinkedHashMap<>();
 
 		for (X x : labelDistributionMap.keySet())

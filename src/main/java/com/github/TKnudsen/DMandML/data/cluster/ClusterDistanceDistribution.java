@@ -1,6 +1,7 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.Map;
+import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 
@@ -14,11 +15,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class ClusterDistanceDistribution<T extends IDObject, C extends Cluster<T>> {
 
@@ -34,5 +35,9 @@ public class ClusterDistanceDistribution<T extends IDObject, C extends Cluster<T
 
 	public Double get(C cluster) {
 		return clusterDistances.get(cluster);
+	}
+
+	public Set<C> keySet() {
+		return clusterDistances.keySet();
 	}
 }
