@@ -27,6 +27,11 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 
 	public IClassificationResult<X> createClassificationResult(List<X> featureVectors);
 
+	/**
+	 * label alphabet at training state.
+	 * 
+	 * @return
+	 */
 	public List<String> getLabelAlphabet();
 
 }
