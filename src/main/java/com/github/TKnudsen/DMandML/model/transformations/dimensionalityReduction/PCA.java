@@ -41,7 +41,7 @@ import weka.core.Instances;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
@@ -60,7 +60,7 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	private double minimumRemainingVariance;
 
 	/**
-	 * whether of not feature are 'back-projected' into the original space.
+	 * whether or not feature are 'back-projected' into the original space.
 	 */
 	private boolean transformThroughPCASpaceBackToOriginalSpace = false;
 
