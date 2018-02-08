@@ -205,7 +205,6 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 					return getDistanceMeasure().getDistance(fv, getCentroid().getData());
 				}
 			} else {
-				System.err.println("FV not contained in this cluster. I will calculate the distance anyway");
 				return getDistanceMeasure().getDistance(fv, getCentroid().getData());
 			}
 		}
