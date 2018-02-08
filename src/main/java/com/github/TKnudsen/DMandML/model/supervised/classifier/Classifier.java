@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
@@ -30,7 +30,7 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * @version 1.03
  * 
  */
-public abstract class Classifier<FV extends IFeatureVectorObject<?, ?>> implements IProbabilisticClassifier<FV> {
+public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IProbabilisticClassifier<FV> {
 
 	@JsonIgnore
 	protected List<FV> trainFeatureVectors;

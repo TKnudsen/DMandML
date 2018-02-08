@@ -220,8 +220,29 @@ public class ClusteringResultTools {
 				probabilityMap.put(c, probabilityMap.get(c) / sum);
 		else
 			return null;
-
+		
 		ProbabilityDistribution<C> probabilityDistribution = new ProbabilityDistribution<>(probabilityMap);
+		return probabilityDistribution;
+	}
+
+	public static <T extends IDObject, C extends Cluster<T>> ProbabilityDistribution<String> getProbabilityLabelDistributionBasedOnDistanceDistribution(
+			ClusterDistanceDistribution<T, C> distanceDistribution) {
+		ProbabilityDistribution<C> probabilities = getProbabilityDistributionBasedOnDistanceDistribution(
+				distanceDistribution);
+
+		// convert cluster probability distribution...
+		// into a (String) label probability distribution
+		Map<String, Double> probabilityMap = null;
+		ProbabilityDistribution<String> probabilityDistribution = null;
+		if (probabilities != null) {
+			probabilityMap = new HashMap<>();
+
+			for (C c : probabilities.keySet())
+				probabilityMap.put(c.getName(), probabilities.getProbability(c));
+
+			probabilityDistribution = new ProbabilityDistribution<>(probabilityMap);
+		}
+
 		return probabilityDistribution;
 	}
 
