@@ -200,8 +200,6 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 					this.featureVectorCentroidDistancesLong.put(fv.getID(), d);
 					this.featureVectorCentroidDistancesFV.put(fv, d);
 				} catch (Exception e) {
-					System.err.println(
-							"Error when calculating centroid distance. I will try to calculate the distance anyway");
 					return getDistanceMeasure().getDistance(fv, getCentroid().getData());
 				}
 			} else {
