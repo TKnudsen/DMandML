@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.view.visualMapping.color.VisualColorMappingFunction;
+import com.github.TKnudsen.ComplexDataObject.view.visualMappings.color.VisualColorMappingFunction;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusteringAlgorithm;
