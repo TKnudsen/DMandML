@@ -22,21 +22,24 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class MixedDataFeatureVectorCluster extends FeatureVectorCluster<MixedDataFeatureVector> {
 
-	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements, IDistanceMeasure<MixedDataFeatureVector> distanceMeasure) {
+	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements,
+			IDistanceMeasure<MixedDataFeatureVector> distanceMeasure) {
 		this(elements, distanceMeasure, "", "");
 	}
 
-	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements, IDistanceMeasure<MixedDataFeatureVector> distanceMeasure, String name, String description) {
+	public MixedDataFeatureVectorCluster(Collection<MixedDataFeatureVector> elements,
+			IDistanceMeasure<MixedDataFeatureVector> distanceMeasure, String name, String description) {
 		super(elements, distanceMeasure, name, description);
 	}
 
 	@Override
 	public Cluster<MixedDataFeatureVector> clone() {
-		MixedDataFeatureVectorCluster cluster = new MixedDataFeatureVectorCluster(new LinkedHashSet<>(getElements()), getDistanceMeasure(), getName(), getDescription());
+		MixedDataFeatureVectorCluster cluster = new MixedDataFeatureVectorCluster(new LinkedHashSet<>(getElements()),
+				getDistanceMeasure(), getName(), getDescription());
 		return cluster;
 	}
 }
