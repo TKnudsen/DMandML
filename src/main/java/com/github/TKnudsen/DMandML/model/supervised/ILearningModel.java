@@ -25,9 +25,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  */
 public interface ILearningModel<X, Y> extends ISelfDescription {
 
-	public void train(List<X> featureVectors, List<Y> labels);
-
-	public void train(List<X> featureVectors, String targetVariable);
+	public void train(List<X> featureVectors);
 
 	public List<Y> test(List<X> featureVectors);
 }
