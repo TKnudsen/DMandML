@@ -18,23 +18,23 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class DBScan extends WekaClusteringAlgorithm {
 
 	/**
-	 * the maximum epsilon (distance) between points that is allowed for a
-	 * cluster structure
+	 * the maximum epsilon (distance) between points that is allowed for a cluster
+	 * structure
 	 */
 	private double epsilon;
 
 	/**
-	 * the number of minPoints of a potential dense (distances <= epsilon)
-	 * cluster structure to be a valid cluster
+	 * the number of minPoints of a potential dense (distances <= epsilon) cluster
+	 * structure to be a valid cluster
 	 */
 	private int minPoints;
 
@@ -43,6 +43,12 @@ public class DBScan extends WekaClusteringAlgorithm {
 
 	public DBScan(List<NumericalFeatureVector> featureVectors) {
 		this(featureVectors, 0.1, 10);
+	}
+
+	public DBScan(double epsilon, int minPoints) {
+		setFeatureVectors(null);
+		setEpsilon(epsilon);
+		setMinPoints(minPoints);
 	}
 
 	public DBScan(List<NumericalFeatureVector> featureVectors, double epsilon, int minPoints) {
