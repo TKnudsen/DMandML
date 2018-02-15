@@ -1,13 +1,14 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
@@ -32,85 +33,78 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  */
 public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IProbabilisticClassifier<FV> {
 
-	@JsonIgnore
-	protected List<FV> trainFeatureVectors;
-
 	/**
-	 * the attribute that will be looked up in the feature vectors. Note that this
-	 * is an attribute in the features. not a feature in itself.
-	 * 
-	 * Similarly, the class attribute, e.g., in WEKA will always be "class" instead
-	 * of classAttribute.
+	 * The "set" of unique labels. 
 	 */
-	protected String classAttribute = "class";
+	private final List<String> labelAlphabet;
+	
+	private final String classAttribute;
 
-	/**
-	 * "set" of unique labels.
-	 */
-	protected List<String> labelAlphabet;
-
-	protected abstract void initializeClassifier();
-
-	protected abstract void prepareData();
-
-	protected abstract void resetResults();
-
-	/**
-	 * allows individual execution of classifiers
-	 */
-	protected abstract void buildClassifier();
-
-	public abstract List<Map<String, Double>> getLabelDistributionResult();
-
-	@Override
-	public void train(List<FV> featureVectors, List<String> labels) {
-		if (featureVectors == null || labels == null)
-			throw new NullPointerException();
-		if (featureVectors.size() != labels.size())
-			throw new IllegalArgumentException();
-
-		this.trainFeatureVectors = new ArrayList<>(featureVectors);
-		for (int i = 0; i < featureVectors.size(); i++)
-			trainFeatureVectors.get(i).add(classAttribute, labels.get(i));
-
-		train(featureVectors, classAttribute);
+	protected Classifier(String classAttribute) {
+		this.labelAlphabet = new ArrayList<>();
+		this.classAttribute = Objects.requireNonNull(classAttribute, "The classAttribute may not be null");
 	}
 
 	@Override
-	public void train(List<FV> featureVectors, String targetVariable) {
-		if (featureVectors == null)
-			throw new NullPointerException();
+	public void train(List<FV> featureVectors) {
+		Objects.requireNonNull(featureVectors, "The featureVectors may not be null");
 
-		this.trainFeatureVectors = new ArrayList<>(featureVectors);
-		this.classAttribute = targetVariable;
+		updateLabelAlphabet(featureVectors);
+		buildClassifier(featureVectors);
+	}
+	
+	/**
+	 * The method containing the implementation of the classifier training.
+	 * It is called in {@link #train(List)}, after the {@link #getLabelAlphabet() label alphabet}
+	 * has been updated
+	 */
+	protected abstract void buildClassifier(List<FV> featureVectors);
+	
+	/**
+	 * Updates the {@link #labelAlphabet} by collecting all unique values of 
+	 * all values of the {@link #classAttribute} of the given feature vectors.
+	 * 
+	 * @param featureVectors The feature vectors
+	 */
+	protected final void updateLabelAlphabet(Iterable<? extends FV> featureVectors) {
+		this.labelAlphabet.clear();
 
 		Set<String> labels = new LinkedHashSet<>();
-		for (int i = 0; i < featureVectors.size(); i++)
-			if (trainFeatureVectors.get(i) != null)
-				if (trainFeatureVectors.get(i).getAttribute(targetVariable) != null)
-					labels.add(trainFeatureVectors.get(i).getAttribute(targetVariable).toString());
-		this.labelAlphabet = new ArrayList<>(labels);
-
-		initializeClassifier();
-
-		prepareData();
-
-		resetResults();
-
-		buildClassifier();
+		for (FV fv : featureVectors) {
+			Object classAttributeValue = fv.getAttribute(classAttribute);
+			if (classAttributeValue == null) {
+				System.err.println(
+						"com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier#updateLabelAlphabet: "
+								+ "There is no attribute value for class attribute " + classAttribute + " in " + fv);
+			} else {
+				labels.add(String.valueOf(classAttributeValue));
+			}
+		}
+		this.labelAlphabet.clear();
+		this.labelAlphabet.addAll(labels);
 	}
 
 	@Override
 	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : featureVectors)
+		{
 			labelDistributionMap.put(fv, getLabelDistribution(fv));
-
+		}
 		IProbabilisticClassificationResult<FV> result = new ProbabilisticClassificationResult<>(labelDistributionMap);
-
 		return result;
 	}
-
+	
+	@Override
+	public List<String> getLabelAlphabet() {
+		return Collections.unmodifiableList(labelAlphabet);
+	}
+	
+	@Override
+	public String getClassAttribute() {
+		return classAttribute;
+	}
+	
 	@Override
 	public String getName() {
 		return this.getClass().getSimpleName();
@@ -126,24 +120,4 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 		return getName();
 	}
 
-	public String getClassAttribute() {
-		return classAttribute;
-	}
-
-	public void setClassAttribute(String classAttribute) {
-		this.classAttribute = classAttribute;
-	}
-
-	public List<FV> getTrainFeatureVectors() {
-		return trainFeatureVectors;
-	}
-
-	public void setTrainFeatureVectors(List<FV> trainFeatureVectors) {
-		this.trainFeatureVectors = trainFeatureVectors;
-	}
-
-	@Override
-	public List<String> getLabelAlphabet() {
-		return labelAlphabet;
-	}
 }

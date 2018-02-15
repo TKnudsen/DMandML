@@ -26,8 +26,8 @@ public class ClassifierTools {
 		WekaClassifierWrapper<FV> classifierNew = classifier.getClass().asSubclass(WekaClassifierWrapper.class)
 				.newInstance();
 
-		classifierNew.wekaClassifier = (weka.classifiers.AbstractClassifier) weka.classifiers.AbstractClassifier
-				.makeCopy(classifierNew.wekaClassifier);
+		classifierNew.setWekaClassifier((weka.classifiers.AbstractClassifier) weka.classifiers.AbstractClassifier
+				.makeCopy(classifierNew.getWekaClassifier()));
 		return classifierNew;
 	}
 }

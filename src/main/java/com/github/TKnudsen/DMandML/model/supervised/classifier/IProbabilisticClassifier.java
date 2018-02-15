@@ -19,12 +19,23 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * </p>
  * 
  * @author Juergen Bernard
+ * 
  * @version 1.03
  * 
  */
 public interface IProbabilisticClassifier<X> extends IClassifier<X> {
 
-	public Map<String, Double> getLabelDistribution(X featureVector);
+	/**
+	 * Returns a (possibly unmodifiable) map containing the mapping
+	 * of all class labels to the probability that the given vector 
+	 * belongs to the respective class.<br>
+	 * <br>
+	 *  
+	 * @param featureVector The feature vector
+	 * @return The label distribution
+	 */
+	Map<String, Double> getLabelDistribution(X featureVector);
 
-	public IProbabilisticClassificationResult<X> createClassificationResult(List<X> featureVectors);
+	@Override
+	IProbabilisticClassificationResult<X> createClassificationResult(List<X> featureVectors);
 }
