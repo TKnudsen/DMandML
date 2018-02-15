@@ -10,6 +10,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.KeyValueProviders;
 
 /**
  * <p>
@@ -67,7 +68,8 @@ public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? e
 			trainTruth = new ArrayList<>();
 			testTruth = new ArrayList<>();
 			calcRandomTrainAndTestSets(featureVectors, groundTruth);
-			learner.train(trainset, trainTruth);
+			KeyValueProviders.setAttribute("class", trainset, trainTruth);
+			learner.train(trainset);
 			calculatePerformances(learner.test(testset), testTruth);
 		}
 	}

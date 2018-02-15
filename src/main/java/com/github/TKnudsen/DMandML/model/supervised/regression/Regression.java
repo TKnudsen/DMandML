@@ -34,7 +34,7 @@ public abstract class Regression<FV extends IFeatureVectorObject<?, ?>> implemen
 	 * Similarly, the class attribute, e.g., in WEKA will always be "class" instead
 	 * of classAttribute.
 	 */
-	protected String targetAttribute = "class";
+	private final String targetAttribute = "class";
 
 	private List<Double> targetValues;
 
@@ -50,27 +50,10 @@ public abstract class Regression<FV extends IFeatureVectorObject<?, ?>> implemen
 	protected abstract void resetResults();
 
 	@Override
-	public void train(List<FV> featureVectors, List<Double> targetValues) {
+	public void train(List<FV> featureVectors) {
 		resetResults();
 
 		setTrainFeatureVectors(featureVectors);
-
-		setTargetValues(targetValues);
-
-		initializeRegression();
-
-		prepareData();
-
-		buildRegression();
-	}
-
-	@Override
-	public void train(List<FV> featureVectors, String targetVariable) {
-		resetResults();
-
-		setTrainFeatureVectors(featureVectors);
-
-		setTargetAttribute(targetVariable);
 
 		initializeRegression();
 
@@ -81,12 +64,6 @@ public abstract class Regression<FV extends IFeatureVectorObject<?, ?>> implemen
 
 	public String getTargetAttribute() {
 		return targetAttribute;
-	}
-
-	public void setTargetAttribute(String classAttribute) {
-		this.targetAttribute = classAttribute;
-
-		resetResults();
 	}
 
 	public List<FV> getTrainFeatureVectors() {
