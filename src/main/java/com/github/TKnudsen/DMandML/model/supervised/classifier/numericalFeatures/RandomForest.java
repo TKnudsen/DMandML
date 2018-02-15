@@ -42,7 +42,7 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 
 	@Override
 	protected void initializeClassifier() {
-		this.wekaClassifier = new weka.classifiers.trees.RandomForest();
+		setWekaClassifier(new weka.classifiers.trees.RandomForest());
 
 		List<String> aryOpts = new ArrayList<String>();
 		aryOpts.add("-I");
@@ -59,8 +59,6 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		resetResults();
 	}
 
 	public int getNumIterations() {

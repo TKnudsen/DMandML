@@ -8,6 +8,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.KeyValueProviders;
 
 /**
  * <p>
@@ -82,7 +83,8 @@ public class KFoldCrossValidation<X extends IFeatureVectorObject<?, ?>, Y, L ext
 					trainTruth.addAll(truth.get(j));
 				}
 			}
-			learner.train(trainset, trainTruth);
+			KeyValueProviders.setAttribute("class", trainset, trainTruth);
+			learner.train(trainset);
 			calculatePerformances(learner.test(testset), testTruth);
 		}
 	}

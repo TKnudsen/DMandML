@@ -126,7 +126,7 @@ public class BasicAdaBoost<FV extends IFeatureVectorObject<?, ?>> extends WekaCl
 
 	@Override
 	protected void initializeClassifier() {
-		wekaClassifier = new AdaBoostM1();
+		setWekaClassifier(new AdaBoostM1());
 
 		List<String> aryOpts = new ArrayList<String>();
 
@@ -151,7 +151,7 @@ public class BasicAdaBoost<FV extends IFeatureVectorObject<?, ?>> extends WekaCl
 		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
 
 		try {
-			((AdaBoostM1) wekaClassifier).setOptions(opts);
+			((AdaBoostM1) getWekaClassifier()).setOptions(opts);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
