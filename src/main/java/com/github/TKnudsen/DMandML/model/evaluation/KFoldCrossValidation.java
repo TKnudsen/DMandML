@@ -9,7 +9,6 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifiers;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.KeyValueProviders;
 
 /**
  * <p>

@@ -37,14 +37,14 @@
 			<version>${weka.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.pentaho.pentaho-commons</groupId>
-			<artifactId>pentaho-package-manager</artifactId>
-			<version>1.0.11</version>
-		</dependency>
-		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>XMeans</artifactId>
 			<version>1.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pentaho.pentaho-commons</groupId>
+			<artifactId>pentaho-package-manager</artifactId>
+			<version>1.0.11</version>
 		</dependency>
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
@@ -101,6 +101,16 @@
 			<groupId>com.jujutsu</groupId>
 			<artifactId>tsne</artifactId>
 			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ejml</groupId>
+			<artifactId>ejml-all</artifactId>
+			<version>0.33</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.javaml</groupId>
+			<artifactId>javaml</artifactId>
+			<version>0.1.7</version>
 		</dependency>
 	</dependencies>
 
