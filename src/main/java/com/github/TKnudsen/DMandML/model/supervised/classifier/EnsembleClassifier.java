@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
@@ -38,12 +39,12 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		}
 		return classAttributes.iterator().next();
 	}
-	
+
 	@Override
 	public String getClassAttribute() {
 		return classAttribute;
 	}
-	
+
 	@Override
 	public void train(List<FV> featureVectors) {
 
@@ -53,18 +54,23 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		}
 
 		for (IProbabilisticClassifier<FV> classifier : classifiers) {
-			classifier.train(featureVectors);
+			try {
+				classifier.train(featureVectors);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	@Override
 	public List<String> test(List<FV> featureVectors) {
-		
+
 		if (getLabelAlphabet().isEmpty()) {
-			System.err.println("EnsembleClassifier: No training was performed. Returning null labels. Users already rely on that...");
+			System.err.println(
+					"EnsembleClassifier: No training was performed. Returning null labels. Users already rely on that...");
 			return null;
 		}
-		
+
 		List<String> labels = new ArrayList<String>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
@@ -82,8 +88,13 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		Map<String, List<Double>> labelDistributions = new HashMap<>();
 
 		for (IProbabilisticClassifier<FV> classifier : classifiers) {
-
 			Map<String, Double> labelDistribution = classifier.getLabelDistribution(featureVector);
+
+			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(labelDistribution.values(),
+					ProbabilityDistribution.EPSILON, true))
+				System.err.println(getName() + ": sum of given label probabilites (" + classifier.getName()
+						+ " classifier) was != 100% (" + MathFunctions.getSum(labelDistribution.values(), true) + ")");
+
 			for (String label : labelDistribution.keySet()) {
 				List<Double> values = labelDistributions.computeIfAbsent(label, l -> new ArrayList<>());
 				values.add(labelDistribution.get(label));
@@ -151,6 +162,5 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 	public String toString() {
 		return getName();
 	}
-
 
 }
