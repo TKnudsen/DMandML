@@ -14,6 +14,9 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
+import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import weka.core.Instance;
@@ -91,12 +94,12 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	@Override
 	public Map<String, Double> getLabelDistribution(FV featureVector) {
-		
+
 		if (getLabelAlphabet().isEmpty()) {
 			System.err.println("WekaClassifierWrapper: No training was performed. Returning empty label distribution");
 			return Collections.emptyMap();
 		}
-		
+
 		if (labelDistributionMap.get(featureVector) == null) {
 			computeLabelDistributions(Collections.singletonList(featureVector));
 		}
@@ -116,11 +119,18 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		Set<FV> featureVectorsSet = new LinkedHashSet<>(featureVectors);
 		featureVectorsSet.removeAll(labelDistributionMap.keySet());
 		List<FV> newFeatureVectors = new ArrayList<>(featureVectorsSet);
-		computeLabelDistributions(newFeatureVectors);
+
+		if (newFeatureVectors.size() > 0)
+			computeLabelDistributions(newFeatureVectors);
 
 		List<String> labels = new ArrayList<String>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
+
+			if (labelDistribution == null || labelDistribution.isEmpty())
+				throw new NullPointerException(
+						getName() + ": test(List<FV>) not successful with gathering label for an instance");
+
 			Entry<String, Double> entryWithHighestProbability = Collections.max(labelDistribution.entrySet(),
 					Map.Entry.comparingByValue());
 			String label = entryWithHighestProbability.getKey();
@@ -149,28 +159,38 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		for (int i = 0; i < testData.numInstances(); i++) {
 
 			Instance instance = testData.instance(i);
-			double[] dist = null;
+			double[] distribution = null;
 			try {
-				dist = wekaClassifier.distributionForInstance(instance);
-				
+				distribution = wekaClassifier.distributionForInstance(instance);
 				//validateDistribution(dist, featureVectors.get(i), instance);
-				
 			} catch (Exception e) {
-				//e.printStackTrace();
-				
+				// e.printStackTrace();
+
 				System.out.println("Weka classifier could not classify instance, using NaN results");
-				//printDetailedWekaDebugInfo(instance, e);
-				
-				dist = new double[getLabelAlphabet().size()];
-				Arrays.fill(dist, Double.NaN);
+				// printDetailedWekaDebugInfo(instance, e);
+
+				distribution = new double[getLabelAlphabet().size()];
+				Arrays.fill(distribution, Double.NaN);
 			}
 
-			Map<String, Double> labelDistribution = new HashMap<String, Double>();
-			for (int j = 0; j < dist.length; j++) {
-				String label = labelAlphabet.get(j);
-				labelDistribution.put(label, dist[j]);
+			// check whether probability distribution matches ~100%
+			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(
+					DataConversion.doublePrimitivesToList(distribution), ProbabilityDistribution.EPSILON, true)) {
+				System.err
+						.println(
+								"WekaClassifierWrapper.computeLabelDistributions(): sum of given label probabilites ("
+										+ getName() + ") was != 100% (" + MathFunctions
+												.getSum(DataConversion.doublePrimitivesToList(distribution), true)
+										+ "). label distribution will be set null.");
+				labelDistributionMap.put(featureVectors.get(i), null);
+			} else {
+				Map<String, Double> labelDistribution = new HashMap<String, Double>();
+				for (int j = 0; j < distribution.length; j++) {
+					String label = labelAlphabet.get(j);
+					labelDistribution.put(label, distribution[j]);
+				}
+				labelDistributionMap.put(featureVectors.get(i), labelDistribution);
 			}
-			labelDistributionMap.put(featureVectors.get(i), labelDistribution);
 		}
 
 	}
@@ -191,11 +211,10 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		System.out.println("  Classifier: " + wekaClassifier);
 		System.out.println("  Instance  : " + instance);
 		List<String> labelAlphabet = getLabelAlphabet();
-		System.out.println("  Label alphabet "+labelAlphabet);
+		System.out.println("  Label alphabet " + labelAlphabet);
 		System.out.println("  Instance class attribute values:");
-		for (int j=0; j<labelAlphabet.size(); j++)
-		{
-			System.out.println("    "+instance.dataset().classAttribute().value(j));
+		for (int j = 0; j < labelAlphabet.size(); j++) {
+			System.out.println("    " + instance.dataset().classAttribute().value(j));
 		}
 		System.out.println("  Using NaN results");
 	}

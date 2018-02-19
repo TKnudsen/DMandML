@@ -21,20 +21,25 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> {
 
 	/**
-	 * The number of iterations to be performed.
+	 * The number of trees to be performed.
 	 */
-	private int numIterations = 100;
+	private int trees = 10;
 
 	/**
 	 * number of randomly chosen attributes. If 0, int(log_2(#predictors) + 1) is
 	 * used.
 	 */
 	private int numFeatures = 0;
+
+	/**
+	 * maximum depth of the tree, 0 for unlimited.
+	 */
+	private int depthMax = 0;
 
 	public RandomForest() {
 
@@ -46,11 +51,13 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 
 		List<String> aryOpts = new ArrayList<String>();
 		aryOpts.add("-I");
-		aryOpts.add(numIterations + "");
+		aryOpts.add(trees + "");
 		aryOpts.add("-K");
 		aryOpts.add(numFeatures + "");
 		aryOpts.add("-S");
 		aryOpts.add(1 + "");
+		aryOpts.add("-depth");
+		aryOpts.add(depthMax + "");
 
 		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
 
@@ -61,12 +68,12 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 		}
 	}
 
-	public int getNumIterations() {
-		return numIterations;
+	public int getTreeCount() {
+		return trees;
 	}
 
-	public void setNumIterations(int numIterations) {
-		this.numIterations = numIterations;
+	public void setTreeCount(int trees) {
+		this.trees = trees;
 
 		initializeClassifier();
 	}
@@ -77,6 +84,16 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 
 	public void setNumFeatures(int numFeatures) {
 		this.numFeatures = numFeatures;
+
+		initializeClassifier();
+	}
+
+	public int getDepthMax() {
+		return depthMax;
+	}
+
+	public void setDepthMax(int depthMax) {
+		this.depthMax = depthMax;
 
 		initializeClassifier();
 	}
