@@ -90,10 +90,19 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		for (IProbabilisticClassifier<FV> classifier : classifiers) {
 			Map<String, Double> labelDistribution = classifier.getLabelDistribution(featureVector);
 
+			if (labelDistribution == null) {
+				System.err.println(
+						getName() + ": label distribution was null. Ignoring information for the ensemble result...");
+				continue;
+			}
+
 			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(labelDistribution.values(),
-					ProbabilityDistribution.EPSILON, true))
+					ProbabilityDistribution.EPSILON, true)) {
 				System.err.println(getName() + ": sum of given label probabilites (" + classifier.getName()
-						+ " classifier) was != 100% (" + MathFunctions.getSum(labelDistribution.values(), true) + ")");
+						+ " classifier) was != 100% (" + MathFunctions.getSum(labelDistribution.values(), true)
+						+ "). Ignoring information for the ensemble result...");
+				continue;
+			}
 
 			for (String label : labelDistribution.keySet()) {
 				List<Double> values = labelDistributions.computeIfAbsent(label, l -> new ArrayList<>());
@@ -121,11 +130,15 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		for (IProbabilisticClassifier<FV> classifier : classifiers) {
 			IProbabilisticClassificationResult<FV> classificationResult = classifier
 					.createClassificationResult(featureVectors);
-			for (FV fv : featureVectors) {
-				Collection<LabelDistribution> collection = labelDistributions.computeIfAbsent(fv,
-						v -> new ArrayList<>());
-				collection.add(classificationResult.getLabelDistribution(fv));
-			}
+
+			if (classificationResult != null)
+				for (FV fv : featureVectors) {
+					Collection<LabelDistribution> collection = labelDistributions.computeIfAbsent(fv,
+							v -> new ArrayList<>());
+					collection.add(classificationResult.getLabelDistribution(fv));
+				}
+			else
+				System.err.println(getName() + ": one of the classifier results was null and will be ignored.");
 		}
 
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();

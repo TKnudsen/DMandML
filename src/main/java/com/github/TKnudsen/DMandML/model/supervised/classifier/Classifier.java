@@ -34,10 +34,10 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
 public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IProbabilisticClassifier<FV> {
 
 	/**
-	 * The "set" of unique labels. 
+	 * The "set" of unique labels.
 	 */
 	private final List<String> labelAlphabet;
-	
+
 	private final String classAttribute;
 
 	protected Classifier(String classAttribute) {
@@ -52,19 +52,20 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 		updateLabelAlphabet(featureVectors);
 		buildClassifier(featureVectors);
 	}
-	
+
 	/**
-	 * The method containing the implementation of the classifier training.
-	 * It is called in {@link #train(List)}, after the {@link #getLabelAlphabet() label alphabet}
-	 * has been updated
+	 * The method containing the implementation of the classifier training. It is
+	 * called in {@link #train(List)}, after the {@link #getLabelAlphabet() label
+	 * alphabet} has been updated
 	 */
 	protected abstract void buildClassifier(List<FV> featureVectors);
-	
+
 	/**
-	 * Updates the {@link #labelAlphabet} by collecting all unique values of 
-	 * all values of the {@link #classAttribute} of the given feature vectors.
+	 * Updates the {@link #labelAlphabet} by collecting all unique values of all
+	 * values of the {@link #classAttribute} of the given feature vectors.
 	 * 
-	 * @param featureVectors The feature vectors
+	 * @param featureVectors
+	 *            The feature vectors
 	 */
 	protected final void updateLabelAlphabet(Iterable<? extends FV> featureVectors) {
 		this.labelAlphabet.clear();
@@ -87,24 +88,30 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	@Override
 	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
-		for (FV fv : featureVectors)
-		{
+		for (FV fv : featureVectors) {
 			labelDistributionMap.put(fv, getLabelDistribution(fv));
 		}
-		IProbabilisticClassificationResult<FV> result = new ProbabilisticClassificationResult<>(labelDistributionMap);
-		return result;
+
+		try {
+			return new ProbabilisticClassificationResult<>(labelDistributionMap);
+		} catch (Exception e) {
+			System.err.println(getName() + ": unable to create probabilistic classification result.");
+			e.printStackTrace();
+		}
+
+		return null;
 	}
-	
+
 	@Override
 	public List<String> getLabelAlphabet() {
 		return Collections.unmodifiableList(labelAlphabet);
 	}
-	
+
 	@Override
 	public String getClassAttribute() {
 		return classAttribute;
 	}
-	
+
 	@Override
 	public String getName() {
 		return this.getClass().getSimpleName();

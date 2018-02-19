@@ -108,8 +108,8 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
 
 			if (labelDistribution == null || labelDistribution.isEmpty())
-				throw new NullPointerException(getName()
-						+ ": test(List<FV>) not successful with gathering label for a fv -> added null label");
+				throw new NullPointerException(
+						getName() + ": test(List<FV>) not successful with gathering label for an instance");
 
 			Entry<String, Double> entryWithHighestProbability = Collections.max(labelDistribution.entrySet(),
 					Map.Entry.comparingByValue());
@@ -148,17 +148,22 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 			// check whether probability distribution matches ~100%
 			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(
-					DataConversion.doublePrimitivesToList(distribution), ProbabilityDistribution.EPSILON, true))
-				System.err.println(getName() + ": sum of given label probabilites (" + getName()
-						+ ") was != 100% ("
-						+ MathFunctions.getSum(DataConversion.doublePrimitivesToList(distribution), true) + ")");
-
-			Map<String, Double> labelDistribution = new HashMap<String, Double>();
-			for (int j = 0; j < distribution.length; j++) {
-				String label = labelAlphabet.get(j);
-				labelDistribution.put(label, distribution[j]);
+					DataConversion.doublePrimitivesToList(distribution), ProbabilityDistribution.EPSILON, true)) {
+				System.err
+						.println(
+								"WekaClassifierWrapper.computeLabelDistributions(): sum of given label probabilites ("
+										+ getName() + ") was != 100% (" + MathFunctions
+												.getSum(DataConversion.doublePrimitivesToList(distribution), true)
+										+ "). label distribution will be set null.");
+				labelDistributionMap.put(featureVectors.get(i), null);
+			} else {
+				Map<String, Double> labelDistribution = new HashMap<String, Double>();
+				for (int j = 0; j < distribution.length; j++) {
+					String label = labelAlphabet.get(j);
+					labelDistribution.put(label, distribution[j]);
+				}
+				labelDistributionMap.put(featureVectors.get(i), labelDistribution);
 			}
-			labelDistributionMap.put(featureVectors.get(i), labelDistribution);
 		}
 
 	}

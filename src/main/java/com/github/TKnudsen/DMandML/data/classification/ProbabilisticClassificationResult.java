@@ -44,8 +44,16 @@ public class ProbabilisticClassificationResult<X> extends ClassificationResult<X
 			Map<X, Map<String, Double>> labelDistributionMap) {
 		Map<X, LabelDistribution> tmpLabelDistributionMap = new LinkedHashMap<>();
 
-		for (X x : labelDistributionMap.keySet())
+		for (X x : labelDistributionMap.keySet()) {
+			Map<String, Double> labelDistribution = labelDistributionMap.get(x);
+
+			if (labelDistribution == null)
+				throw new IllegalArgumentException(
+						"ProbabilisticClassificationResult.createLabelDistributionMap(...): label distribution for item "
+								+ x.toString() + " was null");
+
 			tmpLabelDistributionMap.put(x, new LabelDistribution(labelDistributionMap.get(x)));
+		}
 
 		return tmpLabelDistributionMap;
 	}
