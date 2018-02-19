@@ -26,11 +26,11 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlgorithm {
 
@@ -68,7 +68,8 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 		initializeClusteringAlgorithm();
 
 		try {
-			clusterResult = WekaClusteringTools.getClusterResultFromWekaClusterer(wekaClusterer, data, featureVectors, getName());
+			clusterResult = WekaClusteringTools.getClusterResultFromWekaClusterer(wekaClusterer, data, featureVectors,
+					getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,7 +78,8 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	@Override
 	public IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusteringResult() {
 		if (clusterResult == null)
-			throw new NullPointerException("WekaClusteringAlgorithm: cluster result was null. Was the clustering calculated yet?");
+			throw new NullPointerException(
+					"WekaClusteringAlgorithm: cluster result was null. Was the clustering calculated yet?");
 
 		return clusterResult;
 	}
@@ -87,14 +89,13 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	}
 
 	public void setFeatureVectors(List<NumericalFeatureVector> featureVectors) {
-		
 		this.featureVectors = featureVectors;
 
 		if (featureVectors == null)
 			data = null;
 		else
 			data = WekaConversion.getInstances(featureVectors, false);
-		
+
 		clusterResult = null;
 	}
 }
