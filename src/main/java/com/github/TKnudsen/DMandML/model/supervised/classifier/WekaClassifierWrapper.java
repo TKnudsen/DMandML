@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.DoubleStream;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,6 +45,8 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	private static final String CLASS_ATTRIBUTE_NAME = "class";
 
 	private weka.classifiers.Classifier wekaClassifier;
+	
+	private boolean initialized = false;
 
 	@JsonIgnore
 	private final Map<FV, Map<String, Double>> labelDistributionMap;
@@ -51,13 +54,23 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	public WekaClassifierWrapper() {
 		super(CLASS_ATTRIBUTE_NAME);
 		this.labelDistributionMap = new LinkedHashMap<>();
-		initializeClassifier();
+	}
+	
+	/**
+	 * Make sure that {@link #initializeClassifier()} was called
+	 */
+	private void ensureInitialized() {
+		if (!initialized) {
+			initializeClassifier();
+			initialized = true;
+		}
+		
 	}
 
 	/**
-	 * Initialize the classifier. This will be called once in the constructor, and
-	 * should be implemented by subclasses so that the {@link #wekaClassifier} is
-	 * assigned and initialized
+	 * Initialize the classifier. This will be called once,
+	 * and should be implemented by subclasses so that the
+	 * {@link #wekaClassifier} is assigned and initialized
 	 */
 	protected abstract void initializeClassifier();
 
@@ -70,6 +83,8 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	}
 
 	private void buildClassifier(List<FV> featureVectors, double weights[]) {
+		ensureInitialized();
+		
 		Instances trainData = WekaConversion.getLabeledInstances(featureVectors, getClassAttribute(), true);
 		for (int i = 0; i < trainData.size(); i++) {
 			trainData.get(i).setWeight(weights[i]);
@@ -95,6 +110,11 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	public final List<String> test(List<FV> featureVectors) {
 		if (featureVectors == null)
 			throw new NullPointerException();
+		
+		if (getLabelAlphabet().isEmpty()) {
+			System.err.println("WekaClassifierWrapper: No training was performed. Returning empty winning labels");
+			return Collections.emptyList();
+		}
 
 		Set<FV> featureVectorsSet = new LinkedHashSet<>(featureVectors);
 		featureVectorsSet.removeAll(labelDistributionMap.keySet());
@@ -120,6 +140,12 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	}
 
 	private void computeLabelDistributions(List<FV> featureVectors) {
+		
+		if (featureVectors.isEmpty()) {
+			// Nothing to do here. WekaConversion.getInstances
+			// would return "null" for an empty list, anyhow...
+			return;
+		}
 		Instances testData = WekaConversion.getInstances(featureVectors, false);
 
 		// TODO This should never happen! Why COULD it happen?
@@ -136,6 +162,7 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 			double[] distribution = null;
 			try {
 				distribution = wekaClassifier.distributionForInstance(instance);
+				//validateDistribution(dist, featureVectors.get(i), instance);
 			} catch (Exception e) {
 				// e.printStackTrace();
 
@@ -168,7 +195,18 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	}
 
-	private void printDetailedWekaDebugInfo(Instance instance, Throwable e) {
+	
+	private void validateDistribution(double[] dist, FV featureVector, Instance instance) {
+		double sum = DoubleStream.of(dist).sum();
+		if (Math.abs(1.0 - sum) > 1e-6) {
+			System.err.println("WekaClassifierWrapper with " + wekaClassifier + ": Probability sum is "
+					+ sum + ", maybe unclassified? fv is " + featureVector + ", instance "
+					+ instance);
+		}
+	}
+	
+	private void printDetailedWekaDebugInfo(Instance instance, Throwable e)
+	{
 		System.out.println("Weka classifier could not classify instance: " + e.getMessage());
 		System.out.println("  Classifier: " + wekaClassifier);
 		System.out.println("  Instance  : " + instance);
@@ -188,6 +226,7 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	}
 
 	private void buildClassifier(Instances trainData) {
+		ensureInitialized();
 		labelDistributionMap.clear();
 
 		if (trainData.size() < 2)
