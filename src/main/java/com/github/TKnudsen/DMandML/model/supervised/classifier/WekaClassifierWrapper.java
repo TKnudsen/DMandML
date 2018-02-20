@@ -9,14 +9,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.DoubleStream;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.DoubleStream;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
-import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import weka.core.Instance;
@@ -42,11 +40,33 @@ import weka.core.Instances;
  */
 public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?>> extends Classifier<FV> {
 
+	/**
+	 * The attribute that will be used as the class attribute for the
+	 * Weka instances.
+	 */
 	private static final String CLASS_ATTRIBUTE_NAME = "class";
-
+	
+	/**
+	 * The delegate classifier
+	 */
 	private weka.classifiers.Classifier wekaClassifier;
 	
+	/**
+	 * Whether a basic validation of the results that are returned by 
+	 * the Weka classifier should be performed
+	 */
+	private final boolean validateWekaResults = true;
+	
+	/**
+	 * Whether {@link #initializeClassifier()} was already called
+	 */
 	private boolean initialized = false;
+	
+	/**
+	 * Whether the previous call to {@link #buildClassifier(Instances)}
+	 * was successful 
+	 */
+	private boolean trainedSuccessfully = false;
 
 	@JsonIgnore
 	private final Map<FV, Map<String, Double>> labelDistributionMap;
@@ -74,17 +94,37 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	 */
 	protected abstract void initializeClassifier();
 
+	
+	/**
+	 * Train this classifier, assigning the given weights to the feature vectors
+	 * 
+	 * @param featureVectors The feature vectors
+	 * @param weights The weights
+	 * @throws NullPointerException The either argument is <code>null</code>
+	 * @throws IllegalArgumentException If the size of the list is different
+	 * to the array length
+	 */
 	public void trainWithWeights(List<FV> featureVectors, double[] weights) {
-		if (featureVectors == null)
-			throw new NullPointerException();
+		Objects.requireNonNull(featureVectors, "The featureVectors may not be null");
+		Objects.requireNonNull(weights, "The weights may not be null");
+		if (featureVectors.size() != weights.length) {
+			throw new IllegalArgumentException(
+					"There are " + featureVectors.size() + " feature vectors but " + weights.length + " weights");
+		}
 
 		updateLabelAlphabet(featureVectors);
 		buildClassifier(featureVectors, weights);
 	}
 
+	/**
+	 * Convert the given feature vectors to Weka instances, and assign the given
+	 * weights to them by calling {@link Instance#setWeight(double)}
+	 * 
+	 * @param featureVectors The feature vectors
+	 * @param weights The weights
+	 */
 	private void buildClassifier(List<FV> featureVectors, double weights[]) {
 		ensureInitialized();
-		
 		Instances trainData = WekaConversion.getLabeledInstances(featureVectors, getClassAttribute(), true);
 		for (int i = 0; i < trainData.size(); i++) {
 			trainData.get(i).setWeight(weights[i]);
@@ -95,8 +135,8 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	@Override
 	public Map<String, Double> getLabelDistribution(FV featureVector) {
 
-		if (getLabelAlphabet().isEmpty()) {
-			System.err.println("WekaClassifierWrapper: No training was performed. Returning empty label distribution");
+		if (!trainedSuccessfully) {
+			System.err.println("WekaClassifierWrapper: No successful training was performed. Returning empty label distribution");
 			return Collections.emptyMap();
 		}
 
@@ -108,20 +148,17 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	@Override
 	public final List<String> test(List<FV> featureVectors) {
-		if (featureVectors == null)
-			throw new NullPointerException();
+		Objects.requireNonNull(featureVectors, "The featureVectors may not be null");
 		
-		if (getLabelAlphabet().isEmpty()) {
-			System.err.println("WekaClassifierWrapper: No training was performed. Returning empty winning labels");
+		if (!trainedSuccessfully) {
+			System.err.println("WekaClassifierWrapper: No successful training was performed. Returning empty winning labels");
 			return Collections.emptyList();
 		}
 
 		Set<FV> featureVectorsSet = new LinkedHashSet<>(featureVectors);
 		featureVectorsSet.removeAll(labelDistributionMap.keySet());
 		List<FV> newFeatureVectors = new ArrayList<>(featureVectorsSet);
-
-		if (newFeatureVectors.size() > 0)
-			computeLabelDistributions(newFeatureVectors);
+		computeLabelDistributions(newFeatureVectors);
 
 		List<String> labels = new ArrayList<String>();
 		for (FV fv : featureVectors) {
@@ -146,77 +183,59 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 			// would return "null" for an empty list, anyhow...
 			return;
 		}
+		if (!trainedSuccessfully) {
+			// This should never happen. The methods that call this method should 
+			// check this case before trying to compute a label distribution
+			System.err.println("WekaClassifierWrapper: Trying to compute label distributions without successful training");
+			return;
+		}
+		
 		Instances testData = WekaConversion.getInstances(featureVectors, false);
 
 		// TODO This should never happen! Why COULD it happen?
 		// (In doubt, WekaConversion.getInstances should throw!)
-		if (testData.size() != featureVectors.size())
+		if (testData.size() != featureVectors.size()) {
 			throw new IllegalArgumentException("WekaConversion failed");
+		}
 
 		List<String> labelAlphabet = getLabelAlphabet();
 		WekaConversion.addLabelAttributeToInstance(testData, CLASS_ATTRIBUTE_NAME, labelAlphabet);
 
 		for (int i = 0; i < testData.numInstances(); i++) {
-
+			FV featureVector = featureVectors.get(i);
 			Instance instance = testData.instance(i);
-			double[] distribution = null;
-			try {
-				distribution = wekaClassifier.distributionForInstance(instance);
-				//validateDistribution(dist, featureVectors.get(i), instance);
-			} catch (Exception e) {
-				// e.printStackTrace();
+			
+			double[] distribution = comuteWekaDistribution(featureVector, instance);
 
-				System.out.println("Weka classifier could not classify instance, using NaN results");
-				// printDetailedWekaDebugInfo(instance, e);
-
-				distribution = new double[getLabelAlphabet().size()];
-				Arrays.fill(distribution, Double.NaN);
+			Map<String, Double> labelDistribution = new HashMap<String, Double>();
+			for (int j = 0; j < distribution.length; j++) {
+				String label = labelAlphabet.get(j);
+				labelDistribution.put(label, distribution[j]);
 			}
-
-			// check whether probability distribution matches ~100%
-			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(
-					DataConversion.doublePrimitivesToList(distribution), ProbabilityDistribution.EPSILON, true)) {
-				System.err
-						.println(
-								"WekaClassifierWrapper.computeLabelDistributions(): sum of given label probabilites ("
-										+ getName() + ") was != 100% (" + MathFunctions
-												.getSum(DataConversion.doublePrimitivesToList(distribution), true)
-										+ "). label distribution will be set null.");
-				labelDistributionMap.put(featureVectors.get(i), null);
-			} else {
-				Map<String, Double> labelDistribution = new HashMap<String, Double>();
-				for (int j = 0; j < distribution.length; j++) {
-					String label = labelAlphabet.get(j);
-					labelDistribution.put(label, distribution[j]);
-				}
-				labelDistributionMap.put(featureVectors.get(i), labelDistribution);
-			}
+			labelDistributionMap.put(featureVectors.get(i), labelDistribution);
 		}
 
 	}
 
 	
-	private void validateDistribution(double[] dist, FV featureVector, Instance instance) {
-		double sum = DoubleStream.of(dist).sum();
-		if (Math.abs(1.0 - sum) > 1e-6) {
-			System.err.println("WekaClassifierWrapper with " + wekaClassifier + ": Probability sum is "
-					+ sum + ", maybe unclassified? fv is " + featureVector + ", instance "
-					+ instance);
+	private double[] comuteWekaDistribution(FV featureVector, Instance instance) {
+		try {
+			double[] distribution = wekaClassifier.distributionForInstance(instance);
+			if (validateWekaResults) {
+				validateDistribution(distribution, featureVector, instance);
+			}
+			return distribution;
+		} catch (Exception e) {
+
+			// This should never happen. Something odd must be going on in
+			// the weka classifier.
+			System.out.println("Weka classifier could not classify instance, using NaN results");
+			printDetailedWekaDebugInfo(instance, e);
+
+			double distribution[] = new double[getLabelAlphabet().size()];
+			Arrays.fill(distribution, Double.NaN);
+			return distribution;
 		}
-	}
-	
-	private void printDetailedWekaDebugInfo(Instance instance, Throwable e)
-	{
-		System.out.println("Weka classifier could not classify instance: " + e.getMessage());
-		System.out.println("  Classifier: " + wekaClassifier);
-		System.out.println("  Instance  : " + instance);
-		List<String> labelAlphabet = getLabelAlphabet();
-		System.out.println("  Label alphabet " + labelAlphabet);
-		System.out.println("  Instance class attribute values:");
-		for (int j = 0; j < labelAlphabet.size(); j++) {
-			System.out.println("    " + instance.dataset().classAttribute().value(j));
-		}
-		System.out.println("  Using NaN results");
 	}
 
 	@Override
@@ -227,16 +246,18 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	private void buildClassifier(Instances trainData) {
 		ensureInitialized();
+		if (trainData.size() < 2) {
+			throw new IllegalArgumentException("At least two training instances required");
+		}
 		labelDistributionMap.clear();
-
-		if (trainData.size() < 2)
-			throw new IllegalArgumentException("at least two training instances required");
-
+		trainedSuccessfully = false;
+				
 		if (trainData.classAttribute().numValues() == 1) {
 			System.err.println("Training data contains only a single class. Not applying " + wekaClassifier);
 		} else {
 			try {
 				wekaClassifier.buildClassifier(trainData);
+				trainedSuccessfully = true;
 			} catch (Exception e) {
 				System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName()
 						+ "<- sent an exception: " + e.getMessage());
@@ -255,4 +276,45 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	public final void setWekaClassifier(weka.classifiers.Classifier wekaClassifier) {
 		this.wekaClassifier = wekaClassifier;
 	}
+	
+	//========================================================================
+	// Debugging and validation methods
+	
+	/**
+	 * Make sure that the given distribution sums up to approximately 1.0,
+	 * and print an error message otherwise
+	 * 
+	 * @param distribution The distribution
+	 * @param featureVector The feature vector
+	 * @param instance The weka instance
+	 */
+	private void validateDistribution(double[] distribution, FV featureVector, Instance instance) {
+		double sum = DoubleStream.of(distribution).sum();
+		if (Math.abs(1.0 - sum) > 1e-6) {
+			System.err.println("WekaClassifierWrapper with " + wekaClassifier + ": Probability sum is "
+					+ sum + ", maybe unclassified? fv is " + featureVector + ", instance "
+					+ instance);
+		}
+	}
+	
+	/**
+	 * Print detailed debug info about a failed weka classification
+	 * 
+	 * @param instance The instance
+	 * @param e The exception from weka
+	 */
+	private void printDetailedWekaDebugInfo(Instance instance, Throwable e)
+	{
+		System.out.println("Weka classifier could not classify instance: " + e.getMessage());
+		System.out.println("  Classifier: " + wekaClassifier);
+		System.out.println("  Instance  : " + instance);
+		List<String> labelAlphabet = getLabelAlphabet();
+		System.out.println("  Label alphabet " + labelAlphabet);
+		System.out.println("  Instance class attribute values:");
+		for (int j = 0; j < labelAlphabet.size(); j++) {
+			System.out.println("    " + instance.dataset().classAttribute().value(j));
+		}
+		System.out.println("  Using NaN results");
+	}
+	
 }
