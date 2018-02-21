@@ -18,5 +18,13 @@ package com.github.TKnudsen.DMandML.data.classification;
  */
 public interface IProbabilisticClassificationResult<X> extends IClassificationResult<X> {
 
+	/**
+	 * Returns the {@link LabelDistribution} for the given feature vector,
+	 * or <code>null</code> if the give feature vector is not contained
+	 * in the {@link #getFeatureVectors() feature vectors of this result}
+	 * 
+	 * @param x The feature vector
+	 * @return The {@link LabelDistribution}
+	 */
 	public LabelDistribution getLabelDistribution(X x);
 }
