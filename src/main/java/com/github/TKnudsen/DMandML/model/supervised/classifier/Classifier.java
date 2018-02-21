@@ -91,15 +91,7 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 		for (FV fv : featureVectors) {
 			labelDistributionMap.put(fv, getLabelDistribution(fv));
 		}
-
-		try {
-			return new ProbabilisticClassificationResult<>(labelDistributionMap);
-		} catch (Exception e) {
-			System.err.println(getName() + ": unable to create probabilistic classification result.");
-			e.printStackTrace();
-		}
-
-		return null;
+		return new ProbabilisticClassificationResult<>(labelDistributionMap);
 	}
 
 	@Override
