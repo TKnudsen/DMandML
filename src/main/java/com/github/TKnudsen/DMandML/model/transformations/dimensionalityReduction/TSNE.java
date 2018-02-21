@@ -56,7 +56,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 	/**
 	 * 
 	 */
-	private int interationsMax = 200;
+	private int iterationsMax = 200;
 
 	public TSNE(List<NumericalFeatureVector> featureVectors, int outputDimensionality) {
 		this(featureVectors, outputDimensionality, 20.0, 200);
@@ -67,7 +67,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		this.featureVectors = featureVectors;
 		this.outputDimensionality = outputDimensionality;
 		this.perplexity = perplexity;
-		this.interationsMax = interationsMax;
+		this.iterationsMax = interationsMax;
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		NumericalFeatureVector numericalFeatureVector = featureVectors.get(0);
 		dimensionality = numericalFeatureVector.getDimensions();
 
-		// convert to matix (not a distance matrix!)
+		// convert to matrix (not a distance matrix!)
 		double[][] inputAsDoubleMatrix = new double[featureVectors.size()][dimensionality];
 		for (int r = 0; r < featureVectors.size(); r++)
 			for (int c = 0; c < dimensionality; c++)
@@ -93,9 +93,12 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		inputAsDoubleMatrix = MatrixOps.centerAndScale(inputAsDoubleMatrix);
 
 		// apply T-SNE
-		TSne tsne = new SimpleTSne();
 		TSneConfiguration config = TSneUtils.buildConfig(inputAsDoubleMatrix, outputDimensionality, dimensionality,
-				perplexity, interationsMax);
+				perplexity, iterationsMax, true, 0.5, false);
+//		TSneConfiguration config = TSneUtils.buildConfig(inputAsDoubleMatrix, outputDimensionality, dimensionality,
+//				perplexity, iterationsMax);
+
+		TSne tsne = new SimpleTSne();
 		double[][] outputAsDoubleMatrix = tsne.tsne(config);
 
 		// convert to low-dim FeatureVectors
@@ -125,12 +128,12 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		mapping = null;
 	}
 
-	public int getInterationsMax() {
-		return interationsMax;
+	public int getIterationsMax() {
+		return iterationsMax;
 	}
 
-	public void setInterationsMax(int interationsMax) {
-		this.interationsMax = interationsMax;
+	public void setIterationsMax(int interationsMax) {
+		this.iterationsMax = interationsMax;
 
 		mapping = null;
 	}
