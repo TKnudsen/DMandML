@@ -22,9 +22,34 @@ import java.util.Map;
  */
 public interface IClassificationResult<X> {
 
+	/**
+	 * Returns a (possibly unmodifiable) collection containing all feature
+	 * vectors that this result has been computed for.
+	 * 
+	 * @return The feature vectors
+	 */
 	public Collection<X> getFeatureVectors();
 
+	/**
+	 * Returns the most likely class that the given vector belongs to,
+	 * or <code>null</code> if the given vector is not element of the
+	 * {@link #getFeatureVectors() feature vectors of this result}
+	 * 
+	 * @param featureVector The feature vector
+	 * @return The class
+	 */
 	public String getClass(X featureVector);
 
+	/**
+	 * Returns a (possibly unmodifiable) mapping from class labels to the 
+	 * lists of feature vectors for which the respective class is the
+	 * most likely one.<br>
+	 * <br>
+	 * Note that the key set of this map will not necessarily contain 
+	 * all possible class labels. It will only contain the class labels
+	 * that are the most likely one for <i>any</i> of the feature vectors.
+	 * 
+	 * @return The class distributions
+	 */
 	public Map<String, List<X>> getClassDistributions();
 }

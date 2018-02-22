@@ -30,6 +30,8 @@ public interface IProbabilisticClassifier<X> extends IClassifier<X> {
 	 * of all class labels to the probability that the given vector 
 	 * belongs to the respective class.<br>
 	 * <br>
+	 * If the classifier has not been trained yet, this will be 
+	 * an empty map.
 	 *  
 	 * @param featureVector The feature vector
 	 * @return The label distribution
