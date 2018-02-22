@@ -136,6 +136,11 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 	public Map<String, Double> getLabelDistribution(FV featureVector) {
 
 		if (!trainedSuccessfully) {
+			List<String> labelAlphabet = getLabelAlphabet();
+			if (labelAlphabet.size() == 1) {
+				System.err.println("WekaClassifierWrapper: Training data contained only a single class. Returning single-element label distribution");
+				return Collections.singletonMap(labelAlphabet.get(0), 1.0);
+			}
 			System.err.println("WekaClassifierWrapper: No successful training was performed. Returning empty label distribution");
 			return Collections.emptyMap();
 		}
@@ -151,8 +156,13 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		Objects.requireNonNull(featureVectors, "The featureVectors may not be null");
 		
 		if (!trainedSuccessfully) {
-			System.err.println("WekaClassifierWrapper: No successful training was performed. Returning empty winning labels");
-			return Collections.emptyList();
+			List<String> labelAlphabet = getLabelAlphabet();
+			if (labelAlphabet.size() == 1) {
+				System.err.println("WekaClassifierWrapper: Training data contained only a single class. Returning all-equal winning labels");
+				return Collections.nCopies(featureVectors.size(), labelAlphabet.get(0));
+			}
+			System.err.println("WekaClassifierWrapper: No successful training was performed. Returning 'null' as winning labels");
+			return Collections.nCopies(featureVectors.size(), null);
 		}
 
 		Set<FV> featureVectorsSet = new LinkedHashSet<>(featureVectors);
@@ -229,7 +239,7 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 			// This should never happen. Something odd must be going on in
 			// the weka classifier.
-			System.out.println("Weka classifier could not classify instance, using NaN results");
+			System.err.println("WekaClassifierWrapper: Weka classifier could not classify instance, using NaN results");
 			printDetailedWekaDebugInfo(instance, e);
 
 			double distribution[] = new double[getLabelAlphabet().size()];

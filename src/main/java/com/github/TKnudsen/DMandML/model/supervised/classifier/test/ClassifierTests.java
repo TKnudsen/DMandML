@@ -6,25 +6,31 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
+import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IProbabilisticClassifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.numericalFeatures.RandomForest;
 
 
 /**
  * Some basic tests for the classifiers, namely for
- * {@link IProbabilisticClassifier}
+ * {@link IProbabilisticClassifier}.
+ * 
+ * TODO: This is supposed to become a set of unit tests, maybe, one day,
+ * by replacing the "passed &= ..." lines with assertions.
  */
 public class ClassifierTests {
 
 	public static void main(String[] args) {
 
 		testAll(RandomForest.class);
+		//testUntrainedClassifier(RandomForest.class);
 	}
 	
 	/**
@@ -66,10 +72,15 @@ public class ClassifierTests {
 		
 		List<String> winningLabels = classifier.test(testingVectors);
 		//System.out.println("winningLabels: "+winningLabels);
-
+		
+		IProbabilisticClassificationResult<NumericalFeatureVector> classificationResult = classifier.createClassificationResult(testingVectors);
+		//System.out.println("classificationResult: "+classificationResult);
+		
 		boolean passed = true;
 		passed &= Collections.emptyMap().equals(labelDistribution);
-		passed &= Collections.emptyList().equals(winningLabels);
+		passed &= Collections.nCopies(testingVectors.size(), null).equals(winningLabels);
+		passed &= containSameElementsDisregardingOrder(classificationResult.getFeatureVectors(), testingVectors);
+		passed &= Collections.emptyMap().equals(classificationResult.getLabelDistribution(testingVectors.get(0)).getProbabilityDistribution());
 
 		System.out.println("Testing untrained classifier passed? " + passed);
 		
@@ -128,6 +139,9 @@ public class ClassifierTests {
 		String classAttribute = classifier.getClassAttribute();
 		int numClasses = 1;
 		List<NumericalFeatureVector> trainingVectors = ClassifierTestUtils.createDefaultTrainingVectors(classAttribute, numClasses);
+		
+		String classValue = String.valueOf(extractAttributeValues(trainingVectors, classAttribute).get(0));
+		
 		classifier.train(trainingVectors);
 
 		List<NumericalFeatureVector> testingVectors = ClassifierTestUtils.createDefaultTestingVectors(classAttribute, numClasses);
@@ -138,10 +152,18 @@ public class ClassifierTests {
 		List<String> winningLabels = classifier.test(testingVectors);
 		//System.out.println("winningLabels: "+winningLabels);
 
+		IProbabilisticClassificationResult<NumericalFeatureVector> classificationResult = classifier.createClassificationResult(testingVectors);
+		//System.out.println("classificationResult: "+classificationResult);
+		
+		 
 		boolean passed = true;
-		passed &= Collections.emptyMap().equals(labelDistribution);
-		passed &= Collections.emptyList().equals(winningLabels);
-
+		passed &= Collections.singletonMap(classValue, 1.0).equals(labelDistribution);
+		passed &= Collections.nCopies(testingVectors.size(), classValue).equals(winningLabels);
+		passed &= classificationResult.getClass(testingVectors.get(0)).equals(classValue);
+		passed &= containSameElementsDisregardingOrder(classificationResult.getClassDistributions().get(classValue), testingVectors);
+		passed &= Collections.singletonMap(classValue, 1.0).equals(classificationResult.getLabelDistribution(testingVectors.get(0)).getProbabilityDistribution());
+		passed &= (null == classificationResult.getLabelDistribution(trainingVectors.get(0)));
+		
 		System.out.println("Testing training with single class passed? " + passed);
 	
 		return passed;
@@ -192,8 +214,32 @@ public class ClassifierTests {
 			String winningLabel = winningLabels.get(i);
 			System.out.println("  Winning label: " + winningLabel);
 		}
-
+		
+		IProbabilisticClassificationResult<T> classificationResult = classifier.createClassificationResult(testingVectors);
+		printClassificationResult(classificationResult);
 	}
+	
+	private static <T> void printClassificationResult(IProbabilisticClassificationResult<T> classificationResult) {
+		System.out.println("ClassificationResult:");
+		
+		Map<String, List<T>> classDistributions = classificationResult.getClassDistributions();
+		System.out.println("  Class distributions: ");
+		for (Entry<String, List<T>> entry : classDistributions.entrySet())
+		{
+			System.out.println("    class " + entry.getKey() + ": " + entry.getValue());
+		}
+		
+		Collection<T> featureVectors = classificationResult.getFeatureVectors();
+		for (T featureVector : featureVectors)
+		{
+			System.out.println("  FeatureVector " + featureVector);
+			System.out.println("    class            : " + classificationResult.getClass(featureVector));
+			System.out.println("    labelDistribution: " + classificationResult.getLabelDistribution(featureVector));
+		}
+		
+		
+	}
+	
 
 	private static <T> T newInstanceUnchecked(Class<? extends T> c) {
 		try {
