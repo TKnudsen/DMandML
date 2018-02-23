@@ -7,8 +7,8 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
-import com.jujutsu.tsne.SimpleTSne;
 import com.jujutsu.tsne.TSne;
+import com.jujutsu.tsne.barneshut.BHTSne;
 import com.jujutsu.tsne.barneshut.TSneConfiguration;
 import com.jujutsu.utils.MatrixOps;
 import com.jujutsu.utils.TSneUtils;
@@ -98,7 +98,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 //		TSneConfiguration config = TSneUtils.buildConfig(inputAsDoubleMatrix, outputDimensionality, dimensionality,
 //				perplexity, iterationsMax);
 
-		TSne tsne = new SimpleTSne();
+		TSne tsne = new BHTSne();
 		double[][] outputAsDoubleMatrix = tsne.tsne(config);
 
 		// convert to low-dim FeatureVectors
