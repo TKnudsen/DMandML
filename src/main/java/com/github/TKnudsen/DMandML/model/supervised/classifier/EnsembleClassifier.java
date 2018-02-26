@@ -64,13 +64,6 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 
 	@Override
 	public List<String> test(List<FV> featureVectors) {
-
-		if (getLabelAlphabet().isEmpty()) {
-			System.err.println(
-					"EnsembleClassifier: No training was performed. Returning null labels. Users already rely on that...");
-			return null;
-		}
-
 		List<String> labels = new ArrayList<String>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
@@ -123,7 +116,7 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 	}
 
 	@Override
-	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
+	public IProbabilisticClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
 
 		Map<FV, Collection<LabelDistribution>> labelDistributions = new LinkedHashMap<>();
 

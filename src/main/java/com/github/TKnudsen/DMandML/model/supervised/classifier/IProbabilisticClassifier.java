@@ -39,5 +39,5 @@ public interface IProbabilisticClassifier<X> extends IClassifier<X> {
 	Map<String, Double> getLabelDistribution(X featureVector);
 
 	@Override
-	IProbabilisticClassificationResult<X> createClassificationResult(List<X> featureVectors);
+	IProbabilisticClassificationResult<X> createClassificationResult(List<? extends X> featureVectors);
 }
