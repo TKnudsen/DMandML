@@ -25,7 +25,7 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  */
 public interface IClassifier<X> extends ILearningModel<X, String> {
 
-	public IClassificationResult<X> createClassificationResult(List<X> featureVectors);
+	IClassificationResult<X> createClassificationResult(List<? extends X> featureVectors);
 
 	/**
 	 * Returns the name of the attribute that will serve as the basis

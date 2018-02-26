@@ -86,7 +86,7 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	}
 
 	@Override
-	public IProbabilisticClassificationResult<FV> createClassificationResult(List<FV> featureVectors) {
+	public IProbabilisticClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : featureVectors) {
 			labelDistributionMap.put(fv, getLabelDistribution(fv));
