@@ -79,8 +79,7 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutli
 
 	@Override
 	public void setData(List<FV> data) {
-		// TODO Auto-generated method stub
-
+		this.setFeatureVectors(data);
 	}
 
 }
