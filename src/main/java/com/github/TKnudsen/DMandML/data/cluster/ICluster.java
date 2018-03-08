@@ -2,7 +2,6 @@ package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.Set;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
@@ -15,13 +14,13 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public interface ICluster<T extends IDObject> {
+public interface ICluster<T> {
 
 	/**
 	 * self-explanation
@@ -52,8 +51,8 @@ public interface ICluster<T extends IDObject> {
 	public Centroid<T> getCentroid();
 
 	/**
-	 * retrieves the distance of a given T to the centroid. to be discussed:
-	 * shall an exception be thrown iff T is not contained in the cluster?!
+	 * retrieves the distance of a given T to the centroid. to be discussed: shall
+	 * an exception be thrown iff T is not contained in the cluster?!
 	 * 
 	 * @param element
 	 * @return

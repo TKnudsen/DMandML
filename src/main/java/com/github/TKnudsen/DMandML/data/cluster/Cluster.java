@@ -24,13 +24,13 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObject, ISelfDescription, Iterable<T> {
+public abstract class Cluster<T> implements ICluster<T>, IDObject, ISelfDescription, Iterable<T> {
 
 	/**
 	 * object ID
@@ -90,7 +90,8 @@ public abstract class Cluster<T extends IDObject> implements ICluster<T>, IDObje
 		calculateCentroid();
 	}
 
-	public Cluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name, String description) {
+	public Cluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name,
+			String description) {
 		this.ID = MathFunctions.randomLong();
 		this.elements = new LinkedHashSet<>(elements);
 

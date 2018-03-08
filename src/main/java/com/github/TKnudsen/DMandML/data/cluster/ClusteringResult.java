@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
@@ -19,13 +18,13 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implements IClusteringResult<T, C> {
+public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringResult<T, C> {
 
 	private long ID;
 
@@ -66,10 +65,10 @@ public class ClusteringResult<T extends IDObject, C extends Cluster<T>> implemen
 	}
 
 	/**
-	 * adding a cluster means that elements already contained in other clusters
-	 * are removed from the old place and only associated with the new cluster.
-	 * This may require different implementations of cluster, e.g., in fuzzy
-	 * clustering situations.
+	 * adding a cluster means that elements already contained in other clusters are
+	 * removed from the old place and only associated with the new cluster. This may
+	 * require different implementations of cluster, e.g., in fuzzy clustering
+	 * situations.
 	 * 
 	 * @param cluster
 	 */
