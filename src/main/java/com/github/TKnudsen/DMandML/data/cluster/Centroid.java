@@ -3,6 +3,7 @@ package com.github.TKnudsen.DMandML.data.cluster;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IMasterProvider;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
@@ -14,14 +15,16 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 
-public class Centroid<T extends IDObject> implements ISelfDescription, IMasterProvider {
+public class Centroid<T> implements ISelfDescription, IMasterProvider {
+
+	private long ID = MathFunctions.randomLong();
 
 	private T data;
 	protected Cluster<T> cluster;
@@ -49,7 +52,10 @@ public class Centroid<T extends IDObject> implements ISelfDescription, IMasterPr
 
 	@Override
 	public long getID() {
-		return data.getID();
+		if (data != null && data instanceof IDObject)
+			return ((IDObject) data).getID();
+
+		return ID;
 	}
 
 	@Override
