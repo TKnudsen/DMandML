@@ -3,8 +3,22 @@ package com.github.TKnudsen.DMandML.data.cluster;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
+/**
+ * <p>
+ * Title: ClusterTools
+ * </p>
+ * 
+ * <p>
+ * Description: some utility to ease the use of clusters.
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * @version 1.02
+ */
 public class ClusterTools {
 
 	/**
@@ -13,7 +27,7 @@ public class ClusterTools {
 	 * @param cluster
 	 * @return
 	 */
-	public static <T extends IDObject> List<T> getElementList(Cluster<T> cluster) {
+	public static <T> List<T> getElementList(Cluster<T> cluster) {
 		return new ArrayList<>(cluster.getElements());
 	}
 
@@ -23,7 +37,7 @@ public class ClusterTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<T> getElementList(List<Cluster<T>> clusters) {
+	public static <T, C extends Cluster<T>> List<T> getElementList(List<Cluster<T>> clusters) {
 		List<T> elements = new ArrayList<>();
 
 		for (Cluster<T> c : clusters)
@@ -38,7 +52,7 @@ public class ClusterTools {
 	 * @param clusters
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<Centroid<T>> getCentroids(List<Cluster<T>> clusters) {
+	public static <T, C extends Cluster<T>> List<Centroid<T>> getCentroids(List<Cluster<T>> clusters) {
 		List<Centroid<T>> centroids = new ArrayList<>();
 
 		for (Cluster<T> c : clusters)
