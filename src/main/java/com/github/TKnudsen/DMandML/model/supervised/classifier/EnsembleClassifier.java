@@ -67,10 +67,14 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 		List<String> labels = new ArrayList<String>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
-			Entry<String, Double> entryWithHighestProbability = Collections.max(labelDistribution.entrySet(),
-					Map.Entry.comparingByValue());
-			String label = entryWithHighestProbability.getKey();
-			labels.add(label);
+			if (labelDistribution != null && labelDistribution.size() == 0)
+				labels.add(null);
+			else {
+				Entry<String, Double> entryWithHighestProbability = Collections.max(labelDistribution.entrySet(),
+						Map.Entry.comparingByValue());
+				String label = entryWithHighestProbability.getKey();
+				labels.add(label);
+			}
 		}
 		return labels;
 	}
