@@ -1,8 +1,11 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
@@ -29,7 +32,7 @@ public class ClusterTools {
 	 * @param cluster
 	 * @return
 	 */
-	public static <T> List<T> getElementList(Cluster<T> cluster) {
+	public static <T, C extends Cluster<T>> List<T> getElementList(Cluster<T> cluster) {
 		return new ArrayList<>(cluster.getElements());
 	}
 
@@ -86,5 +89,41 @@ public class ClusterTools {
 			return Double.NaN;
 
 		return distanceMeasure.getDistance(cluster.getCentroid().getData(), element);
+	}
+
+	/**
+	 * calculates/determines a Centroid for a given Cluster.
+	 * 
+	 * @param cluster
+	 * @param distanceMeasure
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> Centroid<T> calculateCentroidLikeElement(C cluster,
+			IDistanceMeasure<T> distanceMeasure) {
+
+		DistanceMatrix<T> dm = new DistanceMatrix<>(new ArrayList<>(cluster.getElements()), distanceMeasure);
+
+		Map<T, Double> distances = new HashMap<>();
+
+		for (T t : cluster.getElements())
+			distances.put(t, 0.0);
+
+		for (T s : cluster.getElements())
+			for (T t : cluster.getElements())
+				if (t == s)
+					continue;
+				else
+					distances.put(s, distances.get(s) + dm.applyAsDouble(s, t));
+
+		double min = Double.MAX_VALUE;
+		T candidate = null;
+
+		for (T t : distances.keySet())
+			if (distances.get(t) < min) {
+				min = distances.get(t);
+				candidate = t;
+			}
+
+		return new Centroid<T>(cluster, candidate);
 	}
 }

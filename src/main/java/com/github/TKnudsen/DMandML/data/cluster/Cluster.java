@@ -4,9 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
@@ -104,28 +102,12 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 		calculateCentroid();
 	}
 
+	/**
+	 * determin the T representing the Cluster best.
+	 */
 	protected void calculateCentroid() {
 		if (centroid == null) {
-			double min = Double.MAX_VALUE;
-			T candidate = null;
-
-			Random random = new Random();
-			int numInit = Math.min(10, (int) Math.ceil(Math.sqrt(size())));
-
-			List<T> elementList = ClusterTools.getElementList(this);
-			for (T fv : getElements()) {
-				double dist = 0;
-				for (int i = 0; i < numInit; i++) {
-					T element = elementList.get(random.nextInt(size()));
-					dist += getDistanceMeasure().getDistance(element, fv);
-				}
-				if (dist < min) {
-					min = dist;
-					candidate = fv;
-				}
-			}
-
-			centroid = new Centroid<T>(this, candidate);
+			centroid = ClusterTools.calculateCentroidLikeElement(this, distanceMeasure);
 		}
 	}
 
