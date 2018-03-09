@@ -32,7 +32,7 @@ public class ClusterTools {
 	 * @param cluster
 	 * @return
 	 */
-	public static <T, C extends Cluster<T>> List<T> getElementList(Cluster<T> cluster) {
+	public static <T, C extends ICluster<T>> List<T> getElementList(ICluster<T> cluster) {
 		return new ArrayList<>(cluster.getElements());
 	}
 
@@ -42,10 +42,10 @@ public class ClusterTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T, C extends Cluster<T>> List<T> getElementList(List<Cluster<T>> clusters) {
+	public static <T, C extends ICluster<T>> List<T> getElementList(List<ICluster<T>> clusters) {
 		List<T> elements = new ArrayList<>();
 
-		for (Cluster<T> c : clusters)
+		for (ICluster<T> c : clusters)
 			elements.addAll(c.getElements());
 
 		return elements;
@@ -57,10 +57,10 @@ public class ClusterTools {
 	 * @param clusters
 	 * @return
 	 */
-	public static <T, C extends Cluster<T>> List<Centroid<T>> getCentroids(List<Cluster<T>> clusters) {
+	public static <T, C extends ICluster<T>> List<Centroid<T>> getCentroids(List<ICluster<T>> clusters) {
 		List<Centroid<T>> centroids = new ArrayList<>();
 
-		for (Cluster<T> c : clusters)
+		for (ICluster<T> c : clusters)
 			centroids.add(c.getCentroid());
 
 		return centroids;

@@ -53,7 +53,9 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	double quantile = 0.5;
 
 	/**
-	 * Damping factor lambda.
+	 * Damping factor lambda [0.5 ... 1]. Extent to which the current value is
+	 * maintained relative to incoming values. Used to avoid numerical oscillations
+	 * when updating these values.
 	 */
 	double lambda = 0.5;
 
