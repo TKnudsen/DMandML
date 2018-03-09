@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
-import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
 
 /**
@@ -23,18 +20,19 @@ import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistance
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class ClusteringResultTools {
 
-	void foor() {
-		NumericalFeatureVectorClusterResult x = null;
-		FeatureVectorCluster<NumericalFeatureVector> largestCluster = getLargestCluster(x);
-	}
+	// void foor() {
+	// NumericalFeatureVectorClusterResult x = null;
+	// FeatureVectorCluster<NumericalFeatureVector> largestCluster =
+	// getLargestCluster(x);
+	// }
 
 	/**
 	 * Retrieves the largest cluster from a ClusterResult.
@@ -42,8 +40,7 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getLargestCluster(
-			IClusteringResult<T, C> clusterResult) {
+	public static <T, C extends ICluster<T>> C getLargestCluster(IClusteringResult<T, C> clusterResult) {
 		if (clusterResult == null)
 			return null;
 
@@ -63,7 +60,8 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static List<IDObject> getClusteredElements(IClusteringResult<IDObject, Cluster<IDObject>> clusteringResult) {
+	public static List<IDObject> getClusteredElements(
+			IClusteringResult<IDObject, ICluster<IDObject>> clusteringResult) {
 		List<IDObject> features = new ArrayList<>();
 
 		if (clusteringResult == null)
@@ -83,11 +81,11 @@ public class ClusteringResultTools {
 	 * @param clusterResult
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<T> getElements(
-			IClusteringResult<T, Cluster<T>> clusterResult) {
+	public static <T, C extends ICluster<T>> List<T> getElements(
+			IClusteringResult<T, ? extends ICluster<T>> clusterResult) {
 		List<T> elements = new ArrayList<>();
 
-		for (Cluster<T> c : clusterResult.getClusters())
+		for (ICluster<T> c : clusterResult.getClusters())
 			elements.addAll(c.getElements());
 
 		return elements;
@@ -104,7 +102,7 @@ public class ClusteringResultTools {
 	 *            if a cluster is retrieved in case no assignment is exists.
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv,
+	public static <T, C extends ICluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv,
 			boolean retrieveNearestWhenUnassigned) {
 		if (fv == null)
 			return null;
@@ -137,8 +135,7 @@ public class ClusteringResultTools {
 	 * @param clusterName
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> C getCluster(IClusteringResult<T, C> clusterResult,
-			String clusterName) {
+	public static <T, C extends ICluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, String clusterName) {
 		if (clusterResult == null)
 			return null;
 
@@ -160,7 +157,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(
+	public static <T, C extends ICluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(
 			IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
 		if (clusterResult == null)
 			return null;
@@ -194,7 +191,7 @@ public class ClusteringResultTools {
 	 * @param distanceDistribution
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> ProbabilityDistribution<C> getProbabilityDistributionBasedOnDistanceDistribution(
+	public static <T, C extends ICluster<T>> ProbabilityDistribution<C> getProbabilityDistributionBasedOnDistanceDistribution(
 			ClusterDistanceDistribution<T, C> distanceDistribution) {
 
 		StatisticsSupport statistics = new StatisticsSupport(distanceDistribution.getClusterDistances().values());
@@ -220,12 +217,12 @@ public class ClusteringResultTools {
 				probabilityMap.put(c, probabilityMap.get(c) / sum);
 		else
 			return null;
-		
+
 		ProbabilityDistribution<C> probabilityDistribution = new ProbabilityDistribution<>(probabilityMap);
 		return probabilityDistribution;
 	}
 
-	public static <T extends IDObject, C extends Cluster<T>> ProbabilityDistribution<String> getProbabilityLabelDistributionBasedOnDistanceDistribution(
+	public static <T, C extends ICluster<T>> ProbabilityDistribution<String> getProbabilityLabelDistributionBasedOnDistanceDistribution(
 			ClusterDistanceDistribution<T, C> distanceDistribution) {
 		ProbabilityDistribution<C> probabilities = getProbabilityDistributionBasedOnDistanceDistribution(
 				distanceDistribution);
@@ -254,7 +251,7 @@ public class ClusteringResultTools {
 	 * @param fv
 	 * @return
 	 */
-	public static <T extends IDObject, C extends Cluster<T>> List<Double> getClusterDistanceDistribution(
+	public static <T, C extends ICluster<T>> List<Double> getClusterDistanceDistribution(
 			IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
 		if (clusterResult == null)
 			return null;
@@ -263,8 +260,8 @@ public class ClusteringResultTools {
 
 		for (int i = 0; i < clusterResult.size() - 1; i++)
 			for (int j = i + 1; j < clusterResult.size(); j++) {
-				Cluster<T> c1 = clusterResult.getClusters().get(i);
-				Cluster<T> c2 = clusterResult.getClusters().get(j);
+				ICluster<T> c1 = clusterResult.getClusters().get(i);
+				ICluster<T> c2 = clusterResult.getClusters().get(j);
 				clusterDistances.add(clusterDistanceMeasure.getDistance(c1, c2));
 			}
 

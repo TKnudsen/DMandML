@@ -3,8 +3,6 @@ package com.github.TKnudsen.DMandML.data.cluster;
 import java.util.Map;
 import java.util.Set;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
 /**
  * <p>
  * Title: ClusterDistanceDistribution
@@ -19,9 +17,9 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class ClusterDistanceDistribution<T extends IDObject, C extends Cluster<T>> {
+public class ClusterDistanceDistribution<T, C extends ICluster<T>> {
 
 	private Map<C, Double> clusterDistances;
 
