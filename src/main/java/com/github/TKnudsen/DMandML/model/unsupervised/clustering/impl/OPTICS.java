@@ -1,8 +1,5 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -20,23 +17,23 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class OPTICS extends WekaClusteringAlgorithm {
 
 	/**
-	 * the maximum epsilon (distance) between points that is allowed for a
-	 * cluster structure
+	 * the maximum epsilon (distance) between points that is allowed for a cluster
+	 * structure
 	 */
 	private double epsilon;
 
 	/**
-	 * the number of minPoints of a potential dense (distances <= epsilon)
-	 * cluster structure to be a valid cluster
+	 * the number of minPoints of a potential dense (distances <= epsilon) cluster
+	 * structure to be a valid cluster
 	 */
 	private int minPoints;
 
@@ -50,13 +47,13 @@ public class OPTICS extends WekaClusteringAlgorithm {
 	}
 
 	@Override
-	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		return new EuclideanDistanceMeasure();
+	public String getName() {
+		return "OPTICS";
 	}
 
 	@Override
-	public String getName() {
-		return "OPTICS";
+	public String getDescription() {
+		return getName();
 	}
 
 	@Override

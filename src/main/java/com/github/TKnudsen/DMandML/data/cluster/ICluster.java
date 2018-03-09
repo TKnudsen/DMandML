@@ -2,6 +2,7 @@ package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
@@ -18,16 +19,9 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public interface ICluster<T> {
-
-	/**
-	 * self-explanation
-	 * 
-	 * @return
-	 */
-	public String getName();
+public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 
 	/**
 	 * number of elements in it
@@ -37,7 +31,10 @@ public interface ICluster<T> {
 	public int size();
 
 	/**
-	 * allows the assessment of centroid distances and related stuff
+	 * allows the assessment of centroid distances and related stuff.
+	 * 
+	 * Discussion: remove distance measure from Cluster? a lot of convenient
+	 * functionality and context information will be gone.
 	 * 
 	 * @return
 	 */
@@ -54,6 +51,9 @@ public interface ICluster<T> {
 	 * retrieves the distance of a given T to the centroid. to be discussed: shall
 	 * an exception be thrown iff T is not contained in the cluster?!
 	 * 
+	 * Discussion: remove distance measure from Cluster? a lot of convenient
+	 * functionality and context information will be gone.
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -67,11 +67,19 @@ public interface ICluster<T> {
 	public boolean add(T element);
 
 	/**
+	 * whether or not a cluster contains a particular element.
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public boolean contains(Object element);
+
+	/**
 	 * in some cases T's may be removed from a cluster
 	 * 
 	 * @param element
 	 */
-	public boolean remove(T element);
+	public boolean remove(Object element);
 
 	/**
 	 * alternative to the iterator.

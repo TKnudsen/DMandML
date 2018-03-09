@@ -11,12 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
 /**
@@ -29,11 +28,11 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class NumericalFeatureVectorCluster extends FeatureVectorCluster<NumericalFeatureVector> {
 
@@ -56,32 +55,12 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	 * @param name
 	 */
 	public NumericalFeatureVectorCluster(Collection<? extends NumericalFeatureVector> featureVectors, String name) {
-		super(featureVectors, new EuclideanDistanceMeasure(), name, "");
-
-		this.ID = MathFunctions.randomLong();
-
-		initialize();
+		this(featureVectors, new EuclideanDistanceMeasure(), name, "");
 	}
 
 	public NumericalFeatureVectorCluster(Collection<? extends NumericalFeatureVector> featureVectors,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure, String name, String description) {
 		super(featureVectors, distanceMeasure, name, description);
-
-		this.ID = MathFunctions.randomLong();
-
-		initialize();
-	}
-
-	/**
-	 * I don't like this constructor. But FeatureVectorCluster and Cluster
-	 * <FeatureVector> are very different things.
-	 * 
-	 * @param cluster
-	 */
-	public NumericalFeatureVectorCluster(Cluster<NumericalFeatureVector> cluster) {
-		super(cluster.getElements(), cluster.getDistanceMeasure(), cluster.getName(), cluster.getDescription());
-
-		this.ID = cluster.getID();
 
 		initialize();
 	}
@@ -167,8 +146,9 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	}
 
 	@Override
-	public boolean remove(NumericalFeatureVector element) {
-		element.removeAttribute("ClusterIndex");
+	public boolean remove(Object element) {
+		if (element == null)
+			return false;
 
 		boolean modified = super.remove(element);
 
@@ -176,6 +156,9 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 			this.centroid = null;
 
 			resetCentroidDistances();
+
+			if (element instanceof KeyValueObject)
+				((KeyValueObject<Object>) element).removeAttribute("ClusterIndex");
 		}
 		return modified;
 	}
@@ -362,10 +345,6 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 		if (dataStatisticsPerDimension == null)
 			calculateDataStatisticsPerDimension();
 		return dataStatisticsPerDimension;
-	}
-
-	public boolean contains(NumericalFeatureVector fv) {
-		return getElements().contains(fv);
 	}
 
 	@Override

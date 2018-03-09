@@ -2,7 +2,7 @@ package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
@@ -47,7 +47,7 @@ public class SingleLinkageDistanceMeasure<T extends IDObject> extends ClusterDis
 	}
 
 	@Override
-	public double getDistance(Cluster<T> c1, Cluster<T> c2) {
+	public double getDistance(ICluster<T> c1, ICluster<T> c2) {
 		double distance = Double.MAX_VALUE;
 		for (T dp1 : c1.getElements())
 			for (T dp2 : c2.getElements())

@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -49,14 +47,13 @@ public class FarthestFirst extends WekaClusteringAlgorithm {
 	}
 
 	@Override
-	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getName() {
+		return "FarthestFirst";
 	}
 
 	@Override
-	public String getName() {
-		return "FarthestFirst";
+	public String getDescription() {
+		return getName();
 	}
 
 	@Override

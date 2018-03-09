@@ -5,10 +5,9 @@ import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;
 
 /**
@@ -21,13 +20,13 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplitti
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.04
  */
-public class MaximumDistanceSplitting<T extends IDObject> implements IClusterSplittingAlgorithm<T, Cluster<T>> {
+public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T, ICluster<T>> {
 
 	private int splitCount = 2;
 
@@ -39,10 +38,11 @@ public class MaximumDistanceSplitting<T extends IDObject> implements IClusterSpl
 	}
 
 	@Override
-	public List<Cluster<T>> splitCluster(Cluster<T> cluster) {
+	public List<ICluster<T>> splitCluster(ICluster<T> cluster) {
 
 		// identify the two farthest elements (slow!)
-		IDistanceMatrix<T> distanceMatrix = new DistanceMatrix<>(new ArrayList<>(cluster.getElements()), distanceMeasure);
+		IDistanceMatrix<T> distanceMatrix = new DistanceMatrix<>(new ArrayList<>(cluster.getElements()),
+				distanceMeasure);
 		distanceMatrix.getMaxDistance();
 		List<T> farestElements = distanceMatrix.getFarestElements();
 
@@ -82,7 +82,7 @@ public class MaximumDistanceSplitting<T extends IDObject> implements IClusterSpl
 		}
 
 		// create clusters
-		List<Cluster<T>> splitResult = new ArrayList<>();
+		List<ICluster<T>> splitResult = new ArrayList<>();
 		ClusterFactory clusterFactory = new ClusterFactory();
 		int i = 0;
 		for (List<T> list : newDistribution) {
@@ -91,7 +91,8 @@ public class MaximumDistanceSplitting<T extends IDObject> implements IClusterSpl
 				continue;
 			}
 
-			Cluster<T> c = clusterFactory.createCluster(list, distanceMatrix, cluster.getName() + "[" + i++ + "]", "SplitCluster");
+			ICluster<T> c = clusterFactory.createCluster(list, distanceMatrix, cluster.getName() + "[" + i++ + "]",
+					"SplitCluster");
 			splitResult.add(c);
 		}
 

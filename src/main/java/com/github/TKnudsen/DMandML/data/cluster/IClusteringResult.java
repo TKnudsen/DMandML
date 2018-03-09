@@ -19,9 +19,9 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public interface IClusteringResult<T, C extends Cluster<T>> extends IDObject, ISelfDescription, Iterable<C> {
+public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, ISelfDescription, Iterable<C> {
 
 	boolean containsCluster(C c);
 

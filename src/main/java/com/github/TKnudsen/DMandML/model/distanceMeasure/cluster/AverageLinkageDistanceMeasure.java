@@ -1,8 +1,7 @@
 package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
@@ -14,18 +13,13 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.04
  */
-public class AverageLinkageDistanceMeasure<T extends IDObject> extends ClusterDistanceMeasure<T> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1578903279068956264L;
+public class AverageLinkageDistanceMeasure<T> extends ClusterDistanceMeasure<T> {
 
 	public AverageLinkageDistanceMeasure(IDistanceMeasure<T> distanceMeasure) {
 		super(distanceMeasure);
@@ -47,7 +41,7 @@ public class AverageLinkageDistanceMeasure<T extends IDObject> extends ClusterDi
 	}
 
 	@Override
-	public double getDistance(Cluster<T> c1, Cluster<T> c2) {
+	public double getDistance(ICluster<T> c1, ICluster<T> c2) {
 		double distance = Double.MAX_VALUE;
 
 		if (c1 == null || c2 == null)
@@ -61,4 +55,5 @@ public class AverageLinkageDistanceMeasure<T extends IDObject> extends ClusterDi
 
 		return distance;
 	}
+
 }

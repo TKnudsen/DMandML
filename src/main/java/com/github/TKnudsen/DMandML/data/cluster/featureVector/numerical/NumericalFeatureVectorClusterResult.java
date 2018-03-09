@@ -15,15 +15,15 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class NumericalFeatureVectorClusterResult extends FeatureVectorClusteringResult<NumericalFeatureVector> {
 
-	public NumericalFeatureVectorClusterResult(List<? extends NumericalFeatureVectorCluster> clusters) {
+	public NumericalFeatureVectorClusterResult(List<NumericalFeatureVectorCluster> clusters) {
 		super(clusters);
 	}
 

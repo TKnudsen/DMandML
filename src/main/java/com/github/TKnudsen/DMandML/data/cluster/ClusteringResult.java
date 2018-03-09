@@ -1,10 +1,8 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
@@ -22,26 +20,21 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringResult<T, C> {
+public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringResult<T, C> {
 
 	private long ID;
 
 	private int hash = -1;
 
 	List<C> clusters = new ArrayList<>();
-	Map<Long, C> clusterDataStore = new HashMap<>();
 
 	/**
 	 * @param clusters
 	 */
 	public ClusteringResult(List<? extends C> clusters) {
 		this.clusters = new ArrayList<>(clusters);
-
-		for (C c : clusters)
-			if (c != null)
-				clusterDataStore.put(c.getID(), c);
 
 		this.ID = MathFunctions.randomLong();
 		hash = -1;
@@ -50,18 +43,16 @@ public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringRes
 	@SuppressWarnings("unchecked")
 	public Object clone() {
 		List<C> cls = new ArrayList<C>();
-		for (int i = 0; i < cls.size(); i++) {
-			cls.add((C) clusters.get(i).clone());
-		}
-		IClusteringResult<T, C> asdf = new ClusteringResult<T, C>(cls);
+		for (int i = 0; i < cls.size(); i++)
+			cls.add((C) ClusterTools.clone(clusters.get(i)));
+
+		IClusteringResult<T, ? extends C> asdf = new ClusteringResult<T, C>(cls);
 		return asdf;
 	}
 
 	@Override
 	public boolean containsCluster(C c) {
-		if (clusterDataStore.get(c.getID()) != null)
-			return true;
-		return false;
+		return clusters.contains(c);
 	}
 
 	/**
@@ -73,14 +64,13 @@ public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringRes
 	 * @param cluster
 	 */
 	public void addCluster(C cluster) {
-		for (Cluster<T> c : clusters) {
+		for (C c : clusters) {
 			for (T element : cluster.getElements()) {
 				c.remove(element);
 			}
 		}
 
 		clusters.add(cluster);
-		clusterDataStore.put(cluster.getID(), cluster);
 
 		hash = -1;
 	}
@@ -88,7 +78,6 @@ public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringRes
 	public boolean removeCluster(C cluster) {
 		if (clusters.contains(cluster)) {
 			clusters.remove(cluster);
-			clusterDataStore.remove(cluster.getID());
 
 			hash = -1;
 			return true;
@@ -195,10 +184,6 @@ public class ClusteringResult<T, C extends Cluster<T>> implements IClusteringRes
 	@Override
 	public List<C> getClusters() {
 		return clusters;
-	}
-
-	public Map<Long, C> getClustersAsMap() {
-		return clusterDataStore;
 	}
 
 	@Override

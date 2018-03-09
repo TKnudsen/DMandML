@@ -19,7 +19,7 @@ public class ELKITools {
 	 * @param featureVectors
 	 * @return
 	 */
-	public static Database createAndInitializeELKIDatabase(List<NumericalFeatureVector> featureVectors) {
+	public static Database createAndInitializeELKIDatabase(List<? extends NumericalFeatureVector> featureVectors) {
 		int count = featureVectors.size();
 		int dimensions = featureVectors.get(0).getSize();
 

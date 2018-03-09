@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
@@ -28,9 +27,9 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
-public abstract class Cluster<T> implements ICluster<T>, IDObject, ISelfDescription, Iterable<T> {
+public abstract class Cluster<T> implements ICluster<T>, IDObject {
 
 	/**
 	 * object ID
@@ -50,7 +49,7 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject, ISelfDescript
 	/**
 	 * data objects contained by the cluster
 	 */
-	protected final Set<T> elements;
+	protected final Set<? extends T> elements;
 
 	/**
 	 * distance measure for the calculation of centroid distances, etc.
@@ -198,7 +197,7 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject, ISelfDescript
 	}
 
 	@Override
-	public boolean remove(T element) {
+	public boolean remove(Object element) {
 		boolean modified = getElements().remove(element);
 
 		if (modified) {
@@ -209,7 +208,8 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject, ISelfDescript
 		return modified;
 	}
 
-	public boolean contains(T element) {
+	@Override
+	public boolean contains(Object element) {
 		return getElements().contains(element);
 	}
 
