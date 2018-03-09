@@ -22,15 +22,15 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * @version 1.02
  */
 
-public class Centroid<T> implements ISelfDescription, IMasterProvider {
+public class Centroid<T> implements ISelfDescription, IMasterProvider, IDObject {
 
 	private long ID = MathFunctions.randomLong();
 
 	private T data;
-	protected Cluster<T> cluster;
+	protected ICluster<T> cluster;
 	private int hash = -1;
 
-	public Centroid(Cluster<T> cluster, T data) {
+	public Centroid(ICluster<T> cluster, T data) {
 		this.cluster = cluster;
 		this.data = data;
 		hash = -1;
@@ -59,8 +59,11 @@ public class Centroid<T> implements ISelfDescription, IMasterProvider {
 	}
 
 	@Override
-	public Cluster<T> getMaster() {
-		return cluster;
+	public IDObject getMaster() {
+		if (cluster instanceof IDObject)
+			return (IDObject) cluster;
+
+		return null;
 	}
 
 	@Override

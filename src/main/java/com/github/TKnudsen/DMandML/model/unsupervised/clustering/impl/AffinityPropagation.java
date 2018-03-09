@@ -104,7 +104,8 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 
 	public AffinityPropagation(List<NumericalFeatureVector> featureVectors, double quantile, double lambda,
 			int convergence, int maxiter) {
-		setFeatureVectors(featureVectors);
+		if (featureVectors != null)
+			setFeatureVectors(featureVectors);
 
 		if (quantile < 0 || quantile > 1.0)
 			throw new IllegalArgumentException(getName() + ": quantile has to be between [0 and 1]");
