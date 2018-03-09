@@ -2,7 +2,7 @@ package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
@@ -50,7 +50,7 @@ public class CompleteLinkageDistanceMeasure extends ClusterDistanceMeasure<IDObj
 	/**
 	 * TODO: identical with maximum distance. check if this is correct.
 	 */
-	public double getDistance(Cluster<IDObject> c1, Cluster<IDObject> c2) {
+	public double getDistance(ICluster<IDObject> c1, ICluster<IDObject> c2) {
 		double distance = Double.MAX_VALUE;
 		for (IDObject idObject1 : c1.getElements()) {
 			for (IDObject idObject2 : c1.getElements()) {

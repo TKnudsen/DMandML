@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.data.clustering.ClusterResultWithClusterLookupSupport;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusteringAlgorithm;
@@ -38,9 +38,6 @@ public class AggregationBasedDistanceMatrix<FV extends IFeatureVectorObject<?, ?
 
 	private int aggregationLevel = 1000;
 
-	@Deprecated
-	KMeans kmeans;
-
 	private IClusteringAlgorithm<FV> clusteringAlgorithm;
 
 	private ClusterResultWithClusterLookupSupport<FV, Cluster<FV>> clusteringResult;
@@ -51,16 +48,19 @@ public class AggregationBasedDistanceMatrix<FV extends IFeatureVectorObject<?, ?
 	}
 
 	@Deprecated
-	public AggregationBasedDistanceMatrix(List<FV> objects, IDistanceMeasure<FV> distanceMeasure, int aggregationLevel) {
+	public AggregationBasedDistanceMatrix(List<FV> objects, IDistanceMeasure<FV> distanceMeasure,
+			int aggregationLevel) {
 		super(objects, distanceMeasure);
 
-		throw new IllegalArgumentException("AggregationBasedDistanceMatrix: design pitfall. initialize is executed before aggregationLevel is set.");
+		throw new IllegalArgumentException(
+				"AggregationBasedDistanceMatrix: design pitfall. initialize is executed before aggregationLevel is set.");
 
 		// this.aggregationLevel = aggregationLevel;
 	}
 
 	@Deprecated
-	public AggregationBasedDistanceMatrix(List<FV> objects, IDistanceMeasure<FV> distanceMeasure, IClusteringAlgorithm<FV> clusteringAlgorithm) {
+	public AggregationBasedDistanceMatrix(List<FV> objects, IDistanceMeasure<FV> distanceMeasure,
+			IClusteringAlgorithm<FV> clusteringAlgorithm) {
 		this(objects, distanceMeasure);
 
 		this.clusteringAlgorithm = clusteringAlgorithm;
@@ -70,16 +70,13 @@ public class AggregationBasedDistanceMatrix<FV extends IFeatureVectorObject<?, ?
 		// TODO include MixedFeatureVector Clustering and then separate between
 		// the two types
 		if (clusteringAlgorithm == null) {
-			kmeans = new KMeans(aggregationLevel);
-			kmeans.setFeatureVectors((List<NumericalFeatureVector>) getElements());
-			kmeans.calculateClustering();
-			IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> clusteringResult2 = kmeans.getClusteringResult();
-			this.clusteringResult = new ClusterResultWithClusterLookupSupport(clusteringResult2.getClusters());
-		} else {
-			clusteringAlgorithm.calculateClustering();
-			IClusteringResult<FV, ? extends Cluster<FV>> clusteringResult = clusteringAlgorithm.getClusteringResult();
-			this.clusteringResult = new ClusterResultWithClusterLookupSupport(clusteringResult.getClusters());
+			clusteringAlgorithm = (IClusteringAlgorithm<FV>) new KMeans(aggregationLevel);
+			clusteringAlgorithm.setFeatureVectors(getElements());
 		}
+
+		clusteringAlgorithm.calculateClustering();
+		IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult = clusteringAlgorithm.getClusteringResult();
+
 	}
 
 	protected ClusterResultWithClusterLookupSupport<FV, Cluster<FV>> getClusterResult() {
@@ -127,13 +124,13 @@ public class AggregationBasedDistanceMatrix<FV extends IFeatureVectorObject<?, ?
 	public void setAggregationLevel(int aggregationLevel) {
 		this.aggregationLevel = aggregationLevel;
 
-		kmeans = null;
+		clusteringAlgorithm = null;
 		clusteringResult = null;
 
 		initializeDistanceMatrix();
 	}
 
-	public IClusteringAlgorithm<FV> getClusteringAlgorithm() {
+	public IClusteringAlgorithm<?> getClusteringAlgorithm() {
 		return clusteringAlgorithm;
 	}
 

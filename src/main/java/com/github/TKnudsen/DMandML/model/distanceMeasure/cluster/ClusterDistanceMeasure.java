@@ -1,8 +1,7 @@
 package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
@@ -18,14 +17,9 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.06
  */
-public abstract class ClusterDistanceMeasure<T extends IDObject> implements IDistanceMeasure<Cluster<T>> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5464839439359706042L;
+public abstract class ClusterDistanceMeasure<T> implements IDistanceMeasure<ICluster<T>> {
 
 	private IDistanceMeasure<T> distanceMeasure;
 
@@ -34,7 +28,7 @@ public abstract class ClusterDistanceMeasure<T extends IDObject> implements IDis
 	}
 
 	@Override
-	public double applyAsDouble(Cluster<T> t, Cluster<T> u) {
+	public double applyAsDouble(ICluster<T> t, ICluster<T> u) {
 		return getDistance(t, u);
 	}
 

@@ -1,12 +1,13 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
-import com.github.TKnudsen.DMandML.model.unsupervised.clustering.tools.WekaClusteringTools;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.model.tools.WekaClusteringTools;
 
 import weka.clusterers.AbstractClusterer;
 import weka.core.Instances;
@@ -37,7 +38,7 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	/**
 	 * data to be clustered
 	 */
-	protected List<NumericalFeatureVector> featureVectors;
+	protected List<? extends NumericalFeatureVector> featureVectors;
 
 	/**
 	 * WEKA representation of the data
@@ -52,12 +53,12 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	/**
 	 * cluster result that can be used for downstream analysis
 	 */
-	protected IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> clusterResult;
+	protected NumericalFeatureVectorClusterResult clusterResult;
 
 	public WekaClusteringAlgorithm() {
 	}
 
-	public WekaClusteringAlgorithm(List<NumericalFeatureVector> featureVectors) {
+	public WekaClusteringAlgorithm(List<? extends NumericalFeatureVector> featureVectors) {
 		this.setFeatureVectors(featureVectors);
 	}
 
@@ -76,7 +77,7 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 	}
 
 	@Override
-	public IClusteringResult<NumericalFeatureVector, Cluster<NumericalFeatureVector>> getClusteringResult() {
+	public NumericalFeatureVectorClusterResult getClusteringResult() {
 		if (clusterResult == null)
 			throw new NullPointerException(
 					"WekaClusteringAlgorithm: cluster result was null. Was the clustering calculated yet?");
@@ -84,12 +85,14 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 		return clusterResult;
 	}
 
+	@Override
 	public List<NumericalFeatureVector> getFeatureVectors() {
-		return featureVectors;
+		return Collections.unmodifiableList(featureVectors);
 	}
 
-	public void setFeatureVectors(List<NumericalFeatureVector> featureVectors) {
-		this.featureVectors = featureVectors;
+	@Override
+	public void setFeatureVectors(List<? extends NumericalFeatureVector> featureVectors) {
+		this.featureVectors = new ArrayList<>(featureVectors);
 
 		if (featureVectors == null)
 			data = null;

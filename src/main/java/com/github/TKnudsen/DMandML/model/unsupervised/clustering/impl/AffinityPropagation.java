@@ -1,18 +1,12 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
-import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorCluster;
-import com.github.TKnudsen.DMandML.model.tools.ELKITools;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
+import com.github.TKnudsen.DMandML.data.elki.ELKIDataWrapper;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusteringAlgorithm;
 
 import de.lmu.ifi.dbs.elki.algorithm.clustering.affinitypropagation.AffinityPropagationClusteringAlgorithm;
@@ -21,8 +15,6 @@ import de.lmu.ifi.dbs.elki.algorithm.clustering.affinitypropagation.DistanceBase
 import de.lmu.ifi.dbs.elki.data.Clustering;
 import de.lmu.ifi.dbs.elki.data.NumberVector;
 import de.lmu.ifi.dbs.elki.data.model.MedoidModel;
-import de.lmu.ifi.dbs.elki.data.type.TypeUtil;
-import de.lmu.ifi.dbs.elki.database.Database;
 import de.lmu.ifi.dbs.elki.database.ids.DBIDIter;
 import de.lmu.ifi.dbs.elki.database.ids.DBIDs;
 import de.lmu.ifi.dbs.elki.database.relation.Relation;
@@ -76,19 +68,25 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	int maxiter = 1000;
 
 	/**
-	 * this is how ELKI handles feature vectors.
+	 * replaces Database db, List<NumericalFeatureVector> featureVectors, and
+	 * Map<NumberVector, NumericalFeatureVector> lookupTable.
 	 */
-	private Database db;
+	ELKIDataWrapper elkiDataWrapper;
 
-	/**
-	 * redundant data structure to store the input FVs for the clustering
-	 */
-	private List<NumericalFeatureVector> featureVectors;
+	// /**
+	// * this is how ELKI handles feature vectors.
+	// */
+	// private Database db;
 
-	/**
-	 * allows linking back to given feature vectors.
-	 */
-	private Map<NumberVector, NumericalFeatureVector> lookupTable;
+	// /**
+	// * redundant data structure to store the input FVs for the clustering
+	// */
+	// private List<NumericalFeatureVector> featureVectors;
+
+	// /**
+	// * allows linking back to given feature vectors.
+	// */
+	// private Map<NumberVector, NumericalFeatureVector> lookupTable;
 
 	/**
 	 * ELKI clustering result
@@ -98,7 +96,7 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	/**
 	 * the clustering result mapped back to the feature vectors
 	 */
-	private IClusteringResult<NumericalFeatureVector, ? extends Cluster<NumericalFeatureVector>> clusteringResultFVs;
+	private NumericalFeatureVectorClusterResult clusteringResultFVs;
 
 	public AffinityPropagation() {
 		this(null, 0.5, 0.5, 10, 1000);
@@ -118,44 +116,50 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	}
 
 	@Override
-	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		return new EuclideanDistanceMeasure();
-	}
-
-	@Override
 	public List<NumericalFeatureVector> getFeatureVectors() {
-		return new ArrayList<>(featureVectors);
+		if (elkiDataWrapper == null)
+			return null;
+
+		return elkiDataWrapper.getFeatureVectors();
+
+		// return Collections.unmodifiableList(featureVectors);
 	}
 
 	@Override
-	public void setFeatureVectors(List<NumericalFeatureVector> featureVectors) {
-		this.featureVectors = new ArrayList<>(featureVectors);
+	public void setFeatureVectors(List<? extends NumericalFeatureVector> featureVectors) {
+		// this.featureVectors = new ArrayList<>(featureVectors);
+
+		elkiDataWrapper = new ELKIDataWrapper(featureVectors);
 
 		this.clusteringResult = null;
 		this.clusteringResultFVs = null;
 
-		db = null;
-		if (featureVectors == null)
-			return;
-
-		db = ELKITools.createAndInitializeELKIDatabase(featureVectors);
-
-		// create lookup table
-		lookupTable = new HashMap<>();
-
-		Relation<NumberVector> rel = db.getRelation(TypeUtil.NUMBER_VECTOR_FIELD);
-
-		int i = 0;
-		for (DBIDIter it = rel.getDBIDs().iter(); it.valid(); it.advance()) {
-			NumberVector v = rel.get(it);
-
-			// TODO this is dirty! it assumes that the order is always preserved.
-			lookupTable.put(v, getFeatureVectors().get(i++));
-		}
+		// db = null;
+		// if (featureVectors == null)
+		// return;
+		//
+		// db = ELKITools.createAndInitializeELKIDatabase(featureVectors);
+		//
+		// // create lookup table
+		// lookupTable = new HashMap<>();
+		//
+		// Relation<NumberVector> rel = db.getRelation(TypeUtil.NUMBER_VECTOR_FIELD);
+		//
+		// int i = 0;
+		// for (DBIDIter it = rel.getDBIDs().iter(); it.valid(); it.advance()) {
+		// NumberVector v = rel.get(it);
+		//
+		// // TODO this is dirty! it assumes that the order is always preserved.
+		// lookupTable.put(v, featureVectors.get(i++));
+		// }
 	}
 
 	@Override
 	public void calculateClustering() {
+		if (elkiDataWrapper == null)
+			throw new NullPointerException(
+					getName() + ": no feature vectors set before calculating a clustering result.");
+
 		this.clusteringResult = null;
 		this.clusteringResultFVs = null;
 
@@ -166,11 +170,11 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 
 		apAlgorithm = new AffinityPropagationClusteringAlgorithm<>(initialization, lambda, convergence, maxiter);
 
-		clusteringResult = apAlgorithm.run(db);
+		clusteringResult = apAlgorithm.run(elkiDataWrapper.getDB());
 	}
 
 	@Override
-	public IClusteringResult<NumericalFeatureVector, ? extends Cluster<NumericalFeatureVector>> getClusteringResult() {
+	public NumericalFeatureVectorClusterResult getClusteringResult() {
 		if (clusteringResult == null)
 			throw new NullPointerException(
 					"AffinitiyPropagationInitialization: clustering result null. calculateClustering() first.");
@@ -178,9 +182,9 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 		if (clusteringResultFVs != null)
 			return clusteringResultFVs;
 
-		Relation<NumberVector> rel = db.getRelation(TypeUtil.NUMBER_VECTOR_FIELD);
+		Relation<NumberVector> rel = elkiDataWrapper.getRelation();
 
-		List<Cluster<NumericalFeatureVector>> fvCLusters = new ArrayList<>();
+		List<NumericalFeatureVectorCluster> fvCLusters = new ArrayList<>();
 		int c = 1;
 
 		for (de.lmu.ifi.dbs.elki.data.Cluster<MedoidModel> elkiCluster : clusteringResult.getAllClusters()) {
@@ -190,7 +194,9 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 			for (DBIDIter it = iDs.iter(); it.valid(); it.advance()) {
 				NumberVector v = rel.get(it);
 
-				NumericalFeatureVector fv = lookupTable.get(v);
+				// NumericalFeatureVector fv = lookupTable.get(v);
+
+				NumericalFeatureVector fv = elkiDataWrapper.getFeatureVector(v);
 
 				if (fv == null)
 					throw new NullPointerException(getName() + ".getClusteringResult(): feature vector lookup failed.");
@@ -201,7 +207,7 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 			fvCLusters.add(new NumericalFeatureVectorCluster(fvs, getName() + " cluster " + c++));
 		}
 
-		clusteringResultFVs = new ClusteringResult<>(fvCLusters);
+		clusteringResultFVs = new NumericalFeatureVectorClusterResult(fvCLusters);
 
 		return clusteringResultFVs;
 	}
@@ -209,6 +215,11 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	@Override
 	public String getName() {
 		return "Affinity Propagation";
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 
 }

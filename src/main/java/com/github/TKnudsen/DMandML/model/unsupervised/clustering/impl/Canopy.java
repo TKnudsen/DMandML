@@ -1,8 +1,5 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -67,13 +64,13 @@ public class Canopy extends WekaClusteringAlgorithm {
 	}
 
 	@Override
-	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		return new EuclideanDistanceMeasure();
+	public String getName() {
+		return "Canopy";
 	}
 
 	@Override
-	public String getName() {
-		return "Canopy";
+	public String getDescription() {
+		return getName();
 	}
 
 	@Override

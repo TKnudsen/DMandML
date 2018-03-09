@@ -3,8 +3,6 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -17,11 +15,11 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class XMeans extends WekaClusteringAlgorithm {
 
@@ -51,13 +49,13 @@ public class XMeans extends WekaClusteringAlgorithm {
 	}
 
 	@Override
-	public IDistanceMeasure<NumericalFeatureVector> getDistanceMeasure() {
-		return new EuclideanDistanceMeasure();
+	public String getName() {
+		return "XMeans";
 	}
 
 	@Override
-	public String getName() {
-		return "XMeans";
+	public String getDescription() {
+		return getName();
 	}
 
 	@Override

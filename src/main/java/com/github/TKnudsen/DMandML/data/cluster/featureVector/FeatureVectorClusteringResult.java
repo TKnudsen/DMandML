@@ -11,19 +11,19 @@ import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
  * </p>
  * 
  * <p>
- * Description:
+ * Description: Feature Vector extension of a clusteringResult. with the
+ * extension one of the generics parameters is removed.
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
- * 
- * TODO_GENERICS This may be unnecessarily specific, see IClusterValidityMeasure
+ * @version 1.03
  */
-public class FeatureVectorClusteringResult<FV extends IFeatureVectorObject<?, ?>> extends ClusteringResult<FV, FeatureVectorCluster<FV>> {
+public class FeatureVectorClusteringResult<FV extends IFeatureVectorObject<?, ?>>
+		extends ClusteringResult<FV, FeatureVectorCluster<FV>> {
 
 	public FeatureVectorClusteringResult(List<? extends FeatureVectorCluster<FV>> clusters) {
 		super(clusters);
