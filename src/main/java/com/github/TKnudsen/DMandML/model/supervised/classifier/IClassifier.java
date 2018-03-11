@@ -28,18 +28,18 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	IClassificationResult<X> createClassificationResult(List<? extends X> featureVectors);
 
 	/**
-	 * Returns the name of the attribute that will serve as the basis
-	 * for the classification. 
+	 * Returns the name of the attribute that will serve as the basis for the
+	 * classification.
 	 * 
 	 * @return The class attribute name
 	 */
 	String getClassAttribute();
-	
+
 	/**
 	 * Returns an unmodifiable view on the label alphabet.<br>
 	 * <br>
-	 * This represents the set of unique labels that have been found in the 
-	 * feature vectors that have been passed to the last call to 
+	 * This represents the set of unique labels that have been found in the feature
+	 * vectors that have been passed to the last call to
 	 * {@link #train(List, String)}, in an unspecified order.<br>
 	 * <br>
 	 * If no training has taken place yet, this will be the empty list.
