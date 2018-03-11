@@ -33,7 +33,7 @@ public class ProbabilisticClassificationResultFunction<X> implements IClassifica
 	}
 
 	@Override
-	public IClassificationResult<X> apply(List<X> t) {
+	public IClassificationResult<X> apply(List<? extends X> t) {
 		if (classifier == null)
 			throw new NullPointerException(
 					"ProbabilisticClassificationResultFunction: classifier is null and cannot be used to create classification results.");
