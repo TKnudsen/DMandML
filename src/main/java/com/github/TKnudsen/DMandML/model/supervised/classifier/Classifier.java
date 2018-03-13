@@ -89,6 +89,14 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	public IProbabilisticClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
 		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : featureVectors) {
+			Map<String, Double> labelDistribution = getLabelDistribution(fv);
+			if (labelDistribution == null)
+				throw new NullPointerException(
+						getName() + ": cannot create classification result with null labelDistribution.");
+			if (labelDistribution.isEmpty()) {
+				System.err.println(getName() + " cannot create classification results with empty labelDistribution");
+				return null;
+			}
 			labelDistributionMap.put(fv, getLabelDistribution(fv));
 		}
 		return new ProbabilisticClassificationResult<>(labelDistributionMap);
