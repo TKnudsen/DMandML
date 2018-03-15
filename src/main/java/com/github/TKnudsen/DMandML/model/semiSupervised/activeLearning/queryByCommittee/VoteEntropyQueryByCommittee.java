@@ -6,12 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 
 /**
  * <p>
@@ -40,9 +41,8 @@ public class VoteEntropyQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>
 	}
 
 	public VoteEntropyQueryByCommittee(
-			List<IProbabilisticClassificationResultSupplier<FV>> classificationResultSuppliers) {
-
-		super(classificationResultSuppliers);
+			List<Function<List<? extends FV>, IClassificationResult<FV>>> classificationApplicationFunctions) {
+		super(classificationApplicationFunctions);
 	}
 
 	@Override
@@ -52,17 +52,23 @@ public class VoteEntropyQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>
 
 	@Override
 	protected void calculateRanking() {
-		List<IProbabilisticClassificationResultSupplier<FV>> classificationResultSuppliers = getClassificationResultSuppliers();
 
 		ranking = new Ranking<>();
 		queryApplicabilities = new HashMap<>();
 		remainingUncertainty = 0.0;
 
+		List<Function<List<? extends FV>, IClassificationResult<FV>>> classificationApplicationFunctions = getClassificationApplicationFunctions();
+
+		List<IClassificationResult<FV>> results = new ArrayList<>();
+		for (Function<List<? extends FV>, IClassificationResult<FV>> result : classificationApplicationFunctions)
+			results.add(result.apply(candidates));
+
 		// calculate overall score
 		for (FV fv : candidates) {
 			List<Map<String, Double>> labelDistributions = new ArrayList<>();
-			for (IProbabilisticClassificationResultSupplier<FV> result : classificationResultSuppliers)
-				labelDistributions.add(result.get().getLabelDistribution(fv).getValueDistribution());
+
+			for (IClassificationResult<FV> result : results)
+				labelDistributions.add(result.getLabelDistribution(fv).getValueDistribution());
 
 			// create unified distribution arrays
 			Set<String> labelSet = new HashSet<>();
@@ -88,8 +94,9 @@ public class VoteEntropyQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>
 
 			if (distributions != null && distributions.size() > 0) {
 				Map<String, Double> winningLabels = new HashMap();
-				for (IProbabilisticClassificationResultSupplier<FV> result : classificationResultSuppliers) {
-					String label = result.get().getLabelDistribution(fv).getRepresentant();
+
+				for (IClassificationResult<FV> result : results) {
+					String label = result.getClass(fv);
 					if (!winningLabels.containsKey(label))
 						winningLabels.put(label, 1.0);
 					else
@@ -98,7 +105,7 @@ public class VoteEntropyQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>
 				}
 
 				for (String label : winningLabels.keySet())
-					winningLabels.put(label, winningLabels.get(label) / (double) classificationResultSuppliers.size());
+					winningLabels.put(label, winningLabels.get(label) / (double) results.size());
 
 				dist = Entropy.calculateEntropy(winningLabels);
 			} else

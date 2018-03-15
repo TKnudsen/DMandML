@@ -1,7 +1,7 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 
 /**
@@ -22,5 +22,5 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunct
  */
 public interface IClassificationBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>> extends IDegreeOfInterestFunction<FV> {
 
-	public IProbabilisticClassificationResultSupplier<FV> getClassificationResultSupplier();
+	public IClassificationResultSupplier<FV> getClassificationResultSupplier();
 }

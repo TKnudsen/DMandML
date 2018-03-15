@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFunction;
 
 /**
@@ -26,17 +26,17 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.DegreeOfInterestFuncti
 public abstract class ClassificationBasedInterestingnessFunction<FV extends IFeatureVectorObject<?, ?>>
 		extends DegreeOfInterestFunction<FV> implements IClassificationBasedInterestingnessFunction<FV> {
 
-	IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier;
+	IClassificationResultSupplier<FV> classificationResultSupplier;
 
 	public ClassificationBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+			IClassificationResultSupplier<FV> classificationResultSupplier) {
 		super(featureVectorSupplier);
 
 		this.classificationResultSupplier = classificationResultSupplier;
 	}
 
 	@Override
-	public IProbabilisticClassificationResultSupplier<FV> getClassificationResultSupplier() {
+	public IClassificationResultSupplier<FV> getClassificationResultSupplier() {
 		return classificationResultSupplier;
 	}
 

@@ -10,8 +10,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.ClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 
 /**
  * <p>
@@ -28,10 +29,10 @@ import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificati
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.05
  * 
  */
-public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IProbabilisticClassifier<FV> {
+public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IClassifier<FV> {
 
 	/**
 	 * The "set" of unique labels.
@@ -86,8 +87,8 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	}
 
 	@Override
-	public IProbabilisticClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
-		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
+	public IClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
+		Map<FV, LabelDistribution> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
 			if (labelDistribution == null)
@@ -97,9 +98,9 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 				System.err.println(getName() + " cannot create classification results with empty labelDistribution");
 				return null;
 			}
-			labelDistributionMap.put(fv, getLabelDistribution(fv));
+			labelDistributionMap.put(fv, new LabelDistribution(labelDistribution));
 		}
-		return new ProbabilisticClassificationResult<>(labelDistributionMap);
+		return new ClassificationResult<FV>(labelDistributionMap);
 	}
 
 	@Override

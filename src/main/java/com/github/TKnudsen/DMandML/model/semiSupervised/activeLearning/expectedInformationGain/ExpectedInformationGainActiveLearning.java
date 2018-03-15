@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -11,12 +12,13 @@ import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.ClassifierTools;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
 
 /**
  * <p>
@@ -32,7 +34,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
  * 
  * @author Christian Ritter, Juergen Bernard,
  *         https://github.com/TKnudsen/DMandML
- * @version 1.05
+ * @version 1.06
  */
 public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {
@@ -41,20 +43,39 @@ public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObje
 	private Supplier<List<FV>> trainingDataSupplier;
 
 	/**
-	 * Basic constructor. This active learning algorithm requires an instance of the
-	 * classifier used for training (either the original or a new instance with
-	 * identical parameterization). If, and only if, this classifier is extending
+	 * This active learning algorithm requires an instance of the classifier used
+	 * for training (either the original or a new instance with identical
+	 * parameterization). If, and only if, this classifier is extending
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationResultSupplier
+	 * @param classificationApplyFunction
 	 * @param parameterizedClassifier
 	 * @param trainingDataSupplier
 	 */
 	public ExpectedInformationGainActiveLearning(
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplyFunction,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
-		super(classificationResultSupplier);
+		super(classificationApplyFunction);
+
+		this.parameterizedClassifier = parameterizedClassifier;
+		this.trainingDataSupplier = trainingDataSupplier;
+	}
+
+	/**
+	 * This active learning algorithm requires an instance of the classifier used
+	 * for training (either the original or a new instance with identical
+	 * parameterization). If, and only if, this classifier is extending
+	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
+	 * then uses a parameterized copy).
+	 * 
+	 * @param classificationApplyFunction
+	 * @param parameterizedClassifier
+	 * @param trainingDataSupplier
+	 */
+	public ExpectedInformationGainActiveLearning(IClassificationApplication<FV> cassificationApplicationFunction,
+			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
+		super(cassificationApplicationFunction);
 
 		this.parameterizedClassifier = parameterizedClassifier;
 		this.trainingDataSupplier = trainingDataSupplier;
@@ -70,10 +91,11 @@ public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObje
 
 		int U = candidates.size();
 
+		IClassificationResult<FV> classification = getClassificationApplicationFunction().apply(candidates);
+
 		List<LabelDistribution> dists = new ArrayList<>();
-		for (FV fv : candidates) {
-			dists.add(getClassificationResultSupplier().get().getLabelDistribution(fv));
-		}
+		for (FV fv : candidates)
+			dists.add(classification.getLabelDistribution(fv));
 
 		Set<String> labels = new HashSet<>();
 		for (LabelDistribution ld : dists) {

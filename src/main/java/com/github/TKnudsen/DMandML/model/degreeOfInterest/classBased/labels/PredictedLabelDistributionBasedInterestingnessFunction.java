@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 
 /**
  * <p>
@@ -30,7 +30,7 @@ public class PredictedLabelDistributionBasedInterestingnessFunction<FV extends I
 		extends LabelDistributionBasedInterestingnessFunction<FV> {
 
 	public PredictedLabelDistributionBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			IClassificationResultSupplier<FV> classificationResultSupplier,
 			Map<String, Double> targetLabelDistribution) {
 		super(featureVectorSupplier, classificationResultSupplier, targetLabelDistribution);
 	}

@@ -12,8 +12,8 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.FeatureVectorDistanceMeasureFactory;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster.AveragePairwiseDistanceCompactnessMeasure;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster.ClusterCompactnessMeasure;
@@ -41,12 +41,12 @@ public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVec
 	private double maxValueOfDiversity = Double.NaN;
 
 	public ClassCompactnessBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+			IClassificationResultSupplier<FV> classificationResultSupplier) {
 		this(featureVectorSupplier, classificationResultSupplier, new AveragePairwiseDistanceCompactnessMeasure<>());
 	}
 
 	public ClassCompactnessBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			IClassificationResultSupplier<FV> classificationResultSupplier,
 			ClusterCompactnessMeasure<FV> clusterCompactnessMeasure) {
 		super(featureVectorSupplier, classificationResultSupplier);
 
@@ -61,7 +61,7 @@ public class ClassCompactnessBasedInterestingnessFunction<FV extends IFeatureVec
 		Map<FV, Double> scores = new HashMap<>();
 		List<Double> compactnessScores = new ArrayList<>();
 
-		IProbabilisticClassificationResult<FV> classificationResult = this.getClassificationResultSupplier().get();
+		IClassificationResult<FV> classificationResult = this.getClassificationResultSupplier().get();
 		Map<String, List<FV>> classDistributions = classificationResult.getClassDistributions();
 		IDistanceMeasure<FV> distanceMeasure = null;
 

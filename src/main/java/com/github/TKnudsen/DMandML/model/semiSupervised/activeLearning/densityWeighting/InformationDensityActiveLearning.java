@@ -3,19 +3,21 @@ package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.densityW
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.features.FeatureType;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
 
 /**
  * For more information see: An Analysis of Active Learning Strategies for
  * Sequence Labeling Tasks by Burr Settles and Mark Craven section 3.4
  *
- * @author Christian Ritter
+ * @author Christian Ritter, Jürgen Bernard
  */
 public class InformationDensityActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {
@@ -30,9 +32,17 @@ public class InformationDensityActiveLearning<FV extends IFeatureVectorObject<?,
 
 	}
 
-	public InformationDensityActiveLearning(IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+	public InformationDensityActiveLearning(
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction,
 			AbstractActiveLearningModel<FV> baseModel) {
-		super(classificationResultSupplier);
+		super(classificationApplicationFunction);
+
+		setBaseModel(baseModel);
+	}
+
+	public InformationDensityActiveLearning(IClassificationApplication<FV> classificationApplicationFunction,
+			AbstractActiveLearningModel<FV> baseModel) {
+		super(classificationApplicationFunction);
 
 		setBaseModel(baseModel);
 	}

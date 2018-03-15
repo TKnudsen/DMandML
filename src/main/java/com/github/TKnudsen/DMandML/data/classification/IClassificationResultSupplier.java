@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 /**
  * <p>
- * Title: IProbabilisticClassificationResultSupplier
+ * Title: IClassificationResultSupplier
  * </p>
  * 
  * <p>
@@ -15,12 +15,12 @@ import java.util.function.Supplier;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.03
  */
-public interface IProbabilisticClassificationResultSupplier<X> extends Supplier<IProbabilisticClassificationResult<X>> {
+public interface IClassificationResultSupplier<X> extends Supplier<IClassificationResult<X>> {
 
 }

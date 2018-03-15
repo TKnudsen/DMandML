@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
@@ -41,8 +40,8 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Nu
 		if (classificationResult.getFeatureVectors().size() != testData.size())
 			throw new IllegalArgumentException("input size != output size");
 
-		if (classificationResult instanceof IProbabilisticClassificationResult<?>) {
-			IProbabilisticClassificationResult<NumericalFeatureVector> probablisticClassificationResult = (IProbabilisticClassificationResult<NumericalFeatureVector>) classificationResult;
+		if (classificationResult instanceof IClassificationResult<?>) {
+			IClassificationResult<NumericalFeatureVector> probablisticClassificationResult = (IClassificationResult<NumericalFeatureVector>) classificationResult;
 
 			for (int i = 0; i < testData.size(); i++) {
 				if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {

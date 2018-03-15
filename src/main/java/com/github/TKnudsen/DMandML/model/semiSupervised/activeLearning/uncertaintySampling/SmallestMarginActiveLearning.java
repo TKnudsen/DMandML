@@ -1,13 +1,16 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.uncertaintySampling;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.function.Function;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
 
 /**
  * <p>
@@ -31,8 +34,13 @@ public class SmallestMarginActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 	protected SmallestMarginActiveLearning() {
 	}
 
-	public SmallestMarginActiveLearning(IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
-		super(classificationResultSupplier);
+	public SmallestMarginActiveLearning(
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplyFunction) {
+		super(classificationApplyFunction);
+	}
+
+	public SmallestMarginActiveLearning(IClassificationApplication<FV> cassificationApplicationFunction) {
+		super(cassificationApplicationFunction);
 	}
 
 	@Override
@@ -41,8 +49,12 @@ public class SmallestMarginActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		queryApplicabilities = new HashMap<>();
 		remainingUncertainty = 0.0;
 
+		IClassificationResult<FV> classification = getClassificationApplicationFunction().apply(candidates);
+
 		for (FV fv : candidates) {
-			double margin = calculateMargin(fv);
+			LabelDistribution labelDistribution = classification.getLabelDistribution(fv);
+
+			double margin = calculateMargin(labelDistribution);
 			ranking.add(new EntryWithComparableKey<Double, FV>(margin, fv));
 
 			queryApplicabilities.put(fv, 1 - margin);
@@ -53,23 +65,20 @@ public class SmallestMarginActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		System.out.println("SmallestMarginActiveLearning: remaining uncertainty = " + remainingUncertainty);
 	}
 
-	private double calculateMargin(FV fv) {
-		IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier = getClassificationResultSupplier();
-		Map<String, Double> labelDistribution = null;
-		labelDistribution = classificationResultSupplier.get().getLabelDistribution(fv).getValueDistribution();
-
+	private double calculateMargin(LabelDistribution labelDistribution) {
 		if (labelDistribution == null)
 			return 0;
 
 		double max = Double.MIN_VALUE;
 		double second = Double.MIN_VALUE;
-		for (double value : labelDistribution.values())
+		for (String label : labelDistribution.keySet()) {
+			double value = labelDistribution.getProbability(label);
 			if (max <= value) {
 				second = max;
 				max = value;
 			} else if (second <= value)
 				second = value;
-
+		}
 		return max - second;
 	}
 

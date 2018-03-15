@@ -6,12 +6,16 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
 
 /**
  * <p>
@@ -35,7 +39,9 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 
 	protected List<FV> candidates;
 
-	private IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier;
+	private IClassificationResultSupplier<FV> classificationResultSupplier;
+
+	private Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction;
 
 	protected Ranking<EntryWithComparableKey<Double, FV>> ranking;
 
@@ -47,8 +53,26 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 
 	}
 
-	public AbstractActiveLearningModel(IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+	public AbstractActiveLearningModel(
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction) {
+		Objects.requireNonNull(classificationApplicationFunction,
+				"Classification Application Function must not be null");
+
+		this.classificationApplicationFunction = classificationApplicationFunction;
+	}
+
+	public AbstractActiveLearningModel(IClassificationApplication<FV> classificationApplicationFunction) {
+		Objects.requireNonNull(classificationApplicationFunction,
+				"Classification Application Function must not be null");
+
+		this.classificationApplicationFunction = classificationApplicationFunction;
+	}
+
+	@Deprecated
+	public AbstractActiveLearningModel(IClassificationResultSupplier<FV> classificationResultSupplier) {
 		this.classificationResultSupplier = classificationResultSupplier;
+
+		classificationApplicationFunction = null;
 	}
 
 	@Override
@@ -146,12 +170,19 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 	}
 
 	@Override
-	public IProbabilisticClassificationResultSupplier<FV> getClassificationResultSupplier() {
+	public IClassificationResultSupplier<FV> getClassificationResultSupplier() {
 		return classificationResultSupplier;
 	}
 
-	public void setClassificationResultSupplier(
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
+	public void setClassificationResultSupplier(IClassificationResultSupplier<FV> classificationResultSupplier) {
 		this.classificationResultSupplier = classificationResultSupplier;
+	}
+
+	public Function<List<? extends FV>, IClassificationResult<FV>> getClassificationApplicationFunction() {
+		return classificationApplicationFunction;
+	}
+
+	public void setClassificationApplicationFunction(Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction) {
+		this.classificationApplicationFunction = classificationApplicationFunction;
 	}
 }
