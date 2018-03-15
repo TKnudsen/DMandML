@@ -14,19 +14,37 @@ import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.ClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
-import com.github.TKnudsen.DMandML.data.classification.ProbabilisticClassificationResult;
 
-public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
+/**
+ * <p>
+ * Title: EnsembleClassifier
+ * </p>
+ * 
+ * <p>
+ * Description:
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * 
+ * @version 1.03
+ * 
+ */
+public class EnsembleClassifier<FV> implements IClassifier<FV> {
 
-	private final List<IProbabilisticClassifier<FV>> classifiers;
+	private final List<IClassifier<FV>> classifiers;
 	private final String classAttribute;
 
-	public EnsembleClassifier(Collection<? extends IProbabilisticClassifier<FV>> classifiers) {
+	public EnsembleClassifier(Collection<? extends IClassifier<FV>> classifiers) {
 		this.classAttribute = extractClassAttribute(classifiers);
-		this.classifiers = new ArrayList<IProbabilisticClassifier<FV>>(classifiers);
+		this.classifiers = new ArrayList<IClassifier<FV>>(classifiers);
 	}
 
 	private static String extractClassAttribute(Iterable<? extends IClassifier<?>> classifiers) {
@@ -53,7 +71,7 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 			throw new IllegalArgumentException("at least two training instances required");
 		}
 
-		for (IProbabilisticClassifier<FV> classifier : classifiers) {
+		for (IClassifier<FV> classifier : classifiers) {
 			try {
 				classifier.train(featureVectors);
 			} catch (Exception e) {
@@ -84,7 +102,7 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 
 		Map<String, List<Double>> labelDistributions = new HashMap<>();
 
-		for (IProbabilisticClassifier<FV> classifier : classifiers) {
+		for (IClassifier<FV> classifier : classifiers) {
 			Map<String, Double> labelDistribution = classifier.getLabelDistribution(featureVector);
 
 			if (labelDistribution == null) {
@@ -120,13 +138,12 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 	}
 
 	@Override
-	public IProbabilisticClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
+	public IClassificationResult<FV> createClassificationResult(List<? extends FV> featureVectors) {
 
 		Map<FV, Collection<LabelDistribution>> labelDistributions = new LinkedHashMap<>();
 
-		for (IProbabilisticClassifier<FV> classifier : classifiers) {
-			IProbabilisticClassificationResult<FV> classificationResult = classifier
-					.createClassificationResult(featureVectors);
+		for (IClassifier<FV> classifier : classifiers) {
+			IClassificationResult<FV> classificationResult = classifier.createClassificationResult(featureVectors);
 
 			if (classificationResult != null)
 				for (FV fv : featureVectors) {
@@ -138,21 +155,21 @@ public class EnsembleClassifier<FV> implements IProbabilisticClassifier<FV> {
 				System.err.println(getName() + ": one of the classifier results was null and will be ignored.");
 		}
 
-		Map<FV, Map<String, Double>> labelDistributionMap = new LinkedHashMap<>();
+		Map<FV, LabelDistribution> labelDistributionMap = new LinkedHashMap<>();
 		for (Entry<FV, Collection<LabelDistribution>> entry : labelDistributions.entrySet()) {
 			FV fv = entry.getKey();
 			Collection<LabelDistribution> labelDistribution = entry.getValue();
 			LabelDistribution mergedLabelDistribution = LabelDistributionTools
 					.mergeLabelDistributions(labelDistribution);
-			labelDistributionMap.put(fv, mergedLabelDistribution.getValueDistribution());
+			labelDistributionMap.put(fv, mergedLabelDistribution);
 		}
-		return new ProbabilisticClassificationResult<>(labelDistributionMap);
+		return new ClassificationResult<>(labelDistributionMap);
 	}
 
 	@Override
 	public List<String> getLabelAlphabet() {
 		Set<String> labelAlphabet = new LinkedHashSet<String>();
-		for (IProbabilisticClassifier<FV> classifier : classifiers) {
+		for (IClassifier<FV> classifier : classifiers) {
 			labelAlphabet.addAll(classifier.getLabelAlphabet());
 		}
 		return new ArrayList<String>(labelAlphabet);

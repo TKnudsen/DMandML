@@ -1,6 +1,6 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning;
 
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 
 /**
  * <p>
@@ -16,9 +16,10 @@ import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificat
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.05
+ * @version 1.06
  */
 public interface IActiveLearningModelClassification<FV> extends IActiveLearningModel<FV, String> {
 
-	public IProbabilisticClassificationResultSupplier<FV> getClassificationResultSupplier();
+	@Deprecated
+	public IClassificationResultSupplier<FV> getClassificationResultSupplier();
 }

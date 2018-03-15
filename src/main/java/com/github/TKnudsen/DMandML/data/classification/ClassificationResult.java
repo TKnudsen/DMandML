@@ -17,11 +17,11 @@ import java.util.Map;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class ClassificationResult<X> implements IClassificationResult<X> {
 
@@ -29,12 +29,44 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	Map<String, List<X>> classDistributions;
 
+	private final Map<X, LabelDistribution> labelDistributionMap;
+
 	public ClassificationResult(List<X> featureVectors, List<String> labels) {
-		this(zip(featureVectors, labels));
+		this(ClassificationResults.createDefaultLabelDistributionMap(zip(featureVectors, labels)));
 	}
 
-	public ClassificationResult(Map<X, String> labelsMap) {
-		this.labels = Collections.unmodifiableMap(labelsMap);
+	// @Deprecated
+	// public ClassificationResult(Map<X, String> labelsMap) {
+	// this(ClassificationResults.createDefaultLabelDistributionMap(labelsMap));
+	// this.labels = Collections.unmodifiableMap(labelsMap);
+	//
+	// this.labelDistributionMap =
+	// ClassificationResults.createDefaultLabelDistributionMap(labelsMap);
+	// }
+
+	// /**
+	// * constructor stores a reference on the object.
+	// *
+	// * @param labelDistributionMap
+	// */
+	// public ClassificationResult(Map<X, Map<String, Double>> labelDistributionMap)
+	// {
+	// this.labels =
+	// Collections.unmodifiableMap(ClassificationResults.createLabelsMap(labelDistributionMap));
+	//
+	// this.labelDistributionMap =
+	// ClassificationResults.createLabelDistributionMap(labelDistributionMap);
+	// }
+
+	/**
+	 * constructor stores a reference on the object.
+	 * 
+	 * @param labelDistributionMap
+	 */
+	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap) {
+		this.labelDistributionMap = Collections.unmodifiableMap(labelDistributionMap);
+
+		this.labels = ClassificationResults.createwinningLabelsMap(labelDistributionMap);
 	}
 
 	@Override
@@ -63,6 +95,11 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 			calculateClassDistributions();
 
 		return classDistributions;
+	}
+
+	@Override
+	public LabelDistribution getLabelDistribution(X x) {
+		return labelDistributionMap.get(x);
 	}
 
 	private void calculateClassDistributions() {

@@ -19,9 +19,8 @@ import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public interface IClassificationResultFunction<X> extends Function<List<? extends X>, IClassificationResult<X>>{
-
+public interface IClassificationApplication<X> extends Function<List<? extends X>, IClassificationResult<X>> {
 
 }

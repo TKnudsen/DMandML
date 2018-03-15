@@ -11,8 +11,8 @@ import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier;
@@ -54,8 +54,7 @@ public class ExpectedVarianceReductionActiveLearning<FV extends IFeatureVectorOb
 	 * @param parameterizedClassifier
 	 * @param trainingDataSupplier
 	 */
-	public ExpectedVarianceReductionActiveLearning(
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+	public ExpectedVarianceReductionActiveLearning(IClassificationResultSupplier<FV> classificationResultSupplier,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
 		super(classificationResultSupplier);
 
@@ -131,7 +130,7 @@ public class ExpectedVarianceReductionActiveLearning<FV extends IFeatureVectorOb
 
 	}
 
-	private Double calculateExpectedVariance(IProbabilisticClassificationResult<FV> classificationResult) {
+	private Double calculateExpectedVariance(IClassificationResult<FV> classificationResult) {
 		double variance = 0.0;
 		for (FV fv : candidates) {
 			StatisticsSupport stats = new StatisticsSupport(

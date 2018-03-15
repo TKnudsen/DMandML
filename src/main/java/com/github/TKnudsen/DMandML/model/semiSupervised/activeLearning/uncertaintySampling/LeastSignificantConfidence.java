@@ -1,13 +1,16 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.uncertaintySampling;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Function;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
 
 /**
  * <p>
@@ -24,33 +27,37 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.05
+ * @version 1.06
  */
 public class LeastSignificantConfidence<FV extends IFeatureVectorObject<?, ?>> extends AbstractActiveLearningModel<FV> {
 	protected LeastSignificantConfidence() {
 	}
 
-	public LeastSignificantConfidence(IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier) {
-		super(classificationResultSupplier);
+	public LeastSignificantConfidence(
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplyFunction) {
+		super(classificationApplyFunction);
+	}
+
+	public LeastSignificantConfidence(IClassificationApplication<FV> cassificationApplicationFunction) {
+		super(cassificationApplicationFunction);
 	}
 
 	@Override
 	protected void calculateRanking() {
-		IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier = getClassificationResultSupplier();
 
 		ranking = new Ranking<>();
 		queryApplicabilities = new HashMap<>();
 		remainingUncertainty = 0.0;
 
+		IClassificationResult<FV> classification = getClassificationApplicationFunction().apply(candidates);
+
 		// calculate overall score
 		for (FV fv : candidates) {
 			double significance = 0.0;
 
-			if (classificationResultSupplier != null) {
-				LabelDistribution labelDistribution = classificationResultSupplier.get().getLabelDistribution(fv);
-				if (labelDistribution != null)
-					significance = labelDistribution.getProbability(labelDistribution.getMostLikelyItem());
-			}
+			LabelDistribution labelDistribution = classification.getLabelDistribution(fv);
+			if (labelDistribution != null)
+				significance = labelDistribution.getProbability(labelDistribution.getMostLikelyItem());
 
 			ranking.add(new EntryWithComparableKey<Double, FV>(significance, fv));
 			queryApplicabilities.put(fv, 1 - significance);

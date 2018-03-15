@@ -9,8 +9,8 @@ import java.util.function.Supplier;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResult;
-import com.github.TKnudsen.DMandML.data.classification.IProbabilisticClassificationResultSupplier;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.classBased.ClassificationBasedInterestingnessFunction;
@@ -43,7 +43,7 @@ public abstract class LabelDistributionBasedInterestingnessFunction<FV extends I
 	private Map<String, Double> targetLabelDistribution;
 
 	public LabelDistributionBasedInterestingnessFunction(Supplier<List<FV>> featureVectorSupplier,
-			IProbabilisticClassificationResultSupplier<FV> classificationResultSupplier,
+			IClassificationResultSupplier<FV> classificationResultSupplier,
 			Map<String, Double> targetLabelDistribution) {
 		super(featureVectorSupplier, classificationResultSupplier);
 
@@ -56,7 +56,7 @@ public abstract class LabelDistributionBasedInterestingnessFunction<FV extends I
 	 * then reccomend instances that would balance the deviance.
 	 */
 	public void run() {
-		IProbabilisticClassificationResult<FV> classificationResult = getClassificationResultSupplier().get();
+		IClassificationResult<FV> classificationResult = getClassificationResultSupplier().get();
 
 		Map<String, Double> targetLabelDistribution = getTargetLabelDistribution();
 

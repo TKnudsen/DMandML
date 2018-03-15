@@ -18,8 +18,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public interface INumericalDataClassifier extends IProbabilisticClassifier<NumericalFeatureVector> {
+public interface INumericalDataClassifier extends IClassifier<NumericalFeatureVector> {
 
 }
