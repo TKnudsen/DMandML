@@ -15,7 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.numericalFeatures.RandomForest;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.RandomForest;
 
 /**
  * Some basic tests for the classifiers, namely for {@link IClassifier}.

@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
+package com.github.TKnudsen.DMandML.model.unsupervised.outliers.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,10 +9,11 @@ import java.util.Map;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;
+import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAlgorithm;
 
 /**
  * <p>
- * Title: DensityBasedOutlierAnalysisAlgorithm
+ * Title: DensityBasedOutlierAnalysis
  * </p>
  * 
  * <p>
@@ -26,13 +27,13 @@ import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class DensityBasedOutlierAnalysisAlgorithm<FV> extends OutlierAnalysisAlgorithm<FV> {
+public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV> {
 
 	private int nearestNeighborCount;
 
 	private IDistanceMeasure<FV> distanceMeasure;
 
-	public DensityBasedOutlierAnalysisAlgorithm(List<FV> featureVectors, int nearestNeighborCount,
+	public DensityBasedOutlierAnalysis(List<FV> featureVectors, int nearestNeighborCount,
 			IDistanceMeasure<FV> distanceMeasure) {
 		super(featureVectors);
 
@@ -81,7 +82,7 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends OutlierAnalysisAlg
 	}
 
 	@Override
-	void calculateOutlierAnalysisResult() {
+	public void calculateOutlierAnalysisResult() {
 		run();
 	}
 

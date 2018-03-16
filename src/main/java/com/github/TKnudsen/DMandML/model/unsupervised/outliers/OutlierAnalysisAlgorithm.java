@@ -26,7 +26,7 @@ public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAl
 
 	private List<? extends FV> featureVectors;
 
-	IOutlierAnalysisResult<FV> outlierAnalysisResult;
+	protected IOutlierAnalysisResult<FV> outlierAnalysisResult;
 
 	public OutlierAnalysisAlgorithm() {
 	}
@@ -35,7 +35,7 @@ public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAl
 		this.featureVectors = featureVectors;
 	}
 
-	abstract void calculateOutlierAnalysisResult();
+	public abstract void calculateOutlierAnalysisResult();
 
 	public List<FV> getFeatureVectors() {
 		return Collections.unmodifiableList(featureVectors);

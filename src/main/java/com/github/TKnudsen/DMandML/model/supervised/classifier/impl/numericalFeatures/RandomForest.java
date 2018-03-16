@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.supervised.classifier.numericalFeatures;
+package com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +26,30 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> {
 
 	/**
-	 * The number of trees to be performed.
+	 * Size of each bag, as a percentage of the training set size. (default 100)
 	 */
-	private int trees = 10;
+	private double sizeOfEachBagInPercent = 100;
+
+	/**
+	 * 
+	 */
+	private int iterations = 100;
 
 	/**
 	 * number of randomly chosen attributes. If 0, int(log_2(#predictors) + 1) is
 	 * used.
 	 */
 	private int numFeatures = 0;
+
+	/**
+	 * Set minimum number of instances per leaf.
+	 */
+	private int minInstancesPerLeaf = 1;
+
+	/**
+	 * minimum numeric class variance proportion of train variance for split
+	 */
+	private double minClassVariance = 0.001;
 
 	/**
 	 * maximum depth of the tree, 0 for unlimited.
@@ -50,12 +65,25 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 		setWekaClassifier(new weka.classifiers.trees.RandomForest());
 
 		List<String> aryOpts = new ArrayList<String>();
+
+		aryOpts.add("-P");
+		aryOpts.add(sizeOfEachBagInPercent + "");
+
 		aryOpts.add("-I");
-		aryOpts.add(trees + "");
+		aryOpts.add(iterations + "");
+
 		aryOpts.add("-K");
 		aryOpts.add(numFeatures + "");
+
+		aryOpts.add("-M");
+		aryOpts.add(minInstancesPerLeaf + "");
+
+		aryOpts.add("-V");
+		aryOpts.add(minClassVariance + "");
+
 		aryOpts.add("-S");
 		aryOpts.add(1 + "");
+
 		aryOpts.add("-depth");
 		aryOpts.add(depthMax + "");
 
@@ -66,16 +94,6 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public int getTreeCount() {
-		return trees;
-	}
-
-	public void setTreeCount(int trees) {
-		this.trees = trees;
-
-		initializeClassifier();
 	}
 
 	public int getNumFeatures() {
@@ -94,6 +112,46 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 
 	public void setDepthMax(int depthMax) {
 		this.depthMax = depthMax;
+
+		initializeClassifier();
+	}
+
+	public double getSizeOfEachBagInPercent() {
+		return sizeOfEachBagInPercent;
+	}
+
+	public void setSizeOfEachBagInPercent(double sizeOfEachBagInPercent) {
+		this.sizeOfEachBagInPercent = sizeOfEachBagInPercent;
+
+		initializeClassifier();
+	}
+
+	public int getIterations() {
+		return iterations;
+	}
+
+	public void setIterations(int iterations) {
+		this.iterations = iterations;
+
+		initializeClassifier();
+	}
+
+	public int getMinInstancesPerLeaf() {
+		return minInstancesPerLeaf;
+	}
+
+	public void setMinInstancesPerLeaf(int minInstancesPerLeaf) {
+		this.minInstancesPerLeaf = minInstancesPerLeaf;
+
+		initializeClassifier();
+	}
+
+	public double getMinClassVariance() {
+		return minClassVariance;
+	}
+
+	public void setMinClassVariance(double minClassVariance) {
+		this.minClassVariance = minClassVariance;
 
 		initializeClassifier();
 	}
