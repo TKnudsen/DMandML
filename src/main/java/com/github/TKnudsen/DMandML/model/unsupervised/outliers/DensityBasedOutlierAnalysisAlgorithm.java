@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;
 
 /**
  * <p>
@@ -25,7 +26,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
  * @author Juergen Bernard
  * @version 1.02
  */
-public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutlierAnalysisAlgorithm<FV> {
+public class DensityBasedOutlierAnalysisAlgorithm<FV> extends OutlierAnalysisAlgorithm<FV> {
 
 	private int nearestNeighborCount;
 
@@ -43,7 +44,10 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutli
 	public void run() {
 		List<FV> featureVectorList = getFeatureVectors();
 
-		outlierScores = new LinkedHashMap<>();
+		if (featureVectorList == null)
+			throw new NullPointerException(getName() + ": cannot be run until feature vectors are set");
+
+		Map<FV, Double> outlierScores = new LinkedHashMap<>();
 		List<Double> maxDistanceMeans = new ArrayList<>();
 
 		for (FV fv : featureVectorList) {
@@ -65,11 +69,20 @@ public class DensityBasedOutlierAnalysisAlgorithm<FV> extends FeatureVectorOutli
 			maxDistanceMeans.add(statistics.getMean());
 		}
 
-		StatisticsSupport distanceMeansStatistics = new StatisticsSupport(maxDistanceMeans);
+		// StatisticsSupport distanceMeansStatistics = new
+		// StatisticsSupport(maxDistanceMeans);
+		//
+		// for (FV fv : featureVectorList)
+		// outlierScores.put(fv,
+		// MathFunctions.linearScale(0, distanceMeansStatistics.getMax(),
+		// outlierScores.get(fv)));
 
-		for (FV fv : featureVectorList)
-			outlierScores.put(fv,
-					MathFunctions.linearScale(0, distanceMeansStatistics.getMax(), outlierScores.get(fv)));
+		this.outlierAnalysisResult = new OutlierAnalysisResult<FV>(outlierScores);
+	}
+
+	@Override
+	void calculateOutlierAnalysisResult() {
+		run();
 	}
 
 	@Override
