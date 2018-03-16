@@ -10,7 +10,7 @@ import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -39,7 +39,7 @@ public class SmallestMarginActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		super(classificationApplyFunction);
 	}
 
-	public SmallestMarginActiveLearning(IClassificationApplication<FV> cassificationApplicationFunction) {
+	public SmallestMarginActiveLearning(IClassificationApplicationFunction<FV> cassificationApplicationFunction) {
 		super(cassificationApplicationFunction);
 	}
 

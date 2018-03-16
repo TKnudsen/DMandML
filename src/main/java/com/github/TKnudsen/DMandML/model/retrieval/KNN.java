@@ -1,6 +1,8 @@
 package com.github.TKnudsen.DMandML.model.retrieval;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
@@ -13,34 +15,36 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * </p>
  * 
  * <p>
- * Description: k nearest neighbor operation.
+ * Description: k nearest neighbor operation, applied on a collection of
+ * pre-given instancess.
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class KNN<O> {
+public class KNN<FV> {
 
 	private int kNN;
 
-	private IDistanceMeasure<O> distanceMeasure;
+	private IDistanceMeasure<? super FV> distanceMeasure;
 
-	private List<O> elements;
+	private final Collection<FV> elements;
 
-	public KNN(int kNN, IDistanceMeasure<O> distanceMeasure, List<O> elements) {
-		this.kNN = kNN;
+	public KNN(int kNN, IDistanceMeasure<? super FV> distanceMeasure, Collection<? extends FV> elements) {
+		setKNN(kNN);
+
 		this.distanceMeasure = distanceMeasure;
-		this.elements = elements;
+		this.elements = Collections.unmodifiableCollection(elements);
 	}
 
-	public Ranking<EntryWithComparableKey<Double, O>> getNearestNeighborsWithScores(O element) {
-		Ranking<EntryWithComparableKey<Double, O>> ranking = new Ranking<>();
+	public Ranking<EntryWithComparableKey<Double, FV>> getNearestNeighborsWithScores(FV element) {
+		Ranking<EntryWithComparableKey<Double, FV>> ranking = new Ranking<>();
 
-		for (O o : elements) {
+		for (FV o : elements) {
 			if (o.equals(element))
 				continue;
 
@@ -48,7 +52,7 @@ public class KNN<O> {
 			if (ranking.size() >= kNN && ranking.get(kNN - 1).getKey() < distance)
 				continue;
 
-			ranking.add(new EntryWithComparableKey<Double, O>(distance, o));
+			ranking.add(new EntryWithComparableKey<Double, FV>(distance, o));
 
 			if (ranking.size() > kNN)
 				ranking.removeLast();
@@ -57,10 +61,10 @@ public class KNN<O> {
 		return ranking;
 	}
 
-	public List<O> getNearestNeighbors(O element) {
-		Ranking<EntryWithComparableKey<Double, O>> nearestNeighborsWithScores = getNearestNeighborsWithScores(element);
+	public List<FV> getNearestNeighbors(FV element) {
+		Ranking<EntryWithComparableKey<Double, FV>> nearestNeighborsWithScores = getNearestNeighborsWithScores(element);
 
-		List<O> returnElements = new ArrayList<>();
+		List<FV> returnElements = new ArrayList<>();
 		for (int i = 0; i < nearestNeighborsWithScores.size(); i++)
 			returnElements.add(nearestNeighborsWithScores.get(i).getValue());
 
@@ -72,6 +76,9 @@ public class KNN<O> {
 	}
 
 	public void setKNN(int kNN) {
+		if (kNN < 1)
+			throw new IllegalArgumentException("KNN: illegal parameter value for kNN: " + kNN + "must be >0");
+
 		this.kNN = kNN;
 	}
 }

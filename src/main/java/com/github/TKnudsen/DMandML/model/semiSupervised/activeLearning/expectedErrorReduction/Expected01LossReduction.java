@@ -17,7 +17,7 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.ClassifierTools;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -71,7 +71,7 @@ public class Expected01LossReduction<FV extends IFeatureVectorObject<?, ?>> exte
 	 * @param parameterizedClassifier
 	 * @param trainingDataSupplier
 	 */
-	public Expected01LossReduction(IClassificationApplication<FV> cassificationApplicationFunction,
+	public Expected01LossReduction(IClassificationApplicationFunction<FV> cassificationApplicationFunction,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
 		super(cassificationApplicationFunction);
 

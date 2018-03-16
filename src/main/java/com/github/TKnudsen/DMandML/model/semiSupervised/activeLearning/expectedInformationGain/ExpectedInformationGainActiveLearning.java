@@ -18,7 +18,7 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.ClassifierTools;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -73,7 +73,7 @@ public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObje
 	 * @param parameterizedClassifier
 	 * @param trainingDataSupplier
 	 */
-	public ExpectedInformationGainActiveLearning(IClassificationApplication<FV> cassificationApplicationFunction,
+	public ExpectedInformationGainActiveLearning(IClassificationApplicationFunction<FV> cassificationApplicationFunction,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
 		super(cassificationApplicationFunction);
 

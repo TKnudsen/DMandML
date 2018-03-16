@@ -11,7 +11,7 @@ import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -39,7 +39,7 @@ public class EntropyBasedActiveLearning<FV extends IFeatureVectorObject<?, ?>> e
 		super(classificationApplyFunction);
 	}
 
-	public EntropyBasedActiveLearning(IClassificationApplication<FV> cassificationApplicationFunction) {
+	public EntropyBasedActiveLearning(IClassificationApplicationFunction<FV> cassificationApplicationFunction) {
 		super(cassificationApplicationFunction);
 	}
 

@@ -2,6 +2,8 @@ package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
+
 /**
  * <p>
  * Title: IOutlierAnalysisAlgorithm
@@ -12,15 +14,15 @@ import java.util.List;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public interface IOutlierAnalysisAlgorithm<O> {
+public interface IOutlierAnalysisAlgorithm<O> extends ISelfDescription {
 
-	public void setData(List<O> data);
+	public void setData(List<? extends O> data);
 
 	/**
 	 * parameters function call
@@ -29,9 +31,9 @@ public interface IOutlierAnalysisAlgorithm<O> {
 
 	/**
 	 * the outlier prediction score. Score is a more general term than
-	 * weight/probability, etc. However, it is expected that implementations
-	 * make use of a relative value domain where 1.0 means the maximum
-	 * likelihood to be an outlier.
+	 * weight/probability, etc. However, it is expected that implementations make
+	 * use of a relative value domain where 1.0 means the maximum likelihood to be
+	 * an outlier.
 	 * 
 	 * @param object
 	 * @return
@@ -39,8 +41,8 @@ public interface IOutlierAnalysisAlgorithm<O> {
 	public double getOutlierScore(O object);
 
 	/**
-	 * allows resetting calculated scores, e.g. when data or parameters have
-	 * been changed. allows lazy implementations.
+	 * allows resetting calculated scores, e.g. when data or parameters have been
+	 * changed. allows lazy implementations.
 	 */
 	public void resetScores();
 }
