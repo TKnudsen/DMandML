@@ -1,9 +1,10 @@
-package com.github.TKnudsen.DMandML.model.supervised.classifier;
+package com.github.TKnudsen.DMandML.model.supervised.classifier.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
 
 import weka.classifiers.meta.AdaBoostM1;
 

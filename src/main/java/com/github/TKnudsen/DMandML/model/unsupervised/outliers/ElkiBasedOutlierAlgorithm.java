@@ -17,11 +17,27 @@ import de.lmu.ifi.dbs.elki.database.relation.DoubleRelation;
 import de.lmu.ifi.dbs.elki.database.relation.Relation;
 import de.lmu.ifi.dbs.elki.result.outlier.OutlierResult;
 
+/**
+ * <p>
+ * Title: ElkiBasedOutlierAlgorithm
+ * </p>
+ * 
+ * <p>
+ * Description: basic class for outlier algorithms from the elki framework.
+ * </p>
+ * 
+ * <p>
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * </p>
+ * 
+ * @author Juergen Bernard
+ * @version 1.03
+ */
 public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm<NumericalFeatureVector> {
 
 	private ELKIDataWrapper elkiDataWrapper;
 
-	OutlierAlgorithm outlierAlgorithm;
+	protected OutlierAlgorithm outlierAlgorithm;
 
 	protected OutlierResult elkiOutlierResult;
 
@@ -37,10 +53,22 @@ public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm
 		elkiDataWrapper = new ELKIDataWrapper(featureVectors);
 	}
 
-	abstract void initializeOutlierAlgorithm();
+	protected abstract void initializeOutlierAlgorithm();
 
 	@Override
-	void calculateOutlierAnalysisResult() {
+	public void run() {
+		if (outlierAlgorithm == null)
+			initializeOutlierAlgorithm();
+
+		ELKIDataWrapper elkiDataWrapper = getElkiDataWrapper();
+		if (elkiDataWrapper == null)
+			throw new NullPointerException(getName() + ": data not initialized");
+
+		elkiOutlierResult = outlierAlgorithm.run(elkiDataWrapper.getDB());
+	}
+
+	@Override
+	public void calculateOutlierAnalysisResult() {
 		if (elkiOutlierResult == null)
 			throw new NullPointerException(getName() + ": no result available. Has not been run yet.");
 

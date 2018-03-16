@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.supervised.classifier;
+package com.github.TKnudsen.DMandML.model.supervised.classifier.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +18,7 @@ import com.github.TKnudsen.DMandML.data.classification.ClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
