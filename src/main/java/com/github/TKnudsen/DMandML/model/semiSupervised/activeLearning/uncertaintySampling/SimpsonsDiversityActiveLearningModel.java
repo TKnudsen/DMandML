@@ -13,7 +13,7 @@ import com.github.TKnudsen.ComplexDataObject.model.statistics.SimpsonsIndex;
 import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -41,7 +41,7 @@ public class SimpsonsDiversityActiveLearningModel<FV extends IFeatureVectorObjec
 		super(classificationApplyFunction);
 	}
 
-	public SimpsonsDiversityActiveLearningModel(IClassificationApplication<FV> cassificationApplicationFunction) {
+	public SimpsonsDiversityActiveLearningModel(IClassificationApplicationFunction<FV> cassificationApplicationFunction) {
 		super(cassificationApplicationFunction);
 	}
 

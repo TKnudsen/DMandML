@@ -22,7 +22,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * @author Juergen Bernard
  * @version 1.01
  */
-public class ClassificationApplicationFunction<FV> implements IClassificationApplication<FV> {
+public class ClassificationApplicationFunction<FV> implements IClassificationApplicationFunction<FV> {
 
 	private final IClassifier<FV> classifier;
 

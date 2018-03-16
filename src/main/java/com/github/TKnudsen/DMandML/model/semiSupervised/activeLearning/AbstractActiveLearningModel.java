@@ -15,7 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * <p>
@@ -61,7 +61,7 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 		this.classificationApplicationFunction = classificationApplicationFunction;
 	}
 
-	public AbstractActiveLearningModel(IClassificationApplication<FV> classificationApplicationFunction) {
+	public AbstractActiveLearningModel(IClassificationApplicationFunction<FV> classificationApplicationFunction) {
 		Objects.requireNonNull(classificationApplicationFunction,
 				"Classification Application Function must not be null");
 

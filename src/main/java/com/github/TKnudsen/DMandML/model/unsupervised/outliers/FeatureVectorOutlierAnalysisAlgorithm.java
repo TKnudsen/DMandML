@@ -1,5 +1,7 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +23,11 @@ import java.util.Map;
  */
 public abstract class FeatureVectorOutlierAnalysisAlgorithm<FV> implements IFeatureVectorOutlierAnalysisAlgorithm<FV> {
 
-	private List<FV> featureVectors;
+	private List<? extends FV> featureVectors;
 
 	protected Map<FV, Double> outlierScores;
 
-	public FeatureVectorOutlierAnalysisAlgorithm(List<FV> featureVectors) {
+	public FeatureVectorOutlierAnalysisAlgorithm(List<? extends FV> featureVectors) {
 		this.featureVectors = featureVectors;
 	}
 
@@ -50,12 +52,12 @@ public abstract class FeatureVectorOutlierAnalysisAlgorithm<FV> implements IFeat
 	}
 
 	public List<FV> getFeatureVectors() {
-		return featureVectors;
+		return Collections.unmodifiableList(featureVectors);
 	}
 
-	public void setFeatureVectors(List<FV> featureVectors) {
-		this.featureVectors = featureVectors;
-		
+	public void setFeatureVectors(List<? extends FV> featureVectors) {
+		this.featureVectors = new ArrayList<>(featureVectors);
+
 		resetScores();
 	}
 }

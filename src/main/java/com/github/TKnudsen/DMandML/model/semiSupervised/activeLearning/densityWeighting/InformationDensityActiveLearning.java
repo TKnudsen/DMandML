@@ -11,7 +11,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplication;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * For more information see: An Analysis of Active Learning Strategies for
@@ -40,7 +40,7 @@ public class InformationDensityActiveLearning<FV extends IFeatureVectorObject<?,
 		setBaseModel(baseModel);
 	}
 
-	public InformationDensityActiveLearning(IClassificationApplication<FV> classificationApplicationFunction,
+	public InformationDensityActiveLearning(IClassificationApplicationFunction<FV> classificationApplicationFunction,
 			AbstractActiveLearningModel<FV> baseModel) {
 		super(classificationApplicationFunction);
 
