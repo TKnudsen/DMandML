@@ -129,30 +129,30 @@ public class BasicAdaBoost<FV extends IFeatureVectorObject<?, ?>> extends WekaCl
 	protected void initializeClassifier() {
 		setWekaClassifier(new AdaBoostM1());
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
-		aryOpts.add("-P");
-		aryOpts.add(String.valueOf(getWeightMassPercentage()));
+		optionsList.add("-P");
+		optionsList.add(String.valueOf(getWeightMassPercentage()));
 
-		aryOpts.add("-S");
-		aryOpts.add(String.valueOf(getRandomSeed()));
+		optionsList.add("-S");
+		optionsList.add(String.valueOf(getRandomSeed()));
 
-		aryOpts.add("-I");
-		aryOpts.add(String.valueOf(getNumberOfIterations()));
+		optionsList.add("-I");
+		optionsList.add(String.valueOf(getNumberOfIterations()));
 
-		aryOpts.add("-W");
-		aryOpts.add(String.valueOf(getBaseClassifier()));
+		optionsList.add("-W");
+		optionsList.add(String.valueOf(getBaseClassifier()));
 
 		if (isUseResampling())
-			aryOpts.add("-Q");
+			optionsList.add("-Q");
 
 		if (isDebug())
-			aryOpts.add("-D");
+			optionsList.add("-D");
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((AdaBoostM1) getWekaClassifier()).setOptions(opts);
+			((AdaBoostM1) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -128,18 +128,18 @@ public class Canopy extends WekaClusteringAlgorithm {
 
 		wekaClusterer = new weka.clusterers.Canopy();
 
-		String[] opts = new String[8];
-		opts[0] = "-N";
-		opts[1] = "" + getK();
-		opts[2] = "-S";
-		opts[3] = "" + getSeed();
-		opts[4] = "-max-candidates";
-		opts[5] = "" + getMaxCandidates();
-		opts[6] = "-min-density";
-		opts[7] = "" + getMinDensity();
+		String[] options = new String[8];
+		options[0] = "-N";
+		options[1] = "" + getK();
+		options[2] = "-S";
+		options[3] = "" + getSeed();
+		options[4] = "-max-candidates";
+		options[5] = "" + getMaxCandidates();
+		options[6] = "-min-density";
+		options[7] = "" + getMinDensity();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

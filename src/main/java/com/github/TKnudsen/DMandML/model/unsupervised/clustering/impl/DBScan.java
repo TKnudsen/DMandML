@@ -71,15 +71,15 @@ public class DBScan extends WekaClusteringAlgorithm {
 			data = WekaConversion.getInstances(featureVectors, false);
 
 		wekaClusterer = new weka.clusterers.DBSCAN();
-		String[] opts = new String[5];
-		opts[0] = "-E";
-		opts[1] = "" + getEpsilon();
-		opts[2] = "-M";
-		opts[3] = "" + getMinPoints();
-		opts[4] = "-no-gui";
+		String[] options = new String[5];
+		options[0] = "-E";
+		options[1] = "" + getEpsilon();
+		options[2] = "-M";
+		options[3] = "" + getMinPoints();
+		options[4] = "-no-gui";
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

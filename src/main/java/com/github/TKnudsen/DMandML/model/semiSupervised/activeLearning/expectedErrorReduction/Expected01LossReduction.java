@@ -15,7 +15,7 @@ import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifier;
-import com.github.TKnudsen.DMandML.model.supervised.classifier.ClassifierTools;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifiers;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
@@ -125,7 +125,7 @@ public class Expected01LossReduction<FV extends IFeatureVectorObject<?, ?>> exte
 						Classifier<FV> newClassifier = null;
 						try {
 							if (parameterizedClassifier instanceof WekaClassifierWrapper)
-								newClassifier = ClassifierTools
+								newClassifier = Classifiers
 										.createParameterizedCopy((WekaClassifierWrapper<FV>) parameterizedClassifier);
 							else
 								newClassifier = parameterizedClassifier;

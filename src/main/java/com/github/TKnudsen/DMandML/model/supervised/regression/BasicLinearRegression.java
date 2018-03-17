@@ -147,35 +147,35 @@ public class BasicLinearRegression<FV extends IFeatureVectorObject<?, ?>> extend
 	protected void initializeRegression() {
 		wekaRegressionModel = new weka.classifiers.functions.LinearRegression();
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
-		aryOpts.add("-S"); // Attribute selection method: 1 = None, 2 = Greedy (default 0 = M5' method)
-		aryOpts.add(String.valueOf(getSelectionMethod()));
+		optionsList.add("-S"); // Attribute selection method: 1 = None, 2 = Greedy (default 0 = M5' method)
+		optionsList.add(String.valueOf(getSelectionMethod()));
 
 		if (isEliminateColinearAttributes())
-			aryOpts.add("-C"); // Do not try to eliminate colinear attributes
+			optionsList.add("-C"); // Do not try to eliminate colinear attributes
 
-		aryOpts.add("-R"); // Set ridge parameter (default 1.0e-8)
-		aryOpts.add(String.valueOf(getRidgeParameter()));
+		optionsList.add("-R"); // Set ridge parameter (default 1.0e-8)
+		optionsList.add(String.valueOf(getRidgeParameter()));
 
 		if (isConserveMemory())
-			aryOpts.add("-minimal"); // Conserve memory, don't keep dataset header and means/stdevs (default: keep
+			optionsList.add("-minimal"); // Conserve memory, don't keep dataset header and means/stdevs (default: keep
 										// data)
 
 		if (isAdditionalStats())
-			aryOpts.add("-additional-stats"); // Output additional statistics
+			optionsList.add("-additional-stats"); // Output additional statistics
 
 		if (isDebug())
-			aryOpts.add("-output-debug-info"); // Enables debug mode
+			optionsList.add("-output-debug-info"); // Enables debug mode
 
 		if (isDoNotCheckClassifierCapabilities())
-			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
+			optionsList.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
 														// built (use with caution)
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			wekaRegressionModel.setOptions(opts);
+			wekaRegressionModel.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

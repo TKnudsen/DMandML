@@ -52,17 +52,17 @@ public class KMeans extends WekaClusteringAlgorithm {
 	protected void initializeClusteringAlgorithm() {
 		wekaClusterer = new weka.clusterers.SimpleKMeans();
 
-		String[] opts = new String[7];
-		opts[0] = "-N";
-		opts[1] = "" + getK();
-		opts[2] = "-S";
-		opts[3] = "" + getSeed();
-		opts[4] = "-V";
-		opts[5] = "-I";
-		opts[6] = "" + getIterations();
+		String[] options = new String[7];
+		options[0] = "-N";
+		options[1] = "" + getK();
+		options[2] = "-S";
+		options[3] = "" + getSeed();
+		options[4] = "-V";
+		options[5] = "-I";
+		options[6] = "" + getIterations();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -79,12 +79,12 @@ public class HierarchicalClustering extends WekaClusteringAlgorithm {
 
 		wekaClusterer = new weka.clusterers.HierarchicalClusterer();
 
-		String[] opts = new String[2];
-		opts[0] = "-N";
-		opts[1] = "" + getK();
+		String[] options = new String[2];
+		options[0] = "-N";
+		options[1] = "" + getK();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

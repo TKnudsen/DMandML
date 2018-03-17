@@ -54,21 +54,21 @@ public class GaussianProcesses extends WekaClassifierWrapper<NumericalFeatureVec
 	protected void initializeClassifier() {
 		setWekaClassifier(new weka.classifiers.functions.GaussianProcesses());
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
-		aryOpts.add("-L");
-		aryOpts.add(levelOfGaussianNoise + "");
+		optionsList.add("-L");
+		optionsList.add(levelOfGaussianNoise + "");
 
-		aryOpts.add("-N");
-		aryOpts.add(normalizeType + "");
+		optionsList.add("-N");
+		optionsList.add(normalizeType + "");
 
-		aryOpts.add("-S");
-		aryOpts.add(seed + "");
+		optionsList.add("-S");
+		optionsList.add(seed + "");
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((weka.classifiers.functions.GaussianProcesses) getWekaClassifier()).setOptions(opts);
+			((weka.classifiers.functions.GaussianProcesses) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

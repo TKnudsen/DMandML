@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
@@ -82,5 +84,22 @@ public class LabelDistributionTools {
 			normalized.put(label, normalized.get(label) / sum);
 
 		return normalized;
+	}
+
+	public static String getSecondHighestLabel(LabelDistribution labelDistribution) {
+		if (labelDistribution == null)
+			throw new NullPointerException("LabelDistributionTools.getSecondHighestLabel: labelDistribution was null");
+
+		if (labelDistribution.getValueDistribution().size() < 2)
+			throw new IllegalArgumentException(
+					"LabelDistributionTools.getSecondHighestLabel: labelDistribution did not contain two entries.");
+
+		Ranking<EntryWithComparableKey<Double, String>> ranking = new Ranking<EntryWithComparableKey<Double, String>>();
+
+		for (String label : labelDistribution.keySet())
+			ranking.add(new EntryWithComparableKey<Double, String>(labelDistribution.getValueDistribution().get(label),
+					label));
+
+		return ranking.get(ranking.size() - 2).getValue();
 	}
 }

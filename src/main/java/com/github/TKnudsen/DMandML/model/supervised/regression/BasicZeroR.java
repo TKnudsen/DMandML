@@ -51,15 +51,15 @@ public class BasicZeroR<FV extends IFeatureVectorObject<?, ?>> extends WekaRegre
 	protected void initializeRegression() {
 		wekaRegressionModel = new weka.classifiers.rules.ZeroR();
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
 		if (isDebug())
-			aryOpts.add("-D"); // Enables debug mode
+			optionsList.add("-D"); // Enables debug mode
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			wekaRegressionModel.setOptions(opts);
+			wekaRegressionModel.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

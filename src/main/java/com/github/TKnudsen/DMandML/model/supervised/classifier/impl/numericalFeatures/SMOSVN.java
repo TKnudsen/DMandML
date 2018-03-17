@@ -90,56 +90,120 @@ public class SMOSVN extends WekaClassifierWrapper<NumericalFeatureVector> {
 	 */
 	private boolean fitLogisticModelsToSVMOutput = true;
 
+	/**
+	 * The random number seed. (default 1)
+	 */
+	private int seed = 1;
+
 	@Override
 	protected void initializeClassifier() {
 		setWekaClassifier(new weka.classifiers.functions.SMO());
 
-		List<String> aryOpts = new ArrayList<String>();
-		aryOpts.add("-C");
-		aryOpts.add(complexityParameter + "");
-
-		aryOpts.add("-E");
-		aryOpts.add(polynomialKernelExponent + "");
-
-		aryOpts.add("-G");
-		aryOpts.add(gammaForKernel + "");
-
-		aryOpts.add("-N");
-		aryOpts.add(normalizeType + "");
-
-		if (featureSpaceNormalization)
-			aryOpts.add("-F");
-
-		if (useLowerOrderTerms)
-			aryOpts.add("-O");
-
-		if (useRBGKernel)
-			aryOpts.add("-R");
-
-		aryOpts.add("-P");
-		aryOpts.add("1.0E-12");
-
-		aryOpts.add("-V");
-		aryOpts.add(numFolds + "");
-
-		aryOpts.add("-T");
-		aryOpts.add(toleranceParameter + "");
-
-		if (fitLogisticModelsToSVMOutput)
-			aryOpts.add("-M");
-
-		// The Kernel to use.
-		// aryOpts.add("-K");
-		// aryOpts.add("weka.classifiers.functions.supportVector.PolyKernel -C
-		// 250007 -E 1.0 ");
-
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		List<String> optionsList = getOptions12558();
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((SMO) getWekaClassifier()).setOptions(opts);
+			((SMO) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * according to version $1.50$:
+	 * http://www.dbs.ifi.lmu.de/~zimek/diplomathesis/implementations/EHNDs/doc/weka/classifiers/functions/SMO.html
+	 */
+	private List<String> getOptions150() {
+		List<String> optionsList = new ArrayList<String>();
+		optionsList.add("-C");
+		optionsList.add(complexityParameter + "");
+
+		optionsList.add("-E");
+		optionsList.add(polynomialKernelExponent + "");
+
+		optionsList.add("-G");
+		optionsList.add(gammaForKernel + "");
+
+		optionsList.add("-N");
+		optionsList.add(normalizeType + "");
+
+		if (featureSpaceNormalization)
+			optionsList.add("-F");
+
+		if (useLowerOrderTerms)
+			optionsList.add("-O");
+
+		if (useRBGKernel)
+			optionsList.add("-R");
+
+		optionsList.add("-P");
+		optionsList.add("1.0E-12");
+
+		optionsList.add("-V");
+		optionsList.add(numFolds + "");
+
+		optionsList.add("-T");
+		optionsList.add(toleranceParameter + "");
+
+		if (fitLogisticModelsToSVMOutput)
+			optionsList.add("-M");
+
+		return optionsList;
+	}
+
+	/**
+	 * according to revision 12558 $:
+	 * http://weka.sourceforge.net/doc.dev/weka/classifiers/functions/SMO.html
+	 */
+	private List<String> getOptions12558() {
+		List<String> optionsList = new ArrayList<String>();
+		optionsList.add("-C"); // matches $1.50$
+		optionsList.add(complexityParameter + "");
+
+		// optionsList.add("-E"); // matches $1.50$
+		// optionsList.add(polynomialKernelExponent + "");
+		// trew exception: "Illegal options: -E 1.0 -1"
+
+		// optionsList.add("-G"); // only in $1.50$
+		// optionsList.add(gammaForKernel + "");
+
+		optionsList.add("-N"); // matches $1.50$
+		optionsList.add(normalizeType + "");
+
+		if (featureSpaceNormalization)
+			optionsList.add("-F");
+
+		// if (useLowerOrderTerms) // only in $1.50$
+		// optionsList.add("-O"); //-L in $12558$
+
+		// if (useRBGKernel)
+		// optionsList.add("-R");
+		// optionsList.add("-R"); //log-likelihood in $12558$
+
+		optionsList.add("-P"); // matches $1.50$
+		optionsList.add("1.0E-12");
+
+		optionsList.add("-V"); // matches $1.50$
+		optionsList.add(numFolds + "");
+
+		// optionsList.add("-T");
+		optionsList.add("-L"); // L is "use lower-order terms" in $1.50$
+		optionsList.add(toleranceParameter + "");
+
+		// if (fitLogisticModelsToSVMOutput) //$1.50$
+		// optionsList.add("-M");
+		optionsList.add("-M"); // only in $12558$
+		optionsList.add(-1 + "");
+
+		optionsList.add("-W"); // only in $12558$
+		optionsList.add(seed + "");
+
+		// The Kernel to use.
+		// optionsList.add("-K");
+		// optionsList.add("weka.classifiers.functions.supportVector.PolyKernel -C
+		// 250007 -E 1.0 ");
+
+		return optionsList;
 	}
 
 	public double getPolynomialKernelExponent() {
@@ -238,6 +302,16 @@ public class SMOSVN extends WekaClassifierWrapper<NumericalFeatureVector> {
 
 	public void setFitLogisticModelsToSVMOutput(boolean fitLogisticModelsToSVMOutput) {
 		this.fitLogisticModelsToSVMOutput = fitLogisticModelsToSVMOutput;
+
+		initializeClassifier();
+	}
+
+	public int getSeed() {
+		return seed;
+	}
+
+	public void setSeed(int seed) {
+		this.seed = seed;
 
 		initializeClassifier();
 	}

@@ -1,9 +1,13 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 
 /**
  * <p>
@@ -19,7 +23,7 @@ import java.util.TreeSet;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.03
  */
 public class ClassificationResults {
 
@@ -88,6 +92,57 @@ public class ClassificationResults {
 			labelsMap.put(x, labelDistributionMap.get(x).getRepresentant());
 
 		return labelsMap;
+	}
+
+	public static Map<String, Double[]> createCentersOfGravity(
+			IClassificationResult<NumericalFeatureVector> classificationResult) {
+
+		Map<String, Double[]> gravityMap = new LinkedHashMap<>();
+
+		if (classificationResult == null)
+			throw new IllegalArgumentException(
+					"ClassificationResults.createCentersOfGravity: classification result was null.");
+
+		if (classificationResult.getFeatureVectors().size() == 0)
+			return gravityMap;
+
+		int dimensionality = classificationResult.getFeatureVectors().iterator().next().getDimensions();
+
+		// create vectors that will store the numeric information of the FVs
+		Set<String> classes = classificationResult.getClassDistributions().keySet();
+		for (String label : classes) {
+			Double[] vector = new Double[dimensionality];
+			Arrays.fill(vector, 0.0);
+			gravityMap.put(label, vector);
+		}
+
+		Map<String, Double> weightMap = new LinkedHashMap<>();
+		for (String label : classes)
+			weightMap.put(label, 0.0);
+
+		// add vector information
+		for (NumericalFeatureVector fv : classificationResult.getFeatureVectors()) {
+			double[] fvVector = fv.getVector();
+
+			for (String label : classes) {
+				Double probability = classificationResult.getLabelDistribution(fv).getProbability(label);
+
+				Double[] gravityVector = gravityMap.get(label);
+				for (int d = 0; d < dimensionality; d++)
+					gravityVector[d] += (fvVector[d] * probability);
+
+				weightMap.put(label, weightMap.get(label) + probability);
+			}
+		}
+
+		// build FVs representing the center-of-gravity information
+		for (String label : classes) {
+			Double[] gravityVector = gravityMap.get(label);
+			for (int d = 0; d < dimensionality; d++)
+				gravityVector[d] /= weightMap.get(label);
+		}
+
+		return gravityMap;
 	}
 
 }

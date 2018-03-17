@@ -36,45 +36,45 @@ public class BasicREPTree<FV extends IFeatureVectorObject<?, ?>> extends WekaReg
 
 		wekaRegressionModel = new weka.classifiers.trees.REPTree();
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
 		// Valid options are:
 		//
-		aryOpts.add("-M"); // <minimum number of instances>
-		aryOpts.add(minimumInstancesPerLeaf + "");
+		optionsList.add("-M"); // <minimum number of instances>
+		optionsList.add(minimumInstancesPerLeaf + "");
 		// Set minimum number of instances per leaf (default 2).
 		//
 		//
-		aryOpts.add("-V"); // <minimum variance for split>
-		aryOpts.add(minimumNumericVarianceProportionForSplit + "");
+		optionsList.add("-V"); // <minimum variance for split>
+		optionsList.add(minimumNumericVarianceProportionForSplit + "");
 		// Set minimum numeric class variance proportion
 		// of train variance for split (default 1e-3).
 		//
 		//
-		aryOpts.add("-N"); // <number of folds>
-		aryOpts.add(foldCount + "");
+		optionsList.add("-N"); // <number of folds>
+		optionsList.add(foldCount + "");
 		// Number of folds for reduced error pruning (default 3).
 		//
 		//
-		aryOpts.add("-S"); // <seed>
-		aryOpts.add(seed + "");
+		optionsList.add("-S"); // <seed>
+		optionsList.add(seed + "");
 		// Seed for random data shuffling (default 1).
 		//
 		//
 		if (!prune)
-			aryOpts.add("-P");
+			optionsList.add("-P");
 		// -P
 		// No pruning.
 		//
 		//
-		aryOpts.add("-L"); // -L
-		aryOpts.add(maximumTreeDepth + "");
+		optionsList.add("-L"); // -L
+		optionsList.add(maximumTreeDepth + "");
 		// Maximum tree depth (default -1, no maximum)
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			wekaRegressionModel.setOptions(opts);
+			wekaRegressionModel.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

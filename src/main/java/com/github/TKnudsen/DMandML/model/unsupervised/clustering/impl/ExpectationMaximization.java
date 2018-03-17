@@ -57,13 +57,13 @@ public class ExpectationMaximization extends WekaClusteringAlgorithm {
 	protected void initializeClusteringAlgorithm() {
 		wekaClusterer = new weka.clusterers.EM();
 
-		String[] opts = new String[4];
-		opts[0] = "-I";
-		opts[1] = getMaxIterations() + "";
-		opts[2] = "-N";
-		opts[3] = getK() + "";
+		String[] options = new String[4];
+		options[0] = "-I";
+		options[1] = getMaxIterations() + "";
+		options[2] = "-N";
+		options[3] = getK() + "";
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

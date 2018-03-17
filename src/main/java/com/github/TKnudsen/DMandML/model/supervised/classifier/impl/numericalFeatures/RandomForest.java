@@ -64,33 +64,33 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 	protected void initializeClassifier() {
 		setWekaClassifier(new weka.classifiers.trees.RandomForest());
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
-		aryOpts.add("-P");
-		aryOpts.add(sizeOfEachBagInPercent + "");
+		optionsList.add("-P");
+		optionsList.add(sizeOfEachBagInPercent + "");
 
-		aryOpts.add("-I");
-		aryOpts.add(iterations + "");
+		optionsList.add("-I");
+		optionsList.add(iterations + "");
 
-		aryOpts.add("-K");
-		aryOpts.add(numFeatures + "");
+		optionsList.add("-K");
+		optionsList.add(numFeatures + "");
 
-		aryOpts.add("-M");
-		aryOpts.add(minInstancesPerLeaf + "");
+		optionsList.add("-M");
+		optionsList.add(minInstancesPerLeaf + "");
 
-		aryOpts.add("-V");
-		aryOpts.add(minClassVariance + "");
+		optionsList.add("-V");
+		optionsList.add(minClassVariance + "");
 
-		aryOpts.add("-S");
-		aryOpts.add(1 + "");
+		optionsList.add("-S");
+		optionsList.add(1 + "");
 
-		aryOpts.add("-depth");
-		aryOpts.add(depthMax + "");
+		optionsList.add("-depth");
+		optionsList.add(depthMax + "");
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((weka.classifiers.trees.RandomForest) getWekaClassifier()).setOptions(opts);
+			((weka.classifiers.trees.RandomForest) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
