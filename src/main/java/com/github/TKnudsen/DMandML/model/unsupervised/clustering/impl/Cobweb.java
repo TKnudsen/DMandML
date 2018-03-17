@@ -89,16 +89,16 @@ public class Cobweb extends WekaClusteringAlgorithm {
 
 		wekaClusterer = new weka.clusterers.Cobweb();
 
-		String[] opts = new String[6];
-		opts[0] = "-A";
-		opts[1] = "" + getAcuity();
-		opts[2] = "-C";
-		opts[3] = "" + getCutoff();
-		opts[4] = "-S";
-		opts[5] = "" + getSeed();
+		String[] options = new String[6];
+		options[0] = "-A";
+		options[1] = "" + getAcuity();
+		options[2] = "-C";
+		options[3] = "" + getCutoff();
+		options[4] = "-S";
+		options[5] = "" + getSeed();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -26,11 +26,23 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 public class SparseDistanceMatrix<T> extends DistanceMatrix<T> {
 
 	private Map<T, Map<T, Double>> distanceMapping;
+
+	/**
+	 * error return value when distance calculation is not possible
+	 */
 	private double threshold;
 
+	/**
+	 * 
+	 * @param objects
+	 * @param distanceMeasure
+	 * @param threshold
+	 *            error return value when distance calculation is not possible
+	 */
 	public SparseDistanceMatrix(List<T> objects, IDistanceMeasure<T> distanceMeasure, double threshold) {
 		super(objects, distanceMeasure);
 		this.threshold = threshold;
+		
 		initializeDistanceMatrix();
 	}
 

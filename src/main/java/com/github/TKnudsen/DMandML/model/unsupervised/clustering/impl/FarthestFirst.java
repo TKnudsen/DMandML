@@ -69,14 +69,14 @@ public class FarthestFirst extends WekaClusteringAlgorithm {
 
 		wekaClusterer = new weka.clusterers.FarthestFirst();
 
-		String[] opts = new String[4];
-		opts[0] = "-N";
-		opts[1] = "" + getK();
-		opts[2] = "-S";
-		opts[3] = "" + getSeed();
+		String[] options = new String[4];
+		options[0] = "-N";
+		options[1] = "" + getK();
+		options[2] = "-S";
+		options[3] = "" + getSeed();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

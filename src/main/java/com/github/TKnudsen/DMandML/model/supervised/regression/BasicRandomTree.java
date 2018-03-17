@@ -211,48 +211,48 @@ public class BasicRandomTree<FV extends IFeatureVectorObject<?, ?>> extends Weka
 	protected void initializeRegression() {
 		wekaRegressionModel = new weka.classifiers.trees.RandomTree();
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
-		aryOpts.add("-K"); // Number of attributes to randomly investigate (default 0)
-		aryOpts.add(String.valueOf(getRandomlyInvestigatedAttributes()));
+		optionsList.add("-K"); // Number of attributes to randomly investigate (default 0)
+		optionsList.add(String.valueOf(getRandomlyInvestigatedAttributes()));
 
-		aryOpts.add("-M"); // Set minimum number of instances per leaf (default 1)
-		aryOpts.add(String.valueOf(getMinimumInstancesPerLeaf()));
+		optionsList.add("-M"); // Set minimum number of instances per leaf (default 1)
+		optionsList.add(String.valueOf(getMinimumInstancesPerLeaf()));
 
-		aryOpts.add("-V"); // Set minimum numeric class variance proportion of train variance for split
+		optionsList.add("-V"); // Set minimum numeric class variance proportion of train variance for split
 							// (default 1e-3)
-		aryOpts.add(String.valueOf(getClassVarianceProportion()));
+		optionsList.add(String.valueOf(getClassVarianceProportion()));
 
-		aryOpts.add("-S"); // Seed for random number generator (default 1)
-		aryOpts.add(String.valueOf(getRandomSeed()));
+		optionsList.add("-S"); // Seed for random number generator (default 1)
+		optionsList.add(String.valueOf(getRandomSeed()));
 
-		aryOpts.add("-depth"); // The maximum depth of the tree, 0 for unlimited (default 0)
-		aryOpts.add(String.valueOf(getMaximumTreeDepth()));
+		optionsList.add("-depth"); // The maximum depth of the tree, 0 for unlimited (default 0)
+		optionsList.add(String.valueOf(getMaximumTreeDepth()));
 
-		aryOpts.add("-N"); // Number of folds for backfitting (default 0, no backfitting)
-		aryOpts.add(String.valueOf(getBackfittingFolds()));
+		optionsList.add("-N"); // Number of folds for backfitting (default 0, no backfitting)
+		optionsList.add(String.valueOf(getBackfittingFolds()));
 
 		if (isAllowUnclassifiedInstances())
-			aryOpts.add("-U"); // Allow unclassified instances
+			optionsList.add("-U"); // Allow unclassified instances
 
 		if (isBreakTiesRandomly())
-			aryOpts.add("-B"); // Break ties randomly when several attributes look equally good
+			optionsList.add("-B"); // Break ties randomly when several attributes look equally good
 
 		if (isDebug())
-			aryOpts.add("-output-debug-info"); // Enables debug mode
+			optionsList.add("-output-debug-info"); // Enables debug mode
 
 		if (isDoNotCheckCapabilities())
-			aryOpts.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
+			optionsList.add("-do-not-check-capabilities"); // Classifier capabilities are not checked before classifier is
 														// built (use with caution)
 
-		aryOpts.add("-num-decimal-places"); // The number of decimal places for the output of numbers in the model
+		optionsList.add("-num-decimal-places"); // The number of decimal places for the output of numbers in the model
 											// (default 2)
-		aryOpts.add(String.valueOf(getDecimalPlaces()));
+		optionsList.add(String.valueOf(getDecimalPlaces()));
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			wekaRegressionModel.setOptions(opts);
+			wekaRegressionModel.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

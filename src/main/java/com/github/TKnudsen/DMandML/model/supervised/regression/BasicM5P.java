@@ -99,26 +99,26 @@ public class BasicM5P<FV extends IFeatureVectorObject<?, ?>> extends WekaRegress
 	protected void initializeRegression() {
 		wekaRegressionModel = new weka.classifiers.trees.M5P();
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
 		if (isUseUnprunedTree())
-			aryOpts.add("-N"); // Use unpruned tree/rules
+			optionsList.add("-N"); // Use unpruned tree/rules
 
 		if (isUseUnsmoothedPredictions())
-			aryOpts.add("-U"); // Use unsmoothed predictions
+			optionsList.add("-U"); // Use unsmoothed predictions
 
-		aryOpts.add("-R"); // Build regression tree/rule rather than a model tree/rule
+		optionsList.add("-R"); // Build regression tree/rule rather than a model tree/rule
 
-		aryOpts.add("-M"); // Set minimum number of instances per leaf (default 4)
-		aryOpts.add(String.valueOf(getMinimumNumberOfInstances()));
+		optionsList.add("-M"); // Set minimum number of instances per leaf (default 4)
+		optionsList.add(String.valueOf(getMinimumNumberOfInstances()));
 
 		if (isSafeInstances())
-			aryOpts.add("-L"); // Save instances at the nodes in the tree (for visualization purposes)
+			optionsList.add("-L"); // Save instances at the nodes in the tree (for visualization purposes)
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			wekaRegressionModel.setOptions(opts);
+			wekaRegressionModel.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

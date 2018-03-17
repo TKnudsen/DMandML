@@ -104,12 +104,12 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 			parameters.add("" + outputDimensionality);
 		}
 
-		String[] opts = new String[parameters.size()];
-		opts = parameters.toArray(opts);
+		String[] options = new String[parameters.size()];
+		options = parameters.toArray(options);
 
 		pca = new PrincipalComponents();
 		try {
-			pca.setOptions(opts);
+			pca.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

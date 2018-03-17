@@ -21,7 +21,7 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.08
+ * @version 1.10
  * 
  */
 public interface IClassifier<X> extends ILearningModel<X, String> {
@@ -58,7 +58,8 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	 * 
 	 * @param featureVector
 	 *            The feature vector
-	 * @return The label distribution
+	 * @return The label distribution. LinkedHashMap preserves the order of labels,
+	 *         useful for larger contexts.
 	 */
 	Map<String, Double> getLabelDistribution(X featureVector);
 }

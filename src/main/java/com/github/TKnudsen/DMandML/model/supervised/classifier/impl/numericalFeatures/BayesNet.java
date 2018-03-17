@@ -39,15 +39,15 @@ public class BayesNet extends WekaClassifierWrapper<NumericalFeatureVector> {
 	protected void initializeClassifier() {
 		setWekaClassifier(new weka.classifiers.bayes.BayesNet());
 
-		List<String> aryOpts = new ArrayList<String>();
+		List<String> optionsList = new ArrayList<String>();
 
 		if (neglectADTree)
-			aryOpts.add("-D");
+			optionsList.add("-D");
 
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((weka.classifiers.bayes.BayesNet) getWekaClassifier()).setOptions(opts);
+			((weka.classifiers.bayes.BayesNet) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

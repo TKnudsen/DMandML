@@ -62,16 +62,16 @@ public class XMeans extends WekaClusteringAlgorithm {
 	protected void initializeClusteringAlgorithm() {
 		wekaClusterer = new weka.clusterers.XMeans();
 
-		String[] opts = new String[6];
-		opts[0] = "-I";
-		opts[1] = "" + 1;
-		opts[2] = "-L";
-		opts[3] = "" + getK_min();
-		opts[4] = "-H";
-		opts[5] = "" + getK_max();
+		String[] options = new String[6];
+		options[0] = "-I";
+		options[1] = "" + 1;
+		options[2] = "-L";
+		options[3] = "" + getK_min();
+		options[4] = "-H";
+		options[5] = "" + getK_max();
 
 		try {
-			wekaClusterer.setOptions(opts);
+			wekaClusterer.setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

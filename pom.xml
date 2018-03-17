@@ -42,6 +42,21 @@
 			<version>1.0.3</version>
 		</dependency>
 		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>multiInstanceLearning</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>decorate</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>LibSVM</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		<dependency>
 			<groupId>org.pentaho.pentaho-commons</groupId>
 			<artifactId>pentaho-package-manager</artifactId>
 			<version>1.0.11</version>

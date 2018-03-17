@@ -37,11 +37,11 @@ public class NaiveBayesMultinomial extends WekaClassifierWrapper<NumericalFeatur
 	protected void initializeClassifier() {
 		setWekaClassifier(new weka.classifiers.bayes.NaiveBayesMultinomial());
 
-		List<String> aryOpts = new ArrayList<String>();
-		String[] opts = aryOpts.toArray(new String[aryOpts.size()]);
+		List<String> optionsList = new ArrayList<String>();
+		String[] options = optionsList.toArray(new String[optionsList.size()]);
 
 		try {
-			((weka.classifiers.bayes.NaiveBayesMultinomial) getWekaClassifier()).setOptions(opts);
+			((weka.classifiers.bayes.NaiveBayesMultinomial) getWekaClassifier()).setOptions(options);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
