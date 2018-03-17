@@ -19,7 +19,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class XMeans extends WekaClusteringAlgorithm {
 
@@ -42,7 +42,7 @@ public class XMeans extends WekaClusteringAlgorithm {
 		this(1, 10, null);
 	}
 
-	public XMeans(int k_min, int k_max, List<NumericalFeatureVector> featureVectors) {
+	public XMeans(int k_min, int k_max, List<? extends NumericalFeatureVector> featureVectors) {
 		super(featureVectors);
 		this.k_min = k_min;
 		this.k_max = k_max;
