@@ -191,4 +191,15 @@ public class EnsembleClassifier<FV> implements IClassifier<FV> {
 		return getName();
 	}
 
+	/**
+	 * Note: this is highly critical as these classifiers may run out of sync when
+	 * trained from outside. However, it brings advantage in the (visual) analysis
+	 * of individual classifier models / results.
+	 * 
+	 * @return
+	 */
+	public List<IClassifier<FV>> getClassifiers() {
+		return classifiers;
+	}
+
 }
