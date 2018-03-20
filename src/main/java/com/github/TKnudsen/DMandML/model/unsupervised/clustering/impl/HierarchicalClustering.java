@@ -1,6 +1,13 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;
+
+import weka.clusterers.HierarchicalClusterer;
+import weka.core.SelectedTag;
 
 /**
  * <p>
@@ -16,7 +23,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.04
  */
 public class HierarchicalClustering extends WekaClusteringAlgorithm {
 
@@ -25,16 +32,36 @@ public class HierarchicalClustering extends WekaClusteringAlgorithm {
 	 */
 	private int k;
 
-	// TODO add link type: Link type (Single, Complete, Average, Mean, Centroid,
-	// Ward, Adjusted complete, Neighbor Joining)
-	// [SINGLE|COMPLETE|AVERAGE|MEAN|CENTROID|WARD|ADJCOMPLETE|NEIGHBOR_JOINING]
+	/**
+	 * linkage strategy of the hierarchical clustering algorithm
+	 */
+	private LinkageStrategy linkageStrategy;
+	private SelectedTag WEKALinkType;
 
 	protected HierarchicalClustering() {
 		this(3);
 	}
 
 	public HierarchicalClustering(int k) {
+		this(k, LinkageStrategy.AverageLinkage);
+	}
+
+	public HierarchicalClustering(int k, LinkageStrategy linkageStrategy) {
+		this.k = k;
+		setLinkageStrategy(linkageStrategy);
+	}
+
+	public HierarchicalClustering(int k, List<? extends NumericalFeatureVector> featureVectors) {
 		setK(k);
+
+		setFeatureVectors(featureVectors);
+	}
+
+	public HierarchicalClustering(int k, LinkageStrategy linkageStrategy,
+			List<? extends NumericalFeatureVector> featureVectors) {
+		this(k, linkageStrategy);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	@Override
@@ -85,6 +112,10 @@ public class HierarchicalClustering extends WekaClusteringAlgorithm {
 
 		try {
 			wekaClusterer.setOptions(options);
+
+			weka.clusterers.HierarchicalClusterer clusterer = (HierarchicalClusterer) wekaClusterer;
+			clusterer.setLinkType(WEKALinkType);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,6 +127,19 @@ public class HierarchicalClustering extends WekaClusteringAlgorithm {
 
 	public void setK(int k) {
 		this.k = k;
+
+		initializeClusteringAlgorithm();
+	}
+
+	public LinkageStrategy getLinkageStrategy() {
+		return linkageStrategy;
+	}
+
+	public void setLinkageStrategy(LinkageStrategy linkageStrategy) {
+		this.linkageStrategy = linkageStrategy;
+		this.WEKALinkType = WekaClusteringAlgorithm.converteLinkageStrategy(linkageStrategy);
+
+		initializeClusteringAlgorithm();
 	}
 
 }

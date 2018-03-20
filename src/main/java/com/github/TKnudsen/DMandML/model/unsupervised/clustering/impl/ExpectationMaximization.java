@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -41,6 +44,12 @@ public class ExpectationMaximization extends WekaClusteringAlgorithm {
 	public ExpectationMaximization(int k, int maxIterations) {
 		setK(k);
 		setMaxIterations(maxIterations);
+	}
+
+	public ExpectationMaximization(int k, List<? extends NumericalFeatureVector> featureVectors) {
+		this(k);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	@Override

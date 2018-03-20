@@ -20,7 +20,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public class DBScan extends WekaClusteringAlgorithm {
 
@@ -39,20 +39,15 @@ public class DBScan extends WekaClusteringAlgorithm {
 	protected DBScan() {
 	}
 
-	public DBScan(List<NumericalFeatureVector> featureVectors) {
-		this(featureVectors, 0.1, 10);
-	}
-
 	public DBScan(double epsilon, int minPoints) {
-		setFeatureVectors(null);
 		setEpsilon(epsilon);
 		setMinPoints(minPoints);
 	}
 
-	public DBScan(List<NumericalFeatureVector> featureVectors, double epsilon, int minPoints) {
+	public DBScan(List<? extends NumericalFeatureVector> featureVectors, double epsilon, int minPoints) {
+		this(epsilon, minPoints);
+
 		setFeatureVectors(featureVectors);
-		setEpsilon(epsilon);
-		setMinPoints(minPoints);
 	}
 
 	@Override

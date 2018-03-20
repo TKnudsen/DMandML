@@ -14,9 +14,9 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 
 public enum LinkageStrategy {
-	SingleLinkage, AverageLinkage, MedianLinkage, CompleteLinkage;
+	SingleLinkage, AverageLinkage, MedianLinkage, CompleteLinkage, MeanLinkage, CentroidLinkage, WardLinkage, AdjComplete, NeighborJoining;
 }
