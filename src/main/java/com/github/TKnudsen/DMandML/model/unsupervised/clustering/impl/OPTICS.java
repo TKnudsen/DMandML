@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -21,7 +24,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class OPTICS extends WekaClusteringAlgorithm {
 
@@ -44,6 +47,12 @@ public class OPTICS extends WekaClusteringAlgorithm {
 	public OPTICS(double epsilon, int minPoints) {
 		setEpsilon(epsilon);
 		setMinPoints(minPoints);
+	}
+
+	public OPTICS(double epsilon, int minPoints, List<? extends NumericalFeatureVector> featureVectors) {
+		this(epsilon, minPoints);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	@Override

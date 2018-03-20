@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -41,6 +44,12 @@ public class Cobweb extends WekaClusteringAlgorithm {
 		setAcuity(acuity);
 		setCutoff(cutoff);
 		setSeed(17);
+	}
+
+	public Cobweb(double acuity, double cutoff, List<? extends NumericalFeatureVector> featureVectors) {
+		this(acuity, cutoff);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	public Cobweb(double acuity, double cutoff, int seed) {

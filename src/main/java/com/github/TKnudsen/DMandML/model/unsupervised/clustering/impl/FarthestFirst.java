@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -21,11 +24,11 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class FarthestFirst extends WekaClusteringAlgorithm {
 
@@ -39,6 +42,12 @@ public class FarthestFirst extends WekaClusteringAlgorithm {
 
 	protected FarthestFirst(int k) {
 		this(k, 1);
+	}
+
+	public FarthestFirst(int k, List<? extends NumericalFeatureVector> featureVectors) {
+		this(k, 1);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	protected FarthestFirst(int k, int seed) {

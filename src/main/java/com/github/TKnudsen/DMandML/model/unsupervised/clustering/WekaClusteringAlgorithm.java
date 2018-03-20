@@ -8,17 +8,17 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.tools.WekaClusteringTools;
+import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;
 
 import weka.clusterers.AbstractClusterer;
+import weka.clusterers.HierarchicalClusterer;
 import weka.core.Instances;
+import weka.core.SelectedTag;
 
 /**
  * <p>
- * Title: WekaClusteringAlgorithm
- * </p>
- * 
- * <p>
- * Description: abstract baseline routine for WEKA-base clustering routines.
+ * Title: We Description: abstract baseline routine for WEKA-base clustering
+ * routines.
  * 
  * For more information see: Dan Pelleg, Andrew W. Moore: X-means: Extending
  * K-means with Efficient Estimation of the Number of Clusters. In: Seventeenth
@@ -100,5 +100,41 @@ public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlg
 			data = WekaConversion.getInstances(featureVectors, false);
 
 		clusterResult = null;
+	}
+
+	public static SelectedTag converteLinkageStrategy(LinkageStrategy linkageStrategy) {
+
+		switch (linkageStrategy) {
+		case SingleLinkage:
+			return new SelectedTag(0, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case CompleteLinkage:
+			return new SelectedTag(1, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case AverageLinkage:
+			return new SelectedTag(2, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case MeanLinkage:
+			return new SelectedTag(3, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case CentroidLinkage:
+			return new SelectedTag(4, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case WardLinkage:
+			return new SelectedTag(5, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case AdjComplete:
+			return new SelectedTag(6, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case NeighborJoining:
+			return new SelectedTag(7, HierarchicalClusterer.TAGS_LINK_TYPE);
+
+		case MedianLinkage:
+			throw new IllegalArgumentException(
+					"WekaClusteringAlgorithm.converteLinkageStrategy: WEKA does not support median linkage");
+		default:
+			throw new IllegalArgumentException(
+					"WekaClusteringAlgorithm.converteLinkageStrategy: not supported by WEKA");
+		}
 	}
 }

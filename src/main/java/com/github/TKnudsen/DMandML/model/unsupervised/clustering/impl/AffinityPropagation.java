@@ -75,21 +75,6 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 	 */
 	ELKIDataWrapper elkiDataWrapper;
 
-	// /**
-	// * this is how ELKI handles feature vectors.
-	// */
-	// private Database db;
-
-	// /**
-	// * redundant data structure to store the input FVs for the clustering
-	// */
-	// private List<NumericalFeatureVector> featureVectors;
-
-	// /**
-	// * allows linking back to given feature vectors.
-	// */
-	// private Map<NumberVector, NumericalFeatureVector> lookupTable;
-
 	/**
 	 * ELKI clustering result
 	 */
@@ -104,8 +89,9 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 		this(null, 0.5, 0.5, 10, 1000);
 	}
 
-	public AffinityPropagation(List<NumericalFeatureVector> featureVectors, double quantile, double lambda,
+	public AffinityPropagation(List<? extends NumericalFeatureVector> featureVectors, double quantile, double lambda,
 			int convergence, int maxiter) {
+
 		if (featureVectors != null)
 			setFeatureVectors(featureVectors);
 
@@ -124,37 +110,14 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 			return null;
 
 		return elkiDataWrapper.getFeatureVectors();
-
-		// return Collections.unmodifiableList(featureVectors);
 	}
 
 	@Override
 	public void setFeatureVectors(List<? extends NumericalFeatureVector> featureVectors) {
-		// this.featureVectors = new ArrayList<>(featureVectors);
-
 		elkiDataWrapper = new ELKIDataWrapper(featureVectors);
 
 		this.clusteringResult = null;
 		this.clusteringResultFVs = null;
-
-		// db = null;
-		// if (featureVectors == null)
-		// return;
-		//
-		// db = ELKITools.createAndInitializeELKIDatabase(featureVectors);
-		//
-		// // create lookup table
-		// lookupTable = new HashMap<>();
-		//
-		// Relation<NumberVector> rel = db.getRelation(TypeUtil.NUMBER_VECTOR_FIELD);
-		//
-		// int i = 0;
-		// for (DBIDIter it = rel.getDBIDs().iter(); it.valid(); it.advance()) {
-		// NumberVector v = rel.get(it);
-		//
-		// // TODO this is dirty! it assumes that the order is always preserved.
-		// lookupTable.put(v, featureVectors.get(i++));
-		// }
 	}
 
 	@Override

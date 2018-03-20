@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 
 /**
@@ -36,7 +39,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class Canopy extends WekaClusteringAlgorithm {
 
@@ -56,11 +59,22 @@ public class Canopy extends WekaClusteringAlgorithm {
 		this(k, 100, 2, 1);
 	}
 
+	public Canopy(int k, List<? extends NumericalFeatureVector> featureVectors) {
+		this(k, 100, 2, 1, featureVectors);
+	}
+
 	public Canopy(int k, int maxCandidates, int minDensity, int seed) {
 		setK(k);
 		setMaxCandidates(maxCandidates);
 		setMinDensity(minDensity);
 		setSeed(seed);
+	}
+
+	public Canopy(int k, int maxCandidates, int minDensity, int seed,
+			List<? extends NumericalFeatureVector> featureVectors) {
+		this(k, maxCandidates, minDensity, seed);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	@Override
@@ -143,7 +157,6 @@ public class Canopy extends WekaClusteringAlgorithm {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public int getK() {
