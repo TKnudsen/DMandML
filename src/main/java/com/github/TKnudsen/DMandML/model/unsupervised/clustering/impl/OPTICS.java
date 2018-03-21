@@ -29,23 +29,23 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 public class OPTICS extends WekaClusteringAlgorithm {
 
 	/**
-	 * the maximum epsilon (distance) between points that is allowed for a cluster
-	 * structure
+	 * the relative radius around an instance. WEKA default = 0.9. Best practice:
+	 * 0.15
 	 */
-	private double epsilon;
+	private double epsilonRelative;
 
 	/**
 	 * the number of minPoints of a potential dense (distances <= epsilon) cluster
-	 * structure to be a valid cluster
+	 * structure to be a valid cluster. Default suggestion: n/(k*3).
 	 */
 	private int minPoints;
 
 	protected OPTICS() {
-		this(0.9, 6);
+		this(0.15, 6);
 	}
 
 	public OPTICS(double epsilon, int minPoints) {
-		setEpsilon(epsilon);
+		setEpsilonRelative(epsilon);
 		setMinPoints(minPoints);
 	}
 
@@ -99,7 +99,7 @@ public class OPTICS extends WekaClusteringAlgorithm {
 
 		String[] options = new String[5];
 		options[0] = "-E";
-		options[1] = "" + getEpsilon();
+		options[1] = "" + getEpsilonRelative();
 		options[2] = "-M";
 		options[3] = "" + getMinPoints();
 		options[4] = "-no-gui";
@@ -111,12 +111,14 @@ public class OPTICS extends WekaClusteringAlgorithm {
 		}
 	}
 
-	public double getEpsilon() {
-		return epsilon;
+	public double getEpsilonRelative() {
+		return epsilonRelative;
 	}
 
-	public void setEpsilon(double epsilon) {
-		this.epsilon = epsilon;
+	public void setEpsilonRelative(double epsilonRelative) {
+		this.epsilonRelative = epsilonRelative;
+
+		initializeClusteringAlgorithm();
 	}
 
 	public int getMinPoints() {
@@ -125,6 +127,8 @@ public class OPTICS extends WekaClusteringAlgorithm {
 
 	public void setMinPoints(int minPoints) {
 		this.minPoints = minPoints;
+
+		initializeClusteringAlgorithm();
 	}
 
 }

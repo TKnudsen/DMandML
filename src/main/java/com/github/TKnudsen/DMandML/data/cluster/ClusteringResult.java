@@ -26,6 +26,8 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 
 	private long ID;
 
+	private String name;
+
 	private int hash = -1;
 
 	List<C> clusters = new ArrayList<>();
@@ -34,7 +36,16 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 	 * @param clusters
 	 */
 	public ClusteringResult(List<? extends C> clusters) {
+		this(clusters, null);
+	}
+
+	/**
+	 * @param clusters
+	 */
+	public ClusteringResult(List<? extends C> clusters, String name) {
 		this.clusters = new ArrayList<>(clusters);
+
+		this.name = name;
 
 		this.ID = MathFunctions.randomLong();
 		hash = -1;
@@ -46,7 +57,7 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 		for (int i = 0; i < cls.size(); i++)
 			cls.add((C) ClusterTools.clone(clusters.get(i)));
 
-		IClusteringResult<T, ? extends C> asdf = new ClusteringResult<T, C>(cls);
+		IClusteringResult<T, ? extends C> asdf = new ClusteringResult<T, C>(cls, getName());
 		return asdf;
 	}
 
@@ -159,6 +170,9 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 
 	@Override
 	public String getName() {
+		if (name != null)
+			return name;
+
 		return "ClusterResult";
 	}
 

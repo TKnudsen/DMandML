@@ -24,7 +24,11 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
 public class NumericalFeatureVectorClusterResult extends FeatureVectorClusteringResult<NumericalFeatureVector> {
 
 	public NumericalFeatureVectorClusterResult(List<NumericalFeatureVectorCluster> clusters) {
-		super(clusters);
+		this(clusters, null);
+	}
+
+	public NumericalFeatureVectorClusterResult(List<NumericalFeatureVectorCluster> clusters, String name) {
+		super(clusters, name);
 	}
 
 }
