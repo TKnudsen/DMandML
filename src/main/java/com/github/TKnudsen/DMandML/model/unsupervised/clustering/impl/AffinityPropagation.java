@@ -89,6 +89,10 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 		this(null, 0.5, 0.5, 10, 1000);
 	}
 
+	public AffinityPropagation(List<? extends NumericalFeatureVector> featureVectors) {
+		this(featureVectors, 0.5, 0.5, 10, 1000);
+	}
+
 	public AffinityPropagation(List<? extends NumericalFeatureVector> featureVectors, double quantile, double lambda,
 			int convergence, int maxiter) {
 
@@ -173,7 +177,7 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 			fvCLusters.add(new NumericalFeatureVectorCluster(fvs, getName() + " cluster " + c++));
 		}
 
-		clusteringResultFVs = new NumericalFeatureVectorClusterResult(fvCLusters);
+		clusteringResultFVs = new NumericalFeatureVectorClusterResult(fvCLusters, getName());
 
 		return clusteringResultFVs;
 	}

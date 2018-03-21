@@ -175,11 +175,14 @@ public class ClusteringResultTools {
 		if (!normalizeToProbabilities)
 			return new ClusterDistanceDistribution<T, C>(distanceDistribution);
 
-		// TODO validate if distances are converted to probabilities appropriately
 		Map<C, Double> returnDistribution = new HashMap<>();
 
+		double sumOfMultiples = 0.0;
 		for (C c : clusteringResult)
-			returnDistribution.put(c, distanceDistribution.get(c) / distanceSum);
+			sumOfMultiples += distanceSum / distanceDistribution.get(c);
+
+		for (C c : clusteringResult)
+			returnDistribution.put(c, (distanceSum / distanceDistribution.get(c)) / sumOfMultiples);
 
 		return new ClusterDistanceDistribution<T, C>(returnDistribution);
 	}

@@ -13,6 +13,9 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * 
  * <p>
  * Description: implementation is based on WEKAs DBSCAN.
+ * 
+ * Note: the epsilon parameter is relative not absolute. It is thus not
+ * necessary to assess distance values of the applied data set.
  * </p>
  * 
  * <p>
@@ -20,19 +23,19 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public class DBScan extends WekaClusteringAlgorithm {
 
 	/**
-	 * the maximum epsilon (distance) between points that is allowed for a cluster
-	 * structure
+	 * the relative radius around an instance. WEKA default = 0.9. Best practice:
+	 * 0.15
 	 */
-	private double epsilon;
+	private double epsilonRelative;
 
 	/**
 	 * the number of minPoints of a potential dense (distances <= epsilon) cluster
-	 * structure to be a valid cluster
+	 * structure to be a valid cluster. Default suggestion: n/(k*3).
 	 */
 	private int minPoints;
 
@@ -40,7 +43,7 @@ public class DBScan extends WekaClusteringAlgorithm {
 	}
 
 	public DBScan(double epsilon, int minPoints) {
-		setEpsilon(epsilon);
+		setEpsilonRelative(epsilon);
 		setMinPoints(minPoints);
 	}
 
@@ -68,7 +71,7 @@ public class DBScan extends WekaClusteringAlgorithm {
 		wekaClusterer = new weka.clusterers.DBSCAN();
 		String[] options = new String[5];
 		options[0] = "-E";
-		options[1] = "" + getEpsilon();
+		options[1] = "" + getEpsilonRelative();
 		options[2] = "-M";
 		options[3] = "" + getMinPoints();
 		options[4] = "-no-gui";
@@ -80,12 +83,14 @@ public class DBScan extends WekaClusteringAlgorithm {
 		}
 	}
 
-	public double getEpsilon() {
-		return epsilon;
+	public double getEpsilonRelative() {
+		return epsilonRelative;
 	}
 
-	public void setEpsilon(double epsilon) {
-		this.epsilon = epsilon;
+	public void setEpsilonRelative(double epsilonRelative) {
+		this.epsilonRelative = epsilonRelative;
+
+		initializeClusteringAlgorithm();
 	}
 
 	public int getMinPoints() {
@@ -94,5 +99,7 @@ public class DBScan extends WekaClusteringAlgorithm {
 
 	public void setMinPoints(int minPoints) {
 		this.minPoints = minPoints;
+
+		initializeClusteringAlgorithm();
 	}
 }

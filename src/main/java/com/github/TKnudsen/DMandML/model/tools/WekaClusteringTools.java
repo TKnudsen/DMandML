@@ -59,7 +59,7 @@ public class WekaClusteringTools {
 			for (Integer i : fvs.keySet())
 				clusters.add(new NumericalFeatureVectorCluster(fvs.get(i), clusteringName + " Cluster " + i));
 
-			return new NumericalFeatureVectorClusterResult(clusters);
+			return new NumericalFeatureVectorClusterResult(clusters, clusteringName);
 
 		} catch (Exception e) {
 			e.printStackTrace();

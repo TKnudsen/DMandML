@@ -25,18 +25,27 @@ import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
  * @author Juergen Bernard
  * @version 1.01
  */
-public class ClusterResultWithClusterLookupSupport<T extends IDObject, C extends Cluster<T>> extends ClusteringResult<T, C> {
+public class ClusterResultWithClusterLookupSupport<T extends IDObject, C extends Cluster<T>>
+		extends ClusteringResult<T, C> {
 
 	private Map<T, C> clusterLookup;
 
 	public ClusterResultWithClusterLookupSupport(List<C> clusters) {
-		super(clusters);
+		this(clusters, null);
+	}
+
+	public ClusterResultWithClusterLookupSupport(List<C> clusters, String name) {
+		super(clusters, name);
 
 		initializeClusterLookup();
 	}
 
 	public ClusterResultWithClusterLookupSupport(ClusteringResult<T, C> clusteringResult) {
-		super(clusteringResult.getClusters());
+		this(clusteringResult, null);
+	}
+
+	public ClusterResultWithClusterLookupSupport(ClusteringResult<T, C> clusteringResult, String name) {
+		super(clusteringResult.getClusters(), name);
 
 		initializeClusterLookup();
 	}

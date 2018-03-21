@@ -29,4 +29,7 @@ public class FeatureVectorClusteringResult<FV extends IFeatureVectorObject<?, ?>
 		super(clusters);
 	}
 
+	public FeatureVectorClusteringResult(List<? extends FeatureVectorCluster<FV>> clusters, String name) {
+		super(clusters, name);
+	}
 }
