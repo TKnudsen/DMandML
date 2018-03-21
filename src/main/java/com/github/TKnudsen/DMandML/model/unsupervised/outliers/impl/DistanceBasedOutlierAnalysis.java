@@ -11,9 +11,10 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
  * </p>
  * 
  * <p>
- * Description:
- * 
- * E.M. Knorr, R. T. Ng:<br />
+ * Description: An instance is an outlier if at least a fraction p of all data
+ * objects has a distance above d.
+ *
+ * Reference: E.M. Knorr, R. T. Ng:<br />
  * Algorithms for Mining Distance-Based Outliers in Large Datasets,<br />
  * In: Procs Int. Conf. on Very Large Databases (VLDB'98), New York, USA, 1998.
  * </p>
@@ -33,7 +34,8 @@ public class DistanceBasedOutlierAnalysis extends ElkiBasedOutlierAlgorithm {
 	private double d;
 
 	/**
-	 * Density threshold percentage p.
+	 * Density threshold percentage p. Minimum percentage of objects that must be
+	 * outside the D-neighborhood of an instance to be marked an outlier.
 	 */
 	private double p;
 

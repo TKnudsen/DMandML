@@ -24,12 +24,19 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  */
 public class OutlierAnalysisResult<FV> implements IOutlierAnalysisResult<FV> {
 
+	private String name;
+
 	private long ID = MathFunctions.randomLong();
 
 	private final Map<FV, Double> outlierScores;
 
 	public OutlierAnalysisResult(Map<FV, Double> outlierScores) {
+		this(outlierScores, null);
+	}
+
+	public OutlierAnalysisResult(Map<FV, Double> outlierScores, String name) {
 		this.outlierScores = outlierScores;
+		this.name = name;
 	}
 
 	@Override
@@ -64,6 +71,9 @@ public class OutlierAnalysisResult<FV> implements IOutlierAnalysisResult<FV> {
 
 	@Override
 	public String getName() {
+		if (name != null)
+			return name;
+
 		return "OutlierAnalysisResult";
 	}
 

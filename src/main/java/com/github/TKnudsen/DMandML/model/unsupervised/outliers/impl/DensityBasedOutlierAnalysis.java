@@ -29,16 +29,20 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAl
  */
 public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV> {
 
-	private int nearestNeighborCount;
+	private int kNN;
 
 	private IDistanceMeasure<FV> distanceMeasure;
 
-	public DensityBasedOutlierAnalysis(List<FV> featureVectors, int nearestNeighborCount,
-			IDistanceMeasure<FV> distanceMeasure) {
-		super(featureVectors);
-
-		this.nearestNeighborCount = nearestNeighborCount;
+	public DensityBasedOutlierAnalysis(int kNN, IDistanceMeasure<FV> distanceMeasure) {
+		this.kNN = kNN;
 		this.distanceMeasure = distanceMeasure;
+	}
+
+	public DensityBasedOutlierAnalysis(int kNN, IDistanceMeasure<FV> distanceMeasure,
+			List<? extends FV> featureVectors) {
+		this(kNN, distanceMeasure);
+
+		setFeatureVectors(featureVectors);
 	}
 
 	@Override
@@ -62,7 +66,7 @@ public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV
 			}
 
 			Collections.sort(distances);
-			distances = distances.subList(0, nearestNeighborCount);
+			distances = distances.subList(0, kNN);
 
 			StatisticsSupport statistics = new StatisticsSupport(distances);
 
@@ -78,7 +82,7 @@ public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV
 		// MathFunctions.linearScale(0, distanceMeansStatistics.getMax(),
 		// outlierScores.get(fv)));
 
-		this.outlierAnalysisResult = new OutlierAnalysisResult<FV>(outlierScores);
+		this.outlierAnalysisResult = new OutlierAnalysisResult<FV>(outlierScores, getName());
 	}
 
 	@Override

@@ -34,22 +34,42 @@ public class DynamicWindowOutlierFactorOutlierAnalysis extends ElkiBasedOutlierA
 	 * Holds the value of {@link Parameterizer#K_ID} i.e. Number of neighbors to
 	 * consider during the calculation of DWOF scores.
 	 */
-	protected int k;
+	private int kNN;
 
-	protected double delta = 1.1;
+	private double delta = 1.1;
 
-	public DynamicWindowOutlierFactorOutlierAnalysis(int k) {
-		this.k = k;
+	public DynamicWindowOutlierFactorOutlierAnalysis(int kNN) {
+		this.kNN = kNN;
 	}
 
 	@Override
 	protected void initializeOutlierAlgorithm() {
-		this.outlierAlgorithm = new DWOF<NumberVector>(EuclideanDistanceFunction.STATIC, k, delta);
+		this.outlierAlgorithm = new DWOF<NumberVector>(EuclideanDistanceFunction.STATIC, kNN, delta);
 	}
 
 	@Override
 	public String getDescription() {
 		return "Computes dynamic-window outlier factors in a dataset";
+	}
+
+	public int getkNN() {
+		return kNN;
+	}
+
+	public void setkNN(int kNN) {
+		this.kNN = kNN;
+
+		initializeOutlierAlgorithm();
+	}
+
+	public double getDelta() {
+		return delta;
+	}
+
+	public void setDelta(double delta) {
+		this.delta = delta;
+
+		initializeOutlierAlgorithm();
 	}
 
 }

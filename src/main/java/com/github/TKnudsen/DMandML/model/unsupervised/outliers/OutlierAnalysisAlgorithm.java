@@ -20,7 +20,7 @@ import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAlgorithm<FV> {
 
@@ -32,7 +32,7 @@ public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAl
 	}
 
 	public OutlierAnalysisAlgorithm(List<? extends FV> featureVectors) {
-		this.featureVectors = featureVectors;
+		setFeatureVectors(featureVectors);
 	}
 
 	public abstract void calculateOutlierAnalysisResult();
