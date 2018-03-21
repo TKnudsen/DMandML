@@ -36,20 +36,30 @@ public class LocalIsolationCoefficientOutlierAnalysis extends ElkiBasedOutlierAl
 	/**
 	 * Holds the number of nearest neighbors to query (including query point!)
 	 */
-	private int k;
+	private int kNN;
 
-	public LocalIsolationCoefficientOutlierAnalysis(int k) {
-		this.k = k;
+	public LocalIsolationCoefficientOutlierAnalysis(int kNN) {
+		this.kNN = kNN;
 	}
 
 	@Override
 	protected void initializeOutlierAlgorithm() {
-		this.outlierAlgorithm = new LocalIsolationCoefficient<>(EuclideanDistanceFunction.STATIC, k);
+		this.outlierAlgorithm = new LocalIsolationCoefficient<>(EuclideanDistanceFunction.STATIC, kNN);
 	}
 
 	@Override
 	public String getDescription() {
 		return "Sum of the kNN distance and the average distance to its k nearest neighbors";
+	}
+
+	public int getkNN() {
+		return kNN;
+	}
+
+	public void setkNN(int kNN) {
+		this.kNN = kNN;
+
+		initializeOutlierAlgorithm();
 	}
 
 }

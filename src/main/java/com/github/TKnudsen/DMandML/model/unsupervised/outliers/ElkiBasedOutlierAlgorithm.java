@@ -88,7 +88,7 @@ public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm
 			outlierAnalysisResultMap.put(fv, scores.doubleValue(it));
 		}
 
-		this.outlierAnalysisResult = new OutlierAnalysisResult<>(outlierAnalysisResultMap);
+		this.outlierAnalysisResult = new OutlierAnalysisResult<>(outlierAnalysisResultMap, getName());
 	}
 
 	@Override

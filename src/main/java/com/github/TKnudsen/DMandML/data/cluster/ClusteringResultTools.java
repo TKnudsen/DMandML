@@ -24,7 +24,7 @@ import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistance
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class ClusteringResultTools {
 
@@ -153,20 +153,20 @@ public class ClusteringResultTools {
 	 * retrieves the relative distribution of distances of a given object to the
 	 * clusters of a ClusteringResult.
 	 * 
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @param fv
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(
-			IClusteringResult<T, C> clusterResult, T fv, boolean normalizeToProbabilities) {
-		if (clusterResult == null)
+			IClusteringResult<T, C> clusteringResult, T fv, boolean normalizeToProbabilities) {
+		if (clusteringResult == null)
 			return null;
 
 		Map<C, Double> distanceDistribution = new HashMap<>();
 
 		double distanceSum = 0.0;
 
-		for (C c : clusterResult) {
+		for (C c : clusteringResult) {
 			double centroidDistance = c.getCentroidDistance(fv);
 			distanceDistribution.put(c, centroidDistance);
 			distanceSum += centroidDistance;
@@ -175,12 +175,43 @@ public class ClusteringResultTools {
 		if (!normalizeToProbabilities)
 			return new ClusterDistanceDistribution<T, C>(distanceDistribution);
 
+		// TODO validate if distances are converted to probabilities appropriately
 		Map<C, Double> returnDistribution = new HashMap<>();
 
-		for (C c : clusterResult)
+		for (C c : clusteringResult)
 			returnDistribution.put(c, distanceDistribution.get(c) / distanceSum);
 
 		return new ClusterDistanceDistribution<T, C>(returnDistribution);
+	}
+
+	/**
+	 * retrieves the distance of a given instance to the nearest cluster (centroid)
+	 * of a {@link IClusteringResult}
+	 * 
+	 * @param clusteringResult
+	 * @param fv
+	 * @param retrieveNearestClusterForUnassignedElements
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> double getDistanceToNearestClusterCentroid(
+			IClusteringResult<T, C> clusteringResult, T fv, boolean retrieveNearestClusterForUnassignedElements) {
+		if (clusteringResult == null)
+			return Double.NaN;
+
+		ICluster<T> cluster = clusteringResult.getCluster(fv);
+
+		if (cluster == null)
+			if (retrieveNearestClusterForUnassignedElements)
+				cluster = clusteringResult.retrieveCluster(fv);
+
+		double centroidDistance = Double.NaN;
+		if (cluster == null)
+			System.err.println("ClusteringResults.getDistanceToNearestClusterCentroid: cluster assigned to element ("
+					+ fv + ") is null");
+		else
+			centroidDistance = cluster.getCentroidDistance(fv);
+
+		return centroidDistance;
 	}
 
 	/**
@@ -244,8 +275,7 @@ public class ClusteringResultTools {
 	}
 
 	/**
-	 * retrieves the relative distribution of distances of a given object to the
-	 * clusters of a ClusteringResult.
+	 * retrieves the pairwise distances clusters in a ClusteringResult.
 	 * 
 	 * @param clusterResult
 	 * @param fv

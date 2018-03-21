@@ -32,20 +32,30 @@ public class LocalOutlierFactorOutlierAnalysis extends ElkiBasedOutlierAlgorithm
 	/**
 	 * The number of neighbors to query (including the query point!)
 	 */
-	protected int k;
+	private int kNN;
 
-	public LocalOutlierFactorOutlierAnalysis(int k) {
-		this.k = k;
+	public LocalOutlierFactorOutlierAnalysis(int kNN) {
+		this.kNN = kNN;
 	}
 
 	@Override
 	protected void initializeOutlierAlgorithm() {
-		this.outlierAlgorithm = new LOF<NumberVector>(k, EuclideanDistanceFunction.STATIC);
+		this.outlierAlgorithm = new LOF<NumberVector>(kNN, EuclideanDistanceFunction.STATIC);
 	}
 
 	@Override
 	public String getDescription() {
 		return "Density-based local outlier factors in a data collection";
+	}
+
+	public int getkNN() {
+		return kNN;
+	}
+
+	public void setkNN(int kNN) {
+		this.kNN = kNN;
+
+		initializeOutlierAlgorithm();
 	}
 
 }
