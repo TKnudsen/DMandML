@@ -24,6 +24,9 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * 
  * @author Juergen Bernard
  * @version 1.05
+ * 
+ * @deprecated The Weka OPTICS and DBScan implementations are essentially buggy
+ * and should not be used. See https://list.waikato.ac.nz/pipermail/wekalist/2010-December/050518.html
  */
 public class DBScan extends WekaClusteringAlgorithm {
 
