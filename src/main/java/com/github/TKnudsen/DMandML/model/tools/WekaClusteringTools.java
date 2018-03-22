@@ -52,7 +52,7 @@ public class WekaClusteringTools {
 						fvs.put(c, new ArrayList<NumericalFeatureVector>());
 					fvs.get(c).add((NumericalFeatureVector) featureVectors.get(i));
 				} catch (Exception e) {
-					System.out.println("");
+					e.printStackTrace();
 				}
 			}
 			List<NumericalFeatureVectorCluster> clusters = new ArrayList<>();
