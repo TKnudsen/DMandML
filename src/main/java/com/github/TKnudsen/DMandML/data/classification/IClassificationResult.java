@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
+
 /**
  * <p>
  * Title: IClassificationResult
@@ -18,9 +20,9 @@ import java.util.Map;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
-public interface IClassificationResult<X> {
+public interface IClassificationResult<X> extends ISelfDescription {
 
 	/**
 	 * Returns a (possibly unmodifiable) collection containing all feature vectors

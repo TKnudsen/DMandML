@@ -100,7 +100,7 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 			}
 			labelDistributionMap.put(fv, new LabelDistribution(labelDistribution));
 		}
-		return new ClassificationResult<FV>(labelDistributionMap);
+		return new ClassificationResult<FV>(labelDistributionMap, getName());
 	}
 
 	@Override

@@ -21,9 +21,11 @@ import java.util.Map;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public class ClassificationResult<X> implements IClassificationResult<X> {
+
+	private String name;
 
 	private final Map<X, String> labels;
 
@@ -32,7 +34,13 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	private final Map<X, LabelDistribution> labelDistributionMap;
 
 	public ClassificationResult(List<X> featureVectors, List<String> labels) {
+		this(featureVectors, labels, null);
+	}
+
+	public ClassificationResult(List<X> featureVectors, List<String> labels, String name) {
 		this(ClassificationResults.createDefaultLabelDistributionMap(zip(featureVectors, labels)));
+
+		this.name = name;
 	}
 
 	// @Deprecated
@@ -64,9 +72,20 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	 * @param labelDistributionMap
 	 */
 	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap) {
+		this(labelDistributionMap, null);
+	}
+
+	/**
+	 * constructor stores a reference on the object.
+	 * 
+	 * @param labelDistributionMap
+	 */
+	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, String name) {
 		this.labelDistributionMap = Collections.unmodifiableMap(labelDistributionMap);
 
 		this.labels = ClassificationResults.createwinningLabelsMap(labelDistributionMap);
+
+		this.name = name;
 	}
 
 	@Override
@@ -111,6 +130,16 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 
 			classDistributions.get(labels.get(x)).add(x);
 		}
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 
 }
