@@ -2,6 +2,7 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier.use;
 
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
@@ -20,9 +21,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class ClassificationApplicationFunction<FV> implements IClassificationApplicationFunction<FV> {
+public class ClassificationApplicationFunction<FV> implements IClassificationApplicationFunction<FV>, ISelfDescription {
 
 	private final IClassifier<FV> classifier;
 
@@ -33,6 +34,16 @@ public class ClassificationApplicationFunction<FV> implements IClassificationApp
 	@Override
 	public IClassificationResult<FV> apply(List<? extends FV> t) {
 		return classifier.createClassificationResult(t);
+	}
+
+	@Override
+	public String getName() {
+		return classifier.getName();
+	}
+
+	@Override
+	public String getDescription() {
+		return getName();
 	}
 
 }
