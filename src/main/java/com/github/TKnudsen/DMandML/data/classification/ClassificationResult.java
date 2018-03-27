@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -21,11 +22,13 @@ import java.util.Map;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private String name;
+
+	private  Set<String> labelAlphabet;
 
 	private final Map<X, String> labels;
 
@@ -33,38 +36,17 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private final Map<X, LabelDistribution> labelDistributionMap;
 
+	@Deprecated
 	public ClassificationResult(List<X> featureVectors, List<String> labels) {
 		this(featureVectors, labels, null);
 	}
 
+	@Deprecated
 	public ClassificationResult(List<X> featureVectors, List<String> labels, String name) {
 		this(ClassificationResults.createDefaultLabelDistributionMap(zip(featureVectors, labels)));
 
 		this.name = name;
 	}
-
-	// @Deprecated
-	// public ClassificationResult(Map<X, String> labelsMap) {
-	// this(ClassificationResults.createDefaultLabelDistributionMap(labelsMap));
-	// this.labels = Collections.unmodifiableMap(labelsMap);
-	//
-	// this.labelDistributionMap =
-	// ClassificationResults.createDefaultLabelDistributionMap(labelsMap);
-	// }
-
-	// /**
-	// * constructor stores a reference on the object.
-	// *
-	// * @param labelDistributionMap
-	// */
-	// public ClassificationResult(Map<X, Map<String, Double>> labelDistributionMap)
-	// {
-	// this.labels =
-	// Collections.unmodifiableMap(ClassificationResults.createLabelsMap(labelDistributionMap));
-	//
-	// this.labelDistributionMap =
-	// ClassificationResults.createLabelDistributionMap(labelDistributionMap);
-	// }
 
 	/**
 	 * constructor stores a reference on the object.
@@ -140,6 +122,11 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	@Override
 	public String getDescription() {
 		return getName();
+	}
+
+	@Override
+	public Set<String> getLabelAlphabet() {
+		return Collections.unmodifiableSet(labelAlphabet);
 	}
 
 }
