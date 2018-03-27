@@ -108,7 +108,7 @@ public class ClassificationResults {
 
 		int dimensionality = classificationResult.getFeatureVectors().iterator().next().getDimensions();
 
-		// create vectors that will store the numeric information of the FVs
+		// create vectors that will store the numeric information of the FV instances
 		Set<String> classes = classificationResult.getClassDistributions().keySet();
 		for (String label : classes) {
 			Double[] vector = new Double[dimensionality];

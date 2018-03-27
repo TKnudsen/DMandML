@@ -171,7 +171,7 @@ public class EnsembleClassifier<FV> implements IClassifier<FV> {
 					.mergeLabelDistributions(labelDistribution);
 			labelDistributionMap.put(fv, mergedLabelDistribution);
 		}
-		return new ClassificationResult<>(labelDistributionMap, getName());
+		return new ClassificationResult<>(labelDistributionMap, getName(), new HashSet<>(getLabelAlphabet()));
 	}
 
 	@Override

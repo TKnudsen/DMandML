@@ -28,7 +28,7 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private String name;
 
-	private  Set<String> labelAlphabet;
+	private Set<String> labelAlphabet;
 
 	private final Map<X, String> labels;
 
@@ -36,16 +36,13 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 
 	private final Map<X, LabelDistribution> labelDistributionMap;
 
-	@Deprecated
-	public ClassificationResult(List<X> featureVectors, List<String> labels) {
-		this(featureVectors, labels, null);
-	}
-
-	@Deprecated
-	public ClassificationResult(List<X> featureVectors, List<String> labels, String name) {
-		this(ClassificationResults.createDefaultLabelDistributionMap(zip(featureVectors, labels)));
-
-		this.name = name;
+	/**
+	 * constructor stores a reference on the object.
+	 * 
+	 * @param labelDistributionMap
+	 */
+	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, Set<String> labelAlphabet) {
+		this(labelDistributionMap, null, labelAlphabet);
 	}
 
 	/**
@@ -53,21 +50,15 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	 * 
 	 * @param labelDistributionMap
 	 */
-	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap) {
-		this(labelDistributionMap, null);
-	}
-
-	/**
-	 * constructor stores a reference on the object.
-	 * 
-	 * @param labelDistributionMap
-	 */
-	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, String name) {
+	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, String name,
+			Set<String> labelAlphabet) {
 		this.labelDistributionMap = Collections.unmodifiableMap(labelDistributionMap);
 
 		this.labels = ClassificationResults.createwinningLabelsMap(labelDistributionMap);
 
 		this.name = name;
+
+		this.labelAlphabet = Collections.unmodifiableSet(labelAlphabet);
 	}
 
 	@Override

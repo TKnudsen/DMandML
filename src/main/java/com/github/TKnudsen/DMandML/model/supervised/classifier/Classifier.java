@@ -2,6 +2,7 @@ package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -100,7 +101,7 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 			}
 			labelDistributionMap.put(fv, new LabelDistribution(labelDistribution));
 		}
-		return new ClassificationResult<FV>(labelDistributionMap, getName());
+		return new ClassificationResult<FV>(labelDistributionMap, getName(), new HashSet<>(labelAlphabet));
 	}
 
 	@Override

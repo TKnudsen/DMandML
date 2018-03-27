@@ -3,6 +3,7 @@ package com.github.TKnudsen.DMandML.data.classification;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
@@ -16,11 +17,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public interface IClassificationResult<X> extends ISelfDescription {
 
@@ -67,4 +68,13 @@ public interface IClassificationResult<X> extends ISelfDescription {
 	 * @return The {@link LabelDistribution}
 	 */
 	public LabelDistribution getLabelDistribution(X x);
+
+	/**
+	 * every classification result must know the label alphabet of the
+	 * classification model in its current state. The label alphabet may be larger
+	 * than the predictions made in the concrete classification result.
+	 * 
+	 * @return
+	 */
+	public Set<String> getLabelAlphabet();
 }
