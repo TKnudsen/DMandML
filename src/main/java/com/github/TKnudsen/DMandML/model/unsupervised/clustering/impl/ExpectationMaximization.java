@@ -54,7 +54,7 @@ public class ExpectationMaximization extends WekaClusteringAlgorithm {
 
 	@Override
 	public String getName() {
-		return "Expectation Maximization (EM)";
+		return "Expectation Maximization";
 	}
 
 	@Override
