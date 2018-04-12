@@ -49,6 +49,12 @@ public class AverageF1 implements IClassifierEvaluation<NumericalFeatureVector> 
 			if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {
 				String trueLabel = testData.get(i).getAttribute(targetVariable).toString();
 				String assignedLabel = test.get(i);
+
+				if (assignedLabel == null) {
+					System.err.println(getName() + ": no label prediction. unable to evaluate classifier.");
+					return Double.NaN;
+				}
+
 				if (trueLabel.equals(assignedLabel))
 					truepositives.put(assignedLabel, truepositives.get(assignedLabel) + 1);
 				positives.put(assignedLabel, positives.get(assignedLabel) + 1);
