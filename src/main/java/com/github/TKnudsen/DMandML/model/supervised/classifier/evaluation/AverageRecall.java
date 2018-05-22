@@ -47,6 +47,12 @@ public class AverageRecall implements IClassifierEvaluation<NumericalFeatureVect
 			if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {
 				String trueLabel = testData.get(i).getAttribute(targetVariable).toString();
 				String assignedLabel = test.get(i);
+
+				if (assignedLabel == null) {
+					System.err.println(getName() + ": classifier returned null label when testing");
+					return Double.NaN;
+				}
+
 				if (trueLabel.equals(assignedLabel))
 					truepositives.put(assignedLabel, truepositives.get(assignedLabel) + 1);
 				trues.put(trueLabel, trues.get(trueLabel) + 1);
