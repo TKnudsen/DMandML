@@ -36,9 +36,9 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.04
+ * @version 1.05
  */
-public class MDS<O, X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
+public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
 	/**
 	 * Euclidean distance metric for double[]
