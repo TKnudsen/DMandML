@@ -48,7 +48,7 @@ public class MDSTester {
 		}
 
 		// V1: with features in the constructor
-		MDS<Double, NumericalFeatureVector> mds = new MDS<>(fvs, new EuclideanDistanceMeasure(), 2);
+		MDS<NumericalFeatureVector> mds = new MDS<>(fvs, new EuclideanDistanceMeasure(), 2);
 
 		// // V2 with a distance matrix in the constructor
 		// EuclideanDistanceMeasure dm = new EuclideanDistanceMeasure();
