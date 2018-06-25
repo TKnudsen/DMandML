@@ -28,7 +28,7 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 	/**
 	 * Size of each bag, as a percentage of the training set size. (default 100)
 	 */
-	private double sizeOfEachBagInPercent = 100;
+	private int sizeOfEachBagInPercent = 100;
 
 	/**
 	 * 
@@ -120,7 +120,7 @@ public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> 
 		return sizeOfEachBagInPercent;
 	}
 
-	public void setSizeOfEachBagInPercent(double sizeOfEachBagInPercent) {
+	public void setSizeOfEachBagInPercent(int sizeOfEachBagInPercent) {
 		this.sizeOfEachBagInPercent = sizeOfEachBagInPercent;
 
 		initializeClassifier();
