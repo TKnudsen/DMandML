@@ -61,6 +61,8 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 
 	// TODO integrate alternative termination criterion
 	private int maxIterations = 1000;
+	private Double lastStress = null;
+	private double stressDifferenceRateToBreak = 0.000001;
 
 	protected boolean printProgress = false;
 
@@ -197,15 +199,27 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		List<double[]> lowDimensionalPoints = initializeLowDimensionalPoints(outputDimensionality,
 				featureVectors.size());
 
+		boolean breakCalculation = false;
 		for (int iteration = 0; iteration < maxIterations; iteration++) {
+			if (breakCalculation)
+				break;
+
 			double[][] pointDistances = calculatePointDistances(lowDimensionalPoints);
+
+			double stress = calculateStress(distanceMatrix, pointDistances, featureVectors);
+			if (Double.isNaN(stress)) {
+				System.err.println("MDS: NaN occurrence in calculation process.");
+				breakCalculation = true;
+			} else if (lastStress != null && (Math.abs(lastStress / stress - 1)) < stressDifferenceRateToBreak) {
+				System.out.println("MDS: calulation finished. Stress difference smaller than "
+						+ stressDifferenceRateToBreak + " %");
+				breakCalculation = true;
+			}
+			lastStress = stress;
 
 			// calculate Kruskal's stress for every pair of objects
 			if (printProgress) {
-				// double stress = calculateStress(distanceMatrix,
-				// pointDistances, featureVectors);
-				// System.out.println("MDS: iteration " + (iteration + 1) + ":
-				// Kruskal's stress = " + stress);
+				System.out.println("MDS: iteration " + (iteration + 1) + ":Kruskal's stress = " + stress);
 			}
 
 			// optimize low-dimensional embedding
@@ -251,5 +265,13 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 
 	public void setDmMin(double dmMin) {
 		this.dmMin = dmMin;
+	}
+
+	public double getStressDifferenceRateToBreak() {
+		return stressDifferenceRateToBreak;
+	}
+
+	public void setStressDifferenceRateToBreak(double stressDifferenceRatioToBreak) {
+		this.stressDifferenceRateToBreak = stressDifferenceRatioToBreak;
 	}
 }
