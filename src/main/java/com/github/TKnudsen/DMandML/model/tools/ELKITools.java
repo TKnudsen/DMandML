@@ -21,6 +21,8 @@ public class ELKITools {
 	 */
 	public static Database createAndInitializeELKIDatabase(List<? extends NumericalFeatureVector> featureVectors) {
 		int count = featureVectors.size();
+
+		// TODO what if dataset size is 0?!
 		int dimensions = featureVectors.get(0).getSize();
 
 		double[][] data = new double[count][dimensions];
