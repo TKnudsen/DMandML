@@ -43,7 +43,8 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	 * vectors that have been passed to the last call to
 	 * {@link #train(List, String)}, in an unspecified order.<br>
 	 * <br>
-	 * If no training has taken place yet, this will be the empty list.
+	 * If no training has taken place yet, this will be the empty list,
+	 * but it will never be <code>null</code>
 	 * 
 	 * @return The label alphabet
 	 */
@@ -54,7 +55,12 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	 * labels to the probability that the given vector belongs to the respective
 	 * class.<br>
 	 * <br>
-	 * If the classifier has not been trained yet, this will be an empty map.
+	 * If the training set of the previous call to {@link #train(List)} contained
+	 * only a single class, then this map will always map this class label to
+	 * the value 1.0.<br>
+	 * <br>
+	 * If the classifier was trained with an empty set or has not been trained 
+	 * yet, this will be an empty map, but it will never be <code>null</code>
 	 * 
 	 * @param featureVector
 	 *            The feature vector

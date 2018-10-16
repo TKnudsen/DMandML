@@ -40,6 +40,13 @@ import weka.core.Instances;
 public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?>> extends Classifier<FV> {
 
 	/**
+	 * Whether warnings should be emitted for pathologic cases, like
+	 * training with an empty set, or trying to obtain results after
+	 * a training that contained only a single class
+	 */
+	private static final boolean LOG_WARNINGS = false;
+	
+	/**
 	 * The attribute that will be used as the class attribute for the Weka
 	 * instances.
 	 */
@@ -63,7 +70,9 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	/**
 	 * Whether the previous call to {@link #buildClassifier(Instances)} was
-	 * successful
+	 * successful, meaning that the underlying Weka classifier was trained
+	 * without throwing. This is <code>false</code> if the training set
+	 * contained only a single class.
 	 */
 	private boolean trainedSuccessfully = false;
 
@@ -141,12 +150,10 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		if (!trainedSuccessfully) {
 			List<String> labelAlphabet = getLabelAlphabet();
 			if (labelAlphabet.size() == 1) {
-				System.err.println(
-						"WekaClassifierWrapper: Training data contained only a single class. Returning single-element label distribution");
+				logWarning("Training data contained only a single class. Returning single-element label distribution");
 				return Collections.singletonMap(labelAlphabet.get(0), 1.0);
 			}
-			System.err.println(
-					"WekaClassifierWrapper: No successful training was performed. Returning empty label distribution");
+			logWarning("No successful training was performed. Returning empty label distribution");
 			return Collections.emptyMap();
 		}
 
@@ -163,12 +170,10 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 		if (!trainedSuccessfully) {
 			List<String> labelAlphabet = getLabelAlphabet();
 			if (labelAlphabet.size() == 1) {
-				System.err.println(
-						"WekaClassifierWrapper: Training data contained only a single class. Returning all-equal winning labels");
+				logWarning("Training data contained only a single class. Returning all-equal winning labels");
 				return Collections.nCopies(featureVectors.size(), labelAlphabet.get(0));
 			}
-			System.err.println(
-					"WekaClassifierWrapper: No successful training was performed. Returning 'null' as winning labels");
+			logWarning("No successful training was performed. Returning 'null' as winning labels");
 			return Collections.nCopies(featureVectors.size(), null);
 		}
 
@@ -263,20 +268,25 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	private void buildClassifier(Instances trainData) {
 		ensureInitialized();
+		labelDistributionMap.clear();
+		trainedSuccessfully = false;
+		if (trainData == null) {
+			// Sigh. The WekaConversion returns this when it is given an empty list.
+			// Why? 
+			return;
+		}
 		if (trainData.size() < 2) {
 			throw new IllegalArgumentException("At least two training instances required");
 		}
-		labelDistributionMap.clear();
-		trainedSuccessfully = false;
 
 		if (trainData.classAttribute().numValues() == 1) {
-			System.err.println("Training data contains only a single class. Not applying " + wekaClassifier);
+			logWarning("Training data contains only a single class. Not applying " + wekaClassifier.getClass());
 		} else {
 			try {
 				wekaClassifier.buildClassifier(trainData);
 				trainedSuccessfully = true;
 			} catch (Exception e) {
-				System.err.println("AbstractWekaClassifier: inherited classifier ->" + getName()
+				System.err.println("WekaClassifierWrapper: inherited classifier ->" + getName()
 						+ "<- sent an exception: " + e.getMessage());
 				e.printStackTrace();
 			}
@@ -335,6 +345,17 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 			System.out.println("    " + instance.dataset().classAttribute().value(j));
 		}
 		System.out.println("  Using NaN results");
+	}
+	
+	/**
+	 * If {@link #LOG_WARNINGS} is set, print the given message to the standard error stream
+	 * 
+	 * @param message The message
+	 */
+	private static void logWarning(Object message) {
+		if (LOG_WARNINGS) {
+			System.err.println("WekaClassifierWrapper: " + message);
+		}
 	}
 
 }

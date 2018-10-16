@@ -15,6 +15,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.BayesNet;
+import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.NaiveBayesMultinomial;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.RandomForest;
 
 /**
@@ -28,6 +30,13 @@ public class ClassifierTests {
 	public static void main(String[] args) {
 
 		testAll(RandomForest.class);
+		testAll(BayesNet.class);
+		testAll(NaiveBayesMultinomial.class);
+		//testAll(GaussianProcesses.class);
+		//testAll(SMOSVN.class);
+		//testAll(SVMLinearClassifier.class);
+		//testAll(SVMPolynomialClassifier.class);
+		
 		// testUntrainedClassifier(RandomForest.class);
 	}
 
@@ -40,10 +49,11 @@ public class ClassifierTests {
 	 */
 	private static boolean testAll(Class<? extends IClassifier<NumericalFeatureVector>> classifierClass) {
 		boolean passed = true;
-		passed &= testUntrainedClassifier(RandomForest.class);
-		passed &= testTrainingUpdatesLabelAlphabet(RandomForest.class);
-		passed &= testTrainingWithSingleClassDoesNotMessUpThings(RandomForest.class);
-		passed &= testCaseWhereEverythingShouldWork(RandomForest.class);
+		passed &= testUntrainedClassifier(classifierClass);
+		passed &= testTrainingUpdatesLabelAlphabet(classifierClass);
+		passed &= testTrainingWithSingleClassDoesNotMessUpThings(classifierClass);
+		passed &= testCaseWhereEverythingShouldWork(classifierClass);
+		passed &= testTrainingResetsClassifier(classifierClass);
 		System.out.println("All tests passed? " + passed);
 		return passed;
 	}
@@ -77,6 +87,7 @@ public class ClassifierTests {
 		// System.out.println("classificationResult: "+classificationResult);
 
 		boolean passed = true;
+		passed &= Collections.emptyList().equals(classifier.getLabelAlphabet());
 		passed &= Collections.emptyMap().equals(labelDistribution);
 		passed &= Collections.nCopies(testingVectors.size(), null).equals(winningLabels);
 		passed &= containSameElementsDisregardingOrder(classificationResult.getFeatureVectors(), testingVectors);
@@ -204,6 +215,61 @@ public class ClassifierTests {
 
 		return true;
 	}
+	
+	
+	
+	/**
+	 * Test whether performing a training and then performing a training with
+	 * an empty set "resets" the classifier so that it behaves as if it was
+	 * never trained at all
+	 * 
+	 * @param classifierClass
+	 *            The classifier class
+	 * @return Whether the test passed
+	 */
+	private static boolean testTrainingResetsClassifier(
+			Class<? extends IClassifier<NumericalFeatureVector>> classifierClass) {
+		System.out.println("Testing whether an empty training resets a classifier for " + classifierClass);
+
+		IClassifier<NumericalFeatureVector> classifier = newInstanceUnchecked(classifierClass);
+
+		String classAttribute = classifier.getClassAttribute();
+		int numClasses = 5;
+		List<NumericalFeatureVector> trainingVectors = ClassifierTestUtils.createDefaultTrainingVectors(classAttribute,
+				numClasses);
+		classifier.train(trainingVectors);
+
+		List<NumericalFeatureVector> testingVectors = ClassifierTestUtils.createDefaultTestingVectors(classAttribute,
+				numClasses);
+
+		// Perform a training with an empty list, expecting the same
+		// behavior as if no training was performed at all
+		classifier.train(Collections.emptyList());
+
+		
+		Map<String, Double> labelDistribution = classifier.getLabelDistribution(testingVectors.get(0));
+		// System.out.println("labelDistribution: "+labelDistribution);
+
+		List<String> winningLabels = classifier.test(testingVectors);
+		// System.out.println("winningLabels: "+winningLabels);
+
+		IClassificationResult<NumericalFeatureVector> classificationResult = classifier
+				.createClassificationResult(testingVectors);
+		// System.out.println("classificationResult: "+classificationResult);
+		
+		boolean passed = true;
+		passed &= Collections.emptyList().equals(classifier.getLabelAlphabet());
+		passed &= Collections.emptyMap().equals(labelDistribution);
+		passed &= Collections.nCopies(testingVectors.size(), null).equals(winningLabels);
+		passed &= containSameElementsDisregardingOrder(classificationResult.getFeatureVectors(), testingVectors);
+		passed &= Collections.emptyMap()
+				.equals(classificationResult.getLabelDistribution(testingVectors.get(0)).getProbabilityDistribution());
+		
+		return passed;
+	}
+
+	
+	
 
 	static <T extends IKeyValueProvider<Object>> void printTestingResults(IClassifier<T> classifier,
 			List<T> testingVectors) {

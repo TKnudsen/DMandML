@@ -92,13 +92,6 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 		Map<FV, LabelDistribution> labelDistributionMap = new LinkedHashMap<>();
 		for (FV fv : featureVectors) {
 			Map<String, Double> labelDistribution = getLabelDistribution(fv);
-			if (labelDistribution == null)
-				throw new NullPointerException(
-						getName() + ": cannot create classification result with null labelDistribution.");
-			if (labelDistribution.isEmpty()) {
-				System.err.println(getName() + " cannot create classification results with empty labelDistribution");
-				return null;
-			}
 			labelDistributionMap.put(fv, new LabelDistribution(labelDistribution));
 		}
 		return new ClassificationResult<FV>(labelDistributionMap, getName(), new HashSet<>(labelAlphabet));
