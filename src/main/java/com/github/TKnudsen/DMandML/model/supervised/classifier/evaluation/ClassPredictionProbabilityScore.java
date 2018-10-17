@@ -43,26 +43,19 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Nu
 		if (testData.size() == 0)
 			return 0.0; // throwing an exception would be the alternative
 
-		if (classificationResult instanceof IClassificationResult<?>) {
-			IClassificationResult<NumericalFeatureVector> probablisticClassificationResult = (IClassificationResult<NumericalFeatureVector>) classificationResult;
+		for (int i = 0; i < testData.size(); i++) {
+			if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {
 
-			for (int i = 0; i < testData.size(); i++) {
-				if (testData.get(i) != null && testData.get(i).getAttribute(targetVariable) != null) {
+				LabelDistribution labelDistribution = classificationResult.getLabelDistribution(testData.get(i));
 
-					LabelDistribution labelDistribution = probablisticClassificationResult
-							.getLabelDistribution(testData.get(i));
+				String label = testData.get(i).getAttribute(targetVariable).toString();
 
-					String label = testData.get(i).getAttribute(targetVariable).toString();
-
-					double probability = labelDistribution.getValueDistribution().get(label);
-					predictionSum += probability;
-					count++;
-				}
+				double probability = labelDistribution.getValueDistribution().get(label);
+				predictionSum += probability;
+				count++;
 			}
 
-		} else
-			throw new IllegalArgumentException(
-					"ClassPredictionProbabilityScore: Classifier did not produce a probablistic classification result");
+		}
 
 		return predictionSum / count;
 	}
