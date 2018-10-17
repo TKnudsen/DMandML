@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure;
+package com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure;
 
 import java.util.List;
 

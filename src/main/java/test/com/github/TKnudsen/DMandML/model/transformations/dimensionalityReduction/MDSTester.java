@@ -10,7 +10,7 @@ import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction
 
 /**
  * <p>
- * Title: MultiDimensionalScalingTester
+ * Title: MDSTester
  * </p>
  * 
  * <p>
@@ -22,7 +22,7 @@ import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.0
+ * @version 1.02
  */
 
 public class MDSTester {

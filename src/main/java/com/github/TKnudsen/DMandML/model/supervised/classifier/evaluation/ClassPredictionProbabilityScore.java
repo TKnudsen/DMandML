@@ -9,7 +9,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
- * Title: ClassificationAccuracy
+ * Title: ClassPredictionProbabilityScore
  * </p>
  * 
  * <p>
@@ -39,6 +39,9 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Nu
 
 		if (classificationResult.getFeatureVectors().size() != testData.size())
 			throw new IllegalArgumentException("input size != output size");
+
+		if (testData.size() == 0)
+			return 0.0; // throwing an exception would be the alternative
 
 		if (classificationResult instanceof IClassificationResult<?>) {
 			IClassificationResult<NumericalFeatureVector> probablisticClassificationResult = (IClassificationResult<NumericalFeatureVector>) classificationResult;
