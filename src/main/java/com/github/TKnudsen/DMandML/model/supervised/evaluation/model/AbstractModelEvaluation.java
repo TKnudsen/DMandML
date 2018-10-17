@@ -1,11 +1,11 @@
-package com.github.TKnudsen.DMandML.model.evaluation;
+package com.github.TKnudsen.DMandML.model.supervised.evaluation.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
  * <p>

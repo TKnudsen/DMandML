@@ -1,10 +1,10 @@
-package com.github.TKnudsen.DMandML.model.evaluation;
+package com.github.TKnudsen.DMandML.model.supervised.evaluation.model;
 
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
-import com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.IPerformanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
+import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
  * <p>

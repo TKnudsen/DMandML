@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.evaluation.performanceMeasure.classification;
+package com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.classification;
 
 import java.util.HashSet;
 import java.util.List;
