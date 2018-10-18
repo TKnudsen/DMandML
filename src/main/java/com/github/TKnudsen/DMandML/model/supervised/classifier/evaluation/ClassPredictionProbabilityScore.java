@@ -54,8 +54,12 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Nu
 				predictionSum += probability;
 				count++;
 			}
-
 		}
+
+		// throwing an exception would be the alternative.
+		// questionable why the test data has bad quality?
+		if (count == 0)
+			return 0.0;
 
 		return predictionSum / count;
 	}
