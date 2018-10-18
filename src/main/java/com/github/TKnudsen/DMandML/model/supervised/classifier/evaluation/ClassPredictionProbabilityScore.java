@@ -50,7 +50,7 @@ public class ClassPredictionProbabilityScore implements IClassifierEvaluation<Nu
 
 				String label = testData.get(i).getAttribute(targetVariable).toString();
 
-				double probability = labelDistribution.getValueDistribution().get(label);
+				double probability = labelDistribution.getValueDistribution().getOrDefault(label, 0.0);
 				predictionSum += probability;
 				count++;
 			}
