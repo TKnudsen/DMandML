@@ -230,7 +230,7 @@ public class ClusteringResultTools {
 
 		StatisticsSupport statistics = new StatisticsSupport(distanceDistribution.getClusterDistances().values());
 
-		// uses median cluster distance as threshold
+		// uses mean cluster distance as threshold
 		double maxOrbitDistance = statistics.getMean();
 
 		Map<C, Double> probabilityMap = new HashMap<>();

@@ -28,6 +28,7 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.IFeatureVectorClus
  * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
+ * @author Christian Ritter
  * @author Juergen Bernard
  * @version 1.04
  */
