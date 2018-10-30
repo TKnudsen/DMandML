@@ -38,7 +38,7 @@ public class ClassUncertaintyDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassUncertaintyEntropy(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintyEntropyBasedInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintyEntropyBasedInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -56,7 +56,7 @@ public class ClassUncertaintyDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassUncertaintyLeastSignificantConfidence(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintyLeastSignificantConfidenceInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintyLeastSignificantConfidenceInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -74,7 +74,7 @@ public class ClassUncertaintyDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassUncertaintySmallestMargin(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintySmallestMarginBasedInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassUncertaintySmallestMarginBasedInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
