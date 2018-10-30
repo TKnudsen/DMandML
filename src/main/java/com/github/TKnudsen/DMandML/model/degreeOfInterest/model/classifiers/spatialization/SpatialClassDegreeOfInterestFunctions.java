@@ -141,7 +141,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createDunnIndexClassCompactness(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassDunnIndexCompactnessDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassDunnIndexCompactnessDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName(), new EuclideanDistanceMeasure());
 		return degreeOfInterestFunction;
 	}
@@ -161,7 +161,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSilhuetteClassCompactness(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSilhuetteCompactnessDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSilhuetteCompactnessDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName(), new EuclideanDistanceMeasure());
 		return degreeOfInterestFunction;
 	}
@@ -181,7 +181,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassesCountCompactness(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassesSizeDeviationDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassesSizeDeviationDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -201,7 +201,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createDunnIndexClassSeparation(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassDunnIndexSeparationDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassDunnIndexSeparationDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName(), new EuclideanDistanceMeasure());
 		return degreeOfInterestFunction;
 	}
@@ -221,7 +221,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSilhuetteClassSeparation(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSilhuetteSeparationDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSilhuetteSeparationDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName(), new EuclideanDistanceMeasure());
 		return degreeOfInterestFunction;
 	}
@@ -399,7 +399,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSpatialClassSpecificBalance(
 			IClassifier<NumericalFeatureVector> classifier, Map<String, Double> targetValues) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSpecificBalanceCompactnessDegreeOfInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassSpecificBalanceCompactnessDegreeOfInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName(), targetValues);
 		return degreeOfInterestFunction;
 	}
