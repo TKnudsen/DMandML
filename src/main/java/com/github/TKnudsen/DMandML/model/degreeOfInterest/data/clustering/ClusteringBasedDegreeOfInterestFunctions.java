@@ -10,7 +10,7 @@ import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringCentroidDistanceBasedInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterCrispnessInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterLikelihoodInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringSizeDeviationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringClusterVarianceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringDunnIndexCompactnessDegreeOfInterestingnessFunction;
@@ -67,7 +67,7 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusterCrispnessBasedInterestingnessFunction(
 			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringClusterCrispnessInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringClusterLikelihoodInterestingnessFunction<NumericalFeatureVector>(
 				clusteringResult, retrieveNearestClusterForUnassignedElements);
 
 		return degreeOfInterestFunction;
@@ -2539,7 +2539,7 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 		IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult = clusterer
 				.getClusteringResult();
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringClusterCrispnessInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringClusterLikelihoodInterestingnessFunction<NumericalFeatureVector>(
 				clusteringResult, retrieveNearestClusterForUnassignedElements);
 
 		return degreeOfInterestFunction;
