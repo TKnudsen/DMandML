@@ -3,11 +3,12 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.commi
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.github.TKnudsen.DMandML.data.cluster.ClusterDistanceDistribution;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.IClusteringBasedDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.ClusteringCommitteeBasedInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterCrispnessInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterLikelihoodInterestingnessFunction;
 
 /**
  * 
@@ -21,20 +22,34 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.single
  * to the centroids of a pre-defined clustering result.
  * </p>
  * 
+ * According to: Juergen Bernard, Matthias Zeppelzauer, Markus Lehmann, Martin
+ * Mueller, and Michael Sedlmair: Towards User-Centered Active Learning
+ * Algorithms. Eurographics Conference on Visualization (EuroVis), Computer
+ * Graphics Forum (CGF), 2018.
+ * </p>
+ * 
+ * Calculates interestingness scores of elements on the basis of their distances
+ * to the centroids of a pre-defined clustering result. For every instance a
+ * {@link ClusterDistanceDistribution} is calculated. The maximum cluster
+ * probability defines the interestingness score. As such, the implementation
+ * combines the "Clustering (CLU)" building block with Class Prediction (CP)
+ * (applied for clusters, not classes).
+ * </p>
+ * 
  * @author Christian Ritter
  * @author Juergen Bernard
  * 
- * @version 1.05
+ * @version 1.06
  */
-public class ClusteringCommitteeClusterCrispnessInterestingnessFunction<FV>
+public class ClusteringCommitteeClusterLikelihoodInterestingnessFunction<FV>
 		extends ClusteringCommitteeBasedInterestingnessFunction<FV> {
 
-	public ClusteringCommitteeClusterCrispnessInterestingnessFunction(
+	public ClusteringCommitteeClusterLikelihoodInterestingnessFunction(
 			Collection<IClusteringResult<FV, ? extends ICluster<FV>>> clusteringResults) {
 		this(clusteringResults, true);
 	}
 
-	public ClusteringCommitteeClusterCrispnessInterestingnessFunction(
+	public ClusteringCommitteeClusterLikelihoodInterestingnessFunction(
 			Collection<IClusteringResult<FV, ? extends ICluster<FV>>> clusteringResults,
 			boolean retrieveNearestClusterForUnassignedElements) {
 
@@ -48,7 +63,7 @@ public class ClusteringCommitteeClusterCrispnessInterestingnessFunction<FV>
 		Collection<IClusteringBasedDegreeOfInterestingnessFunction<FV>> clusteringResultDOIs = new ArrayList<>();
 
 		for (IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult : clusteringResults)
-			clusteringResultDOIs.add(new ClusteringClusterCrispnessInterestingnessFunction<>(clusteringResult,
+			clusteringResultDOIs.add(new ClusteringClusterLikelihoodInterestingnessFunction<>(clusteringResult,
 					isRetrieveNearestClusterForUnassignedElements()));
 
 		return clusteringResultDOIs;
@@ -56,12 +71,12 @@ public class ClusteringCommitteeClusterCrispnessInterestingnessFunction<FV>
 
 	@Override
 	public String getDescription() {
-		return "assings interestingnes scores of multiple clustering-based DOIs, depending on how crisp an instance can be assigned to a single cluster";
+		return "assings interestingnes scores of multiple clustering-based DOIs, depending on how likely an instance can be assigned to a single cluster";
 	}
 
 	@Override
 	public String getName() {
-		return "Cluster Committee Crispness";
+		return "Cluster Committee Likelihood";
 	}
 
 }

@@ -15,24 +15,33 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.Cluste
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Calculates interestingness scores of elements on the basis of their distances
- * to the centroids of a pre-defined clustering result.
+ * According to: Juergen Bernard, Matthias Zeppelzauer, Markus Lehmann, Martin
+ * Mueller, and Michael Sedlmair: Towards User-Centered Active Learning
+ * Algorithms. Eurographics Conference on Visualization (EuroVis), Computer
+ * Graphics Forum (CGF), 2018.
  * </p>
  * 
- * @author Christian Ritter
+ * Calculates interestingness scores of elements on the basis of their distances
+ * to the centroids of a pre-defined clustering result. For every instance a
+ * {@link ClusterDistanceDistribution} is calculated. The maximum cluster
+ * probability defines the interestingness score. As such, the implementation
+ * combines the "Clustering (CLU)" building block with Class Prediction (CP)
+ * (applied for clusters, not classes).
+ * </p>
+ * 
  * @author Juergen Bernard
  * 
- * @version 1.03
+ * @version 1.05
  */
-public class ClusteringClusterCrispnessInterestingnessFunction<FV>
+public class ClusteringClusterLikelihoodInterestingnessFunction<FV>
 		extends ClusteringBasedDegreeOfInterestingnessFunction<FV> {
 
-	public ClusteringClusterCrispnessInterestingnessFunction(
+	public ClusteringClusterLikelihoodInterestingnessFunction(
 			IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult) {
 		this(clusteringResult, true);
 	}
 
-	public ClusteringClusterCrispnessInterestingnessFunction(
+	public ClusteringClusterLikelihoodInterestingnessFunction(
 			IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
 
@@ -46,26 +55,26 @@ public class ClusteringClusterCrispnessInterestingnessFunction<FV>
 				.getClusterDistances(getClusteringResult(), fv, true);
 
 		StatisticsSupport statistics = new StatisticsSupport(clusterDistances.getClusterDistances().values());
-		double winnerConficence = statistics.getMax();
+		double winnerConfidence = statistics.getMax();
 
 		// winnerConficence =
 		// Entropy.calculateEntropy(clusterDistances.getClusterDistances().values());
 
-		if (Double.isNaN(winnerConficence))
+		if (Double.isNaN(winnerConfidence))
 			throw new IllegalArgumentException(
-					getName() + ": not able to calculate the confidence of the winning cluster" + fv);
+					getName() + ": not able to calculate the likelihood of the winning cluster" + fv);
 
-		return winnerConficence;
+		return winnerConfidence;
 	}
 
 	@Override
 	public String getName() {
-		return "Cluster Crispness [" + getClusteringResult().getName() + "]";
+		return "Cluster Likelihood [" + getClusteringResult().getName() + "]";
 	}
 
 	@Override
 	public String getDescription() {
-		return "assings interestingnes scores depending on how crisp an instance can be assigned to a single cluster";
+		return "assings interestingnes scores depending on how likely an instance can be assigned to a single cluster";
 	}
 
 }

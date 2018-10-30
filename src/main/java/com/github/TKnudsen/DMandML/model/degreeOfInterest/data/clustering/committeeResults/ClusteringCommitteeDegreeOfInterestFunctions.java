@@ -9,7 +9,7 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.clusterCharacteristics.ClusteringCommiteeSizeDeviationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.clusterCharacteristics.ClusteringCommitteeCentroidDistanceInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.clusterCharacteristics.ClusteringCommitteeClusterCrispnessInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.clusterCharacteristics.ClusteringCommitteeClusterLikelihoodInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.compactness.ClusteringCommiteeDunnIndexCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.compactness.ClusteringCommiteeSilhuetteCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.compactness.ClusteringCommitteeClusterVarianceInterestingnessFunction;
@@ -51,7 +51,7 @@ public class ClusteringCommitteeDegreeOfInterestFunctions {
 			Collection<IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>>> clusteringResults,
 			boolean retrieveNearestClusterForUnassignedElements) {
 
-		return new ClusteringCommitteeClusterCrispnessInterestingnessFunction<NumericalFeatureVector>(clusteringResults,
+		return new ClusteringCommitteeClusterLikelihoodInterestingnessFunction<NumericalFeatureVector>(clusteringResults,
 				retrieveNearestClusterForUnassignedElements);
 	}
 
