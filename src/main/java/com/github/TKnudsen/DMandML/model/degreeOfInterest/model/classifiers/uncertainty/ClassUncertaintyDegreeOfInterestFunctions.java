@@ -92,7 +92,7 @@ public class ClassUncertaintyDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassUncertaintyMostSignificantConfidence(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassRelevanceMostSignificantConfidenceInterestingnessFunction<>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassRelevanceMostSignificantConfidenceInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
