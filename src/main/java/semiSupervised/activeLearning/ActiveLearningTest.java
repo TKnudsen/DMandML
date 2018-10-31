@@ -1,19 +1,17 @@
 package semiSupervised.activeLearning;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.complexDataObject.ComplexDataObject;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.io.arff.ARFFParser;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.descriptors.numericalFeatures.NumericalFeatureVectorDescriptor;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.uncertaintySampling.SmallestMarginActiveLearning;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.RandomForest;
+
+import test.com.github.TKnudsen.DMandML.model.supervised.classifier.ClassificationTest;
 
 /**
  * <p>
@@ -30,32 +28,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
 public class ActiveLearningTest {
 
-	private static String classAttribute = "class";
-
 	public static void main(String[] args) {
 
-		// Some data set
-		List<ComplexDataObject> dataSet = null;
-
-		try {
-			System.out.println("Working Directory = " + System.getProperty("user.dir"));
-			ARFFParser arffParser = new ARFFParser();
-			dataSet = arffParser.parse("data/cars.arff");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// Descriptor: transforms ComplexDataObjects into NumericalFeatureVectors
-		NumericalFeatureVectorDescriptor descriptor = new NumericalFeatureVectorDescriptor();
-		List<NumericalFeatureVector> featureVectors = descriptor.transform(dataSet);
-
-		// adding an attribute (not a feature)
-		for (int i = 0; i < dataSet.size(); i++)
-			featureVectors.get(i).add(classAttribute, dataSet.get(i).getAttribute("num-of-cylinders").toString());
+		List<NumericalFeatureVector> featureVectors = ClassificationTest.provideFeatureVectors();
 
 		// please note that in an AL process you usually have
 		// 1) already labeled instances (training data)
