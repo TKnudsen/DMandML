@@ -19,7 +19,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
  * 
  * <p>
  * Description: Simple test/example of a classifier applied on
- * NumericalFeatureVectors extracted from the Titanic dataset.
+ * NumericalFeatureVectors extracted from the cars dataset.
  * </p>
  * 
  * <p>
@@ -27,7 +27,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.03
  */
 public class ClassificationTest {
 
@@ -35,27 +35,7 @@ public class ClassificationTest {
 
 	public static void main(String[] args) {
 
-		// Some data set
-		List<ComplexDataObject> dataSet = null;
-
-		try {
-			System.out.println("Working Directory = " + System.getProperty("user.dir"));
-			ARFFParser arffParser = new ARFFParser();
-			dataSet = arffParser.parse("data/cars.arff");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// Descriptor: transforms ComplexDataObjects into NumericalFeatureVectors
-		NumericalFeatureVectorDescriptor descriptor = new NumericalFeatureVectorDescriptor();
-		List<NumericalFeatureVector> featureVectors = descriptor.transform(dataSet);
-
-		// add target variable: the "CLASSID" (1-3) the passengers traveled with.
-		// by design, the class attribute (target variable) is not part of the content
-		// of the NumericalFeatureVector, but is an additional attribute stored
-		// in an embodied key-value pair metadata structure.
-		for (int i = 0; i < dataSet.size(); i++)
-			featureVectors.get(i).add(classAttribute, dataSet.get(i).getAttribute("num-of-cylinders").toString());
+		List<NumericalFeatureVector> featureVectors = provideFeatureVectors();
 
 		// split into training and testing data
 		List<NumericalFeatureVector> trainingVectors = new ArrayList<>();
@@ -91,6 +71,30 @@ public class ClassificationTest {
 		}
 
 		System.out.println("EXAMPLE FINISHED");
+	}
+
+	public static List<NumericalFeatureVector> provideFeatureVectors() {
+		// Some data set
+		List<ComplexDataObject> dataSet = null;
+
+		try {
+			System.out.println("Working Directory = " + System.getProperty("user.dir"));
+			ARFFParser arffParser = new ARFFParser();
+			dataSet = arffParser.parse("data/cars.arff");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Descriptor: transforms ComplexDataObjects into NumericalFeatureVectors
+		NumericalFeatureVectorDescriptor descriptor = new NumericalFeatureVectorDescriptor();
+		List<NumericalFeatureVector> featureVectors = descriptor.transform(dataSet);
+
+		// adding an attribute (not a feature)
+		// used for classification tasks, ignored in clustering tasks
+		for (int i = 0; i < dataSet.size(); i++)
+			featureVectors.get(i).add(classAttribute, dataSet.get(i).getAttribute("num-of-cylinders").toString());
+
+		return featureVectors;
 	}
 
 }
