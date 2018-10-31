@@ -1,4 +1,4 @@
-package semiSupervised.activeLearning;
+package test.com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,7 @@ public class ActiveLearningTest {
 
 		// AL PART - note that AL will never train classifiers.
 		// It is a use-only relation.
-		AbstractActiveLearningModel<NumericalFeatureVector> alModel = new SmallestMarginActiveLearning<>(
+		AbstractActiveLearningModel<NumericalFeatureVector> alModel = new SmallestMarginActiveLearning<NumericalFeatureVector>(
 				classifier::createClassificationResult);
 
 		alModel.setCandidates(candidateVectors);
