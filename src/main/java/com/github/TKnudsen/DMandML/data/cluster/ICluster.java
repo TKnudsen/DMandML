@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
-import java.util.Set;
-
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
+import java.util.Set;
 
 /**
  * <p>

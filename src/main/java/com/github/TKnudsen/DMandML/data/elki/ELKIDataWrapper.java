@@ -1,12 +1,13 @@
 package com.github.TKnudsen.DMandML.data.elki;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.tools.ELKITools;
 
 import de.lmu.ifi.dbs.elki.data.NumberVector;

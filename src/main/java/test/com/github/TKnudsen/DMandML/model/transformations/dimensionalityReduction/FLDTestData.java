@@ -1,11 +1,11 @@
 package test.com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 
 
 public class FLDTestData {

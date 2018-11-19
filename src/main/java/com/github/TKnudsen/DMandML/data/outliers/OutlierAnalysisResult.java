@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.data.outliers;
 
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
+
 import java.util.Iterator;
 import java.util.Map;
-
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>

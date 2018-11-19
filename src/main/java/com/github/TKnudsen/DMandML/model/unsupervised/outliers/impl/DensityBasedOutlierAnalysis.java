@@ -1,13 +1,14 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.outliers.impl;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAlgorithm;
 

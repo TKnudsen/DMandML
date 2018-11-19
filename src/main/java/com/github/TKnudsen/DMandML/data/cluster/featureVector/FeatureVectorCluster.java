@@ -1,8 +1,9 @@
 package com.github.TKnudsen.DMandML.data.cluster.featureVector;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
 import java.util.Collection;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**

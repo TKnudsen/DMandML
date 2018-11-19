@@ -1,8 +1,9 @@
 package test.com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.INumericalClusteringAlgorithm;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;

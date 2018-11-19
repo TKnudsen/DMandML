@@ -4,6 +4,7 @@ import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixT
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**

@@ -1,13 +1,14 @@
 package test.com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.IDimensionalityReduction;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.PCA;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.TSNE;

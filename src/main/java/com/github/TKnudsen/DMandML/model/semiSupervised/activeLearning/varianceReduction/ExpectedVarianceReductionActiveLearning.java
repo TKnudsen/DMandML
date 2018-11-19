@@ -1,5 +1,10 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.varianceReduction;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,10 +12,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;

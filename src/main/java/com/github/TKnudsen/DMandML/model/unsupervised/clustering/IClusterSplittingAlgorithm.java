@@ -1,9 +1,10 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
-import java.util.List;
-
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
+import java.util.List;
+
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**

@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.density;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
 import java.util.List;
 import java.util.function.Supplier;
-
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
  * 

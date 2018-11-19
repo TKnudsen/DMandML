@@ -1,5 +1,7 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest;
 
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

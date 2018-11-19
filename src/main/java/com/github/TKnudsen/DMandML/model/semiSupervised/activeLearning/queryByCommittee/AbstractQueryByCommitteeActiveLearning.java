@@ -1,9 +1,10 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.queryByCommittee;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+
 import java.util.List;
 import java.util.function.Function;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractActiveLearningModel;
 

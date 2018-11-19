@@ -1,8 +1,9 @@
 package com.github.TKnudsen.DMandML.data.cluster.featureVector;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
 
 /**

@@ -1,5 +1,12 @@
 package com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -9,12 +16,6 @@ import java.util.NoSuchElementException;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 

@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.model.supervised.regression;
 
-import java.util.List;
-
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueProviders;
+
+import java.util.List;
 
 /**
  * <p>

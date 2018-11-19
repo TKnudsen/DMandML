@@ -1,6 +1,7 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.clusterValidity;
 
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 

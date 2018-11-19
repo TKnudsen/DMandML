@@ -1,8 +1,9 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;
 

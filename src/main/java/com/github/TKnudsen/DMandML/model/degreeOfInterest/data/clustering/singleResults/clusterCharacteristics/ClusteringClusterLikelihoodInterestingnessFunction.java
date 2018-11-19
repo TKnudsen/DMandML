@@ -1,6 +1,7 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics;
 
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import com.github.TKnudsen.DMandML.data.cluster.ClusterDistanceDistribution;
 import com.github.TKnudsen.DMandML.data.cluster.ClusteringResultTools;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;

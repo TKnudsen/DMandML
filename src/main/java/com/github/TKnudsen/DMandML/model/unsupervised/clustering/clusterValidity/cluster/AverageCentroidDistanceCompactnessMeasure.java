@@ -2,6 +2,7 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidit
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**

@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+
 import java.util.List;
 import java.util.function.Supplier;
-
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>

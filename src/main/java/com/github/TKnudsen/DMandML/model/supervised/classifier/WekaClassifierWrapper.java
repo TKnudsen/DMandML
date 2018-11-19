@@ -1,5 +1,8 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,8 +16,6 @@ import java.util.Set;
 import java.util.stream.DoubleStream;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import weka.core.Instance;
 import weka.core.Instances;
