@@ -1,11 +1,12 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.splitting;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;

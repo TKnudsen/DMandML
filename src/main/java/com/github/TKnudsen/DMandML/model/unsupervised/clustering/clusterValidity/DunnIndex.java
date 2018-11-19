@@ -1,11 +1,12 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClusteringResult;

@@ -1,9 +1,10 @@
 package com.github.TKnudsen.DMandML.model.supervised.regression;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>

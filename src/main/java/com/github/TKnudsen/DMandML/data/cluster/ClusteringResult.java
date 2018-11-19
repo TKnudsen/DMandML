@@ -1,10 +1,10 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>

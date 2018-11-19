@@ -1,10 +1,11 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeJensenShannonDivergenceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeKolmogorovSmirnovInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeKullbackLeiblerInterestingnessFunction;

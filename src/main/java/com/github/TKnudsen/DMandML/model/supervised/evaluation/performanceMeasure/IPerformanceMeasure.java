@@ -1,8 +1,8 @@
 package com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure;
 
-import java.util.List;
-
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
+
+import java.util.List;
 
 /**
  * @author Christian Ritter

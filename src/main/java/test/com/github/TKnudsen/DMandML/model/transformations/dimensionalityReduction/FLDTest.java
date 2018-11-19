@@ -1,9 +1,10 @@
 package test.com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+
 import java.util.Arrays;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.FLD;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.FLDs;
 
