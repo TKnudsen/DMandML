@@ -193,8 +193,10 @@ public class SMOSVN extends WekaClassifierWrapper<NumericalFeatureVector> {
 
 		// if (fitLogisticModelsToSVMOutput) //$1.50$
 		// optionsList.add("-M");
-		optionsList.add("-M"); // only in $12558$
-		optionsList.add(-1 + "");
+		// optionsList.add("-M"); // only in $12558$ //-1 not valid for flags
+		// optionsList.add(-1 + "");//-1 not valid for flags
+		if (fitLogisticModelsToSVMOutput)
+			optionsList.add("-M");
 
 		optionsList.add("-W"); // only in $12558$
 		optionsList.add(seed + "");
