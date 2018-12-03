@@ -3,6 +3,7 @@ package com.github.TKnudsen.DMandML.model.tools;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 
 import java.util.List;
+import java.util.Objects;
 
 import de.lmu.ifi.dbs.elki.database.Database;
 import de.lmu.ifi.dbs.elki.database.StaticArrayDatabase;
@@ -12,7 +13,8 @@ import de.lmu.ifi.dbs.elki.datasource.DatabaseConnection;
 public class ELKITools {
 
 	/**
-	 * creates an ELKI database instance from a list of given feature vectors.
+	 * creates an ELKI database instance from a list of given feature vectors. List
+	 * of feature vector must contain at least one entry.
 	 * 
 	 * The database will be initialized as well.
 	 * 
@@ -20,9 +22,14 @@ public class ELKITools {
 	 * @return
 	 */
 	public static Database createAndInitializeELKIDatabase(List<? extends NumericalFeatureVector> featureVectors) {
+		Objects.requireNonNull(featureVectors);
+
 		int count = featureVectors.size();
 
-		// TODO what if dataset size is 0?!
+		if (count == 0)
+			throw new IllegalArgumentException(
+					"ELKITools.createAndInitializeELKIDatabase requires non-empty list of FV");
+
 		int dimensions = featureVectors.get(0).getSize();
 
 		double[][] data = new double[count][dimensions];
