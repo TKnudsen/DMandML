@@ -136,7 +136,10 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 						Instance transformed = pca.convertInstance(iterator.next());
 						NumericalFeatureVector outputFeatureVector = createNumericalFeatureVector(transformed);
 
+						for (String attribute : fv.keySet())
+							outputFeatureVector.add(attribute, fv.getAttribute(attribute));
 						outputFeatureVector.setMaster(fv);
+
 						output.add(outputFeatureVector);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -211,7 +214,10 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
 				NumericalFeatureVector outputFeatureVector = createNumericalFeatureVector(transformed);
 
+				for (String attribute : featureVectors.get(i).keySet())
+					outputFeatureVector.add(attribute, featureVectors.get(i).getAttribute(attribute));
 				outputFeatureVector.setMaster(featureVectors.get(i));
+
 				returnFVs.add(outputFeatureVector);
 
 				mapping.put(featureVectors.get(i), outputFeatureVector);
