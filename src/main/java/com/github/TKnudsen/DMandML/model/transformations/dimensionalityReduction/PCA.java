@@ -67,19 +67,24 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	private List<NumericalFeatureVector> featureVectors;
 
 	public PCA(List<NumericalFeatureVector> featureVectors, int outputDimensionality) {
-		this(featureVectors, true, Double.NaN, outputDimensionality);
+		this.featureVectors = featureVectors;
+		this.outputDimensionality = outputDimensionality;
+
+		this.normalize = false;
+		this.minimumRemainingVariance = Double.NaN;
 	}
 
 	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, int outputDimensionality) {
-		this(featureVectors, normalize, Double.NaN, outputDimensionality);
+		this(featureVectors, outputDimensionality);
+
+		this.normalize = normalize;
 	}
 
-	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance,
-			int outputDimensionality) {
-		this.featureVectors = featureVectors;
+	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance) {
+		this(featureVectors, -1);
+
 		this.normalize = normalize;
 		this.minimumRemainingVariance = minimumRemainingVariance;
-		this.outputDimensionality = outputDimensionality;
 	}
 
 	private weka.attributeSelection.PrincipalComponents pca;
@@ -154,11 +159,20 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 		double[] values = transformed.toDoubleArray();
 
 		List<NumericalFeature> features = new ArrayList<>();
-		for (int d = 0; d < Math.min(values.length, outputDimensionality); d++)
+
+		for (int d = 0; d < values.length; d++)
 			features.add(new NumericalFeature("Dim " + d, values[d]));
 
-		while (features.size() < outputDimensionality)
-			features.add(new NumericalFeature("Dim_" + features.size(), 0.0));
+		// if outputDimensionality was set (and not minimumRemainingVariance)
+		if (outputDimensionality > 0) {
+			while (features.size() < outputDimensionality) {
+				System.err.println("PCA: adding dimension to match outputDimensionality");
+				features.add(new NumericalFeature("Dim_" + features.size(), 0.0));
+			}
+
+			while (features.size() > outputDimensionality)
+				features.remove(features.size() - 1);
+		}
 
 		NumericalFeatureVector outputFeatureVector = new NumericalFeatureVector(features);
 		return outputFeatureVector;
