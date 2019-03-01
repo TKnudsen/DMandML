@@ -231,6 +231,8 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 				for (String attribute : featureVectors.get(i).keySet())
 					outputFeatureVector.add(attribute, featureVectors.get(i).getAttribute(attribute));
 				outputFeatureVector.setMaster(featureVectors.get(i));
+				outputFeatureVector.setName(featureVectors.get(i).getName());
+				outputFeatureVector.setDescription(featureVectors.get(i).getDescription());
 
 				returnFVs.add(outputFeatureVector);
 
