@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.IClusteringBasedDegreeOfInterestingnessFunction;
 
 /**
@@ -86,6 +87,12 @@ public abstract class ClusteringCommitteeBasedInterestingnessFunction<FV> implem
 
 		for (FV fv : fvScoresLists.keySet())
 			interestingnessScores.put(fv, MathFunctions.getMean(fvScoresLists.get(fv)));
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());
 		for (FV fv : interestingnessScores.keySet())

@@ -100,7 +100,13 @@ public abstract class SpatialClassCentroidsInterestingnessFunction
 			interestingnessScores.put(fv, score);
 		}
 
-		// post-processingg
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+
+		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());
 		for (NumericalFeatureVector fv : interestingnessScores.keySet())
 			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());

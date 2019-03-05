@@ -39,9 +39,9 @@ public class SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction<FV>
 	public SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
-
-		super(probabilisticClassificationResultFunction, kNN, distanceMeasure, new KullbackLeiblerDivergenceDistance(),
-				classifierName);
+//		true is mandatory. otherwise KL may produce infinity values
+		super(probabilisticClassificationResultFunction, kNN, distanceMeasure,
+				new KullbackLeiblerDivergenceDistance(true), classifierName);
 	}
 
 	@Override

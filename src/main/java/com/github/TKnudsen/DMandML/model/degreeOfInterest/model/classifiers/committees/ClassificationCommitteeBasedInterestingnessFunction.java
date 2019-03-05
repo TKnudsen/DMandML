@@ -1,11 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees;
 
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,8 +10,12 @@ import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
@@ -28,11 +26,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Calculates interestingness scores of elements with respect to the uncertainty
- * of pre-given ClusteringResults
+ * Calculates interestingness scores of elements with respect to the (dis-)
+ * agreement of a committee. The more divers/distant/divergent, the lower will
+ * be the interestingness score.
  * </p>
  * 
- * @version 1.01
+ * @version 1.02
  */
 public abstract class ClassificationCommitteeBasedInterestingnessFunction<FV> implements IDegreeOfInterestFunction<FV> {
 
@@ -96,12 +95,14 @@ public abstract class ClassificationCommitteeBasedInterestingnessFunction<FV> im
 			values.add(ksValues);
 		}
 
-		// post-processing
-		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);
-		for (FV fv : interestingnessScores.keySet())
-			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
-		return interestingnessScores;
+		// normalization: [max-min]
+		return MapUtils.normalizeValuesMaxMin(interestingnessScores);
 	}
 
 	protected final Map<FV, List<List<Double>>> computePropabilityDistributions(
@@ -193,12 +194,12 @@ public abstract class ClassificationCommitteeBasedInterestingnessFunction<FV> im
 	}
 
 	/**
-	 * calcualtes the distance between the probability distributions. First a
+	 * Calculates the distance between the probability distributions. First a
 	 * probability distribution centroid is calculated, referred to as the empirical
 	 * means of all distributions. Then, each individual distribution is compared to
 	 * the empirical means according to a distance measure.
 	 * 
-	 * Note: make sure that the distane measure is useful for comparing probability
+	 * Note: make sure that the distance measure is useful for comparing probability
 	 * distributions!
 	 * 
 	 * @param distributions

@@ -35,6 +35,7 @@ public class ClassCommitteeKullbackLeiblerInterestingnessFunction<FV>
 
 	public ClassCommitteeKullbackLeiblerInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {
+		// true is mandatory. otherwise KL may produce infinity values
 		super(classificationResults, new KullbackLeiblerDivergenceDistance(true));
 	}
 

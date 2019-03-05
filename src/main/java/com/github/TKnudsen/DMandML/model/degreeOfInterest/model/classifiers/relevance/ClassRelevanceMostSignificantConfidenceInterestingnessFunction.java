@@ -36,7 +36,10 @@ public class ClassRelevanceMostSignificantConfidenceInterestingnessFunction<FV>
 	}
 
 	@Override
-	protected double calculateUncertaintyScore(LabelDistribution labelDistribution) {
+	protected double calculateRelevanceScore(LabelDistribution labelDistribution) {
+		if (labelDistribution.getMostLikelyItem() == null)
+			return 0;
+
 		return labelDistribution.getProbability(labelDistribution.getMostLikelyItem());
 	}
 

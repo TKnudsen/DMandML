@@ -1,12 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,8 +9,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.DataConversion;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.ClassificationBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.retrieval.KNN;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
@@ -31,9 +29,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * <br>
  * 
  * Spatial Class Divergence measure. Uses the probability distributions of
- * instances in the vicinity and compares them with the probabilites of an
+ * instances in the vicinity and compares them with the probabilities of an
  * instance i. Divergence measures such as the Kullback Leibler divergence can
  * then be used to assess the local divergence.
+ * 
+ * The more divergent the lower the interestingness score (max-min
+ * normalization).
  * </p>
  * 
  * Measure: Euclidean distance measure
@@ -46,7 +47,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * Visualization (EuroVis), Computer Graphics Forum (CGF), 2018.
  * </p>
  * 
- * @version 1.03
+ * @version 1.04
  */
 public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction<FV>
 		extends ClassificationBasedInterestingnessFunction<FV> {
@@ -96,11 +97,8 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 
 		Set<String> labelAlphabet = classificationResult.getLabelAlphabet();
 
-		// the last nn will receive weight 0.
+		// the last NN will receive weight 0.
 		kNNRetrieval = new KNN<FV>(kNN + 1, distanceMeasure, featureVectors);
-
-		// TODO needs testing (environment)
-		System.err.println(getName() + ": untested operation");
 
 		for (FV referenceFV : featureVectors) {
 			LabelDistribution referenceLabelDistribution = classificationResult.getLabelDistribution(referenceFV);
@@ -118,7 +116,7 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 				LabelDistribution labelDistribution = classificationResult.getLabelDistribution(nearFV);
 				double[] v = DataConversion.toPrimitives(labelDistribution.values(labelAlphabet));
 				for (int i = 0; i < v.length; i++)
-					empiricalVector[i] += empiricalVector[i] + v[i] * element.getKey();
+					empiricalVector[i] += v[i] * element.getKey();
 				weights += element.getKey();
 			}
 
@@ -126,6 +124,12 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 				empiricalVector[i] /= weights;
 
 			double value = divergenceDistanceMeasure.getDistance(empiricalVector, instanceVector);
+
+			// for validation purposes
+			if (Double.isInfinite(value)) {
+				System.err.println(getName() + ": Infinite value detected.");
+				divergenceDistanceMeasure.getDistance(empiricalVector, instanceVector);
+			}
 
 			if (weights == 0)
 				interestingnessScores.put(referenceFV, 0.0);
@@ -136,17 +140,32 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 		}
 
 		// post-processing
-		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);
-		for (FV fv : interestingnessScores.keySet())
-			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
-		// smallest values will become the highest.
-		return interestingnessScores;
+//		if (MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, false)) {
+////			infinity treatment: replaced by the maximum value. not perfect but at
+//			// least better than screwing the normalization with infinite values.
+//			double max = Double.NEGATIVE_INFINITY + 1;
+//			for (Number n : values)
+//				if (!Double.isInfinite(n.doubleValue()))
+//					max = Math.max(max, n.doubleValue());
+//
+//			Map<FV, Double> clampedValues = MapUtils.clampValues(interestingnessScores, MathFunctions.getMin(values),
+//					max);
+//
+//			return MapUtils.normalizeValuesMaxMin(clampedValues);
+//		} else
+
+		// normalization: [max-min], highest divergence will have zero interestingness
+		return MapUtils.normalizeValuesMaxMin(interestingnessScores);
 	}
 
 	@Override
 	public String getName() {
-		return "Spat. Classes Prob. Divergence: " + getClassifierName();
+		return "Spatial Class Probabilities Divergence: " + getClassifierName();
 	}
 
 	@Override
