@@ -1,12 +1,11 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.tools.WekaClusteringTools;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;

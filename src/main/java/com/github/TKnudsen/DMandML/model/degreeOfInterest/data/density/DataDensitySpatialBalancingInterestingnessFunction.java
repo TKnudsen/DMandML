@@ -1,10 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.density;
 
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -12,6 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
 
 /**
  * 

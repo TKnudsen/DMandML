@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 
 /**

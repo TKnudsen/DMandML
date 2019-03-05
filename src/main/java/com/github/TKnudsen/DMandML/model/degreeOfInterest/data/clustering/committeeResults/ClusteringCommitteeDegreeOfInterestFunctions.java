@@ -1,11 +1,10 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults;
 
+import java.util.Collection;
+
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
-
-import java.util.Collection;
-
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.clusterCharacteristics.ClusteringCommiteeSizeDeviationDegreeOfInterestingnessFunction;

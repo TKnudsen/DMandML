@@ -1,18 +1,19 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
-
-import java.util.List;
-import java.util.function.Supplier;
-
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringCentroidDistanceBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterLikelihoodInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringLargeClusterSizeDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringSizeDeviationDegreeOfInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringSmallClusterSizeDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringClusterVarianceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringDunnIndexCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringSilhuetteCompactnessDegreeOfInterestingnessFunction;
@@ -56,10 +57,28 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 
 	// NEW NICE AND SHINY METHODS
 
-	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusterCountBasedInterestingnessFunction(
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusterSizeBasedInterestingnessFunction(
 			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
 		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringSizeDeviationDegreeOfInterestingnessFunction<NumericalFeatureVector>(
+				clusteringResult, retrieveNearestClusterForUnassignedElements);
+
+		return degreeOfInterestFunction;
+	}
+
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusteringSmallClusterSizeBasedDegreeOfInterestFunction(
+			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
+			boolean retrieveNearestClusterForUnassignedElements) {
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringSmallClusterSizeDegreeOfInterestFunction<NumericalFeatureVector>(
+				clusteringResult, retrieveNearestClusterForUnassignedElements);
+
+		return degreeOfInterestFunction;
+	}
+
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusteringLargeClusterSizeBasedDegreeOfInterestFunction(
+			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
+			boolean retrieveNearestClusterForUnassignedElements) {
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringLargeClusterSizeDegreeOfInterestFunction<NumericalFeatureVector>(
 				clusteringResult, retrieveNearestClusterForUnassignedElements);
 
 		return degreeOfInterestFunction;

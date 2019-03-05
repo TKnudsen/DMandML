@@ -1,14 +1,13 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
-import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistanceMeasure;
 
 /**

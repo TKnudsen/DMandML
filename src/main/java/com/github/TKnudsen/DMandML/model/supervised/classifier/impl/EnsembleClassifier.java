@@ -1,8 +1,5 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier.impl;
 
-import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +12,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.classification.ClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;

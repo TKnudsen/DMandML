@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringAlgorithm;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;
+
 import weka.clusterers.HierarchicalClusterer;
 import weka.core.SelectedTag;
 

@@ -1,10 +1,9 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.data.elki.ELKIDataWrapper;

@@ -1,14 +1,13 @@
 package com.github.TKnudsen.DMandML.model.supervised.evaluation.model;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifiers;
 import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;

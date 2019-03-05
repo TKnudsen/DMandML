@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.DMandML.data.classification.ClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;

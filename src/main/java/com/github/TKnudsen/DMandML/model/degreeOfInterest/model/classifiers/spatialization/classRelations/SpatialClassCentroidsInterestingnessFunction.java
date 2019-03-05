@@ -1,18 +1,17 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
 import com.github.TKnudsen.DMandML.data.classification.ClassificationResults;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
@@ -94,17 +93,16 @@ public abstract class SpatialClassCentroidsInterestingnessFunction
 
 			Double score = calculateScore(fv, labelDistribution, centersOfGravity);
 
-			if (Double.isNaN(score))
-				System.err.println(getName() + " prodces NAN values!");
-
 			interestingnessScores.put(fv, score);
 		}
 
 		// for validation purposes
-		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		if (MapUtils.doiValidationMode) {
+			MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		}
 
 		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());

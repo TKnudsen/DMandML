@@ -1,8 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.uncertainty;
 
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -84,17 +81,15 @@ abstract class ClassUncertaintyBasedInterestingnessFunction<FV> extends Classifi
 		}
 
 		// for validation purposes
-		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		if (MapUtils.doiValidationMode) {
+			MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		}
 
-		// post-processing
-		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);
-		for (FV fv : interestingnessScores.keySet())
-			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
-
-		return interestingnessScores;
+		// normalize
+		return MapUtils.normalizeValuesMinMax(interestingnessScores);
 	}
 
 	protected abstract double calculateUncertaintyScore(LabelDistribution labelDistribution);

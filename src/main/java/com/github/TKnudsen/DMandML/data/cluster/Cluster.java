@@ -1,15 +1,15 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>

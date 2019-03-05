@@ -1,13 +1,13 @@
 package com.github.TKnudsen.DMandML.model.supervised.regression;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 
 import weka.classifiers.AbstractClassifier;
 import weka.core.Attribute;

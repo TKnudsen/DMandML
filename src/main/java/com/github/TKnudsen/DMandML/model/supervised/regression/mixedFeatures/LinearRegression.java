@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.supervised.regression.mixedFeatures;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
-
 import com.github.TKnudsen.DMandML.model.supervised.regression.BasicLinearRegression;
 
 /**

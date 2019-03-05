@@ -139,25 +139,13 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 			}
 		}
 
-		// post-processing
-		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
-
-//		if (MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, false)) {
-////			infinity treatment: replaced by the maximum value. not perfect but at
-//			// least better than screwing the normalization with infinite values.
-//			double max = Double.NEGATIVE_INFINITY + 1;
-//			for (Number n : values)
-//				if (!Double.isInfinite(n.doubleValue()))
-//					max = Math.max(max, n.doubleValue());
-//
-//			Map<FV, Double> clampedValues = MapUtils.clampValues(interestingnessScores, MathFunctions.getMin(values),
-//					max);
-//
-//			return MapUtils.normalizeValuesMaxMin(clampedValues);
-//		} else
+		// for validation purposes
+		if (MapUtils.doiValidationMode) {
+			MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		}
 
 		// normalization: [max-min], highest divergence will have zero interestingness
 		return MapUtils.normalizeValuesMaxMin(interestingnessScores);

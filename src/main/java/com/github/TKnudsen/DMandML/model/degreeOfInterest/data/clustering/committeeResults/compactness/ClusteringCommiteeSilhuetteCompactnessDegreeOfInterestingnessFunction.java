@@ -1,11 +1,10 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.committeeResults.compactness;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.IClusteringBasedDegreeOfInterestingnessFunction;
