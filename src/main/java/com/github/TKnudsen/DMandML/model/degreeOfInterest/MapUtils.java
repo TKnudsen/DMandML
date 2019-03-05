@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import smile.math.Math;
+
 /**
  * 
  * DMandML
@@ -173,6 +175,23 @@ public class MapUtils {
 	static <K> Map<K, Double> normalizeValues(Map<K, Double> map) {
 		double sum = map.values().stream().mapToDouble(Double::doubleValue).sum();
 		return affineTransformValues(map, 1.0 / sum, 0.0);
+	}
+
+	/**
+	 * Checks whether a map contains a certain (critical) value.
+	 * 
+	 * @param map
+	 * @param value
+	 * @param printError
+	 * @return
+	 */
+	public static <K> boolean checkForCriticalValue(Map<K, Double> map, Double value, boolean printError) {
+		if (map.containsValue(value)) {
+			if (printError)
+				System.err.println("critical value detected.");
+			return true;
+		}
+		return false;
 	}
 
 	/**

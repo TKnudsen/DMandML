@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.ClassificationCommitteeBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
@@ -80,6 +81,12 @@ public class ClassCommitteeVoteCardinality<FV> extends ClassificationCommitteeBa
 			interestingnessScores.put(fv, ratio);
 			values.add(ratio);
 		}
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);

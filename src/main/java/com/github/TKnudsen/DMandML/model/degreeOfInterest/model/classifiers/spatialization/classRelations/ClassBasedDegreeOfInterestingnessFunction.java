@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.ClassificationBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
@@ -20,10 +21,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Degree-of-interest functions based on classification results.
- * The majority of implementations exploits the output of probabilistic
- * classifiers, thus taking the likelihood of an instance for any class into
- * account.
+ * Degree-of-interest functions based on classification results. The majority of
+ * implementations exploits the output of probabilistic classifiers, thus taking
+ * the likelihood of an instance for any class into account.
  * </p>
  * 
  * Builds upon the Class Likelihood (CL) DOI/building block published in:
@@ -77,6 +77,12 @@ public abstract class ClassBasedDegreeOfInterestingnessFunction<FV>
 			}
 			interestingnessScores.put(fv, score);
 		}
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());
 		for (FV fv : interestingnessScores.keySet())

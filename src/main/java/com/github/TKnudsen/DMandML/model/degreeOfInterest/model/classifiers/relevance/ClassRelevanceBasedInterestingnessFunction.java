@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.ClassificationBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
@@ -64,14 +65,19 @@ public abstract class ClassRelevanceBasedInterestingnessFunction<FV>
 		}
 
 		for (FV fv : featureVectors) {
-			double uncertaintyScore = 1.0;
 			LabelDistribution labelDistribution = classificationResult.getLabelDistribution(fv);
 
-			uncertaintyScore = calculateUncertaintyScore(labelDistribution);
+			double relevanceScore = calculateRelevanceScore(labelDistribution);
 
-			interestingnessScores.put(fv, uncertaintyScore);
-			values.add(uncertaintyScore);
+			interestingnessScores.put(fv, relevanceScore);
+			values.add(relevanceScore);
 		}
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);
@@ -81,7 +87,7 @@ public abstract class ClassRelevanceBasedInterestingnessFunction<FV>
 		return interestingnessScores;
 	}
 
-	protected abstract double calculateUncertaintyScore(LabelDistribution labelDistribution);
+	protected abstract double calculateRelevanceScore(LabelDistribution labelDistribution);
 
 	@Override
 	public String getDescription() {

@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.ClassificationBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.retrieval.KNN;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
@@ -109,6 +110,12 @@ public abstract class SpatialClassVotesDiversityInterestingnessFunction<FV>
 			interestingnessScores.put(fv, diversity);
 			values.add(diversity);
 		}
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);

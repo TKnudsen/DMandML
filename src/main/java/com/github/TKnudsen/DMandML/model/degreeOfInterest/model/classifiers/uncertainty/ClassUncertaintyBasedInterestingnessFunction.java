@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.MapUtils;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.ClassificationBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
@@ -81,6 +82,12 @@ abstract class ClassUncertaintyBasedInterestingnessFunction<FV> extends Classifi
 			interestingnessScores.put(fv, uncertaintyScore);
 			values.add(uncertaintyScore);
 		}
+
+		// for validation purposes
+		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 
 		// post-processing
 		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(values);
