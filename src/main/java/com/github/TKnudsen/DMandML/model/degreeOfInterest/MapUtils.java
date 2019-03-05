@@ -18,6 +18,8 @@ import smile.math.Math;
  * Utility methods for maps that contain <code>Double</code> values
  */
 public class MapUtils {
+	
+	public static boolean doiValidationMode = true;
 
 	/**
 	 * Some tests

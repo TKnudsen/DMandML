@@ -1,11 +1,10 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
+import java.util.List;
+
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
-import java.util.List;
-
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 

@@ -96,10 +96,12 @@ public abstract class ClassificationCommitteeBasedInterestingnessFunction<FV> im
 		}
 
 		// for validation purposes
-		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		if (MapUtils.doiValidationMode) {
+			MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		}
 
 		// normalization: [max-min]
 		return MapUtils.normalizeValuesMaxMin(interestingnessScores);

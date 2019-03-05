@@ -1,11 +1,10 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.outliers;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.data.elki.ELKIDataWrapper;
 import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
 import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;

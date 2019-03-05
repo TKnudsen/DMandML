@@ -23,7 +23,7 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.Cluste
  * @author Christian Ritter
  * @author Juergen Bernard
  * 
- * @version 1.03
+ * @version 1.04
  */
 public class ClusteringSizeDeviationDegreeOfInterestingnessFunction<FV>
 		extends ClusteringBasedDegreeOfInterestingnessFunction<FV> {
@@ -45,6 +45,7 @@ public class ClusteringSizeDeviationDegreeOfInterestingnessFunction<FV>
 
 	private void buildInterestingnessMapping() {
 		interestingnessMapping = new LinkedHashMap<>();
+
 		// count elements per cluster and find min and max size
 		double mean = 0.0;
 		for (ICluster<FV> cluster : getClusteringResult().getClusters()) {
@@ -52,7 +53,8 @@ public class ClusteringSizeDeviationDegreeOfInterestingnessFunction<FV>
 			interestingnessMapping.put(cluster, d);
 			mean += d;
 		}
-		// substract mean and make all values positive
+
+		// subtract mean and make all values positive
 		mean /= getClusteringResult().getClusters().size();
 		for (ICluster<FV> cluster : interestingnessMapping.keySet()) {
 			interestingnessMapping.put(cluster, Math.abs(interestingnessMapping.get(cluster) - mean));
@@ -66,8 +68,8 @@ public class ClusteringSizeDeviationDegreeOfInterestingnessFunction<FV>
 			cluster = getClusteringResult().retrieveCluster(fv);
 
 		if (cluster == null)
-			throw new IllegalArgumentException(
-					"ClusteringSilhuetteIntraClassDissimilarityDegreeOfInterestingnessFunction: Instance has to be part of a cluster.");
+			throw new IllegalArgumentException(getName() + ": Instance has to be part of a cluster.");
+
 		return interestingnessMapping.get(cluster);
 	}
 

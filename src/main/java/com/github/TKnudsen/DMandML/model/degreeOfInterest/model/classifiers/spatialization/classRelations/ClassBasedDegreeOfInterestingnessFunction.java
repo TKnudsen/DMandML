@@ -1,8 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations;
 
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.LinearNormalizationFunction;
-import com.github.TKnudsen.ComplexDataObject.model.transformations.normalization.NormalizationFunction;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,16 +76,15 @@ public abstract class ClassBasedDegreeOfInterestingnessFunction<FV>
 		}
 
 		// for validation purposes
-		MapUtils.checkForCriticalValue(interestingnessScores, null, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
-		MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		if (MapUtils.doiValidationMode) {
+			MapUtils.checkForCriticalValue(interestingnessScores, null, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NaN, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.NEGATIVE_INFINITY, true);
+			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
+		}
 
-		NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());
-		for (FV fv : interestingnessScores.keySet())
-			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
-
-		return interestingnessScores;
+		// normalize
+		return MapUtils.normalizeValuesMinMax(interestingnessScores);
 	}
 
 	/**

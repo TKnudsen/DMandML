@@ -1,12 +1,12 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
  * <p>

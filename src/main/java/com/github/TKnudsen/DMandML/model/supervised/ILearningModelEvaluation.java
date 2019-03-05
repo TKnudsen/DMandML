@@ -1,8 +1,8 @@
 package com.github.TKnudsen.DMandML.model.supervised;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-
 import java.util.List;
+
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
  * <p>

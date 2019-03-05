@@ -1,10 +1,10 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier;
 
+import java.util.List;
+
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueProviders;
-
-import java.util.List;
 
 /**
  * <p>

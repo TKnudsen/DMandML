@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.uncertainty;
 
 import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-
 import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 

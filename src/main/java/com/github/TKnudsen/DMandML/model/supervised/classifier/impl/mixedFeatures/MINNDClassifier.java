@@ -1,10 +1,9 @@
 package com.github.TKnudsen.DMandML.model.supervised.classifier.impl.mixedFeatures;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWrapper;
 
 import weka.classifiers.mi.MINND;

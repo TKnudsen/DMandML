@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
-import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
-
 import java.util.Map;
 import java.util.Set;
+
+import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistribution;
 
 /**
  * <p>

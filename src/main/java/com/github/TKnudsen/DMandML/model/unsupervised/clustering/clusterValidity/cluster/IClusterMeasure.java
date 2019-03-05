@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.unsupervised.clustering.clusterValidity.cluster;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**

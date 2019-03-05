@@ -1,11 +1,11 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
  * <p>

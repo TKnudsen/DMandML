@@ -1,10 +1,5 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.queryByCommittee;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,6 +8,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
+import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
+import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 
 /**

@@ -1,14 +1,13 @@
 package test.com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.github.TKnudsen.ComplexDataObject.data.complexDataObject.ComplexDataObject;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.io.arff.ARFFParser;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.descriptors.numericalFeatures.NumericalFeatureVectorDescriptor;
-
-import java.io.IOException;
-import java.util.List;
-
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
 
 /**

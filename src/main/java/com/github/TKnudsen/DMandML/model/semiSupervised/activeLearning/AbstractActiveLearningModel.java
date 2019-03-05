@@ -1,10 +1,5 @@
 package com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,6 +9,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
+import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
+import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
+import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupplier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
