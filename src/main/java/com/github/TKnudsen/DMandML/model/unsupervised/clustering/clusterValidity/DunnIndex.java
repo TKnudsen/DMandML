@@ -21,7 +21,7 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.IFeatureVectorClus
  * (distances among clusters are large) as well as compact clusters (small
  * diameters).
  * 
- * Disadvantages: a) time consuming calculation, b) sensiticity to noise
+ * Disadvantages: a) time consuming calculation, b) sensitivity to noise
  * (maximum cluster diameter)
  * 
  * J. C. Dunn: Well Separated Clusters and Optimal Fuzzy Partitions, Journal of

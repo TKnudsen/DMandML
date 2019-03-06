@@ -33,7 +33,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * instance i. Divergence measures such as the Kullback Leibler divergence can
  * then be used to assess the local divergence.
  * 
- * The more divergent the lower the interestingness score (max-min
+ * The more divergent the higher the interestingness score (min-max
  * normalization).
  * </p>
  * 
@@ -147,8 +147,8 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 		}
 
-		// normalization: [max-min], highest divergence will have zero interestingness
-		return MapUtils.normalizeValuesMaxMin(interestingnessScores);
+		// normalization
+		return MapUtils.normalizeValuesMinMax(interestingnessScores);
 	}
 
 	@Override
