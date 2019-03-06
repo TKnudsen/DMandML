@@ -28,7 +28,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * diversity of class predictions (winning labels) in the neighborhood of an
  * instance x. Thus, each instance needs to have a winning class y assigned by a
  * classifier. Given an instance x and a class label yi, we can compute the
- * portion pi of neighbors with the class prediction y0 = yi.
+ * portion pi of neighbors with the class prediction y0 == yi.
  * </p>
  * 
  * The local class diversity can then be estimated by a diversity measure div as
@@ -36,6 +36,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * classes: p = (p1; ::; pn). The entropy of p is one possible choice for
  * function div.
  * </p>
+ * 
+ * As it is a diversity measure high diversity values reach highest
+ * interestingness scores.
  * 
  * TODO this type of DOIs does not reflect concrete distances of near neighbors
  * but simply iterates over the kNN. Adding weights w.r.t. the spatial proximity
@@ -116,8 +119,8 @@ public abstract class SpatialClassVotesDiversityInterestingnessFunction<FV>
 			MapUtils.checkForCriticalValue(interestingnessScores, Double.POSITIVE_INFINITY, true);
 		}
 
-		// normalization: [max-min], highest diversity will have zero interestingness
-		return MapUtils.normalizeValuesMaxMin(interestingnessScores);
+		// normalization:
+		return MapUtils.normalizeValuesMinMax(interestingnessScores);
 	}
 
 	protected abstract double calculateDivsersity(Collection<Integer> votes);
