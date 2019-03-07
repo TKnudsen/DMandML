@@ -27,6 +27,8 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * be based on winning labels, margins, or Entropy. The majority of
  * implementations exploits the output of probabilistic classifiers, thus taking
  * the likelihood of an instance for any class into account.
+ * 
+ * High values mean high interestingness scores.
  * </p>
  * 
  * Builds upon the Class Likelihood (CL) DOI/building block (probability
