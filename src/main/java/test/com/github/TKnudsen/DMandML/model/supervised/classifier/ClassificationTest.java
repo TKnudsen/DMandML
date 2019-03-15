@@ -7,6 +7,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.complexDataObject.ComplexDataObject;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.io.arff.ARFFParser;
+import com.github.TKnudsen.ComplexDataObject.model.processors.features.numericalData.MissingValueRemover;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.descriptors.numericalFeatures.NumericalFeatureVectorDescriptor;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
@@ -84,7 +85,7 @@ public class ClassificationTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		// Descriptor: transforms ComplexDataObjects into NumericalFeatureVectors
 		NumericalFeatureVectorDescriptor descriptor = new NumericalFeatureVectorDescriptor();
 		List<NumericalFeatureVector> featureVectors = descriptor.transform(dataSet);
@@ -93,6 +94,9 @@ public class ClassificationTest {
 		// used for classification tasks, ignored in clustering tasks
 		for (int i = 0; i < dataSet.size(); i++)
 			featureVectors.get(i).add(classAttribute, dataSet.get(i).getAttribute("num-of-cylinders").toString());
+
+		MissingValueRemover mVRemover = new MissingValueRemover();
+		mVRemover.process(featureVectors);
 
 		return featureVectors;
 	}
