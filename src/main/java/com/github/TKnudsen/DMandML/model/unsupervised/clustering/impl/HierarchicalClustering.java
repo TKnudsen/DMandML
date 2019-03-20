@@ -66,7 +66,7 @@ public class HierarchicalClustering extends WekaClusteringAlgorithm {
 
 	@Override
 	public String getName() {
-		return "Hierarchical Clustering" + "/" + linkageStrategy.name();
+		return "Hierarchical Clustering" + " - " + linkageStrategy.name();
 	}
 
 	@Override
