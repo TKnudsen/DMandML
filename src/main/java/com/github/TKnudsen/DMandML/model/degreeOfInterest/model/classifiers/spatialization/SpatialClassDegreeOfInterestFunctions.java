@@ -6,6 +6,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassBordersInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesSizeDeviationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.SpatialClassesMarginInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.ClassDunnIndexCompactnessDegreeOfInterestingnessFunction;
@@ -26,6 +27,8 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spat
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.SpatialClassVotesWinnerConfidenceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
+import com.github.TKnudsen.DMandML.model.unsupervised.outliers.IOutlierAnalysisAlgorithm;
+import com.github.TKnudsen.DMandML.model.unsupervised.outliers.impl.KNNOutlierAnalysis;
 
 /**
  * 
@@ -83,6 +86,18 @@ public class SpatialClassDegreeOfInterestFunctions {
 
 		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassCentroidSimilarityInterestingnessFunction(
 				classifier::createClassificationResult, classifier.getName());
+		return degreeOfInterestFunction;
+	}
+
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassBordersInterestingnessFunction(
+			IClassifier<NumericalFeatureVector> classifier, int kNN) {
+
+		IOutlierAnalysisAlgorithm<NumericalFeatureVector> outlierAnalysisAlgorithm = new KNNOutlierAnalysis(kNN);
+
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction =
+				new ClassBordersInterestingnessFunction<NumericalFeatureVector>(
+				classifier::createClassificationResult, outlierAnalysisAlgorithm, classifier.getName());
+
 		return degreeOfInterestFunction;
 	}
 
