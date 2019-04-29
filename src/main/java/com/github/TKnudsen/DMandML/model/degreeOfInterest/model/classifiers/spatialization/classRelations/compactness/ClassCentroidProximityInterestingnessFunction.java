@@ -22,10 +22,11 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * instances for labeling in either compact or spatially distributed classes.
  * </p>
  * 
- * Implementation of the Compactness Estimation (CE) DOI/building block published in: Juergen Bernard,
- * Matthias Zeppelzauer, Markus Lehmann, Martin Mueller, and Michael Sedlmair:
- * Towards User-Centered Active Learning Algorithms. Eurographics Conference on
- * Visualization (EuroVis), Computer Graphics Forum (CGF), 2018.
+ * Implementation of the Compactness Estimation (CE) DOI/building block
+ * published in: Juergen Bernard, Matthias Zeppelzauer, Markus Lehmann, Martin
+ * Mueller, and Michael Sedlmair: Towards User-Centered Active Learning
+ * Algorithms. Eurographics Conference on Visualization (EuroVis), Computer
+ * Graphics Forum (CGF), 2018.
  * </p>
  * 
  * @author Christian Ritter
@@ -33,10 +34,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.02
  */
-public class SpatialClassCentroidSimilarityInterestingnessFunction
-		extends SpatialClassCentroidsInterestingnessFunction {
+public class ClassCentroidProximityInterestingnessFunction extends SpatialClassCentroidsInterestingnessFunction {
 
-	public SpatialClassCentroidSimilarityInterestingnessFunction(
+	public ClassCentroidProximityInterestingnessFunction(
 			IClassificationApplicationFunction<NumericalFeatureVector> classificationResultFunction,
 			String classifierName) {
 		super(classificationResultFunction, classifierName);
@@ -51,12 +51,12 @@ public class SpatialClassCentroidSimilarityInterestingnessFunction
 		double distance = getNumberDistanceMeature()
 				.getDistance(DataConversion.toPrimitives(centersOfGravity.get(winningClass)), fv.getVector());
 
-		return -distance;
+		return distance;
 	}
 
 	@Override
 	public String getName() {
-		return "Class Centroid Similarity [" + getClassifierName() + "]";
+		return "Class Centroid Proximity [" + getClassifierName() + "]";
 	}
 
 }

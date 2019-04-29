@@ -15,15 +15,15 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * <br>
  * 
  * Local Class Diversity (LCD) assesses the diversity of class predictions in
- * the neighborhood of an instance x. For every instance in the vicinity the
- * winning label is used to calculate the diversity measure.
+ * the neighborhood of an instance x. Exploits the spatialization of an instance
+ * in the feature space. For every instance in the vicinity the winning label is
+ * used to calculate the diversity measure.
  * 
- * @version 1.03
+ * @version 1.04
  */
-public class SpatialClassVotesSimpsonsInterestingnessFunction<FV>
-		extends SpatialClassVotesDiversityInterestingnessFunction<FV> {
+public class ClassVotesSimpsonsInterestingnessFunction<FV> extends ClassVotesDiversityInterestingnessFunction<FV> {
 
-	public SpatialClassVotesSimpsonsInterestingnessFunction(
+	public ClassVotesSimpsonsInterestingnessFunction(
 			IClassificationApplicationFunction<FV> classificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 		super(classificationResultFunction, kNN, distanceMeasure, classifierName);
@@ -31,7 +31,7 @@ public class SpatialClassVotesSimpsonsInterestingnessFunction<FV>
 
 	@Override
 	protected double calculateDivsersity(Collection<Integer> votes) {
-		return SimpsonsIndex.calculateSimpsonsIndex(votes);
+		return -SimpsonsIndex.calculateSimpsonsIndex(votes);
 	}
 
 	@Override

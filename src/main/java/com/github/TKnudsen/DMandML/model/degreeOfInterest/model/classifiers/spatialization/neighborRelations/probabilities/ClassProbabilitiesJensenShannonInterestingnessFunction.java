@@ -8,7 +8,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
@@ -32,10 +32,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.03
  */
-public class SpatialClassProbabilitiesJensenShannonInterestingnessFunction<FV>
-		extends SpatialClassProbabilitiesDivergenceInterestingnessFunction<FV> {
+public class ClassProbabilitiesJensenShannonInterestingnessFunction<FV>
+		extends ClassProbabilitiesDivergenceInterestingnessFunction<FV> {
 
-	public SpatialClassProbabilitiesJensenShannonInterestingnessFunction(
+	public ClassProbabilitiesJensenShannonInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 

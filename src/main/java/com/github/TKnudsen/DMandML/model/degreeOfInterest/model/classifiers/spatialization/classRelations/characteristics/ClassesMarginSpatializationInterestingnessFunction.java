@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation;
+package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,18 +25,19 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Uses the winning and the 2nd best class for class separation assessment. Good
- * separation is reached when the margin between the two classes is high and the
- * distance to the winning class center of gravity is considerably smaller.
- * Function: delta(P1,P2) * (distC1-distC2)
+ * Exploits the spatialization of an instance in the feature space. Uses the
+ * winning and the 2nd best class for the interestingness calculation. High
+ * interestingness is achieved when the margin between the two classes is high
+ * and the distance to the winning class center of gravity is considerably
+ * smaller. Function: delta(P1,P2) * (distC1-distC2)
  * </p>
  * 
- * Builds upon the Local Class Separation (LCS) principle (estimates how well
- * the predicted classes around a given instance are separated from each other).
+ * Builds upon the Local Class Diversity (LCD) principle (assesses the diversity
+ * of class predictions in the neighborhood of an instance x).
  * </p>
  * 
  * Published in: Juergen Bernard, Matthias Zeppelzauer, Markus Lehmann, Martin
@@ -45,20 +46,14 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * Graphics Forum (CGF), 2018.
  * </p>
  * 
- * Measure: Euclidean distance measure
- * </p>
- * 
- * @author Christian Ritter
- * @author Juergen Bernard
- * 
  * @version 1.03
  */
-public class SpatialClassesSeparationBasedInterestingnessMeasure
+public class ClassesMarginSpatializationInterestingnessFunction
 		extends ClassificationBasedInterestingnessFunction<NumericalFeatureVector> {
 
 	private IDistanceMeasure<double[]> numberDistanceMeature = new EuclideanDistanceMeasure();
 
-	public SpatialClassesSeparationBasedInterestingnessMeasure(
+	public ClassesMarginSpatializationInterestingnessFunction(
 			IClassificationApplicationFunction<NumericalFeatureVector> classificationResultFunction,
 			String classifierName) {
 		super(classificationResultFunction, classifierName);
@@ -88,6 +83,9 @@ public class SpatialClassesSeparationBasedInterestingnessMeasure
 		// create centers of gravity for every class
 		Map<String, Double[]> centersOfGravity = ClassificationResults.createCentersOfGravity(classificationResult);
 
+		// TODO needs testing (environment)
+		System.err.println(getName() + ": untested operation");
+
 		for (NumericalFeatureVector fv : featureVectors) {
 			LabelDistribution labelDistribution = classificationResult.getLabelDistribution(fv);
 
@@ -110,13 +108,12 @@ public class SpatialClassesSeparationBasedInterestingnessMeasure
 			double deltaP = labelDistribution.getProbability(secondLabel)
 					- labelDistribution.getProbability(winningLabel);
 
-			// TODO Christian: sep does the same (?) like margin. is that correct?
-
 			score = deltaD * deltaP;
 
 			if (Double.isNaN(score))
 				System.err.println(getName() + "NaN problem occurred...");
 
+			// zero achieves the highest value
 			interestingnessScores.put(fv, score);
 			errors.add(score);
 		}
@@ -127,12 +124,11 @@ public class SpatialClassesSeparationBasedInterestingnessMeasure
 			interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
 
 		return interestingnessScores;
-		// return MapUtsils.affineTransformValues(interestingnessScores, -1, 1);
 	}
 
 	@Override
 	public String getName() {
-		return "Classes Separation [" + getClassifierName() + "]";
+		return "Classes Margin Spatialization [" + getClassifierName() + "]";
 	}
 
 	@Override

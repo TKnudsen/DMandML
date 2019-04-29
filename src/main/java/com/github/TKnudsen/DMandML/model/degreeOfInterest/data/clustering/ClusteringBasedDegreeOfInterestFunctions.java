@@ -10,6 +10,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringCentroidDistanceBasedInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringCentroidProximityBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringClusterLikelihoodInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringLargeClusterSizeDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringSizeDeviationDegreeOfInterestingnessFunction;
@@ -97,6 +98,15 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
 		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringCentroidDistanceBasedInterestingnessFunction<NumericalFeatureVector>(
+				clusteringResult, retrieveNearestClusterForUnassignedElements);
+
+		return degreeOfInterestFunction;
+	}
+	
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusterCentroidProximityBasedInterestingnessFunction(
+			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
+			boolean retrieveNearestClusterForUnassignedElements) {
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringCentroidProximityBasedInterestingnessFunction<NumericalFeatureVector>(
 				clusteringResult, retrieveNearestClusterForUnassignedElements);
 
 		return degreeOfInterestFunction;

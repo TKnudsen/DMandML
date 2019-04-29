@@ -9,18 +9,21 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.Cluste
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
  * Calculates interestingness scores of elements on the basis of their distances
  * to the winning centroids of a pre-defined clustering result.
+ * 
+ * Note that winning instances have high distances. The inverse DOI is
+ * ClusteringCentroidProximityBasedInterestingnessFunction.
  * </p>
  * 
  * @author Christian Ritter
  * @author Juergen Bernard
  * 
- * @version 1.03
+ * @version 1.04
  */
 public class ClusteringCentroidDistanceBasedInterestingnessFunction<FV>
 		extends ClusteringBasedDegreeOfInterestingnessFunction<FV> {
@@ -47,8 +50,7 @@ public class ClusteringCentroidDistanceBasedInterestingnessFunction<FV>
 			throw new IllegalArgumentException(
 					getName() + ": clusteringresult did not yield a distance to the neares cluster for instance " + fv);
 
-		// invert scores. will then be normalized to 0...1 in the correct order
-		return -distanceToNearestClusterCentroid;
+		return distanceToNearestClusterCentroid;
 	}
 
 	@Override

@@ -41,10 +41,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.06
  */
-public class SpatialClassCentroidsDistancesInterestingnessFunction
+public class ClassCentroidsDistancesInterestingnessFunction
 		extends SpatialClassCentroidsInterestingnessFunction {
 
-	public SpatialClassCentroidsDistancesInterestingnessFunction(
+	public ClassCentroidsDistancesInterestingnessFunction(
 			IClassificationApplicationFunction<NumericalFeatureVector> classificationResultFunction,
 			String classifierName) {
 		super(classificationResultFunction, classifierName);
