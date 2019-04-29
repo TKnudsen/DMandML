@@ -24,7 +24,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
@@ -49,7 +49,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.04
  */
-public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction<FV>
+public abstract class ClassProbabilitiesDivergenceInterestingnessFunction<FV>
 		extends ClassificationBasedInterestingnessFunction<FV> {
 
 	private final int kNN;
@@ -60,13 +60,13 @@ public abstract class SpatialClassProbabilitiesDivergenceInterestingnessFunction
 
 	private final IDistanceMeasure<double[]> divergenceDistanceMeasure;
 
-	public SpatialClassProbabilitiesDivergenceInterestingnessFunction(
+	public ClassProbabilitiesDivergenceInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, IDistanceMeasure<double[]> divergenceDistanceMeasure) {
 		this(probabilisticClassificationResultFunction, kNN, distanceMeasure, divergenceDistanceMeasure, null);
 	}
 
-	public SpatialClassProbabilitiesDivergenceInterestingnessFunction(
+	public ClassProbabilitiesDivergenceInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, IDistanceMeasure<double[]> divergenceDistanceMeasure,
 			String classifierName) {

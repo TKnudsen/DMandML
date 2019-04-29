@@ -7,24 +7,25 @@ import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInt
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassBordersInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesMarginSpatializationInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesSizeDeviationDegreeOfInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.SpatialClassesMarginInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesSmallesMarginSpatializationInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.ClassCentroidProximityInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.ClassDunnIndexCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.ClassSilhuetteCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.ClassSpecificBalanceCompactnessDegreeOfInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.compactness.SpatialClassCentroidSimilarityInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.ClassCentroidsDistancesInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.ClassDunnIndexSeparationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.ClassSilhuetteSeparationDegreeOfInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.SpatialClassCentroidsDistancesInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.SpatialClassesSeparationBasedInterestingnessMeasure;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.SpatialClassProbabilitiesDistanceInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.SpatialClassProbabilitiesJensenShannonInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.SpatialClassProbabilitiesKolmogorovSmirnovInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.SpatialClassVotesCardinalityInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.SpatialClassVotesEntropyInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.SpatialClassVotesSimpsonsInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.SpatialClassVotesWinnerConfidenceInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.separation.ClassesSeparationBasedInterestingnessMeasure;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.ClassProbabilitiesDistanceInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.ClassProbabilitiesJensenShannonInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.ClassProbabilitiesKolmogorovSmirnovInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities.ClassProbabilitiesKullbackLeiblerInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.ClassVotesCardinalityInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.ClassVotesEntropyInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.ClassVotesSimpsonsInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.votes.ClassVotesWinnerConfidenceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 import com.github.TKnudsen.DMandML.model.unsupervised.outliers.IOutlierAnalysisAlgorithm;
@@ -66,7 +67,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSpatialClassCentroidsDistances(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassCentroidsDistancesInterestingnessFunction(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCentroidsDistancesInterestingnessFunction(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -84,7 +85,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSpatialClassCentroidsWinnerSimilarity(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassCentroidSimilarityInterestingnessFunction(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCentroidProximityInterestingnessFunction(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -94,8 +95,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 
 		IOutlierAnalysisAlgorithm<NumericalFeatureVector> outlierAnalysisAlgorithm = new KNNOutlierAnalysis(kNN);
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction =
-				new ClassBordersInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassBordersInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, outlierAnalysisAlgorithm, classifier.getName());
 
 		return degreeOfInterestFunction;
@@ -111,10 +111,28 @@ public class SpatialClassDegreeOfInterestFunctions {
 	 * @param classifiers
 	 * @return degree of interest function
 	 */
-	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSpatialClassMargin(
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassesMarginSpatialization(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassesMarginInterestingnessFunction(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassesMarginSpatializationInterestingnessFunction(
+				classifier::createClassificationResult, classifier.getName());
+		return degreeOfInterestFunction;
+	}
+
+	/**
+	 * creates an instance of the particular spatial class
+	 * {@link IDegreeOfInterestFunction}.
+	 * 
+	 * The given {@link IClassifier} is used to instantiate the DOI with a
+	 * {@link IClassificationApplicationFunction}.
+	 * 
+	 * @param classifiers
+	 * @return degree of interest function
+	 */
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassesSmallestMarginSpatialization(
+			IClassifier<NumericalFeatureVector> classifier) {
+
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassesSmallesMarginSpatializationInterestingnessFunction(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -134,7 +152,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createSpatialClassSeparation(
 			IClassifier<NumericalFeatureVector> classifier) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassesSeparationBasedInterestingnessMeasure(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassesSeparationBasedInterestingnessMeasure(
 				classifier::createClassificationResult, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -259,7 +277,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassProbabilitiesDistanceInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassProbabilitiesDistanceInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -280,7 +298,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassProbabilitiesJensenShannonInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassProbabilitiesJensenShannonInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -301,7 +319,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassProbabilitiesKolmogorovSmirnovInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassProbabilitiesKolmogorovSmirnovInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -322,7 +340,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassProbabilitiesKullbackLeiblerInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -343,7 +361,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassVotesEntropyInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassVotesEntropyInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -364,7 +382,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassVotesSimpsonsInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassVotesSimpsonsInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -385,7 +403,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassVotesWinnerConfidenceInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassVotesWinnerConfidenceInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}
@@ -406,7 +424,7 @@ public class SpatialClassDegreeOfInterestFunctions {
 			IClassifier<NumericalFeatureVector> classifier, int kNN,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new SpatialClassVotesCardinalityInterestingnessFunction<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassVotesCardinalityInterestingnessFunction<NumericalFeatureVector>(
 				classifier::createClassificationResult, kNN, distanceMeasure, classifier.getName());
 		return degreeOfInterestFunction;
 	}

@@ -20,7 +20,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
@@ -31,7 +31,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * portion pi of neighbors with the class prediction y0 == yi.
  * </p>
  * 
- * The local class diversity can then be estimated by a diversity measure div as
+ * The local (spatial) class diversity can then be estimated by a diversity measure div as
  * follows: LCD(x) = div(p), where p is the vector of all portions pi for the n
  * classes: p = (p1; ::; pn). The entropy of p is one possible choice for
  * function div.
@@ -47,7 +47,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.04
  */
-public abstract class SpatialClassVotesDiversityInterestingnessFunction<FV>
+public abstract class ClassVotesDiversityInterestingnessFunction<FV>
 		extends ClassificationBasedInterestingnessFunction<FV> {
 
 	private final int kNN;
@@ -56,13 +56,13 @@ public abstract class SpatialClassVotesDiversityInterestingnessFunction<FV>
 
 	private KNN<FV> kNNSupport;
 
-	public SpatialClassVotesDiversityInterestingnessFunction(
+	public ClassVotesDiversityInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure) {
 		this(probabilisticClassificationResultFunction, kNN, distanceMeasure, null);
 	}
 
-	public SpatialClassVotesDiversityInterestingnessFunction(
+	public ClassVotesDiversityInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 		super(probabilisticClassificationResultFunction, classifierName);

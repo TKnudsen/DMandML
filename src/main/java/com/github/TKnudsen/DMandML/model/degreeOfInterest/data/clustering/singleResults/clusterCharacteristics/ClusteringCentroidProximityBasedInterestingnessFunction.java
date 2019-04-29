@@ -16,24 +16,23 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.Cluste
  * Calculates interestingness scores of elements on the basis of their distances
  * to the winning centroids of a pre-defined clustering result.
  * 
- * Note that winning instances have high distances. The inverse DOI is
- * ClusteringCentroidProximityBasedInterestingnessFunction.
+ * Note that winning instances have low distances ~ high proximity to centroids.
+ * The inverse DOI is ClusteringCentroidDistanceBasedInterestingnessFunction.
  * </p>
  * 
- * @author Christian Ritter
  * @author Juergen Bernard
  * 
- * @version 1.04
+ * @version 1.01
  */
-public class ClusteringCentroidDistanceBasedInterestingnessFunction<FV>
+public class ClusteringCentroidProximityBasedInterestingnessFunction<FV>
 		extends ClusteringBasedDegreeOfInterestingnessFunction<FV> {
 
-	public ClusteringCentroidDistanceBasedInterestingnessFunction(
+	public ClusteringCentroidProximityBasedInterestingnessFunction(
 			IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult) {
 		this(clusteringResult, true);
 	}
 
-	public ClusteringCentroidDistanceBasedInterestingnessFunction(
+	public ClusteringCentroidProximityBasedInterestingnessFunction(
 			IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
 
@@ -50,12 +49,13 @@ public class ClusteringCentroidDistanceBasedInterestingnessFunction<FV>
 			throw new IllegalArgumentException(
 					getName() + ": clusteringresult did not yield a distance to the neares cluster for instance " + fv);
 
-		return distanceToNearestClusterCentroid;
+		// invert scores. will then be normalized to 0...1 in the correct order
+		return -distanceToNearestClusterCentroid;
 	}
 
 	@Override
 	public String getName() {
-		return "Cluster Centroid Distance [" + getClusteringResult().getName() + "]";
+		return "Cluster Centroid Proximity [" + getClusteringResult().getName() + "]";
 	}
 
 	@Override

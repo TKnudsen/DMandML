@@ -9,23 +9,23 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Assigns an interestingness score to each given instance. The score is based
- * on the label vote of the k nearest neighbors of each instance.<br>
+ * Assigns an interestingness score to each given instance. Exploits the
+ * spatialization of an instance in the feature space. The score is based on the
+ * label votes of a classifier for the k nearest neighbors of an instance.<br>
  * <br>
  * Measure: Vote cardinality. Ratio of different votes divided by the number of
  * votes. Measure is discrete as the number of committee members limits the
  * number of different result niveaus.
  * 
- * @version 1.01
+ * @version 1.02
  */
-public class SpatialClassVotesCardinalityInterestingnessFunction<FV>
-		extends SpatialClassVotesDiversityInterestingnessFunction<FV> {
+public class ClassVotesCardinalityInterestingnessFunction<FV> extends ClassVotesDiversityInterestingnessFunction<FV> {
 
-	public SpatialClassVotesCardinalityInterestingnessFunction(
+	public ClassVotesCardinalityInterestingnessFunction(
 			IClassificationApplicationFunction<FV> classificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 		super(classificationResultFunction, kNN, distanceMeasure, classifierName);

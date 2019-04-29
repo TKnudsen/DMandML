@@ -1,23 +1,20 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities;
 
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KullbackLeiblerDivergenceDistance;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Spatial Class Divergence measure. Uses the probability distributions of
+ * Spatial Class distance measure. Uses the probability distributions of
  * instances in the vicinity and compares them with the probabilites of an
- * instance i. Divergence measures such as the Kullback Leibler divergence can
- * then be used to assess the local divergence.
- * 
- * Measure: Kullback Leibler divergence
+ * instance i.
  * </p>
  * 
  * Measure: Euclidean distance measure
@@ -30,22 +27,21 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * Visualization (EuroVis), Computer Graphics Forum (CGF), 2018.
  * </p>
  * 
- * @version 1.05
+ * @version 1.03
  */
-public class SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction<FV>
-		extends SpatialClassProbabilitiesDivergenceInterestingnessFunction<FV> {
+public class ClassProbabilitiesDistanceInterestingnessFunction<FV>
+		extends ClassProbabilitiesDivergenceInterestingnessFunction<FV> {
 
-	public SpatialClassProbabilitiesKullbackLeiblerInterestingnessFunction(
+	public ClassProbabilitiesDistanceInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
-//		true is mandatory. otherwise KL may produce infinity values
-		super(probabilisticClassificationResultFunction, kNN, distanceMeasure,
-				new KullbackLeiblerDivergenceDistance(true), classifierName);
+
+		super(probabilisticClassificationResultFunction, kNN, distanceMeasure, new EuclideanDistanceMeasure(),
+				classifierName);
 	}
 
 	@Override
 	public String getName() {
-		return "Class Probability Kullback Leibler [" + getClassifierName() + "]";
+		return "Class Probability Distance [" + getClassifierName() + "]";
 	}
-
 }

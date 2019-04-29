@@ -11,7 +11,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
@@ -30,10 +30,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.01
  */
-public class SpatialClassVotesEntropyInterestingnessFunction<FV>
-		extends SpatialClassVotesDiversityInterestingnessFunction<FV> {
+public class ClassVotesEntropyInterestingnessFunction<FV>
+		extends ClassVotesDiversityInterestingnessFunction<FV> {
 
-	public SpatialClassVotesEntropyInterestingnessFunction(
+	public ClassVotesEntropyInterestingnessFunction(
 			IClassificationApplicationFunction<FV> classificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 		super(classificationResultFunction, kNN, distanceMeasure, classifierName);

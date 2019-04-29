@@ -1,20 +1,23 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.neighborRelations.probabilities;
 
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KolmogorovSmirnovDistance;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
  * 
  * DMandML
  *
- * Copyright: (c) 2016-2018 Juergen Bernard,
+ * Copyright: (c) 2016-2019 Juergen Bernard,
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Spatial Class distance measure. Uses the probability distributions of
+ * Spatial Class Divergence measure. Uses the probability distributions of
  * instances in the vicinity and compares them with the probabilites of an
- * instance i.
+ * instance i. Divergence measures such as the Kolmogorov Smirnov divergence can
+ * then be used to assess the local divergence.
+ * 
+ * Divergence measure: KolmogorovSmirnov
  * </p>
  * 
  * Measure: Euclidean distance measure
@@ -27,21 +30,22 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * Visualization (EuroVis), Computer Graphics Forum (CGF), 2018.
  * </p>
  * 
- * @version 1.02
+ * @version 1.05
  */
-public class SpatialClassProbabilitiesDistanceInterestingnessFunction<FV>
-		extends SpatialClassProbabilitiesDivergenceInterestingnessFunction<FV> {
+public class ClassProbabilitiesKolmogorovSmirnovInterestingnessFunction<FV>
+		extends ClassProbabilitiesDivergenceInterestingnessFunction<FV> {
 
-	public SpatialClassProbabilitiesDistanceInterestingnessFunction(
+	public ClassProbabilitiesKolmogorovSmirnovInterestingnessFunction(
 			IClassificationApplicationFunction<FV> probabilisticClassificationResultFunction, int kNN,
 			IDistanceMeasure<FV> distanceMeasure, String classifierName) {
 
-		super(probabilisticClassificationResultFunction, kNN, distanceMeasure, new EuclideanDistanceMeasure(),
+		super(probabilisticClassificationResultFunction, kNN, distanceMeasure, new KolmogorovSmirnovDistance(),
 				classifierName);
 	}
 
 	@Override
 	public String getName() {
-		return "Class Probability Distance [" + getClassifierName() + "]";
+		return "Class Probability Kolmogorov Smirnov [" + getClassifierName() + "]";
 	}
+
 }
