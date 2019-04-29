@@ -64,7 +64,12 @@ public class ClassBordersInterestingnessFunction<FV>
                     outlierAnalysisAlgorithm.getOutlierAnalysisResult();
             outlierAnalysisAlgorithm.resetScores();
 
-            fvs.forEach(fv -> interestingnessScores.put(fv, outlierAnalysisResult.getOutlierScore(fv)));
+            fvs.forEach(fv -> {
+                double outlierScore = outlierAnalysisResult.getOutlierScore(fv);
+                if (!Double.isNaN(outlierScore)) {
+                    interestingnessScores.put(fv, outlierScore);
+                }
+            });
         }
 
         // post-processing
