@@ -77,7 +77,7 @@ public class ClassBordersInterestingnessFunction<FV>
 
     @Override
     public String getName() {
-        return "Class Borders";
+        return "Class Borders  [" + getClassifierName() + "]";
     }
 
     @Override
