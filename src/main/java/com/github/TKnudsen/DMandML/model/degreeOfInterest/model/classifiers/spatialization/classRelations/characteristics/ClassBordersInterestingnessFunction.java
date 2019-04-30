@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -48,7 +46,6 @@ public class ClassBordersInterestingnessFunction<FV>
                 featureVectors);
 
         LinkedHashMap<FV, Double> interestingnessScores = new LinkedHashMap<>();
-        Collection<Number> errors = new ArrayList<>();
 
         if (classificationResult == null || classificationResult.getClassDistributions() == null) {
             for (FV fv : featureVectors)
@@ -72,8 +69,7 @@ public class ClassBordersInterestingnessFunction<FV>
             });
         }
 
-        // post-processing
-        NormalizationFunction normalizationFunction = new LinearNormalizationFunction(errors);
+        NormalizationFunction normalizationFunction = new LinearNormalizationFunction(interestingnessScores.values());
         for (FV fv : interestingnessScores.keySet())
             interestingnessScores.put(fv, normalizationFunction.apply(interestingnessScores.get(fv)).doubleValue());
 
