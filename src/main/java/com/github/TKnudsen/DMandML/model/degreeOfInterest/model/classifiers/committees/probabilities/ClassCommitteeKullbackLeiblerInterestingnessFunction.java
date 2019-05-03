@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KullbackLeiblerDivergenceDistance;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KullbackLeiblerDivergenceDistance;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.ClassificationCommitteeBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
@@ -27,10 +27,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * Machine Learning (ICML), pages 359–367. Morgan Kaufmann, 1998.
  * </p>
  * 
- * @version 1.02
+ * @version 1.03
  */
 public class ClassCommitteeKullbackLeiblerInterestingnessFunction<FV>
-		extends ClassificationCommitteeBasedInterestingnessFunction<FV> {
+		extends ClassCommitteeProbabilitiesInterestingnessFunction<FV> {
 
 	public ClassCommitteeKullbackLeiblerInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {

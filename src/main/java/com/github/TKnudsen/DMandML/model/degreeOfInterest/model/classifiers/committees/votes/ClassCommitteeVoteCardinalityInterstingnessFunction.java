@@ -1,7 +1,5 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes;
 
-import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-
 import java.util.List;
 
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
@@ -18,33 +16,34 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * label distributions of every candidate for a given set of models. The winning
  * candidate poses those label distributions where the committee disagrees most.
  * 
- * Measure: Entropy applied on the distribution of winning labels.
- * 
- * Reference: Dagan and S. Engelson. Committee-based sampling for training
- * probabilistic classifiers. In Proceedings of the International Conference on
- * Machine Learning (ICML), pages 150–157. Morgan Kaufmann, 1995.
+ * Measure: Vote cardinality. Ratio of different votes divided by the number of
+ * votes. Measure is discrete as the nr. of committee members limits the number
+ * of different result nevieaus.
  * </p>
  * 
  * @version 1.04
  */
-public class ClassCommitteeVoteEntropyInterestingnessFunction<FV>
-		extends ClassCommitteeVotesInterestingnessFunction<FV> {
+public class ClassCommitteeVoteCardinalityInterstingnessFunction<FV> extends ClassCommitteeVotesInterestingnessFunction<FV> {
 
-	public ClassCommitteeVoteEntropyInterestingnessFunction(
-			List<IClassificationApplicationFunction<FV>> classificationResults) {
+	public ClassCommitteeVoteCardinalityInterstingnessFunction(List<IClassificationApplicationFunction<FV>> classificationResults) {
 		super(classificationResults);
 	}
 
 	@Override
 	protected double computeClassCommitteeVoteInterestingness(FV fv, List<Double> votesDistribution) {
-		double entropy = Entropy.calculateEntropy(votesDistribution);
+		double nrOfWinners = 0.0;
+		for (Double d : votesDistribution)
+			if (d > 0)
+				nrOfWinners++;
 
-		return entropy;
+		double ratio = (nrOfWinners - 1) / (double) votesDistribution.size();
+
+		return ratio;
 	}
 
 	@Override
 	public String getName() {
-		return "Class Committee Vote Entropy";
+		return "Class Committee Vote Cardinality";
 	}
 
 }

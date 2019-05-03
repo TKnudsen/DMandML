@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.ClassificationCommitteeBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
@@ -19,10 +19,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * the distances of probability distributions.
  * </p>
  * 
- * @version 1.01
+ * @version 1.02
  */
 public class ClassCommitteeProbabilityDistanceInterestingnessFunction<FV>
-		extends ClassificationCommitteeBasedInterestingnessFunction<FV> {
+		extends ClassCommitteeProbabilitiesInterestingnessFunction<FV> {
 
 	public ClassCommitteeProbabilityDistanceInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {

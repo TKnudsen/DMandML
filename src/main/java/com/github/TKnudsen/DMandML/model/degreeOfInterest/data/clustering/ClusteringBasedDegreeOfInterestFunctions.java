@@ -1,12 +1,13 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering;
 
-import java.util.List;
-import java.util.function.Supplier;
-
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
+
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.clusterCharacteristics.ClusteringCentroidDistanceBasedInterestingnessFunction;
@@ -20,6 +21,8 @@ import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.single
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.compactness.ClusteringSilhuetteCompactnessDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.separation.ClusteringDunnIndexSeparationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.separation.ClusteringOtherCentroidsDistanceSeparationDegreeOfInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.separation.ClusteringSeparationCentroidsLargestMarginInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.separation.ClusteringSeparationCentroidsSmallestInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.data.clustering.singleResults.separation.ClusteringSilhuetteSeparationDegreeOfInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusteringAlgorithm;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.enums.LinkageStrategy;
@@ -102,7 +105,7 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 
 		return degreeOfInterestFunction;
 	}
-	
+
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateClusterCentroidProximityBasedInterestingnessFunction(
 			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
 			boolean retrieveNearestClusterForUnassignedElements) {
@@ -146,6 +149,26 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 			boolean retrieveNearestClusterForUnassignedElements,
 			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
 		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringOtherCentroidsDistanceSeparationDegreeOfInterestingnessFunction<NumericalFeatureVector>(
+				clusteringResult, retrieveNearestClusterForUnassignedElements, distanceMeasure);
+
+		return degreeOfInterestFunction;
+	}
+
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateSeparationCentroidsLargestMarginInterestingnessFunction(
+			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
+			boolean retrieveNearestClusterForUnassignedElements,
+			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringSeparationCentroidsLargestMarginInterestingnessFunction<NumericalFeatureVector>(
+				clusteringResult, retrieveNearestClusterForUnassignedElements, distanceMeasure);
+
+		return degreeOfInterestFunction;
+	}
+
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateSeparationCentroidsSmallestMarginInterestingnessFunction(
+			IClusteringResult<NumericalFeatureVector, ? extends ICluster<NumericalFeatureVector>> clusteringResult,
+			boolean retrieveNearestClusterForUnassignedElements,
+			IDistanceMeasure<NumericalFeatureVector> distanceMeasure) {
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClusteringSeparationCentroidsSmallestInterestingnessFunction<NumericalFeatureVector>(
 				clusteringResult, retrieveNearestClusterForUnassignedElements, distanceMeasure);
 
 		return degreeOfInterestFunction;
@@ -2647,6 +2670,8 @@ public class ClusteringBasedDegreeOfInterestFunctions {
 
 		return degreeOfInterestFunction;
 	}
+
+	// ClusteringSeparationSmallestCentroidsMarginInterestingnessFunction missing
 
 	@Deprecated
 	private static IDegreeOfInterestFunction<NumericalFeatureVector> instantiateSilhuetteCompactnessBasedInterestingnessFunction(

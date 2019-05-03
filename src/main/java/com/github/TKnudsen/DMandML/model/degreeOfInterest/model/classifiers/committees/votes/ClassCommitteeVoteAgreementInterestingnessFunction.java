@@ -14,23 +14,16 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * https://github.com/TKnudsen/DMandML<br>
  * <br>
  * 
- * Queries controversial instances/regions in the input space. Compares the
- * label distributions of every candidate for a given set of models. The winning
- * candidate poses those label distributions where the committee disagrees most.
- * 
- * Measure: Entropy applied on the distribution of winning labels.
- * 
- * Reference: Dagan and S. Engelson. Committee-based sampling for training
- * probabilistic classifiers. In Proceedings of the International Conference on
- * Machine Learning (ICML), pages 150–157. Morgan Kaufmann, 1995.
+ * Queries instances with high agreement of committee votes. Uses the entropy of
+ * the vote distribution and inverts it.
  * </p>
  * 
- * @version 1.04
+ * @version 1.01
  */
-public class ClassCommitteeVoteEntropyInterestingnessFunction<FV>
+public class ClassCommitteeVoteAgreementInterestingnessFunction<FV>
 		extends ClassCommitteeVotesInterestingnessFunction<FV> {
 
-	public ClassCommitteeVoteEntropyInterestingnessFunction(
+	public ClassCommitteeVoteAgreementInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {
 		super(classificationResults);
 	}
@@ -39,12 +32,13 @@ public class ClassCommitteeVoteEntropyInterestingnessFunction<FV>
 	protected double computeClassCommitteeVoteInterestingness(FV fv, List<Double> votesDistribution) {
 		double entropy = Entropy.calculateEntropy(votesDistribution);
 
-		return entropy;
+		// the less the entropy the higher the agreement
+		return -entropy;
 	}
 
 	@Override
 	public String getName() {
-		return "Class Committee Vote Entropy";
+		return "Class Committee Vote Agreement";
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.JensenShannonDivergenceDistance;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
 
 import java.util.List;
 
@@ -30,17 +30,17 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * 
  * @version 1.02
  */
-public class ClassCommitteeJensenShannonDivergenceInterestingnessFunction<FV>
+public class ClassCommitteeProbabilitiesAgreementInterestingnessFunction<FV>
 		extends ClassCommitteeProbabilitiesInterestingnessFunction<FV> {
 
-	public ClassCommitteeJensenShannonDivergenceInterestingnessFunction(
+	public ClassCommitteeProbabilitiesAgreementInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {
-		super(classificationResults, new JensenShannonDivergenceDistance());
+		super(classificationResults, new EuclideanDistanceMeasure(), true);
 	}
 
 	@Override
 	public String getName() {
-		return "Class Committee Jensen Shannon Divergence";
+		return "Class Committee Probabilities Agreement";
 	}
 
 }
