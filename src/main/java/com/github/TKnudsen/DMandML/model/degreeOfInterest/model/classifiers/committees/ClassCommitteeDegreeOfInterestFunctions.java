@@ -1,15 +1,18 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeJensenShannonDivergenceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeKolmogorovSmirnovInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeKullbackLeiblerInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeProbabilitiesAgreementInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities.ClassCommitteeProbabilityDistanceInterestingnessFunction;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes.ClassCommitteeVoteCardinality;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes.ClassCommitteeVoteAgreementInterestingnessFunction;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes.ClassCommitteeVoteCardinalityInterstingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes.ClassCommitteeVoteDiversityInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes.ClassCommitteeVoteEntropyInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
@@ -110,6 +113,28 @@ public class ClassCommitteeDegreeOfInterestFunctions {
 	 * @param classifiers
 	 * @return degree of interest function
 	 */
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassCommitteeProbabilitiesAgreement(
+			List<? extends IClassifier<NumericalFeatureVector>> classifiers) {
+
+		List<IClassificationApplicationFunction<NumericalFeatureVector>> classificationResults = new ArrayList<>();
+		for (IClassifier<NumericalFeatureVector> classifier : classifiers)
+			classificationResults.add(classifier::createClassificationResult);
+
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCommitteeProbabilitiesAgreementInterestingnessFunction<NumericalFeatureVector>(
+				classificationResults);
+		return degreeOfInterestFunction;
+	}
+
+	/**
+	 * creates an instance of the particular class committee
+	 * {@link IDegreeOfInterestFunction}.
+	 * 
+	 * The given list of {@link IClassifier} is used to instantiate the DOI with a
+	 * list of {@link IClassificationApplicationFunction}.
+	 * 
+	 * @param classifiers
+	 * @return degree of interest function
+	 */
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassCommitteeProbabilityDistance(
 			List<? extends IClassifier<NumericalFeatureVector>> classifiers) {
 
@@ -132,6 +157,28 @@ public class ClassCommitteeDegreeOfInterestFunctions {
 	 * @param classifiers
 	 * @return degree of interest function
 	 */
+	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassCommitteeVoteAgreement(
+			List<? extends IClassifier<NumericalFeatureVector>> classifiers) {
+
+		List<IClassificationApplicationFunction<NumericalFeatureVector>> classificationResults = new ArrayList<>();
+		for (IClassifier<NumericalFeatureVector> classifier : classifiers)
+			classificationResults.add(classifier::createClassificationResult);
+
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCommitteeVoteAgreementInterestingnessFunction<NumericalFeatureVector>(
+				classificationResults);
+		return degreeOfInterestFunction;
+	}
+
+	/**
+	 * creates an instance of the particular class committee
+	 * {@link IDegreeOfInterestFunction}.
+	 * 
+	 * The given list of {@link IClassifier} is used to instantiate the DOI with a
+	 * list of {@link IClassificationApplicationFunction}.
+	 * 
+	 * @param classifiers
+	 * @return degree of interest function
+	 */
 	public static IDegreeOfInterestFunction<NumericalFeatureVector> createClassCommitteeVoteCardinality(
 			List<? extends IClassifier<NumericalFeatureVector>> classifiers) {
 
@@ -139,7 +186,7 @@ public class ClassCommitteeDegreeOfInterestFunctions {
 		for (IClassifier<NumericalFeatureVector> classifier : classifiers)
 			classificationResults.add(classifier::createClassificationResult);
 
-		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCommitteeVoteCardinality<NumericalFeatureVector>(
+		IDegreeOfInterestFunction<NumericalFeatureVector> degreeOfInterestFunction = new ClassCommitteeVoteCardinalityInterstingnessFunction<NumericalFeatureVector>(
 				classificationResults);
 		return degreeOfInterestFunction;
 	}

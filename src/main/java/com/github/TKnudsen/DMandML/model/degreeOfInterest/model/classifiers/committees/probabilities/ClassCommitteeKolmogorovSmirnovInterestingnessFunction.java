@@ -1,9 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KolmogorovSmirnovDistance;
+
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.probabilities.KolmogorovSmirnovDistance;
-import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.ClassificationCommitteeBasedInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
@@ -19,10 +19,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * the similarities of probability distributions.
  * </p>
  * 
- * @version 1.02
+ * @version 1.03
  */
 public class ClassCommitteeKolmogorovSmirnovInterestingnessFunction<FV>
-		extends ClassificationCommitteeBasedInterestingnessFunction<FV> {
+		extends ClassCommitteeProbabilitiesInterestingnessFunction<FV> {
 
 	public ClassCommitteeKolmogorovSmirnovInterestingnessFunction(
 			List<IClassificationApplicationFunction<FV>> classificationResults) {
