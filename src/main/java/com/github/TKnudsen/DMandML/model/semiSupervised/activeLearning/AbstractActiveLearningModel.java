@@ -23,12 +23,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
  * </p>
  * 
  * <p>
- * Abstract class for active learners. stores the candidata list as well as the
+ * Abstract class for active learners. stores the candidate list as well as the
  * supplier of classification results.
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
