@@ -1,10 +1,9 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes;
 
-import com.github.TKnudsen.ComplexDataObject.model.statistics.SimpsonsIndex;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.model.statistics.SimpsonsIndex;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
