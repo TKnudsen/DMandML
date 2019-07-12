@@ -1,9 +1,8 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.votes;
 
-import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
-
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.model.statistics.Entropy;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**

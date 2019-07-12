@@ -3,9 +3,9 @@ package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spa
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassBordersInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesMarginSpatializationInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.spatialization.classRelations.characteristics.ClassesSizeDeviationDegreeOfInterestingnessFunction;

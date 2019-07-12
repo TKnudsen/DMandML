@@ -1,8 +1,8 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.uncertainty;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
+import com.github.TKnudsen.DMandML.model.degreeOfInterest.IDegreeOfInterestFunction;
 import com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.relevance.ClassRelevanceMostSignificantConfidenceInterestingnessFunction;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;

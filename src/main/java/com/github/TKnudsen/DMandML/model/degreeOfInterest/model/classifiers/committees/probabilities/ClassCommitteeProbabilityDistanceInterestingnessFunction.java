@@ -1,9 +1,8 @@
 package com.github.TKnudsen.DMandML.model.degreeOfInterest.model.classifiers.committees.probabilities;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
-
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
