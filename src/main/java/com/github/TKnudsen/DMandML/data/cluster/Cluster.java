@@ -103,11 +103,11 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	}
 
 	/**
-	 * determin the T representing the Cluster best.
+	 * determine the T representing the Cluster best.
 	 */
 	protected void calculateCentroid() {
 		if (centroid == null) {
-			centroid = ClusterTools.calculateCentroidLikeElement(this, distanceMeasure);
+			centroid = Clusters.calculateCentroidLikeElement(this, distanceMeasure);
 		}
 	}
 

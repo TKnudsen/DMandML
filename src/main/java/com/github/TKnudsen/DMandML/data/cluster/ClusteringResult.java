@@ -55,7 +55,7 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 	public Object clone() {
 		List<C> cls = new ArrayList<C>();
 		for (int i = 0; i < cls.size(); i++)
-			cls.add((C) ClusterTools.clone(clusters.get(i)));
+			cls.add((C) Clusters.clone(clusters.get(i)));
 
 		IClusteringResult<T, ? extends C> asdf = new ClusteringResult<T, C>(cls, getName());
 		return asdf;

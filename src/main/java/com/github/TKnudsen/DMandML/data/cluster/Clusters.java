@@ -10,22 +10,17 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 
 /**
  * <p>
- * Title: ClusterTools
+ * Description: some utility to ease the use of clusters. Replaces ClusterTools
  * </p>
  * 
  * <p>
- * Description: some utility to ease the use of clusters.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
- * @deprecated use Clusters instead
+ * @version 1.01
  */
-public class ClusterTools {
+public class Clusters {
 
 	/**
 	 * converts the set of elements into a list. Just for convenient reasons.
@@ -93,7 +88,7 @@ public class ClusterTools {
 	}
 
 	/**
-	 * calculates/determines a Centroid for a given Cluster.
+	 * calculates/determines a centroid for a given Cluster.
 	 * 
 	 * @param cluster
 	 * @param distanceMeasure
