@@ -23,6 +23,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * 
  * @author Juergen Bernard
  * @version 1.02
+ * @deprecated use Clusters instead
  */
 public class ClusterTools {
 

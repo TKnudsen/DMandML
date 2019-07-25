@@ -6,7 +6,7 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.ClusterTools;
+import com.github.TKnudsen.DMandML.data.cluster.Clusters;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
@@ -67,7 +67,7 @@ public class KMeansBasedClusterSplitting
 
 	@Override
 	public List<Cluster<NumericalFeatureVector>> splitCluster(Cluster<NumericalFeatureVector> cluster) {
-		kmeans = new KMeans(splitCount, 17, ClusterTools.getElementList(cluster));
+		kmeans = new KMeans(splitCount, 17, Clusters.getElementList(cluster));
 		kmeans.calculateClustering();
 		NumericalFeatureVectorClusterResult clusterResultSet = kmeans.getClusteringResult();
 
