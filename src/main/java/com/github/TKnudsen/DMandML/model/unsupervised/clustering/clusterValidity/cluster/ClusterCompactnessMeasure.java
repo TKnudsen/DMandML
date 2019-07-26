@@ -10,7 +10,7 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.ClusterTools;
+import com.github.TKnudsen.DMandML.data.cluster.Clusters;
 
 /**
  * <p>
@@ -52,12 +52,12 @@ public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements 
 	 * with large matrix sizes. Recommendation: use aggregation for n >1000
 	 * 
 	 * @param cluster
-	 * @param sizeThresholdToUseAggregation
-	 *            above: an AggregationBasedDistanceMatrix is used
+	 * @param sizeThresholdToUseAggregation above: an AggregationBasedDistanceMatrix
+	 *                                      is used
 	 * @return
 	 */
 	protected IDistanceMatrix<FV> getPairwiseDistances(Cluster<FV> cluster) {
 
-		return new DistanceMatrix<>(ClusterTools.getElementList(cluster), cluster.getDistanceMeasure());
+		return new DistanceMatrix<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
 	}
 }

@@ -2,12 +2,18 @@ package com.github.TKnudsen.DMandML.data.classification;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.DMandML.data.cluster.Centroid;
+import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
  * <p>
@@ -140,6 +146,37 @@ public class ClassificationResults {
 			Double[] gravityVector = gravityMap.get(label);
 			for (int d = 0; d < dimensionality; d++)
 				gravityVector[d] /= weightMap.get(label);
+		}
+
+		return gravityMap;
+	}
+
+	/**
+	 * identifies the instance that is closest to the center of the class. This
+	 * (copy of the) instance will be returned as the representative.
+	 * 
+	 * @param classificationResult
+	 * @param distanceMeasure
+	 * @return
+	 */
+	public static <FV> Map<String, FV> createCentersOfGravity(IClassificationResult<FV> classificationResult,
+			IDistanceMeasure<FV> distanceMeasure) {
+
+		Objects.requireNonNull(classificationResult);
+
+		Map<String, FV> gravityMap = new LinkedHashMap<>();
+
+		if (classificationResult.getFeatureVectors().size() == 0)
+			return gravityMap;
+
+		Map<String, List<FV>> classDistributions = classificationResult.getClassDistributions();
+		for (String classLabel : classDistributions.keySet()) {
+			List<FV> FVs = classDistributions.get(classLabel);
+
+			Cluster<FV> cluster = new GeneralCluster<>(FVs, distanceMeasure, classLabel, "");
+			Centroid<FV> clusterRepresentant = cluster.getCentroid();
+
+			gravityMap.put(classLabel, clusterRepresentant.getData());
 		}
 
 		return gravityMap;
