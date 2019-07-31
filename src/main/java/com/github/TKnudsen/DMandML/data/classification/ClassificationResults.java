@@ -173,7 +173,10 @@ public class ClassificationResults {
 		for (String classLabel : classDistributions.keySet()) {
 			List<FV> FVs = classDistributions.get(classLabel);
 
-			Cluster<FV> cluster = new GeneralCluster<>(FVs, distanceMeasure, classLabel, "");
+			String name = classLabel;
+			if (name == null)
+				name = "no name probided";
+			Cluster<FV> cluster = new GeneralCluster<>(FVs, distanceMeasure, name, "");
 			Centroid<FV> clusterRepresentant = cluster.getCentroid();
 
 			gravityMap.put(classLabel, clusterRepresentant.getData());
