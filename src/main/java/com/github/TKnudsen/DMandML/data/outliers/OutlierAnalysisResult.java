@@ -16,7 +16,7 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
  * </p>
  * 
  * <p>
- * Copyright: (c) 22018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2018-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard

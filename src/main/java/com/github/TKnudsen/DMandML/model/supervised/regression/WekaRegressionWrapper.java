@@ -23,11 +23,11 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.04
+ * @version 1.05
  * 
  */
 public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?>> extends Regression<FV> {
@@ -74,29 +74,6 @@ public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?
 	protected void resetResults() {
 		wekaRegressionModel = null;
 	}
-
-	// @Override
-	// public void train(List<NumericalFeatureVector> featureVectors,
-	// List<Double> labels) {
-	// setTrainFeatureVectors(featureVectors);
-	//
-	// instances = WekaConversion.getLabeledInstances(featureVectors, labels);
-	//
-	// buildRegressionModel();
-	// }
-	//
-	// @Override
-	// public void train(List<NumericalFeatureVector> featureVectors, String
-	// targetVariable) {
-	// setTrainFeatureVectors(featureVectors);
-	//
-	// Attribute attribute = instances.attribute(targetVariable);
-	//
-	// instances.setClass(attribute);
-	// System.out.println(instances.classIndex());
-	//
-	// buildRegressionModel();
-	// }
 
 	@Override
 	public List<Double> test(List<FV> featureVectors) {

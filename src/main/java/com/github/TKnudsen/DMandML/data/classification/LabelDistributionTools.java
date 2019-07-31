@@ -96,10 +96,17 @@ public class LabelDistributionTools {
 
 		Ranking<EntryWithComparableKey<Double, String>> ranking = new Ranking<EntryWithComparableKey<Double, String>>();
 
-		for (String label : labelDistribution.keySet())
-			ranking.add(new EntryWithComparableKey<Double, String>(labelDistribution.getValueDistribution().get(label),
-					label));
+		// problem if winning and second label have exactly the same probability
+		String winner = labelDistribution.getMostLikelyItem();
 
-		return ranking.get(ranking.size() - 2).getValue();
+		for (String label : labelDistribution.keySet())
+			if (label.equals(winner))
+				continue;
+			else
+				ranking.add(new EntryWithComparableKey<Double, String>(
+						labelDistribution.getValueDistribution().get(label), label));
+
+		// pick winner of remaining classes (except the ignored winner)
+		return ranking.get(ranking.size() - 1).getValue();
 	}
 }
