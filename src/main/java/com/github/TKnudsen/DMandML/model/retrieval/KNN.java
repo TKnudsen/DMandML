@@ -20,17 +20,17 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
-public class KNN<FV> {
+public class KNN<FV> implements IRetrievalAlgorithm<FV> {
 
 	private int kNN;
 
-	private IDistanceMeasure<? super FV> distanceMeasure;
+	private final IDistanceMeasure<? super FV> distanceMeasure;
 
 	private final Collection<FV> elements;
 
@@ -41,6 +41,17 @@ public class KNN<FV> {
 		this.elements = Collections.unmodifiableCollection(elements);
 	}
 
+	@Override
+	public Ranking<EntryWithComparableKey<Double, FV>> retrieveNeighbors(FV element) {
+		return getNearestNeighborsWithScores(element);
+	}
+
+	/**
+	 * 
+	 * @param element
+	 * @return
+	 * @Deprecated use retrieveNeighbors in future
+	 */
 	public Ranking<EntryWithComparableKey<Double, FV>> getNearestNeighborsWithScores(FV element) {
 		Ranking<EntryWithComparableKey<Double, FV>> ranking = new Ranking<>();
 
@@ -80,6 +91,24 @@ public class KNN<FV> {
 			throw new IllegalArgumentException("KNN: illegal parameter value for kNN: " + kNN + "must be >0");
 
 		this.kNN = kNN;
+	}
+
+	public IDistanceMeasure<? super FV> getDistanceMeasure() {
+		return distanceMeasure;
+	}
+
+	public Collection<FV> getElements() {
+		return elements;
+	}
+
+	@Override
+	public String getName() {
+		return getClass().getSimpleName();
+	}
+
+	@Override
+	public String getDescription() {
+		return "Retrieves k nearest neighbors for a given element";
 	}
 
 }
