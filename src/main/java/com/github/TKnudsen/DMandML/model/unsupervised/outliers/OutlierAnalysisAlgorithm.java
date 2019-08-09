@@ -16,11 +16,11 @@ import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAlgorithm<FV> {
 
@@ -33,6 +33,19 @@ public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAl
 
 	public OutlierAnalysisAlgorithm(List<? extends FV> featureVectors) {
 		setFeatureVectors(featureVectors);
+	}
+
+	@Override
+	/**
+	 * does all three steps in a row: set data, build model, and create result.
+	 */
+	public IOutlierAnalysisResult<FV> runOutlierAnalysis(List<? extends FV> data) {
+
+		setFeatureVectors(featureVectors);
+
+		calculateOutlierAnalysisResult();
+
+		return getOutlierAnalysisResult();
 	}
 
 	public abstract void calculateOutlierAnalysisResult();

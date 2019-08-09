@@ -74,14 +74,6 @@ public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV
 			maxDistanceMeans.add(statistics.getMean());
 		}
 
-		// StatisticsSupport distanceMeansStatistics = new
-		// StatisticsSupport(maxDistanceMeans);
-		//
-		// for (FV fv : featureVectorList)
-		// outlierScores.put(fv,
-		// MathFunctions.linearScale(0, distanceMeansStatistics.getMax(),
-		// outlierScores.get(fv)));
-
 		this.outlierAnalysisResult = new OutlierAnalysisResult<FV>(outlierScores, getName());
 	}
 

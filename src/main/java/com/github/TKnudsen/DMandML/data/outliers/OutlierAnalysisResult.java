@@ -30,10 +30,6 @@ public class OutlierAnalysisResult<FV> implements IOutlierAnalysisResult<FV> {
 
 	private final Map<FV, Double> outlierScores;
 
-	public OutlierAnalysisResult(Map<FV, Double> outlierScores) {
-		this(outlierScores, null);
-	}
-
 	public OutlierAnalysisResult(Map<FV, Double> outlierScores, String name) {
 		this.outlierScores = outlierScores;
 		this.name = name;
