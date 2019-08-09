@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.retrieval;
+package com.github.TKnudsen.DMandML.model.retrieval.epsilon;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * @author Juergen Bernard
  * @version 1.01
  */
-public class EpsilonNeighbors<FV> implements IRetrievalAlgorithm<FV> {
+public class EpsilonNeighbors<FV> implements IEpsilonRetrievalAlgorithm<FV> {
 
 	private double epsilon;
 
@@ -71,6 +71,7 @@ public class EpsilonNeighbors<FV> implements IRetrievalAlgorithm<FV> {
 		return epsilon;
 	}
 
+	@Override
 	public void setEpsilon(double epsilon) {
 		if (epsilon < 0)
 			throw new IllegalArgumentException(

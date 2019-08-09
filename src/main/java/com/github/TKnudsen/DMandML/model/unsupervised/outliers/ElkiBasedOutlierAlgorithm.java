@@ -27,11 +27,11 @@ import de.lmu.ifi.dbs.elki.result.outlier.OutlierResult;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2017-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm<NumericalFeatureVector> {
 
@@ -46,6 +46,25 @@ public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm
 
 	public ElkiBasedOutlierAlgorithm(List<? extends NumericalFeatureVector> featureVectors) {
 		super(featureVectors);
+	}
+
+	@Override
+	/**
+	 * does all three steps in a row: set data, build model, and create result. does
+	 * not necessarily use the three individual methods, as these routines maybe
+	 * deprecated some day.
+	 */
+	public IOutlierAnalysisResult<NumericalFeatureVector> runOutlierAnalysis(
+			List<? extends NumericalFeatureVector> featureVectors) {
+
+		// setData
+		elkiDataWrapper = new ELKIDataWrapper(featureVectors);
+
+		elkiOutlierResult = outlierAlgorithm.run(elkiDataWrapper.getDB());
+
+		calculateOutlierAnalysisResult();
+
+		return getOutlierAnalysisResult();
 	}
 
 	@Override
@@ -93,12 +112,12 @@ public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm
 
 	@Override
 	public double getOutlierScore(NumericalFeatureVector fv) {
-		IOutlierAnalysisResult<NumericalFeatureVector> outlierAnalysisResult2 = getOutlierAnalysisResult();
+		IOutlierAnalysisResult<NumericalFeatureVector> outlierAnalysisResult = getOutlierAnalysisResult();
 
-		if (outlierAnalysisResult2 == null)
+		if (outlierAnalysisResult == null)
 			return Double.NaN;
 
-		return outlierAnalysisResult2.getOutlierScore(fv);
+		return outlierAnalysisResult.getOutlierScore(fv);
 	}
 
 	@Override

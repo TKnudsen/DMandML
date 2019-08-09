@@ -1,4 +1,4 @@
-package com.github.TKnudsen.DMandML.model.retrieval;
+package com.github.TKnudsen.DMandML.model.retrieval.kNN;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +26,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
  * @author Juergen Bernard
  * @version 1.03
  */
-public class KNN<FV> implements IRetrievalAlgorithm<FV> {
+public class KNN<FV> implements IkNNRetrievalAlgorithm<FV> {
 
 	private int kNN;
 
@@ -86,6 +86,7 @@ public class KNN<FV> implements IRetrievalAlgorithm<FV> {
 		return kNN;
 	}
 
+	@Override
 	public void setKNN(int kNN) {
 		if (kNN < 1)
 			throw new IllegalArgumentException("KNN: illegal parameter value for kNN: " + kNN + "must be >0");

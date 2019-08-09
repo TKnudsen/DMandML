@@ -23,6 +23,8 @@ import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
  */
 public interface IOutlierAnalysisAlgorithm<FV> extends ISelfDescription {
 
+	public IOutlierAnalysisResult<FV> runOutlierAnalysis(List<? extends FV> data);
+	
 	public void setData(List<? extends FV> data);
 
 	/**
