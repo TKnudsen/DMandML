@@ -1,115 +1,72 @@
 package com.github.TKnudsen.DMandML.model.retrieval.kNN;
 
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.PriorityQueue;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
 
-/**
- * <p>
- * Title: KNN
- * </p>
- * 
- * <p>
- * Description: k nearest neighbor operation, applied on a collection of
- * pre-given instancess.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @version 1.03
- */
-public class KNN<FV> implements IkNNRetrievalAlgorithm<FV> {
+public class KNN<T> implements IRetrievalAlgorithm<T> {
 
-	private int kNN;
+	private final int knn;
 
-	private final IDistanceMeasure<? super FV> distanceMeasure;
+	private final IDistanceMeasure<? super T> distanceMeasure;
 
-	private final Collection<FV> elements;
+	private final Collection<T> elements;
 
-	public KNN(int kNN, IDistanceMeasure<? super FV> distanceMeasure, Collection<? extends FV> elements) {
-		setKNN(kNN);
-
-		this.distanceMeasure = distanceMeasure;
+	public KNN(int knn, IDistanceMeasure<? super T> distanceMeasure, Collection<? extends T> elements) {
+		this.knn = knn;
+		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "The distanceMeasure may not be null");
 		this.elements = Collections.unmodifiableCollection(elements);
 	}
 
 	@Override
-	public Ranking<EntryWithComparableKey<Double, FV>> retrieveNeighbors(FV element) {
-		return getNearestNeighborsWithScores(element);
-	}
+	public List<Entry<T, Double>> retrieveNeighbors(T query) {
 
-	/**
-	 * 
-	 * @param element
-	 * @return
-	 * @Deprecated use retrieveNeighbors in future
-	 */
-	public Ranking<EntryWithComparableKey<Double, FV>> getNearestNeighborsWithScores(FV element) {
-		Ranking<EntryWithComparableKey<Double, FV>> ranking = new Ranking<>();
+		Comparator<Entry<T, Double>> comparator = Entry.comparingByValue();
+		PriorityQueue<Entry<T, Double>> highest = new PriorityQueue<Entry<T, Double>>(1000, comparator.reversed());
 
-		for (FV o : elements) {
-			if (o.equals(element))
+		List<Entry<T, Double>> result = new ArrayList<>();
+		for (T element : elements) {
+			if (element.equals(query)) {
 				continue;
-
-			double distance = distanceMeasure.getDistance(element, o);
-			if (ranking.size() >= kNN && ranking.get(kNN - 1).getKey() < distance)
-				continue;
-
-			ranking.add(new EntryWithComparableKey<Double, FV>(distance, o));
-
-			if (ranking.size() > kNN)
-				ranking.removeLast();
+			}
+			double distance = distanceMeasure.applyAsDouble(query, element);
+			SimpleImmutableEntry<T, Double> entry = new SimpleImmutableEntry<>(element, distance);
+			highest.offer(entry);
+			while (highest.size() > knn) {
+				highest.poll();
+			}
 		}
-
-		return ranking;
-	}
-
-	public List<FV> getNearestNeighbors(FV element) {
-		Ranking<EntryWithComparableKey<Double, FV>> nearestNeighborsWithScores = getNearestNeighborsWithScores(element);
-
-		List<FV> returnElements = new ArrayList<>();
-		for (int i = 0; i < nearestNeighborsWithScores.size(); i++)
-			returnElements.add(nearestNeighborsWithScores.get(i).getValue());
-
-		return returnElements;
-	}
-
-	public int getKNN() {
-		return kNN;
+		while (!highest.isEmpty()) {
+			result.add(highest.poll());
+		}
+		Collections.reverse(result);
+		return result;
 	}
 
 	@Override
-	public void setKNN(int kNN) {
-		if (kNN < 1)
-			throw new IllegalArgumentException("KNN: illegal parameter value for kNN: " + kNN + "must be >0");
-
-		this.kNN = kNN;
-	}
-
-	public IDistanceMeasure<? super FV> getDistanceMeasure() {
-		return distanceMeasure;
-	}
-
-	public Collection<FV> getElements() {
+	public Collection<T> getElements() {
 		return elements;
 	}
 
-	@Override
 	public String getName() {
-		return getClass().getSimpleName();
+		return "FastKNN";
+	}
+
+	public String getDescription() {
+		return "Retrieval algorithm based on k nearest neighbor search";
 	}
 
 	@Override
-	public String getDescription() {
-		return "Retrieves k nearest neighbors for a given element";
+	public IDistanceMeasure<? super T> getDistanceMeasure() {
+		return distanceMeasure;
 	}
-
 }

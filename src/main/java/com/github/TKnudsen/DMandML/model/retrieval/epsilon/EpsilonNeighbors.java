@@ -1,83 +1,60 @@
 package com.github.TKnudsen.DMandML.model.retrieval.epsilon;
 
+import java.util.AbstractMap.SimpleImmutableEntry;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
 
-/**
- * <p>
- * Description: neighbors in the epsilon-range of a given element.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @version 1.01
- */
-public class EpsilonNeighbors<FV> implements IEpsilonRetrievalAlgorithm<FV> {
+public class EpsilonNeighbors<T> implements IRetrievalAlgorithm<T> {
 
-	private double epsilon;
+	private final double epsilon;
 
-	private final IDistanceMeasure<? super FV> distanceMeasure;
+	private final IDistanceMeasure<? super T> distanceMeasure;
 
-	private final Collection<FV> elements;
+	private final Collection<T> elements;
 
-	public EpsilonNeighbors(double epsilon, IDistanceMeasure<? super FV> distanceMeasure,
-			Collection<? extends FV> elements) {
-		setEpsilon(epsilon);
-
-		this.distanceMeasure = distanceMeasure;
+	public EpsilonNeighbors(double epsilon, IDistanceMeasure<? super T> distanceMeasure,
+			Collection<? extends T> elements) {
+		this.epsilon = epsilon;
+		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "The distanceMeasure may not be null");
 		this.elements = Collections.unmodifiableCollection(elements);
 	}
 
 	@Override
-	public Ranking<EntryWithComparableKey<Double, FV>> retrieveNeighbors(FV element) {
-		Ranking<EntryWithComparableKey<Double, FV>> ranking = new Ranking<>();
+	public List<Entry<T, Double>> retrieveNeighbors(T query) {
 
-		for (FV fv : elements) {
-			double distance = getDistanceMeasure().getDistance(fv, element);
-
-			if (distance <= getEpsilon())
-				ranking.add(new EntryWithComparableKey<Double, FV>(distance, fv));
+		List<Entry<T, Double>> result = new ArrayList<>();
+		for (T element : elements) {
+			double distance = distanceMeasure.applyAsDouble(query, element);
+			if (distance <= epsilon) {
+				result.add(new SimpleImmutableEntry<>(element, distance));
+			}
 		}
-
-		return ranking;
+		Collections.sort(result, Entry.comparingByValue());
+		return result;
 	}
 
-	public IDistanceMeasure<? super FV> getDistanceMeasure() {
-		return distanceMeasure;
-	}
-
-	public Collection<FV> getElements() {
+	@Override
+	public Collection<T> getElements() {
 		return elements;
 	}
 
-	@Override
 	public String getName() {
-		return getClass().getSimpleName();
+		return "FastEpsilonNeighbors";
 	}
 
-	@Override
 	public String getDescription() {
-		return "Retrieves neighbors in the epsilon range of an element";
-	}
-
-	public double getEpsilon() {
-		return epsilon;
+		return "Retrieval algorithm based on an epsilon-based kriterion";
 	}
 
 	@Override
-	public void setEpsilon(double epsilon) {
-		if (epsilon < 0)
-			throw new IllegalArgumentException(
-					getName() + ": illegal parameter value for epsilon: " + getEpsilon() + "must be >=0");
-
-		this.epsilon = epsilon;
+	public IDistanceMeasure<? super T> getDistanceMeasure() {
+		return distanceMeasure;
 	}
-
 }
