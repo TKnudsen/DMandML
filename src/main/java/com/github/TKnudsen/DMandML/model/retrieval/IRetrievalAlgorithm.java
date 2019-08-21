@@ -1,34 +1,25 @@
 package com.github.TKnudsen.DMandML.model.retrieval;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
 
-import com.github.TKnudsen.ComplexDataObject.data.entry.EntryWithComparableKey;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
-import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 
 /**
  * <p>
- * Title: IRetrievalAlgorithm
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
  * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
- * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public interface IRetrievalAlgorithm<FV> extends ISelfDescription {
+public interface IRetrievalAlgorithm<T> extends ISelfDescription {
 
-	public IDistanceMeasure<? super FV> getDistanceMeasure();
+	public IDistanceMeasure<? super T> getDistanceMeasure();
 
-	public Ranking<EntryWithComparableKey<Double, FV>> retrieveNeighbors(FV element);
+	public List<Entry<T, Double>> retrieveNeighbors(T query);
 
-	public Collection<FV> getElements();
+	public Collection<T> getElements();
 
 }
