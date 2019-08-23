@@ -59,7 +59,7 @@ public class DynamicTimeWarping extends DoubleDistanceMeasure {
 	@Override
 	public double getDistance(double[] o1, double[] o2) {
 		if (o1 == null || o2 == null)
-			throw new NullPointerException(getName() + ": given vector was null");
+			throw new NullPointerException(getName() + ": given array was null");
 
 		Instance instance = new DenseInstance(o1);
 		Instance instance2 = new DenseInstance(o2);
