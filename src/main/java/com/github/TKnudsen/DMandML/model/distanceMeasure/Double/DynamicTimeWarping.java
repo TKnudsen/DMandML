@@ -4,6 +4,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.Double
 
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
+import net.sf.javaml.distance.CosineDistance;
 import net.sf.javaml.distance.fastdtw.FastDTW;
 
 /**
