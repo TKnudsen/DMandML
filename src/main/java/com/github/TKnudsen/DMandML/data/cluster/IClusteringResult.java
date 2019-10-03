@@ -31,6 +31,8 @@ public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, I
 	 * retrieves the index of the cluster, if a given object is assigned to one of
 	 * the clusters.
 	 * 
+	 * @deprecated this should never be necessary. try to avoid and use cluster
+	 *             objects instead
 	 * @param object
 	 * @return -1 if not assigned. else the cluster index w.r.t. the index of the
 	 *         internal cluster list.
@@ -53,8 +55,8 @@ public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, I
 	 * cluster for the object.
 	 * 
 	 * @param fv
-	 * @param retrieveNearestWhenUnassigned
-	 *            if a cluster is retrieved in case no assignment is exists.
+	 * @param retrieveNearestWhenUnassigned if a cluster is retrieved in case no
+	 *                                      assignment is exists.
 	 * @return
 	 */
 	C retrieveCluster(T object);

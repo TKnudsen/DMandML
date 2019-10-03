@@ -98,8 +98,8 @@ public class ClusteringResultTools {
 	 * cluster for the object.
 	 * 
 	 * @param fv
-	 * @param retrieveNearestWhenUnassigned
-	 *            if a cluster is retrieved in case no assignment is exists.
+	 * @param retrieveNearestWhenUnassigned if a cluster is retrieved in case no
+	 *                                      assignment is exists.
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv,
@@ -293,8 +293,8 @@ public class ClusteringResultTools {
 
 		for (int i = 0; i < clusterResult.size() - 1; i++)
 			for (int j = i + 1; j < clusterResult.size(); j++) {
-				ICluster<T> c1 = clusterResult.getClusters().get(i);
-				ICluster<T> c2 = clusterResult.getClusters().get(j);
+				C c1 = clusterResult.getClusters().get(i);
+				C c2 = clusterResult.getClusters().get(j);
 				clusterDistances.add(clusterDistanceMeasure.getDistance(c1, c2));
 			}
 

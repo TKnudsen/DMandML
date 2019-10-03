@@ -1,12 +1,14 @@
 package com.github.TKnudsen.DMandML.data.cluster;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 
 /**
  * <p>
@@ -121,5 +123,70 @@ public class Clusters {
 			}
 
 		return new Centroid<T>(cluster, candidate);
+	}
+
+	public static <T, C extends ICluster<T>> Collection<Double> getCentroidDistances(C cluster) {
+
+		List<Double> values = new ArrayList<>();
+		for (T t : cluster)
+			values.add(cluster.getCentroidDistance(t));
+
+		return values;
+	}
+
+	public static <T, C extends ICluster<T>> Collection<Double> getInstanceDistancesToOtherInstances(T t, C cluster) {
+
+		IDistanceMeasure<T> distanceMeasure = cluster.getDistanceMeasure();
+
+		List<Double> values = new ArrayList<>();
+		for (T t1 : cluster)
+			if (t1 != t)
+				values.add(distanceMeasure.getDistance(t1, t));
+
+		return values;
+	}
+
+	/**
+	 * collects distances between all instances of a cluster. adds dist(A,B) AND
+	 * dist(B,A)
+	 * 
+	 * @param cluster
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> Collection<Double> getPairwiseInstanceDistances(C cluster) {
+
+		IDistanceMeasure<T> distanceMeasure = cluster.getDistanceMeasure();
+
+		List<Double> values = new ArrayList<>();
+		for (T t1 : cluster)
+			for (T t2 : cluster)
+				if (t1 != t2)
+					values.add(distanceMeasure.getDistance(t1, t2));
+
+		return values;
+	}
+
+	/**
+	 * calculates the diameter of a cluster, i.e., calculates the maximum of the
+	 * pairwise distances using any two elements within the cluster. O(n²)
+	 * 
+	 * @param cluster
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> double getDiameter(C cluster) {
+
+		return new StatisticsSupport(getPairwiseInstanceDistances(cluster)).getMax();
+	}
+
+	/**
+	 * calculates the median of the pairwise distances using any two elements within
+	 * the cluster. O(n²)
+	 * 
+	 * @param cluster
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> double getMedianPairwiseDistance(C cluster) {
+
+		return new StatisticsSupport(getPairwiseInstanceDistances(cluster)).getMedian();
 	}
 }
