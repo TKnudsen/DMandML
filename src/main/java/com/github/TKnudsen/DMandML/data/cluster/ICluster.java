@@ -91,6 +91,8 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	/**
 	 * variance information produced by the elements of the cluster.
 	 * 
+	 * @deprecated better use measures to calculate characteristics about the
+	 *             instances within the cluster
 	 * @return
 	 */
 	public double getVariance();
