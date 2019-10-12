@@ -4,23 +4,73 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ClusterResults {
+public class ClusteringResults {
+
+	public static <T, C extends ICluster<T>> ICluster<T> retrieveCluster(T instance,
+			IClusteringResult<T, ? extends ICluster<T>> clusteringResult) {
+		if (instance == null)
+			return null;
+
+		if (clusteringResult == null || clusteringResult.size() == 0)
+			return null;
+
+		ICluster<T> c = clusteringResult.getCluster(instance);
+
+		if (c != null)
+			return c;
+
+		double dist = Double.POSITIVE_INFINITY - 1;
+		for (ICluster<T> cluster : clusteringResult.getClusters()) {
+			double d = cluster.getCentroidDistance(instance);
+			if (d < dist) {
+				c = cluster;
+				dist = d;
+			}
+		}
+
+		return c;
+	}
+
+	public static <T, C extends ICluster<T>> ICluster<T> retrieveCluster(T instance,
+			Collection<? extends ICluster<T>> clusteringResult) {
+		if (instance == null)
+			return null;
+
+		if (clusteringResult == null || clusteringResult.isEmpty())
+			return null;
+
+		for (ICluster<T> cluster : clusteringResult)
+			if (cluster.contains(instance))
+				return cluster;
+
+		double dist = Double.POSITIVE_INFINITY - 1;
+		ICluster<T> c = null;
+		for (ICluster<T> cluster : clusteringResult) {
+			double d = cluster.getCentroidDistance(instance);
+			if (d < dist) {
+				c = cluster;
+				dist = d;
+			}
+		}
+
+		return c;
+	}
 
 	/**
 	 * Retrieves the distances of a cluster centroid to the other cluster centroids.
 	 * 
 	 * @param cluster
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getClusterCentroidToOtherCentroidsDistances(C cluster,
-			Collection<? extends C> clusterResult) {
-		if (cluster == null || clusterResult == null)
+			Collection<? extends C> clusteringResult) {
+		if (cluster == null || clusteringResult == null)
 			return null;
 
 		List<Double> clusterDistances = new ArrayList<>();
 
-		for (C other : clusterResult)
+		for (C other : clusteringResult)
 			if (other != cluster)
 				clusterDistances.add(cluster.getDistanceMeasure().getDistance(other.getCentroid().getData(),
 						cluster.getCentroid().getData()));
@@ -32,12 +82,12 @@ public class ClusterResults {
 	 * Retrieves the distances of a cluster centroid to the other cluster centroids.
 	 * 
 	 * @param cluster
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getClusterCentroidToOtherCentroidsDistances(C cluster,
-			IClusteringResult<T, ICluster<T>> clusterResult) {
-		return getClusterCentroidToOtherCentroidsDistances(cluster, clusterResult.getClusters());
+			IClusteringResult<T, ICluster<T>> clusteringResult) {
+		return getClusterCentroidToOtherCentroidsDistances(cluster, clusteringResult.getClusters());
 	}
 
 	/**
@@ -48,17 +98,17 @@ public class ClusterResults {
 	 * distances to all clusters are returned, instead of c-1.
 	 * 
 	 * @param instance
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherCentroidsDistances(T instance,
-			Collection<? extends C> clusterResult) {
-		if (instance == null || clusterResult == null)
+			Collection<? extends C> clusteringResult) {
+		if (instance == null || clusteringResult == null)
 			return null;
 
 		List<Double> distances = new ArrayList<>();
 
-		for (C other : clusterResult)
+		for (C other : clusteringResult)
 			if (!other.contains(instance))
 				distances.add(other.getDistanceMeasure().getDistance(other.getCentroid().getData(), instance));
 
@@ -73,12 +123,12 @@ public class ClusterResults {
 	 * distances to all clusters are returned, instead of c-1.
 	 * 
 	 * @param instance
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherCentroidsDistances(T instance,
-			IClusteringResult<T, ICluster<T>> clusterResult) {
-		return getInstanceToOtherCentroidsDistances(instance, clusterResult.getClusters());
+			IClusteringResult<T, ICluster<T>> clusteringResult) {
+		return getInstanceToOtherCentroidsDistances(instance, clusteringResult.getClusters());
 	}
 
 	/**
@@ -89,17 +139,17 @@ public class ClusterResults {
 	 * distances of instances in all clusters are returned, instead of c-1 clusters.
 	 * 
 	 * @param instance
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherClustersInstancesDistances(T instance,
-			Collection<? extends C> clusterResult) {
-		if (instance == null || clusterResult == null)
+			Collection<? extends C> clusteringResult) {
+		if (instance == null || clusteringResult == null)
 			return null;
 
 		List<Double> distances = new ArrayList<>();
 
-		for (C other : clusterResult)
+		for (C other : clusteringResult)
 			if (!other.contains(instance))
 				for (T i : other)
 					distances.add(other.getDistanceMeasure().getDistance(i, instance));
@@ -115,11 +165,12 @@ public class ClusterResults {
 	 * distances of instances in all clusters are returned, instead of c-1 clusters.
 	 * 
 	 * @param instance
-	 * @param clusterResult
+	 * @param clusteringResult
 	 * @return
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherClustersInstancesDistances(T instance,
-			IClusteringResult<T, ICluster<T>> clusterResult) {
-		return getInstanceToOtherClustersInstancesDistances(instance, clusterResult.getClusters());
+			IClusteringResult<T, ICluster<T>> clusteringResult) {
+		return getInstanceToOtherClustersInstancesDistances(instance, clusteringResult.getClusters());
 	}
+
 }
