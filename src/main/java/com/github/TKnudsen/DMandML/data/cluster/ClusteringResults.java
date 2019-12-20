@@ -71,7 +71,9 @@ public class ClusteringResults {
 		List<Double> clusterDistances = new ArrayList<>();
 
 		for (C other : clusteringResult)
-			if (other != cluster)
+			if (other == null)
+				clusterDistances.add(null);
+			else if (other != cluster)
 				clusterDistances.add(cluster.getDistanceMeasure().getDistance(other.getCentroid().getData(),
 						cluster.getCentroid().getData()));
 
