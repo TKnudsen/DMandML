@@ -228,7 +228,7 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 			FV featureVector = featureVectors.get(i);
 			Instance instance = testData.instance(i);
 
-			double[] distribution = comuteWekaDistribution(featureVector, instance);
+			double[] distribution = computeWekaDistribution(featureVector, instance);
 
 			LinkedHashMap<String, Double> labelDistribution = new LinkedHashMap<String, Double>();
 			for (int j = 0; j < distribution.length; j++) {
@@ -240,7 +240,7 @@ public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?
 
 	}
 
-	private double[] comuteWekaDistribution(FV featureVector, Instance instance) {
+	private double[] computeWekaDistribution(FV featureVector, Instance instance) {
 		try {
 			double[] distribution = wekaClassifier.distributionForInstance(instance);
 			if (validateWekaResults) {
