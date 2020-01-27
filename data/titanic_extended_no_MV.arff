@@ -1,0 +1,1049 @@
+@relation TITANIC
+
+@attribute AGE numeric
+@attribute CLASSID string
+@attribute Description string
+@attribute FARE numeric
+@attribute GENDER string
+@attribute Name string
+@attribute SURVIVED numeric
+@attribute TICKET string
+
+@data
+30,2,'no description',13,female,'no name',1,250648
+25,3,'no description',7.225,male,'no name',0,2672
+17,3,'no description',8.6625,male,'no name',0,315090
+65,1,'no description',26.55,male,'no name',0,13509
+64,1,'no description',263,male,'no name',0,19950
+34,3,'no description',14.4,male,'no name',0,347080
+24,1,'no description',263,female,'no name',1,19950
+26,2,'no description',13,male,'no name',0,244368
+16,3,'no description',9.2167,male,'no name',0,7534
+24,3,'no description',8.05,male,'no name',0,343275
+14,1,'no description',120,female,'no name',1,113760
+39,1,'no description',110.8833,female,'no name',1,17421
+47,1,'no description',52.5542,female,'no name',1,11751
+32,2,'no description',26,male,'no name',1,2908
+17,3,'no description',7.125,male,'no name',0,'STON/O 2. 3101274'
+38,3,'no description',7.775,female,'no name',0,347091
+3,3,'no description',31.3875,male,'no name',1,347077
+19,3,'no description',10.1708,male,'no name',0,349228
+61,2,'no description',12.35,male,'no name',0,235509
+5,2,'no description',27.75,female,'no name',1,'C.A. 34651'
+27,1,'no description',247.5208,female,'no name',1,'PC 17558'
+45,1,'no description',83.475,male,'no name',0,36973
+12,2,'no description',15.75,female,'no name',1,'C.A. 33595'
+50,1,'no description',211.5,female,'no name',1,113503
+28,1,'no description',82.1708,male,'no name',0,'PC 17604'
+33,1,'no description',90,female,'no name',1,19928
+26,3,'no description',7.8792,male,'no name',0,330910
+31,3,'no description',7.925,male,'no name',1,'STON/O 2. 3101288'
+25,1,'no description',26,male,'no name',0,13905
+27,3,'no description',7.8958,male,'no name',0,349219
+32.5,2,'no description',13,female,'no name',1,27267
+58,1,'no description',26.55,female,'no name',1,113783
+19,3,'no description',7.8958,male,'no name',0,349231
+18,1,'no description',108.9,male,'no name',0,'PC 17758'
+50,1,'no description',28.7125,female,'no name',0,'PC 17595'
+22,3,'no description',7.8958,male,'no name',0,349206
+23,2,'no description',10.5,male,'no name',0,28666
+25,3,'no description',7.7417,male,'no name',0,36864
+9,3,'no description',3.1708,male,'no name',1,'C 17368'
+36,1,'no description',40.125,male,'no name',0,13049
+8,2,'no description',26.25,female,'no name',1,'C.A. 31921'
+22,3,'no description',8.05,male,'no name',0,324669
+35,3,'no description',7.8958,male,'no name',0,349213
+62,1,'no description',26.55,male,'no name',0,113514
+38,1,'no description',90,male,'no name',1,19943
+18.5,2,'no description',13,male,'no name',0,248734
+25,3,'no description',9.5,male,'no name',1,345768
+25,3,'no description',7.25,male,'no name',0,374887
+30,2,'no description',24,male,'no name',0,'P/PP 3381'
+40,3,'no description',9.475,female,'no name',0,7546
+40,2,'no description',13,male,'no name',0,28221
+18,3,'no description',20.2125,male,'no name',0,370129
+35,2,'no description',26,male,'no name',0,239865
+18,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+35,1,'no description',57.75,female,'no name',1,13236
+41,1,'no description',134.5,female,'no name',1,16966
+43,3,'no description',7.8958,male,'no name',0,349226
+10,3,'no description',29.125,male,'no name',0,382652
+26,3,'no description',7.8542,female,'no name',1,347470
+24,3,'no description',7.55,male,'no name',1,'S.O./P.P. 752'
+40,1,'no description',153.4625,female,'no name',1,'PC 17582'
+19,1,'no description',53.1,male,'no name',0,113773
+23,2,'no description',13,male,'no name',0,28425
+23,1,'no description',263,female,'no name',1,19950
+29,2,'no description',26,female,'no name',1,26707
+29,1,'no description',30,male,'no name',0,113501
+12,3,'no description',11.2417,male,'no name',1,2651
+28,2,'no description',10.5,male,'no name',0,'C.A./SOTON 34068'
+43,1,'no description',55.4417,female,'no name',1,11778
+24,3,'no description',7.1417,male,'no name',1,'C 17369'
+34.5,3,'no description',6.4375,male,'no name',0,2683
+35,1,'no description',512.3292,female,'no name',1,'PC 17755'
+45,3,'no description',7.225,female,'no name',1,2696
+24,2,'no description',27,female,'no name',1,243847
+13,3,'no description',7.2292,female,'no name',1,2687
+27,3,'no description',8.6625,male,'no name',1,315098
+27,2,'no description',10.5,female,'no name',1,34218
+43,3,'no description',6.45,male,'no name',0,'C 7075'
+40,2,'no description',15.75,female,'no name',1,'C.A. 33595'
+27,3,'no description',8.6625,male,'no name',0,315083
+7,2,'no description',26.25,female,'no name',1,'F.C.C. 13529'
+19,2,'no description',13,female,'no name',1,28404
+28,2,'no description',33,male,'no name',0,248727
+39,3,'no description',24.15,male,'no name',0,'A/4 48871'
+16,3,'no description',8.05,male,'no name',1,'SOTON/OQ 392089'
+22,3,'no description',8.05,male,'no name',0,14973
+18,2,'no description',13,female,'no name',1,250652
+55,1,'no description',135.6333,female,'no name',1,'PC 17760'
+49,1,'no description',56.9292,male,'no name',1,'PC 17485'
+14,2,'no description',30.0708,female,'no name',1,237736
+33,3,'no description',9.5,male,'no name',0,345780
+19,3,'no description',7.65,male,'no name',0,348124
+45,1,'no description',59.4,female,'no name',1,112378
+21,3,'no description',7.65,female,'no name',1,343120
+10,3,'no description',24.15,female,'no name',0,345773
+23,3,'no description',7.8958,male,'no name',0,349204
+60,1,'no description',263,female,'no name',1,19950
+2,2,'no description',23,male,'no name',1,29103
+28,3,'no description',7.25,male,'no name',0,392095
+28,3,'no description',7.925,male,'no name',0,3101277
+38,1,'no description',227.525,female,'no name',1,'PC 17757'
+17,3,'no description',8.6625,male,'no name',0,315086
+15,3,'no description',7.225,female,'no name',1,2667
+32,3,'no description',8.05,male,'no name',0,'STON/OQ. 369943'
+18,3,'no description',14.4542,male,'no name',0,2680
+33,1,'no description',151.55,female,'no name',1,113781
+20,3,'no description',8.6625,female,'no name',0,315096
+21,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+38,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101306'
+60,1,'no description',76.2917,female,'no name',1,11813
+17,3,'no description',14.4583,female,'no name',0,2627
+63,3,'no description',9.5875,female,'no name',1,4134
+22,3,'no description',7.8958,male,'no name',0,349252
+28,2,'no description',12.65,female,'no name',1,240929
+32.5,2,'no description',30.0708,male,'no name',0,237736
+45,1,'no description',35.5,male,'no name',0,113784
+25,1,'no description',91.0792,male,'no name',1,11967
+32,2,'no description',13,female,'no name',1,234604
+36,2,'no description',27.75,male,'no name',0,'C.A. 34651'
+1,3,'no description',11.1333,female,'no name',1,347742
+45,1,'no description',26.55,male,'no name',1,111428
+19,1,'no description',26.2833,female,'no name',1,11752
+31,1,'no description',50.4958,male,'no name',0,'PC 17590'
+26,3,'no description',56.4958,male,'no name',1,1601
+40,1,'no description',31,male,'no name',1,112277
+3,2,'no description',26,male,'no name',1,230080
+29,3,'no description',7.8958,male,'no name',1,349240
+31,3,'no description',7.75,male,'no name',0,335097
+9,3,'no description',20.525,male,'no name',1,363291
+40,3,'no description',27.9,male,'no name',0,347088
+44,2,'no description',26,male,'no name',0,26707
+20.5,3,'no description',7.25,male,'no name',0,'A/5 21173'
+63,2,'no description',26,male,'no name',0,24065
+29,3,'no description',10.4625,female,'no name',0,347054
+34,3,'no description',8.05,male,'no name',0,363294
+51,2,'no description',12.525,male,'no name',0,'S.O.P. 1166'
+18,3,'no description',18,female,'no name',0,345764
+21,3,'no description',7.7958,male,'no name',1,350053
+36,1,'no description',120,male,'no name',1,113760
+45,2,'no description',26.25,female,'no name',1,'F.C.C. 13529'
+18,3,'no description',8.05,female,'no name',1,'A/4 31416'
+56,1,'no description',26.55,male,'no name',0,113792
+55,1,'no description',27.7208,female,'no name',1,112377
+13,1,'no description',262.375,male,'no name',1,'PC 17608'
+20,3,'no description',7.8542,male,'no name',0,347466
+54,2,'no description',23,female,'no name',1,29105
+12,2,'no description',39,female,'no name',1,230136
+51,3,'no description',7.0542,male,'no name',0,347743
+6,3,'no description',12.475,male,'no name',1,392096
+28,3,'no description',7.7958,male,'no name',0,350042
+27,3,'no description',11.1333,female,'no name',1,347742
+37,3,'no description',7.75,female,'no name',0,368364
+29,1,'no description',66.6,male,'no name',0,113776
+27,3,'no description',12.475,female,'no name',1,392096
+34,2,'no description',23,female,'no name',1,231919
+28,3,'no description',7.8958,male,'no name',0,349207
+18,2,'no description',11.5,male,'no name',0,29108
+30,3,'no description',8.05,male,'no name',0,'SOTON/OQ 392090'
+23,1,'no description',63.3583,male,'no name',1,'PC 17759'
+36,1,'no description',120,female,'no name',1,113760
+31,2,'no description',10.5,male,'no name',0,'C.A. 18723'
+30,2,'no description',13,male,'no name',0,250653
+29,3,'no description',8.05,male,'no name',0,343276
+21,3,'no description',8.6625,female,'no name',0,315087
+57,1,'no description',146.5208,male,'no name',0,'PC 17569'
+27,2,'no description',13,male,'no name',0,211536
+31,3,'no description',7.8542,female,'no name',0,350407
+9,3,'no description',46.9,male,'no name',0,'CA 2144'
+67,1,'no description',221.7792,male,'no name',0,'PC 17483'
+4,3,'no description',27.9,male,'no name',0,347088
+30,3,'no description',8.05,male,'no name',0,'A.5. 18509'
+49,1,'no description',25.9292,female,'no name',1,17465
+26,1,'no description',30,male,'no name',1,111369
+36,2,'no description',39,female,'no name',1,230136
+50,2,'no description',10.5,female,'no name',1,'F.C.C. 13531'
+20,3,'no description',8.6625,male,'no name',0,315094
+17,1,'no description',110.8833,male,'no name',1,17421
+47,1,'no description',25.5875,male,'no name',0,5727
+18,1,'no description',53.1,female,'no name',1,113773
+9,3,'no description',15.2458,female,'no name',1,2650
+24,2,'no description',18.75,female,'no name',1,29106
+18,2,'no description',10.5,male,'no name',0,'C.A. 15185'
+14.5,3,'no description',69.55,male,'no name',0,'CA. 2343'
+61,3,'no description',6.2375,male,'no name',0,345364
+11,3,'no description',18.7875,male,'no name',0,2699
+36,3,'no description',7.25,male,'no name',0,'A/5 21175'
+34,2,'no description',10.5,female,'no name',1,'C.A. 34260'
+21,3,'no description',7.8542,male,'no name',0,350410
+23,2,'no description',10.5,male,'no name',0,244278
+58,1,'no description',29.7,male,'no name',0,11771
+7,3,'no description',15.2458,male,'no name',1,2650
+27,3,'no description',14.4542,male,'no name',0,2659
+22,3,'no description',9,male,'no name',0,345767
+2,2,'no description',26,female,'no name',1,26360
+35,1,'no description',211.5,female,'no name',1,113503
+2,2,'no description',26,male,'no name',1,230080
+16,3,'no description',7.775,male,'no name',0,347074
+24.5,3,'no description',8.05,male,'no name',0,342826
+31,2,'no description',37.0042,male,'no name',0,'S.C./PARIS 2079'
+36,2,'no description',10.5,male,'no name',0,'C.A. 17248'
+15,3,'no description',7.2292,male,'no name',0,2695
+4,3,'no description',22.025,female,'no name',1,315153
+19,3,'no description',15.7417,female,'no name',1,2653
+25,1,'no description',55.4417,female,'no name',1,11765
+52,1,'no description',79.65,male,'no name',0,110413
+58,1,'no description',512.3292,female,'no name',1,'PC 17755'
+48,1,'no description',50.4958,male,'no name',0,'PC 17591'
+29,3,'no description',7.8542,male,'no name',0,347467
+18.5,3,'no description',7.2833,female,'no name',0,329944
+50,1,'no description',106.425,male,'no name',0,'PC 17761'
+30,3,'no description',9.5,male,'no name',1,345774
+19,3,'no description',7.8958,male,'no name',0,349212
+36,1,'no description',78.85,male,'no name',0,19877
+21,3,'no description',7.75,male,'no name',0,364858
+60,1,'no description',26.55,male,'no name',0,113800
+39,1,'no description',108.9,female,'no name',1,'PC 17758'
+21,3,'no description',7.225,male,'no name',0,2692
+58,1,'no description',146.5208,female,'no name',1,'PC 17569'
+50,2,'no description',13,male,'no name',0,250643
+7,3,'no description',39.6875,male,'no name',0,3101295
+42,2,'no description',26,female,'no name',1,'SC/AH 3085'
+47,3,'no description',14.5,female,'no name',0,'A/5. 3337'
+22,3,'no description',13.9,female,'no name',1,347072
+24,3,'no description',8.85,female,'no name',0,349236
+28,2,'no description',13,female,'no name',1,230434
+29,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101268'
+25,2,'no description',31.5,male,'no name',0,'C.A. 31029'
+4,2,'no description',39,female,'no name',1,230136
+18,3,'no description',7.75,male,'no name',0,347090
+37,1,'no description',52.5542,male,'no name',1,11751
+40,2,'no description',13,female,'no name',1,31418
+34,2,'no description',26,male,'no name',0,226875
+28.5,3,'no description',16.1,male,'no name',0,54636
+44,1,'no description',90,male,'no name',0,19928
+25,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101291'
+30,1,'no description',151.55,male,'no name',0,113781
+37,3,'no description',9.5875,female,'no name',0,4135
+35,1,'no description',52,female,'no name',1,113789
+16,3,'no description',18,male,'no name',0,345764
+22,3,'no description',7.125,male,'no name',0,'STON/O 2. 3101275'
+2,3,'no description',20.2125,female,'no name',0,370129
+14,3,'no description',7.8542,female,'no name',0,350406
+8,2,'no description',32.5,male,'no name',1,28220
+32,3,'no description',7.775,male,'no name',1,347079
+53,1,'no description',51.4792,female,'no name',1,11769
+14,3,'no description',11.2417,female,'no name',1,2651
+71,1,'no description',49.5042,male,'no name',0,'PC 17609'
+24,2,'no description',31.5,male,'no name',0,'C.A. 31029'
+8,3,'no description',29.125,male,'no name',0,382652
+18,2,'no description',13,female,'no name',0,250650
+45,1,'no description',26.55,male,'no name',0,113050
+30,2,'no description',26,male,'no name',0,250651
+32,3,'no description',15.85,male,'no name',0,3101278
+42,2,'no description',13,female,'no name',1,236852
+27,1,'no description',30.5,male,'no name',1,113804
+34,2,'no description',32.5,female,'no name',1,28220
+47,2,'no description',10.5,male,'no name',0,'C.A. 30769'
+2,3,'no description',10.4625,female,'no name',0,347054
+20,3,'no description',7.8542,male,'no name',0,350416
+21,2,'no description',21,female,'no name',1,'S.O./P.P. 2'
+25,3,'no description',7.8958,male,'no name',0,349250
+18,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+45,1,'no description',134.5,male,'no name',1,16966
+20,2,'no description',13.8625,male,'no name',1,'SC/PARIS 2166'
+50,3,'no description',14.5,male,'no name',0,'A/5. 3337'
+61,1,'no description',262.375,male,'no name',0,'PC 17608'
+22,3,'no description',10.5167,female,'no name',0,7552
+18,3,'no description',9.35,female,'no name',1,392091
+30,3,'no description',24.15,female,'no name',0,345773
+32,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+28,3,'no description',56.4958,male,'no name',0,1601
+30.5,3,'no description',7.75,female,'no name',0,364850
+18,3,'no description',34.375,male,'no name',0,'W./C. 6608'
+39,1,'no description',83.1583,female,'no name',1,'PC 17756'
+13,3,'no description',31.3875,male,'no name',0,347077
+37,1,'no description',53.1,male,'no name',0,113803
+33,3,'no description',7.8958,male,'no name',0,349241
+20,3,'no description',9.8458,male,'no name',0,7534
+44,1,'no description',27.7208,female,'no name',1,'PC 17610'
+28,2,'no description',13,male,'no name',0,248740
+25,2,'no description',10.5,male,'no name',0,'C.A. 34050'
+39,3,'no description',13.4167,male,'no name',1,349256
+36,2,'no description',12.875,male,'no name',0,'SC/Paris 2163'
+25,1,'no description',151.55,female,'no name',0,113781
+40,3,'no description',31.3875,male,'no name',0,347077
+40.5,3,'no description',7.75,male,'no name',0,367232
+20,3,'no description',7.225,male,'no name',0,2679
+33,1,'no description',86.5,female,'no name',1,110152
+30,2,'no description',13,male,'no name',0,248744
+53,1,'no description',27.4458,female,'no name',1,'PC 17606'
+15,2,'no description',39,female,'no name',1,29750
+30,2,'no description',13.8583,female,'no name',1,'SC/PARIS 2148'
+21,3,'no description',34.375,female,'no name',0,'W./C. 6608'
+22,1,'no description',151.55,female,'no name',1,113781
+37,2,'no description',26,male,'no name',0,'SC/AH 29037'
+21,3,'no description',7.75,female,'no name',0,364846
+30,1,'no description',26,male,'no name',0,110469
+18,3,'no description',6.4958,male,'no name',0,3101267
+32,3,'no description',22.525,male,'no name',0,'C 4001'
+11.5,3,'no description',14.5,male,'no name',0,'A/5. 851'
+54,2,'no description',26,male,'no name',0,28403
+30,2,'no description',13,male,'no name',0,250646
+28,1,'no description',263,female,'no name',1,19950
+32,2,'no description',13,male,'no name',0,244360
+25,2,'no description',10.5,male,'no name',0,'F.C.C. 13540'
+27,3,'no description',7.8958,male,'no name',0,349229
+0.9167,1,'no description',151.55,male,'no name',1,113781
+34,2,'no description',13,male,'no name',0,250647
+26,2,'no description',29,male,'no name',1,248738
+23,3,'no description',8.6625,female,'no name',0,315085
+31,1,'no description',164.8667,female,'no name',1,36928
+48,2,'no description',36.75,female,'no name',1,'C.A. 33112'
+2,3,'no description',39.6875,male,'no name',0,3101295
+46,1,'no description',79.2,male,'no name',0,'PC 17593'
+19,3,'no description',7.775,male,'no name',0,347069
+36,1,'no description',262.375,female,'no name',1,'PC 17608'
+51,1,'no description',26.55,male,'no name',1,113055
+16,3,'no description',7.65,female,'no name',1,348125
+27,2,'no description',15.0333,male,'no name',0,'SC/PARIS 2168'
+21,3,'no description',7.8,male,'no name',0,'A/4. 39886'
+35,1,'no description',83.475,female,'no name',1,36973
+54,1,'no description',55.4417,male,'no name',1,11778
+38,2,'no description',13,female,'no name',0,237671
+28,3,'no description',14.4,female,'no name',0,347080
+20,2,'no description',26,female,'no name',1,236853
+32,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101292'
+26,3,'no description',16.1,female,'no name',0,'A/5. 3336'
+36,1,'no description',75.2417,male,'no name',0,13050
+3,2,'no description',18.75,male,'no name',1,29106
+5,3,'no description',31.3875,male,'no name',0,347077
+52,2,'no description',13,male,'no name',0,250647
+42,1,'no description',26.2875,male,'no name',1,'PC 17476'
+33,2,'no description',27.75,female,'no name',1,'C.A. 34651'
+48,1,'no description',262.375,female,'no name',1,'PC 17608'
+24,3,'no description',9.5,male,'no name',0,345781
+0.1667,3,'no description',20.575,female,'no name',1,'C.A. 2315'
+62,2,'no description',9.6875,male,'no name',0,240276
+18,3,'no description',7.775,female,'no name',0,347087
+10,3,'no description',27.9,male,'no name',0,347088
+17,3,'no description',8.6625,male,'no name',0,315093
+30,1,'no description',164.8667,female,'no name',1,36928
+18,3,'no description',7.775,male,'no name',0,349912
+4,3,'no description',11.1333,male,'no name',1,347742
+26,3,'no description',7.8542,male,'no name',0,350025
+56,1,'no description',35.5,male,'no name',1,13213
+4,2,'no description',23,female,'no name',1,29103
+25,2,'no description',41.5792,male,'no name',0,'SC/Paris 2123'
+20,3,'no description',7.8542,male,'no name',0,350050
+19,2,'no description',10.5,male,'no name',1,'SW/PP 751'
+23,3,'no description',7.925,female,'no name',0,'STON/O2. 3101290'
+52,1,'no description',78.2667,female,'no name',1,36947
+21,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+18,3,'no description',8.6625,male,'no name',0,315091
+29,3,'no description',15.2458,female,'no name',1,2650
+19,2,'no description',36.75,male,'no name',0,'C.A. 33112'
+27,2,'no description',21,female,'no name',0,11668
+24,3,'no description',7.25,male,'no name',0,371109
+23,2,'no description',11.5,male,'no name',0,29104
+50,2,'no description',10.5,female,'no name',1,'W./C. 14258'
+32,3,'no description',56.4958,male,'no name',1,1601
+40.5,3,'no description',14.5,male,'no name',0,'A/5. 851'
+48,1,'no description',25.9292,female,'no name',1,17466
+22,3,'no description',12.2875,female,'no name',1,3101298
+31,3,'no description',8.6833,female,'no name',1,349244
+23,2,'no description',15.0458,male,'no name',0,'SC/PARIS 2133'
+25,2,'no description',30,female,'no name',1,237789
+42,2,'no description',13,male,'no name',0,211535
+50,1,'no description',26,male,'no name',0,113044
+23,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101309'
+38,3,'no description',7.8958,male,'no name',0,349249
+18,3,'no description',8.05,male,'no name',1,'A/5 3540'
+18,3,'no description',6.75,female,'no name',0,365226
+21,3,'no description',8.05,male,'no name',0,342684
+44,3,'no description',7.925,male,'no name',1,'STON/O 2. 3101269'
+34,3,'no description',8.05,male,'no name',0,364506
+23,2,'no description',13.7917,female,'no name',1,'SC/AH Basle 541'
+41,1,'no description',30.5,male,'no name',0,113054
+24,2,'no description',14.5,female,'no name',1,250649
+29,2,'no description',10.5,female,'no name',1,'C.A. 29395'
+27,2,'no description',13.8583,female,'no name',1,'SC/PARIS 2149'
+0.75,3,'no description',13.775,male,'no name',0,'SOTON/O.Q. 3101315'
+29,3,'no description',7.875,male,'no name',0,315082
+20,2,'no description',36.75,female,'no name',1,'C.A. 33112'
+22,3,'no description',7.25,male,'no name',0,'A/5 21172'
+24,1,'no description',247.5208,male,'no name',0,'PC 17558'
+30,1,'no description',31,female,'no name',1,113798
+27,2,'no description',26,male,'no name',0,244358
+35,1,'no description',26.55,male,'no name',1,111426
+54,2,'no description',26,male,'no name',0,244252
+13,3,'no description',20.25,male,'no name',0,'C.A. 2673'
+18,3,'no description',14.4542,female,'no name',0,2691
+40.5,3,'no description',15.1,male,'no name',0,'C.A. 6212'
+45,3,'no description',7.75,female,'no name',0,347073
+20,3,'no description',7.925,male,'no name',0,'SOTON/O2 3101287'
+11,3,'no description',31.275,female,'no name',0,347082
+41,2,'no description',13,male,'no name',0,237393
+24,2,'no description',13,female,'no name',1,248733
+26,3,'no description',7.8958,male,'no name',0,349202
+17,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+31,1,'no description',52,male,'no name',0,'F.C. 12750'
+21,3,'no description',7.8958,male,'no name',0,349211
+22,3,'no description',8.05,male,'no name',0,'SC/A4 23568'
+22,3,'no description',7.25,male,'no name',0,'A/5 21174'
+32,3,'no description',8.05,male,'no name',1,'SOTON/O.Q. 392078'
+42,1,'no description',42.5,male,'no name',0,113038
+28,1,'no description',47.1,male,'no name',0,113059
+19,3,'no description',14.5,male,'no name',0,358585
+33,2,'no description',12.275,male,'no name',0,'SCO/W 1585'
+18,3,'no description',17.8,female,'no name',0,349237
+37,1,'no description',90,female,'no name',1,19928
+28,3,'no description',9.5,male,'no name',0,345783
+54,1,'no description',77.2875,male,'no name',0,35281
+25,3,'no description',7.2292,male,'no name',1,2654
+20,3,'no description',4.0125,male,'no name',0,2648
+31,3,'no description',7.7333,male,'no name',0,21332
+36,3,'no description',9.5,male,'no name',0,345771
+26,3,'no description',7.925,female,'no name',1,'STON/O2. 3101282'
+57,2,'no description',10.5,female,'no name',0,'S.O./P.P. 3'
+6,3,'no description',15.2458,male,'no name',0,2678
+29,2,'no description',26,female,'no name',0,'SC/AH 29037'
+65,3,'no description',7.75,male,'no name',0,336439
+21,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101280'
+30,3,'no description',7.6292,female,'no name',0,330972
+30,2,'no description',21,male,'no name',0,'CA 31352'
+33,3,'no description',7.8958,male,'no name',0,349257
+0.8333,3,'no description',9.35,male,'no name',1,392091
+36,1,'no description',26.2875,male,'no name',1,'PC 17473'
+30,2,'no description',13,male,'no name',0,233478
+28,2,'no description',10.5,male,'no name',0,'SC 14888'
+45.5,1,'no description',28.5,male,'no name',0,113043
+52,1,'no description',30.5,male,'no name',1,113786
+65,1,'no description',61.9792,male,'no name',0,113509
+21,3,'no description',24.15,male,'no name',0,'A/4 48871'
+27,1,'no description',136.7792,male,'no name',0,13508
+22,3,'no description',7.25,male,'no name',0,'A/5 21171'
+32,3,'no description',7.75,male,'no name',0,370376
+5,3,'no description',19.2583,female,'no name',1,2666
+48,3,'no description',7.8542,male,'no name',0,350047
+2,3,'no description',27.9,female,'no name',0,347088
+21,3,'no description',7.7958,male,'no name',1,350034
+21,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101294'
+6,3,'no description',31.275,female,'no name',0,347082
+20,3,'no description',15.7417,male,'no name',1,2653
+61,1,'no description',33.5,male,'no name',0,111240
+18,2,'no description',11.5,male,'no name',0,231945
+33,3,'no description',20.575,female,'no name',1,'C.A. 2315'
+32,3,'no description',7.8958,male,'no name',0,349242
+3,2,'no description',41.5792,female,'no name',1,'SC/Paris 2123'
+21,3,'no description',7.7333,male,'no name',0,'A/5. 13032'
+44,3,'no description',16.1,male,'no name',0,371362
+21,3,'no description',8.05,male,'no name',0,'A./5. 2152'
+18,3,'no description',7.8542,male,'no name',0,350404
+49,1,'no description',26,male,'no name',0,19924
+33,3,'no description',20.525,male,'no name',0,363291
+8,2,'no description',36.75,male,'no name',1,'C.A. 33112'
+28,3,'no description',7.8542,male,'no name',0,347464
+43,1,'no description',211.3375,female,'no name',1,24160
+47,3,'no description',7,female,'no name',1,363272
+38,1,'no description',153.4625,male,'no name',0,'PC 17582'
+48,1,'no description',76.7292,male,'no name',1,'PC 17572'
+22,1,'no description',49.5,female,'no name',1,13568
+35,1,'no description',26.2875,male,'no name',1,'PC 17475'
+28,3,'no description',7.775,female,'no name',0,347086
+4,3,'no description',13.4167,female,'no name',1,349256
+30,3,'no description',16.1,male,'no name',0,'A/5. 3336'
+42,1,'no description',227.525,female,'no name',1,'PC 17757'
+29,1,'no description',211.3375,female,'no name',1,24160
+35,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101310'
+49,1,'no description',110.8833,male,'no name',0,17421
+49,1,'no description',89.1042,male,'no name',1,17453
+42,2,'no description',32.5,male,'no name',0,28220
+15,3,'no description',8.0292,female,'no name',1,330923
+66,2,'no description',10.5,male,'no name',0,'C.A. 24579'
+29,1,'no description',221.7792,female,'no name',1,'PC 17483'
+21,2,'no description',11.5,male,'no name',0,28133
+21,3,'no description',9.825,female,'no name',0,4137
+35,1,'no description',90,female,'no name',1,19943
+16,3,'no description',8.05,male,'no name',0,'A/4. 20589'
+57,1,'no description',164.8667,male,'no name',0,36928
+1,2,'no description',41.5792,female,'no name',1,'SC/Paris 2123'
+44,3,'no description',8.05,male,'no name',0,364511
+21,3,'no description',7.775,male,'no name',0,312992
+40,2,'no description',16,male,'no name',0,239059
+48,2,'no description',65,female,'no name',1,220845
+29,3,'no description',9.4833,male,'no name',0,7545
+17,2,'no description',12,female,'no name',1,'SC 1748'
+20,3,'no description',9.825,female,'no name',0,4136
+30,3,'no description',7.8958,male,'no name',0,349246
+24,2,'no description',73.5,male,'no name',0,'S.O.C. 14879'
+42,3,'no description',8.4042,male,'no name',0,4579
+31,3,'no description',18,male,'no name',0,345763
+19,3,'no description',7.8958,male,'no name',0,349205
+24,3,'no description',16.7,female,'no name',1,'PP 9549'
+29,2,'no description',27.7208,male,'no name',0,'SC/PARIS 2167'
+17,3,'no description',8.6625,male,'no name',0,315095
+52,1,'no description',93.5,female,'no name',1,12749
+24,3,'no description',8.6625,male,'no name',0,315092
+24,1,'no description',69.3,female,'no name',1,'PC 17477'
+35,2,'no description',12.35,male,'no name',0,233734
+30,2,'no description',13,female,'no name',0,237249
+39,3,'no description',7.925,male,'no name',0,3101296
+19,2,'no description',10.5,male,'no name',0,28665
+26,2,'no description',13,male,'no name',0,248659
+0.9167,2,'no description',27.75,female,'no name',1,'C.A. 34651'
+45,1,'no description',262.375,female,'no name',1,'PC 17608'
+23,3,'no description',7.7958,male,'no name',1,350054
+4,3,'no description',16.7,female,'no name',1,'PP 9549'
+48,1,'no description',39.6,female,'no name',1,11755
+20,2,'no description',23,female,'no name',1,29105
+24,1,'no description',83.1583,female,'no name',1,11767
+51,1,'no description',39.4,female,'no name',1,'PC 17592'
+24,3,'no description',15.85,female,'no name',1,'STON/O2. 3101279'
+19,2,'no description',26,female,'no name',1,250655
+36,3,'no description',17.4,female,'no name',1,345572
+45,3,'no description',14.4542,female,'no name',0,2691
+22,3,'no description',7.775,female,'no name',1,347085
+24,2,'no description',13.5,male,'no name',0,248726
+26,2,'no description',10.5,male,'no name',0,31028
+30,1,'no description',45.5,male,'no name',0,113801
+23,1,'no description',113.275,female,'no name',1,35273
+19,2,'no description',13,male,'no name',0,28424
+24,3,'no description',8.05,male,'no name',0,342441
+29,3,'no description',22.025,male,'no name',1,315153
+0.4167,3,'no description',8.5167,male,'no name',1,2625
+21,2,'no description',11.5,male,'no name',0,29107
+32,3,'no description',7.925,male,'no name',0,'STON/O 2. 3101293'
+48,1,'no description',79.2,female,'no name',1,13567
+30,3,'no description',12.475,female,'no name',1,364516
+32,3,'no description',7.5792,male,'no name',1,350403
+19,2,'no description',26,female,'no name',1,2908
+32,3,'no description',8.3625,male,'no name',0,8471
+39,3,'no description',7.925,male,'no name',1,'STON/O 2. 3101289'
+31,1,'no description',134.5,female,'no name',1,16966
+47,2,'no description',15,male,'no name',0,237565
+50,3,'no description',8.05,male,'no name',0,'A/5 3594'
+46,1,'no description',79.2,male,'no name',0,'PC 17585'
+16,3,'no description',7.75,female,'no name',1,367231
+76,1,'no description',78.85,female,'no name',1,19877
+23,1,'no description',82.2667,female,'no name',1,21228
+41,2,'no description',19.5,female,'no name',1,250644
+5,3,'no description',31.3875,female,'no name',1,347077
+41,3,'no description',39.6875,female,'no name',0,3101295
+17,1,'no description',108.9,female,'no name',1,'PC 17758'
+6,1,'no description',134.5,male,'no name',1,16966
+0.8333,2,'no description',29,male,'no name',1,248738
+23,3,'no description',8.05,female,'no name',1,'SOTON/OQ 392083'
+28,2,'no description',26,female,'no name',1,2003
+25,3,'no description',7.775,male,'no name',0,347076
+35,3,'no description',7.8958,male,'no name',0,349230
+24,1,'no description',82.2667,male,'no name',1,21228
+17,1,'no description',57,female,'no name',1,17474
+21,2,'no description',11.5,male,'no name',0,28134
+36,3,'no description',7.4958,male,'no name',0,349210
+26,3,'no description',22.025,female,'no name',1,315153
+40,1,'no description',27.7208,male,'no name',0,'PC 17601'
+24,2,'no description',65,female,'no name',1,220845
+2,3,'no description',31.275,female,'no name',0,347082
+36,2,'no description',26,female,'no name',1,226875
+18,2,'no description',13,male,'no name',0,236171
+29,2,'no description',13.8583,male,'no name',1,'SC/PARIS 2147'
+28,2,'no description',24,female,'no name',1,'P/PP 3381'
+54,1,'no description',59.4,female,'no name',1,'PC 17603'
+31,2,'no description',21,female,'no name',1,'F.C.C. 13528'
+17,2,'no description',10.5,female,'no name',1,'SO/C 14885'
+23,2,'no description',13,male,'no name',0,233639
+46,1,'no description',75.2417,male,'no name',0,13050
+22,1,'no description',61.9792,female,'no name',1,113509
+1,3,'no description',15.7417,female,'no name',1,2653
+30,1,'no description',56.9292,female,'no name',1,'PC 17485'
+28,2,'no description',13,female,'no name',1,237668
+30,3,'no description',7.2292,male,'no name',0,2685
+28.5,1,'no description',27.7208,male,'no name',0,'PC 17562'
+50,1,'no description',247.5208,female,'no name',1,'PC 17558'
+55,1,'no description',30.5,male,'no name',0,113787
+1,2,'no description',37.0042,male,'no name',1,'S.C./PARIS 2079'
+39,3,'no description',7.2292,male,'no name',0,2675
+33,3,'no description',15.85,female,'no name',1,3101278
+30,3,'no description',7.25,male,'no name',0,'C 7076'
+22,3,'no description',9.35,male,'no name',0,'PP 4348'
+34,2,'no description',13,male,'no name',1,248698
+23,3,'no description',7.8542,female,'no name',1,347469
+41,3,'no description',20.2125,female,'no name',0,370129
+50,2,'no description',26,female,'no name',1,230433
+31,2,'no description',13,male,'no name',1,244270
+27,3,'no description',7.7958,male,'no name',1,350043
+42,3,'no description',7.65,male,'no name',0,348121
+8,2,'no description',26,female,'no name',1,26360
+26,3,'no description',7.8875,male,'no name',0,3474
+24,2,'no description',26,female,'no name',1,244367
+29,2,'no description',10.5,male,'no name',0,'W./C. 14263'
+32,2,'no description',13.5,male,'no name',0,237216
+39,1,'no description',79.65,female,'no name',1,110413
+17,3,'no description',7.8958,male,'no name',0,349232
+28,3,'no description',15.85,male,'no name',0,'STON/O2. 3101279'
+21,3,'no description',7.8208,male,'no name',1,330920
+22,3,'no description',7.725,female,'no name',1,334914
+47,1,'no description',61.175,female,'no name',1,'W.E.P. 5734'
+34,2,'no description',26,male,'no name',0,244367
+19,3,'no description',8.05,male,'no name',0,323951
+59,1,'no description',51.4792,female,'no name',1,11769
+29,3,'no description',7.0458,male,'no name',0,3460
+31,3,'no description',7.775,male,'no name',0,347063
+24,1,'no description',69.3,female,'no name',1,'PC 17477'
+64,1,'no description',26.55,female,'no name',1,112901
+31,2,'no description',21,female,'no name',1,'CA 31352'
+60,1,'no description',75.25,female,'no name',1,110813
+62,1,'no description',80,female,'no name',1,113572
+74,3,'no description',7.775,male,'no name',0,347060
+22,3,'no description',7.5208,male,'no name',0,350060
+2,1,'no description',151.55,female,'no name',0,113781
+47,3,'no description',7.25,male,'no name',0,'A/5 3902'
+41,3,'no description',7.125,male,'no name',0,'SOTON/O2 3101272'
+25,3,'no description',7.05,male,'no name',0,'SOTON/OQ 392076'
+28,2,'no description',26,male,'no name',0,244358
+21,3,'no description',8.4333,male,'no name',0,8475
+36,1,'no description',512.3292,male,'no name',1,'PC 17755'
+29,2,'no description',26,male,'no name',0,2003
+50,2,'no description',26,male,'no name',0,'SC/AH 3085'
+17,3,'no description',8.05,male,'no name',0,'A/4 48873'
+30,2,'no description',13,male,'no name',0,28228
+33,2,'no description',26,female,'no name',1,26360
+30,3,'no description',15.55,female,'no name',0,349910
+56,1,'no description',83.1583,female,'no name',1,11767
+22,3,'no description',7.225,male,'no name',1,2658
+45,1,'no description',63.3583,female,'no name',1,'PC 17759'
+26,3,'no description',20.575,male,'no name',0,'C.A. 2315'
+45,1,'no description',52.5542,female,'no name',1,11753
+24,3,'no description',19.2583,female,'no name',1,2666
+24,1,'no description',79.2,male,'no name',0,'PC 17593'
+20,3,'no description',7.2292,male,'no name',1,2663
+9,3,'no description',31.275,female,'no name',0,347082
+40,3,'no description',7.8958,male,'no name',0,349251
+33,3,'no description',8.6542,male,'no name',0,7540
+35,1,'no description',135.6333,female,'no name',1,'PC 17760'
+34.5,3,'no description',7.8292,male,'no name',0,330911
+19,2,'no description',10.5,male,'no name',0,28004
+1,3,'no description',20.575,male,'no name',1,'C.A. 2315'
+47,1,'no description',52,male,'no name',0,110465
+30.5,3,'no description',8.05,male,'no name',0,364499
+21,1,'no description',77.2875,male,'no name',0,35281
+24,3,'no description',7.8542,male,'no name',0,350409
+47,1,'no description',42.4,male,'no name',0,113796
+42,1,'no description',52.5542,male,'no name',1,11753
+45,3,'no description',6.975,male,'no name',0,347061
+27,3,'no description',7.8542,male,'no name',0,350408
+29,2,'no description',21,male,'no name',0,11668
+20,3,'no description',7.925,male,'no name',1,'STON/O 2. 3101285'
+25,2,'no description',13,male,'no name',0,244361
+36,2,'no description',13,male,'no name',0,242963
+41,1,'no description',51.8625,male,'no name',0,17464
+29,2,'no description',23,female,'no name',1,29103
+40,3,'no description',7.225,male,'no name',0,2623
+60,2,'no description',39,male,'no name',0,29750
+38,3,'no description',7.2292,female,'no name',1,2688
+55,1,'no description',50,male,'no name',0,680
+30,3,'no description',8.6625,female,'no name',0,315084
+32,2,'no description',10.5,male,'no name',0,'C.A. 33111'
+25,3,'no description',7.925,female,'no name',0,'STON/O2. 3101271'
+10,3,'no description',46.9,female,'no name',0,'CA 2144'
+19,3,'no description',7.8792,female,'no name',1,330958
+23,3,'no description',13.9,male,'no name',0,347072
+29,3,'no description',7.75,male,'no name',1,382651
+20,3,'no description',7.8542,female,'no name',0,347471
+48,3,'no description',34.375,female,'no name',0,'W./C. 6608'
+51,1,'no description',61.3792,male,'no name',0,'PC 17597'
+18,3,'no description',7.4958,female,'no name',1,3101265
+1,3,'no description',46.9,male,'no name',0,'CA 2144'
+31,3,'no description',18,female,'no name',0,345763
+24,3,'no description',9.325,male,'no name',0,7266
+48,1,'no description',26.55,male,'no name',1,19952
+30,1,'no description',57.75,male,'no name',1,13236
+26,2,'no description',26,female,'no name',0,250651
+20,3,'no description',9.5,male,'no name',0,345769
+59,3,'no description',7.25,male,'no name',0,364500
+40,3,'no description',46.9,male,'no name',0,'CA 2144'
+40,2,'no description',26,male,'no name',0,2926
+24,3,'no description',7.775,male,'no name',0,349911
+0.75,3,'no description',19.2583,female,'no name',1,2666
+22,3,'no description',7.775,male,'no name',0,347065
+0.75,3,'no description',19.2583,female,'no name',1,2666
+55,1,'no description',59.4,male,'no name',0,'PC 17603'
+37,1,'no description',29.7,male,'no name',0,'PC 17596'
+22.5,3,'no description',7.225,male,'no name',0,2698
+16,3,'no description',20.25,male,'no name',0,'C.A. 2673'
+22,3,'no description',7.75,female,'no name',1,370373
+34,2,'no description',13,male,'no name',0,12233
+35,2,'no description',10.5,male,'no name',0,28206
+70.5,3,'no description',7.75,male,'no name',0,370369
+64,1,'no description',75.25,male,'no name',0,110813
+43,2,'no description',21,male,'no name',0,'S.O./P.P. 2'
+44,3,'no description',8.05,male,'no name',0,363592
+22,2,'no description',31.5,male,'no name',0,'C.A. 31029'
+30,2,'no description',12.35,female,'no name',1,234818
+14,2,'no description',65,male,'no name',0,220845
+30,3,'no description',7.225,male,'no name',0,2694
+28,3,'no description',9.5,male,'no name',0,345770
+36,1,'no description',26.3875,male,'no name',1,'PC 17474'
+47,1,'no description',227.525,male,'no name',0,'PC 17757'
+18,3,'no description',7.7958,male,'no name',0,350036
+71,1,'no description',34.6542,male,'no name',0,'PC 17754'
+14,3,'no description',9.225,male,'no name',1,7538
+46,2,'no description',26,male,'no name',0,28403
+32,1,'no description',30.5,male,'no name',1,13214
+11,3,'no description',46.9,male,'no name',0,'CA 2144'
+55,2,'no description',16,female,'no name',1,248706
+24,2,'no description',10.5,male,'no name',0,'C.A. 29566'
+22,1,'no description',66.6,female,'no name',1,113776
+17,1,'no description',47.1,male,'no name',0,113059
+22,3,'no description',8.6625,female,'no name',0,315152
+24,3,'no description',7.75,female,'no name',1,382653
+64,1,'no description',26,male,'no name',0,693
+24,2,'no description',13,male,'no name',0,233866
+30,2,'no description',10.5,male,'no name',0,'W/C 14208'
+27,3,'no description',6.975,male,'no name',1,347089
+20,3,'no description',7.925,male,'no name',1,'SOTON/O2 3101284'
+33,3,'no description',8.05,male,'no name',0,'A./5. 3338'
+18,3,'no description',7.775,female,'no name',1,347066
+35,3,'no description',20.25,female,'no name',1,'C.A. 2673'
+1,3,'no description',12.1833,female,'no name',0,350405
+41,3,'no description',14.1083,male,'no name',0,350026
+0.8333,2,'no description',18.75,male,'no name',1,29106
+39,2,'no description',26,male,'no name',0,250655
+26,2,'no description',13.5,female,'no name',1,220844
+16,3,'no description',9.5,male,'no name',0,345778
+41,3,'no description',7.85,male,'no name',0,'SOTON/O.Q. 3101263'
+22,2,'no description',10.5,female,'no name',1,'W./C. 14266'
+50,1,'no description',211.5,male,'no name',0,113503
+42,3,'no description',8.6625,male,'no name',0,315088
+24,3,'no description',24.15,male,'no name',0,'A/4 48871'
+9,3,'no description',31.3875,male,'no name',0,347077
+16,1,'no description',86.5,female,'no name',1,110152
+53,1,'no description',81.8583,male,'no name',1,33638
+22,2,'no description',29,female,'no name',1,248738
+35,3,'no description',8.05,male,'no name',0,364512
+53,1,'no description',28.5,male,'no name',1,113780
+9,3,'no description',27.9,female,'no name',0,347088
+38,2,'no description',21,male,'no name',0,28664
+22,3,'no description',7.2292,male,'no name',0,2669
+35,1,'no description',53.1,female,'no name',1,113803
+34,2,'no description',21,male,'no name',0,31027
+8,3,'no description',21.075,female,'no name',0,349909
+43,3,'no description',8.05,male,'no name',0,'A/5 3536'
+15,3,'no description',14.4542,female,'no name',1,2659
+19,1,'no description',263,male,'no name',0,19950
+18,3,'no description',7.8792,female,'no name',0,330963
+26,3,'no description',7.8958,male,'no name',0,349248
+1,3,'no description',16.7,female,'no name',1,'PP 9549'
+39,1,'no description',55.9,female,'no name',1,13507
+19,3,'no description',8.1583,male,'no name',0,'S.P. 3464'
+30,2,'no description',12.7375,male,'no name',1,'C.A. 34644'
+22,3,'no description',7.7958,male,'no name',0,350052
+26.5,3,'no description',7.225,male,'no name',0,2656
+26,3,'no description',7.775,male,'no name',1,347070
+30,3,'no description',6.95,female,'no name',1,382650
+19,1,'no description',30,female,'no name',1,112053
+51,3,'no description',8.05,male,'no name',0,21440
+17,3,'no description',7.925,female,'no name',1,3101281
+31,1,'no description',113.275,female,'no name',1,35273
+23,2,'no description',13,male,'no name',0,29751
+57,2,'no description',12.35,male,'no name',0,219533
+42,2,'no description',27,male,'no name',0,243847
+33,1,'no description',5,male,'no name',0,695
+35,3,'no description',7.75,female,'no name',0,9232
+21,3,'no description',7.25,male,'no name',0,'SOTON/OQ 3101317'
+18,1,'no description',227.525,female,'no name',1,'PC 17757'
+36,3,'no description',7.8958,male,'no name',0,349247
+48,2,'no description',13,male,'no name',0,234360
+9,3,'no description',34.375,female,'no name',0,'W./C. 6608'
+17,3,'no description',16.1,female,'no name',1,371362
+5,3,'no description',12.475,female,'no name',1,364516
+19,3,'no description',6.75,male,'no name',0,365222
+21,3,'no description',7.775,male,'no name',1,345501
+2,3,'no description',12.2875,female,'no name',1,3101298
+26,3,'no description',13.775,female,'no name',0,'SOTON/O.Q. 3101315'
+0.6667,2,'no description',14.5,male,'no name',1,250649
+38,3,'no description',31.3875,female,'no name',1,347077
+55,1,'no description',25.7,female,'no name',1,11770
+32.5,1,'no description',211.5,male,'no name',0,113503
+45,2,'no description',13.5,female,'no name',1,223596
+4,1,'no description',81.8583,male,'no name',1,33638
+24,1,'no description',49.5042,female,'no name',1,'PC 17482'
+28,3,'no description',7.8958,male,'no name',0,349243
+28,1,'no description',26.55,male,'no name',1,110564
+18,1,'no description',60,female,'no name',1,13695
+27,2,'no description',26,male,'no name',0,228414
+28.5,3,'no description',7.2292,male,'no name',0,2697
+27,1,'no description',53.1,male,'no name',1,113806
+37,1,'no description',83.1583,male,'no name',0,'PC 17756'
+29,2,'no description',26,female,'no name',1,2926
+21,3,'no description',6.4958,male,'no name',0,3101266
+21,2,'no description',13,male,'no name',0,236854
+50,1,'no description',55.9,male,'no name',0,13507
+48,1,'no description',52,male,'no name',1,19996
+27,1,'no description',76.7292,male,'no name',1,'PC 17572'
+25,2,'no description',13,male,'no name',0,'C.A. 29178'
+32,3,'no description',15.5,female,'no name',0,364849
+21,1,'no description',61.3792,male,'no name',1,'PC 17597'
+33,3,'no description',8.6625,male,'no name',0,349239
+16,3,'no description',39.6875,male,'no name',0,3101295
+45,3,'no description',8.05,male,'no name',1,7598
+43,3,'no description',46.9,female,'no name',0,'CA 2144'
+61,1,'no description',32.3208,male,'no name',0,36963
+34,1,'no description',26.55,male,'no name',1,113794
+26,3,'no description',7.775,male,'no name',0,347068
+47,1,'no description',34.0208,male,'no name',0,36967
+22,2,'no description',21,female,'no name',0,'F.C.C. 13534'
+22,1,'no description',55,female,'no name',1,113505
+24,3,'no description',7.7958,male,'no name',0,350035
+22,2,'no description',10.5,male,'no name',1,'W./C. 14260'
+42,1,'no description',52,male,'no name',0,113789
+57,2,'no description',13,male,'no name',0,244346
+39,3,'no description',31.275,male,'no name',0,347082
+43,2,'no description',26.25,male,'no name',0,'F.C.C. 13529'
+33,3,'no description',7.775,male,'no name',0,347062
+16,3,'no description',8.5167,female,'no name',1,2625
+3,3,'no description',13.775,female,'no name',0,'SOTON/O.Q. 3101315'
+30,1,'no description',106.425,female,'no name',1,'PC 17761'
+39,3,'no description',31.275,female,'no name',0,347082
+0.3333,3,'no description',14.4,male,'no name',0,347080
+21,1,'no description',26.55,female,'no name',1,113795
+26,3,'no description',18.7875,male,'no name',1,2699
+40,3,'no description',15.5,male,'no name',0,364849
+33,1,'no description',53.1,female,'no name',1,113806
+24,3,'no description',16.1,male,'no name',0,376566
+42,1,'no description',26.55,male,'no name',0,17475
+26,3,'no description',7.775,male,'no name',0,347075
+44,2,'no description',26,female,'no name',0,244252
+35,3,'no description',8.05,male,'no name',0,373450
+36,3,'no description',24.15,male,'no name',0,345773
+25,2,'no description',13,male,'no name',0,234686
+35,3,'no description',7.125,male,'no name',0,'STON/O 2. 3101273'
+3,3,'no description',15.9,male,'no name',1,'C.A. 37671'
+25,3,'no description',7.7958,male,'no name',1,350033
+22,3,'no description',7.25,female,'no name',1,'C 7077'
+24,1,'no description',60,male,'no name',0,13695
+27,3,'no description',8.6625,male,'no name',0,315154
+25,1,'no description',55.4417,male,'no name',1,11765
+31,3,'no description',20.525,female,'no name',1,363291
+18,3,'no description',7.75,male,'no name',0,347078
+3,3,'no description',21.075,female,'no name',0,349909
+28,3,'no description',22.525,male,'no name',0,'C 4001'
+24,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101311'
+6,3,'no description',21.075,male,'no name',0,349909
+9,3,'no description',15.9,male,'no name',1,'C.A. 37671'
+32,1,'no description',76.2917,female,'no name',1,11813
+21,2,'no description',10.5,female,'no name',1,'C.A. 31026'
+45.5,3,'no description',7.225,male,'no name',0,2628
+35,2,'no description',21,female,'no name',1,'F.C.C. 13528'
+24,3,'no description',7.4958,male,'no name',0,349209
+36,2,'no description',13,female,'no name',1,28551
+56,1,'no description',30.6958,male,'no name',0,17764
+23,3,'no description',7.55,female,'no name',1,'CA. 2314'
+35,1,'no description',512.3292,male,'no name',1,'PC 17755'
+44,1,'no description',57.9792,female,'no name',1,111361
+49,1,'no description',76.7292,female,'no name',1,'PC 17572'
+22,3,'no description',9.8375,female,'no name',0,7553
+42,1,'no description',26.55,male,'no name',0,110489
+42,2,'no description',13,male,'no name',1,237798
+36,3,'no description',15.55,male,'no name',0,349910
+43,1,'no description',27.7208,male,'no name',1,17765
+22,1,'no description',135.6333,male,'no name',0,'PC 17760'
+24,2,'no description',13,female,'no name',0,248747
+38,1,'no description',71.2833,female,'no name',1,'PC 17599'
+29,2,'no description',26,female,'no name',1,228414
+18,2,'no description',23,female,'no name',1,231919
+23,3,'no description',7.8542,male,'no name',0,347468
+2,3,'no description',21.075,male,'no name',0,349909
+27,2,'no description',13,male,'no name',0,220367
+23.5,3,'no description',7.2292,male,'no name',0,2693
+7,3,'no description',29.125,male,'no name',0,382652
+54,1,'no description',81.8583,female,'no name',1,33638
+49,2,'no description',65,male,'no name',0,220845
+42,3,'no description',7.55,male,'no name',0,'C.A. 5547'
+23,1,'no description',93.5,male,'no name',0,12749
+20,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101307'
+40,1,'no description',134.5,female,'no name',1,16966
+1,2,'no description',39,male,'no name',1,230136
+36.5,3,'no description',17.4,male,'no name',1,345572
+39,2,'no description',13,male,'no name',0,248723
+22,1,'no description',59.4,female,'no name',1,112378
+54,1,'no description',51.8625,male,'no name',0,17463
+32.5,3,'no description',9.5,male,'no name',0,345775
+31,1,'no description',57,male,'no name',1,17474
+51,3,'no description',7.75,male,'no name',0,347064
+54,1,'no description',78.2667,female,'no name',1,36947
+30,2,'no description',21,female,'no name',1,31027
+26,3,'no description',8.05,male,'no name',0,341826
+25,3,'no description',7.8958,male,'no name',0,349203
+19,3,'no description',7.8542,female,'no name',1,350046
+27,1,'no description',211.5,male,'no name',0,113503
+18,3,'no description',9.8417,female,'no name',1,4138
+63,1,'no description',221.7792,female,'no name',0,'PC 17483'
+26,1,'no description',78.85,female,'no name',1,19877
+26,1,'no description',136.7792,female,'no name',1,13508
+27,3,'no description',7.8792,female,'no name',0,330844
+40,2,'no description',39,female,'no name',1,29750
+25,3,'no description',17.8,male,'no name',0,349237
+14,3,'no description',39.6875,male,'no name',0,3101295
+11,1,'no description',120,male,'no name',1,113760
+36,2,'no description',13,female,'no name',1,27849
+17,3,'no description',7.0542,male,'no name',0,350048
+58,1,'no description',113.275,male,'no name',0,35273
+16,2,'no description',26,male,'no name',0,239865
+55,1,'no description',93.5,male,'no name',0,12749
+16,1,'no description',57.9792,female,'no name',1,111361
+25,3,'no description',7.65,male,'no name',1,348122
+29,3,'no description',9.5,male,'no name',1,345779
+80,1,'no description',30,male,'no name',1,27042
+20,3,'no description',9.225,male,'no name',0,6563
+39,1,'no description',29.7,male,'no name',0,'PC 17580'
+70,2,'no description',10.5,male,'no name',0,'C.A. 24580'
+60,2,'no description',26,female,'no name',0,24065
+19,1,'no description',91.0792,female,'no name',1,11967
+45,1,'no description',29.7,male,'no name',1,'PC 17594'
+30,1,'no description',86.5,female,'no name',1,110152
+42,2,'no description',13,male,'no name',0,244310
+22,2,'no description',41.5792,female,'no name',1,'SC/Paris 2123'
+16,2,'no description',10.5,male,'no name',0,'S.O./P.P. 3'
+16,1,'no description',39.4,female,'no name',1,'PC 17592'
+62,1,'no description',26.55,male,'no name',0,113807
+33,3,'no description',7.8542,male,'no name',0,347465
+25,2,'no description',26,male,'no name',0,236853
+38,3,'no description',8.6625,male,'no name',0,315089
+36,3,'no description',15.9,female,'no name',1,'C.A. 37671'
+36,2,'no description',13,male,'no name',0,229236
+9,3,'no description',15.2458,female,'no name',0,2678
+59,2,'no description',13.5,male,'no name',0,237442
+36.5,2,'no description',26,male,'no name',0,230080
+26,3,'no description',14.4542,male,'no name',0,2680
+26,3,'no description',8.6625,male,'no name',0,315151
+25,3,'no description',7.775,female,'no name',0,347071
+39,1,'no description',71.2833,male,'no name',0,'PC 17599'
+20,3,'no description',8.05,male,'no name',0,'A/5. 2151'
+39,1,'no description',211.3375,female,'no name',1,24160
+24,2,'no description',10.5,male,'no name',1,28034
+21,3,'no description',8.05,male,'no name',0,'A/4 45380'
+27,3,'no description',7.225,male,'no name',0,2670
+22,3,'no description',7.75,female,'no name',1,347081
+55.5,3,'no description',8.05,male,'no name',0,'A.5. 11206'
+17,3,'no description',7.7333,female,'no name',0,'AQ/3. 30631'
+16,3,'no description',34.375,male,'no name',0,'W./C. 6608'
+24,2,'no description',37.0042,female,'no name',1,'S.C./PARIS 2079'
+4,3,'no description',29.125,male,'no name',0,382652
+24,2,'no description',65,female,'no name',1,220845
+63,1,'no description',77.9583,female,'no name',1,13502
+38,1,'no description',80,female,'no name',1,113572
+28,3,'no description',7.8958,female,'no name',0,349245
+22,3,'no description',39.6875,female,'no name',0,3101295
+22,3,'no description',7.225,male,'no name',1,2620
+29,3,'no description',21.075,female,'no name',0,349909
+33,1,'no description',26.55,male,'no name',0,113790
+36,1,'no description',135.6333,female,'no name',1,'PC 17760'
+36,3,'no description',12.1833,female,'no name',0,350405
+36,1,'no description',31.6792,female,'no name',0,'PC 17531'
+19,3,'no description',16.1,female,'no name',0,376566
+2,3,'no description',29.125,male,'no name',0,382652
+34,2,'no description',21,male,'no name',0,28664
+60,1,'no description',79.2,male,'no name',1,13567
+29,3,'no description',7.775,male,'no name',0,347067
+15,1,'no description',211.3375,female,'no name',1,24160
+19,3,'no description',8.05,male,'no name',1,'A/5. 10482'
+52,2,'no description',13.5,male,'no name',0,248731
+6,2,'no description',33,female,'no name',1,248727
+23,3,'no description',9.225,male,'no name',0,7267
+45,3,'no description',27.9,female,'no name',0,347088
+45,3,'no description',14.1083,female,'no name',1,350026
+39,3,'no description',29.125,female,'no name',0,382652
+27,1,'no description',52,female,'no name',1,'F.C. 12750'
+62,2,'no description',10.5,male,'no name',1,'S.W./PP 752'
+33,1,'no description',27.7208,female,'no name',1,'PC 17613'
+64,1,'no description',83.1583,female,'no name',1,'PC 17756'
+25,3,'no description',7.05,male,'no name',0,'SOTON/O.Q. 3101312'
+26,2,'no description',13,male,'no name',0,237670
+47,3,'no description',9,male,'no name',0,345765
+28,2,'no description',13.5,male,'no name',0,218629
+28,1,'no description',35.5,male,'no name',1,113788
+25,3,'no description',7.65,male,'no name',0,348123
+46,1,'no description',61.175,male,'no name',0,'W.E.P. 5734'
+41,2,'no description',15.0458,male,'no name',0,237734
+24,3,'no description',7.75,female,'no name',0,368702
+50,1,'no description',133.65,male,'no name',1,'PC 17611'
+54,2,'no description',14,male,'no name',0,29011
+4,3,'no description',31.275,male,'no name',0,347082
+47,1,'no description',38.5,male,'no name',0,111320
+18,1,'no description',79.65,female,'no name',1,110413
+25,2,'no description',26,female,'no name',1,230433
+51,1,'no description',77.9583,female,'no name',1,13502
+16,3,'no description',46.9,female,'no name',0,'CA 2144'
+30,1,'no description',93.5,female,'no name',1,12749
+24,2,'no description',27.7208,female,'no name',1,'SC/PARIS 2167'
+32,3,'no description',7.925,male,'no name',1,'STON/O 2. 3101286'
+32,3,'no description',56.4958,male,'no name',1,1601
+18.5,3,'no description',7.2292,male,'no name',0,2682
+29,3,'no description',7.925,female,'no name',0,3101297
+17,3,'no description',7.2292,male,'no name',0,2690
+14.5,3,'no description',14.4542,female,'no name',0,2665
+25,3,'no description',7.775,male,'no name',1,347083
+22,3,'no description',7.7958,male,'no name',0,350045
+31,2,'no description',26.25,male,'no name',0,'C.A. 31921'
+27,3,'no description',7.925,female,'no name',0,'STON/O2. 3101270'
+34,3,'no description',6.4958,male,'no name',0,3101264
+23,1,'no description',83.1583,female,'no name',1,11767
+18,1,'no description',262.375,female,'no name',1,'PC 17608'
+21,3,'no description',8.6625,male,'no name',0,315097
+39,2,'no description',13,male,'no name',0,28213
+18,3,'no description',7.2292,female,'no name',1,2657
+37,3,'no description',7.925,male,'no name',0,3101276
+38.5,3,'no description',7.25,male,'no name',0,'SOTON/O.Q. 3101262'
+36,1,'no description',71,female,'no name',1,'WE/P 5735'
+22,3,'no description',8.9625,female,'no name',1,7548
+28,3,'no description',8.05,male,'no name',0,363611
+28,3,'no description',22.525,male,'no name',0,'C 4001'
+1,3,'no description',39.6875,male,'no name',0,3101295
+45,2,'no description',30,female,'no name',1,237789
+16,3,'no description',7.7333,female,'no name',1,35851
+24,3,'no description',7.8958,male,'no name',0,349233
+46,1,'no description',26,male,'no name',0,694
+21,3,'no description',7.8542,male,'no name',0,350029
+31,2,'no description',26.25,female,'no name',1,'C.A. 31921'
+21,1,'no description',77.9583,female,'no name',1,13502
+58,1,'no description',153.4625,female,'no name',1,'PC 17582'
+34,2,'no description',13,female,'no name',1,243880
+45,1,'no description',164.8667,female,'no name',1,36928
+23,2,'no description',10.5,male,'no name',0,'C.A. 31030'
+26,3,'no description',7.8958,male,'no name',0,349224
+14,3,'no description',46.9,male,'no name',0,'CA 2144'
+48,1,'no description',106.425,female,'no name',1,'PC 17761'
+27,3,'no description',7.925,female,'no name',1,'STON/O2. 3101283'
+13,2,'no description',19.5,female,'no name',1,250644
+32,3,'no description',7.8542,male,'no name',1,350417
+30,1,'no description',27.75,male,'no name',0,113051
+31,1,'no description',28.5375,male,'no name',1,2543
+44,2,'no description',13,male,'no name',0,248746
+21,1,'no description',262.375,female,'no name',1,'PC 17608'
+70,1,'no description',71,male,'no name',0,'WE/P 5735'
+18,3,'no description',8.3,male,'no name',0,2223
+21,3,'no description',16.1,male,'no name',0,54636
