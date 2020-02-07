@@ -55,7 +55,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	/**
 	 * feature vectors for the model creation and dimensionality reduction
 	 */
-	private List<? extends X> featureVectors;
+	private List<X> featureVectors;
 
 	private double dmMin;
 	private double dmMax;
@@ -118,7 +118,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * @param fvs
 	 * @return
 	 */
-	private void calculateDistanceMatrix(List<? extends X> fvs) {
+	private void calculateDistanceMatrix(List<X> fvs) {
 		distanceMatrix = new DistanceMatrixParallel<>(fvs, distanceMeasure);
 	}
 
