@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
@@ -58,6 +58,6 @@ public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements 
 	 */
 	protected IDistanceMatrix<FV> getPairwiseDistances(Cluster<FV> cluster) {
 
-		return new DistanceMatrix<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
+		return new DistanceMatrixParallel<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
 	}
 }

@@ -6,11 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixStatistics;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.DoubleDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
@@ -54,7 +55,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	/**
 	 * feature vectors for the model creation and dimensionality reduction
 	 */
-	private List<X> featureVectors;
+	private List<? extends X> featureVectors;
 
 	private double dmMin;
 	private double dmMax;
@@ -97,7 +98,8 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * @param pointDistances
 	 * @return
 	 */
-	private double calculateStress(IDistanceMatrix<X> distanceMatrix, double[][] pointDistances, List<X> inputObjects) {
+	private double calculateStress(IDistanceMatrix<X> distanceMatrix, double[][] pointDistances,
+			List<? extends X> inputObjects) {
 		double stress = 0;
 		for (int i = 0; i < pointDistances.length; i++) {
 			for (int j = 0; j < pointDistances[0].length; j++) {
@@ -116,8 +118,8 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * @param fvs
 	 * @return
 	 */
-	private void calculateDistanceMatrix(List<X> fvs) {
-		distanceMatrix = new DistanceMatrix<>(fvs, distanceMeasure);
+	private void calculateDistanceMatrix(List<? extends X> fvs) {
+		distanceMatrix = new DistanceMatrixParallel<>(fvs, distanceMeasure);
 	}
 
 	/**
@@ -192,8 +194,9 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		if (distanceMatrix == null)
 			throw new IllegalArgumentException("MDS: wrong input.");
 
-		dmMin = distanceMatrix.getMinDistance();
-		dmMax = distanceMatrix.getMaxDistance();
+		DistanceMatrixStatistics<X> distanceMatrixStatistics = new DistanceMatrixStatistics<>(distanceMatrix);
+		dmMin = distanceMatrixStatistics.getMinDistance();
+		dmMax = distanceMatrixStatistics.getMaxDistance();
 
 		// initialize points of the low-dimensional embedding
 		List<double[]> lowDimensionalPoints = initializeLowDimensionalPoints(outputDimensionality,
@@ -246,7 +249,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		}
 
 		for (int i = 0; i < featureVectors.size(); i++) {
-			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(
+			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(
 					lowDimensionalPoints.get(i), featureVectors.get(i).getName(),
 					featureVectors.get(i).getDescription());
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();

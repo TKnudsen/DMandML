@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 
@@ -99,7 +100,7 @@ public class Clusters {
 	public static <T, C extends ICluster<T>> Centroid<T> calculateCentroidLikeElement(C cluster,
 			IDistanceMeasure<T> distanceMeasure) {
 
-		DistanceMatrix<T> dm = new DistanceMatrix<>(new ArrayList<>(cluster.getElements()), distanceMeasure);
+		IDistanceMatrix<T> dm = new DistanceMatrixParallel<>(new ArrayList<>(cluster.getElements()), distanceMeasure);
 
 		Map<T, Double> distances = new HashMap<>();
 
