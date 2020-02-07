@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
 
@@ -35,11 +35,11 @@ public class MDSTester {
 		double[] vect3 = new double[] { 0.0, 1.0, 1.0 };
 		double[] vect4 = new double[] { 0.0, 1.0, 0.98 };
 		double[] vect5 = new double[] { 0.0, 1.0, 0.0 };
-		fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(vect1));
-		fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(vect2));
-		fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(vect3));
-		fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(vect4));
-		fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(vect5));
+		fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(vect1));
+		fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(vect2));
+		fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(vect3));
+		fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(vect4));
+		fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(vect5));
 
 		for (NumericalFeatureVector fv : fvs) {
 			for (int i = 0; i < fv.getDimensions(); i++)

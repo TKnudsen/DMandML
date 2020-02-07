@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
 import com.jujutsu.tsne.TSne;
 import com.jujutsu.tsne.barneshut.BHTSne;
@@ -106,7 +106,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 			NumericalFeatureVector inputFeatureVector = featureVectors.get(i);
 
 			double[] outputVector = outputAsDoubleMatrix[i];
-			NumericalFeatureVector fv = NumericalFeatureVectorFactory.createNumericalFeatureVector(outputVector,
+			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(outputVector,
 					inputFeatureVector.getName(), inputFeatureVector.getDescription());
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
 			while (attributeIterator.hasNext()) {

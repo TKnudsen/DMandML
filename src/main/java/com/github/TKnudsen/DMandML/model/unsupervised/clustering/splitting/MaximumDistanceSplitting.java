@@ -3,7 +3,8 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.splitting;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixStatistics;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
@@ -41,10 +42,10 @@ public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T
 	public List<ICluster<T>> splitCluster(ICluster<T> cluster) {
 
 		// identify the two farthest elements (slow!)
-		IDistanceMatrix<T> distanceMatrix = new DistanceMatrix<>(new ArrayList<>(cluster.getElements()),
+		IDistanceMatrix<T> distanceMatrix = new DistanceMatrixParallel<>(new ArrayList<>(cluster.getElements()),
 				distanceMeasure);
-		distanceMatrix.getMaxDistance();
-		List<T> farestElements = distanceMatrix.getFarestElements();
+		DistanceMatrixStatistics<T> distanceMatrixStatistics = new DistanceMatrixStatistics<>(distanceMatrix);
+		List<T> farestElements = distanceMatrixStatistics.getFarestElements();
 
 		if (farestElements == null || farestElements.size() < 2)
 			throw new IllegalArgumentException("MaximumDistanceSplitting: farest elements not available");

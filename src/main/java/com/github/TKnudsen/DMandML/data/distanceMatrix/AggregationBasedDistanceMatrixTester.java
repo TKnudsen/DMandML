@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorFactory;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.distanceMatrix.test.AggregationBasedDistanceMatrix;
 
@@ -14,7 +14,8 @@ import com.github.TKnudsen.DMandML.data.distanceMatrix.test.AggregationBasedDist
  * </p>
  * 
  * <p>
- * Description: little tester for the AggregationBasedDistanceMatrix data structure.
+ * Description: little tester for the AggregationBasedDistanceMatrix data
+ * structure.
  * </p>
  * 
  * <p>
@@ -30,11 +31,11 @@ public class AggregationBasedDistanceMatrixTester {
 
 		List<NumericalFeatureVector> fvs = new ArrayList<>();
 		for (int i = 0; i < n; i++)
-			fvs.add(NumericalFeatureVectorFactory.createNumericalFeatureVector(new double[] { i }));
+			fvs.add(NumericalFeatureVectors.createNumericalFeatureVector(new double[] { i }));
 
 		AggregationBasedDistanceMatrix dm = new AggregationBasedDistanceMatrix(fvs, new EuclideanDistanceMeasure(), 3);
 
 		for (int i = 0; i < n; i++)
-			System.out.println("Distance between 0 and "+i+": " + dm.getDistance(fvs.get(0), fvs.get(i)));
+			System.out.println("Distance between 0 and " + i + ": " + dm.getDistance(fvs.get(0), fvs.get(i)));
 	}
 }
