@@ -58,14 +58,14 @@
 			<version>1.0.10</version>
 		</dependency>
 		<dependency>
-			<groupId>org.pentaho.pentaho-commons</groupId>
-			<artifactId>pentaho-package-manager</artifactId>
-			<version>1.0.11</version>
-		</dependency>
-		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>optics_dbScan</artifactId>
 			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pentaho.pentaho-commons</groupId>
+			<artifactId>pentaho-package-manager</artifactId>
+			<version>1.0.11</version>
 		</dependency>
 		<dependency>
 			<groupId>de.lmu.ifi.dbs.elki</groupId>
@@ -87,6 +87,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
 		</dependency>
 		<dependency>
 			<groupId>de.javagl</groupId>
