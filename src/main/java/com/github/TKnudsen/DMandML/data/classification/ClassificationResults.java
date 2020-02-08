@@ -1,6 +1,8 @@
 package com.github.TKnudsen.DMandML.data.classification;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,23 +15,21 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
+import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
  * <p>
- * Title: ClassificationResults
+ * ClassificationResult utility.
  * </p>
  * 
  * <p>
- * Description: ClassificationResult utility.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2018-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public class ClassificationResults {
 
@@ -77,19 +77,6 @@ public class ClassificationResults {
 
 		return labelDistributionMap;
 	}
-
-	// protected static <X> Map<X, String> createLabelsMap(Map<X, Map<String,
-	// Double>> labelDistributionMap) {
-	// Map<X, LabelDistribution> map =
-	// createLabelDistributionMap(labelDistributionMap);
-	//
-	// Map<X, String> labelsMap = new LinkedHashMap<>();
-	//
-	// for (X x : map.keySet())
-	// labelsMap.put(x, map.get(x).getRepresentant());
-	//
-	// return labelsMap;
-	// }
 
 	protected static <X> Map<X, String> createwinningLabelsMap(Map<X, LabelDistribution> labelDistributionMap) {
 		Map<X, String> labelsMap = new LinkedHashMap<>();
@@ -185,4 +172,63 @@ public class ClassificationResults {
 		return gravityMap;
 	}
 
+	/**
+	 * converts a crisp classification result to a series of clusters.
+	 * 
+	 * @param classificationResult
+	 * @param distanceMeasure
+	 * @return
+	 */
+	public static <FV> Map<String, ICluster<FV>> toClusters(IClassificationResult<FV> classificationResult,
+			IDistanceMeasure<FV> distanceMeasure) {
+		Map<String, ICluster<FV>> clusters = new HashMap<String, ICluster<FV>>();
+		for (String label : classificationResult.getLabelAlphabet()) {
+			ICluster<FV> cluster = new ClusterFactory().createCluster(
+					classificationResult.getClassDistributions().get(label), distanceMeasure, label, label);
+			if (cluster != null)
+				clusters.put(label, cluster);
+		}
+
+		return clusters;
+	}
+
+	/**
+	 * Returns whether the given classification results are probably equal. Here,
+	 * equality is characterized using the assumption that two results are equal
+	 * when they return equal values from their most important methods
+	 * 
+	 * @param cr0 The first result
+	 * @param cr1 The second result
+	 * @return Whether the results are equal
+	 */
+	public static <FV> boolean equal(IClassificationResult<FV> cr0, IClassificationResult<FV> cr1) {
+		if (cr0 == null && cr1 == null) {
+			return true;
+		}
+		if (cr0 == null) {
+			return false;
+		}
+		if (cr1 == null) {
+			return false;
+		}
+		if (cr0 == cr1) {
+			return true;
+		}
+		Collection<FV> fvs0 = cr0.getFeatureVectors();
+		Collection<FV> fvs1 = cr1.getFeatureVectors();
+		if (!com.google.common.base.Objects.equal(fvs0, fvs1)) {
+			return false;
+		}
+		Set<String> la0 = cr0.getLabelAlphabet();
+		Set<String> la1 = cr1.getLabelAlphabet();
+		if (!com.google.common.base.Objects.equal(la0, la1)) {
+			return false;
+		}
+		Map<String, List<FV>> cd0 = cr0.getClassDistributions();
+		Map<String, List<FV>> cd1 = cr1.getClassDistributions();
+		if (!com.google.common.base.Objects.equal(cd0, cd1)) {
+			return false;
+		}
+		return true;
+	}
 }
