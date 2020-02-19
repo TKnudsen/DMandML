@@ -74,7 +74,7 @@ public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements ICluste
 				}
 			}
 
-		double silhouette = 0;
+		double index = 0;
 		double count = 0;
 
 		for (Cluster<FV> cluster : clusters)
@@ -85,16 +85,16 @@ public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements ICluste
 						nearestCluster.get(featureVector).getCentroid().getData());
 
 				if (distInner < distOuter)
-					silhouette += (1 - distInner / distOuter);
+					index += (1 - distInner / distOuter);
 				else if (distInner == distOuter)
-					silhouette += 0;
+					index += 0;
 				else
-					silhouette += (distOuter / distInner - 1);
+					index += (distOuter / distInner - 1);
 
 				count++;
 			}
 
-		dunnIndex = silhouette / count;
+		dunnIndex = index / count;
 	}
 
 	@Override
