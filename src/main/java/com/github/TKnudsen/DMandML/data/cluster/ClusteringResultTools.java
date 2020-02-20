@@ -78,6 +78,7 @@ public class ClusteringResultTools {
 	/**
 	 * retrieves all elements of all clusters in a ClusterResult.
 	 * 
+	 * @deprecated use ClusteringResults.getElements instead
 	 * @param clusterResult
 	 * @return
 	 */
@@ -89,41 +90,6 @@ public class ClusteringResultTools {
 			elements.addAll(c.getElements());
 
 		return elements;
-	}
-
-	/**
-	 * Retrieves the cluster for a given object. If getClusterMapping is null (if
-	 * object was not part of the clustering routine) AND
-	 * retrievNearestWhenUnassigned is set true, the method retrieves the nearest
-	 * cluster for the object.
-	 * 
-	 * @param fv
-	 * @param retrieveNearestWhenUnassigned if a cluster is retrieved in case no
-	 *                                      assignment is exists.
-	 * @return
-	 */
-	public static <T, C extends ICluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, T fv,
-			boolean retrieveNearestWhenUnassigned) {
-		if (fv == null)
-			return null;
-
-		C c = clusterResult.getCluster(fv);
-
-		if (c != null)
-			return c;
-
-		if (!retrieveNearestWhenUnassigned)
-			return null;
-
-		double dist = Double.POSITIVE_INFINITY - 1;
-		for (C cluster : clusterResult.getClusters()) {
-			double d = cluster.getCentroidDistance(fv);
-			if (d < dist) {
-				c = cluster;
-				dist = d;
-			}
-		}
-		return c;
 	}
 
 	/**
@@ -185,6 +151,30 @@ public class ClusteringResultTools {
 			returnDistribution.put(c, (distanceSum / distanceDistribution.get(c)) / sumOfMultiples);
 
 		return new ClusterDistanceDistribution<T, C>(returnDistribution);
+	}
+
+	/**
+	 * retrieves the pairwise distances clusters in a ClusteringResult.
+	 * 
+	 * @param clusterResult
+	 * @param fv
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> List<Double> getClusterDistanceDistribution(
+			IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
+		if (clusterResult == null)
+			return null;
+
+		List<Double> clusterDistances = new ArrayList<>();
+
+		for (int i = 0; i < clusterResult.size() - 1; i++)
+			for (int j = i + 1; j < clusterResult.size(); j++) {
+				C c1 = clusterResult.getClusters().get(i);
+				C c2 = clusterResult.getClusters().get(j);
+				clusterDistances.add(clusterDistanceMeasure.getDistance(c1, c2));
+			}
+
+		return clusterDistances;
 	}
 
 	/**
@@ -275,30 +265,6 @@ public class ClusteringResultTools {
 		}
 
 		return probabilityDistribution;
-	}
-
-	/**
-	 * retrieves the pairwise distances clusters in a ClusteringResult.
-	 * 
-	 * @param clusterResult
-	 * @param fv
-	 * @return
-	 */
-	public static <T, C extends ICluster<T>> List<Double> getClusterDistanceDistribution(
-			IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
-		if (clusterResult == null)
-			return null;
-
-		List<Double> clusterDistances = new ArrayList<>();
-
-		for (int i = 0; i < clusterResult.size() - 1; i++)
-			for (int j = i + 1; j < clusterResult.size(); j++) {
-				C c1 = clusterResult.getClusters().get(i);
-				C c2 = clusterResult.getClusters().get(j);
-				clusterDistances.add(clusterDistanceMeasure.getDistance(c1, c2));
-			}
-
-		return clusterDistances;
 	}
 
 }

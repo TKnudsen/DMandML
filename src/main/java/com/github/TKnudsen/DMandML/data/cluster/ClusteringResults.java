@@ -6,6 +6,22 @@ import java.util.List;
 
 public class ClusteringResults {
 
+	/**
+	 * retrieves all elements of all clusters in a ClusterResult.
+	 * 
+	 * @param clusterResult
+	 * @return
+	 */
+	public static <T, C extends ICluster<T>> List<T> getElements(
+			IClusteringResult<T, ? extends ICluster<T>> clusterResult) {
+		List<T> elements = new ArrayList<>();
+
+		for (ICluster<T> c : clusterResult.getClusters())
+			elements.addAll(c.getElements());
+
+		return elements;
+	}
+
 	public static <T, C extends ICluster<T>> ICluster<T> retrieveCluster(T instance,
 			IClusteringResult<T, ? extends ICluster<T>> clusteringResult) {
 		if (instance == null)
