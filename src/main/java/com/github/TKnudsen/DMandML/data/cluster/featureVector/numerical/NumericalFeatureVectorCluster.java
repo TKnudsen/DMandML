@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -46,14 +47,6 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	private Map<Long, Float> featureVectorCentroidDistancesRelative = new HashMap<>();
 	private TreeSet<EntryWithComparableKey<Double, NumericalFeatureVector>> featureVectorRankingTreeSet = null;
 
-	/**
-	 * Creates a new Cluster based on FeatureVectors.
-	 * 
-	 * @param FeatureVectors
-	 * @param centroid
-	 *            note: if null, a new centroid is calculated
-	 * @param name
-	 */
 	public NumericalFeatureVectorCluster(Collection<? extends NumericalFeatureVector> featureVectors, String name) {
 		this(featureVectors, new EuclideanDistanceMeasure(), name, "");
 	}
@@ -84,6 +77,9 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	@Override
 	protected void calculateCentroid() {
 		this.centroid = NumericalFeatureVectorClusterTools.calculateCentroid(this);
+
+		this.variance = Double.NaN;
+
 		resetCentroidDistances();
 	}
 
@@ -100,18 +96,13 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	}
 
 	public void setCentroid(Centroid<NumericalFeatureVector> centroid) {
+		Objects.requireNonNull(centroid);
+
 		this.centroid = centroid;
+
+		this.variance = Double.NaN;
 		hash = -1;
 		resetCentroidDistances();
-	}
-
-	public Centroid<NumericalFeatureVector> getCentroid() {
-		if (size() == 0)
-			return null;
-		if (this.centroid == null && this.centroid.getData().getVector() == null
-				|| this.centroid.getData().getVector().length == 0)
-			calculateCentroid();
-		return centroid;
 	}
 
 	/**
@@ -348,11 +339,6 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	}
 
 	@Override
-	public String toString() {
-		return "Cluster " + getName() + ", size: " + size() + ". Centroid: " + getCentroid().toString();
-	}
-
-	@Override
 	public String getDescription() {
 		return getName();
 	}
@@ -362,7 +348,7 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	}
 
 	public Map<NumericalFeatureVector, Double> getFeatureVectorCentroidDistancesMap() {
-		// stellt sicher, das alle fv in der map sind
+		// ensures that all fv are in the map
 		elements.stream().filter(fv -> !featureVectorCentroidDistancesFV.containsKey(fv))
 				.forEach(fv -> getCentroidDistance(fv));
 		return featureVectorCentroidDistancesFV;
