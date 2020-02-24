@@ -55,8 +55,8 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	protected final IDistanceMeasure<T> distanceMeasure;
 
 	/**
-	 * centroid of the cluster. can be given with the constructor, otherwise it
-	 * needs to be calculated internally
+	 * centroid of the cluster should never be calculated lazy, because it is simply
+	 * returned with the getCentroid() method.
 	 */
 	protected Centroid<T> centroid;
 
@@ -71,20 +71,12 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	protected int dimensionality = -1;
 
 	/**
-	 * cluster variance
+	 * cluster variance. lazy implementation.
 	 */
 	protected double variance = Double.NaN;
 
 	public Cluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure) {
-		this.ID = MathFunctions.randomLong();
-		this.elements = new LinkedHashSet<>(elements);
-
-		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "distance measure may not be null");
-
-		this.name = "Cluster with " + elements.size() + " elements";
-		this.description = "Cluster with " + elements.size() + " elements";
-
-		calculateCentroid();
+		this(elements, distanceMeasure, null, null);
 	}
 
 	public Cluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name,
@@ -94,10 +86,8 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 
 		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "distance measure may not be null");
 
-		if (name == null || description == null)
-			throw new IllegalArgumentException("Cluster: name or description was null");
-		this.name = name;
-		this.description = description;
+		this.name = (name == null) ? "Cluster with " + elements.size() + " elements" : name;
+		this.description = (description == null) ? "Cluster with " + elements.size() + " elements" : description;
 
 		calculateCentroid();
 	}
@@ -106,9 +96,10 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	 * determine the T representing the Cluster best.
 	 */
 	protected void calculateCentroid() {
-		if (centroid == null) {
-			centroid = Clusters.calculateCentroidLikeElement(this, distanceMeasure);
-		}
+		centroid = Clusters.calculateCentroidLikeElement(this, distanceMeasure);
+
+		// reset variance.
+		this.variance = Double.NaN;
 	}
 
 	@Override
@@ -128,6 +119,11 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	@Override
 	public long getID() {
 		return ID;
+	}
+
+	@Override
+	public String toString() {
+		return "Cluster " + getName() + ", size: " + size() + ". Centroid: " + getCentroid().toString();
 	}
 
 	@Override
@@ -157,7 +153,7 @@ public abstract class Cluster<T> implements ICluster<T>, IDObject {
 	}
 
 	@Override
-	public Centroid<T> getCentroid() {
+	public final Centroid<T> getCentroid() {
 		return centroid;
 	}
 
