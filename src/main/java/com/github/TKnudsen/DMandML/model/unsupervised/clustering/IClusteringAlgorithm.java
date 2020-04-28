@@ -16,23 +16,26 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.10
+ * @version 1.11
  */
 public interface IClusteringAlgorithm<F> extends ISelfDescription {
 
-	/**
-	 * returns a unmodifiable view on the internal data state.
-	 * 
-	 * @return
-	 */
-	public List<F> getFeatureVectors();
+//	/**
+//	 * returns a unmodifiable view on the internal data state.
+//	 * 
+//	 * @return
+//	 */
+//	public List<F> getFeatureVectors();
 
 	/**
-	 * constructs a copy of a given list of elements
+	 * constructs a copy of a given list of elements.
+	 * 
+	 * Note: don't forget to reset the internal state of the model such as previous
+	 * clustering results.
 	 * 
 	 * @param featureVectors
 	 */

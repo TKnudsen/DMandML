@@ -18,4 +18,36 @@ public class ClassificationApplications {
 
 		return classificationApplicationFunctions;
 	}
+
+	/**
+	 * Creates a list of functions that encapsulate the
+	 * {@link IClassifier#createClassificationResult(List)} call, to be forwarded to
+	 * the DOIs as a "read-only-view" on the classifiers
+	 * 
+	 * @param classifiers The classifiers
+	 * @return The functions
+	 */
+	public static <T> List<IClassificationApplicationFunction<T>> createFor(
+			List<? extends IClassifier<T>> classifiers) {
+		List<IClassificationApplicationFunction<T>> classificationResultFunctions = new ArrayList<>();
+		for (IClassifier<T> classifier : classifiers) {
+			classificationResultFunctions.add(createFor(classifier));
+		}
+		return classificationResultFunctions;
+	}
+
+	public static <T> IClassificationApplicationFunction<T> createFor(IClassifier<T> classifier) {
+		return new IClassificationApplicationFunction<T>() {
+
+			@Override
+			public IClassificationResult<T> apply(List<? extends T> t) {
+				return classifier.createClassificationResult(t);
+			}
+
+			@Override
+			public String toString() {
+				return classifier.getName();
+			}
+		};
+	}
 }
