@@ -1,8 +1,8 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -33,11 +33,11 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * and a stress-minimization function.
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.05
+ * @version 1.06
  */
 public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
@@ -186,7 +186,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		if (featureVectors == null)
 			throw new NullPointerException("MDS: feature vectors null");
 
-		mapping = new HashMap<>();
+		mapping = new LinkedHashMap<>();
 
 		if (distanceMatrix == null)
 			calculateDistanceMatrix(featureVectors);
@@ -252,6 +252,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(
 					lowDimensionalPoints.get(i), featureVectors.get(i).getName(),
 					featureVectors.get(i).getDescription());
+			fv.setMaster(featureVectors.get(i));
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
 			while (attributeIterator.hasNext()) {
 				String attribute = attributeIterator.next();

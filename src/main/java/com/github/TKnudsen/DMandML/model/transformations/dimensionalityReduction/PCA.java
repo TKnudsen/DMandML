@@ -2,8 +2,8 @@ package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReductio
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
@@ -37,11 +37,11 @@ import weka.core.Instances;
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
@@ -214,7 +214,7 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
 		initPCA();
 
-		mapping = new HashMap<>();
+		mapping = new LinkedHashMap<>();
 
 		Instances instances = WekaConversion.getInstances(featureVectors, false);
 		try {

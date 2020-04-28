@@ -1,7 +1,7 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
@@ -33,11 +33,11 @@ import com.jujutsu.utils.TSneUtils;
  * 
  * 
  * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.02
+ * @version 1.03
  */
 public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 
@@ -75,7 +75,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		if (featureVectors == null)
 			throw new NullPointerException("TSNE: feature vectors null");
 
-		mapping = new HashMap<>();
+		mapping = new LinkedHashMap<>();
 
 		if (featureVectors.size() == 0)
 			return;
@@ -108,6 +108,7 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 			double[] outputVector = outputAsDoubleMatrix[i];
 			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(outputVector,
 					inputFeatureVector.getName(), inputFeatureVector.getDescription());
+			fv.setMaster(inputFeatureVector);
 			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
 			while (attributeIterator.hasNext()) {
 				String attribute = attributeIterator.next();
