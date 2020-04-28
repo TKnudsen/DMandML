@@ -42,6 +42,7 @@ public class FLDs {
 			double[] yi = fld.project(xi);
 			NumericalFeatureVector low = NumericalFeatureVectors.createNumericalFeatureVector(yi, high.getName(),
 					high.getDescription() + " (projected with FLD)");
+			low.setMaster(high);
 			low.add(classAttributeName, high.getAttribute(classAttributeName));
 			highToLow.put(high, low);
 		}
