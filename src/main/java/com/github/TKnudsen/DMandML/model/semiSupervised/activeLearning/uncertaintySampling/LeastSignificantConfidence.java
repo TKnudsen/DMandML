@@ -57,7 +57,8 @@ public class LeastSignificantConfidence<FV extends IFeatureVectorObject<?, ?>> e
 
 			LabelDistribution labelDistribution = classification.getLabelDistribution(fv);
 			if (labelDistribution != null)
-				significance = labelDistribution.getProbability(labelDistribution.getMostLikelyItem());
+				if (labelDistribution.getMostLikelyItem() != null)
+					significance = labelDistribution.getProbability(labelDistribution.getMostLikelyItem());
 
 			ranking.add(new EntryWithComparableKey<Double, FV>(significance, fv));
 			queryApplicabilities.put(fv, 1 - significance);

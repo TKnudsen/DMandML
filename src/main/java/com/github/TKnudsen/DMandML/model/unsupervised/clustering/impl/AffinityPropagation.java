@@ -108,7 +108,7 @@ public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatur
 		this.maxiter = maxiter;
 	}
 
-	@Override
+//	@Override
 	public List<NumericalFeatureVector> getFeatureVectors() {
 		if (elkiDataWrapper == null)
 			return null;
