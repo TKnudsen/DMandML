@@ -15,7 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * 
  * Instances of this class may be created with the {@link FLDs} class
  */
-public class FLD implements IDimensionalityReduction<NumericalFeatureVector> {
+public class FLD implements IDimensionalityReduction<NumericalFeatureVector, NumericalFeatureVector> {
 	private final int outputDimensionality;
 	private final Map<NumericalFeatureVector, NumericalFeatureVector> highToLow;
 
