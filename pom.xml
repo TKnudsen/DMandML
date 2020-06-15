@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>DMandML</name>
-	<description>A library that models data mining and machine learning tass.</description>
+	<description>A library that models data mining and machine learning tasks.</description>
 	<url>https://github.com/TKnudsen/DMandML</url>
 
 	<licenses>
