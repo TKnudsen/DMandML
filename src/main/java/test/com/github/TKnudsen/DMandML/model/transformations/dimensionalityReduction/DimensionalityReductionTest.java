@@ -44,7 +44,7 @@ public class DimensionalityReductionTest {
 			featureVectors.add(fv);
 		}
 
-		IDimensionalityReduction<NumericalFeatureVector> dimRed = null;
+		IDimensionalityReduction<NumericalFeatureVector, NumericalFeatureVector> dimRed = null;
 		int outputDimensionality = 2;
 
 		// PCA
