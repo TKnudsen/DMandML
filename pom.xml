@@ -86,7 +86,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
-			<version>4.0</version>
+			<version>4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -147,8 +147,6 @@
 					<id>local-mvn-repository</id>
 					<name>data</name>
 					<url>file://${basedir}/local-mvn-repository</url>
-					<!-- <url>file://${basedir}/../local-mvn-repository</url> -->
-					<!-- <url>file://local-mvn-repository</url> -->
 				</repository>
 			</repositories>
 		</profile>
