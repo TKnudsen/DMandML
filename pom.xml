@@ -108,11 +108,6 @@
 			<version>4.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>15.0</version>
-		</dependency>
-		<dependency>
 			<groupId>de.javagl</groupId>
 			<artifactId>nd-tuples</artifactId>
 			<version>0.0.1</version>
