@@ -153,6 +153,9 @@
 	<profiles>
 		<profile>
 			<id>local</id>
+			<properties>
+				<sourceDirectory>../src/main/java</sourceDirectory>
+			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -167,6 +170,9 @@
 
 		<profile>
 			<id>release</id>
+			<properties>
+				<sourceDirectory>../src/main/java</sourceDirectory>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
