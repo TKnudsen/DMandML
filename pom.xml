@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.tknudsen</groupId>
-	<artifactId>DMandML</artifactId>
+	<artifactId>dm-and-ml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>DMandML</name>
-	<description>A library that models data mining and machine learning tasks.</description>
+	<description>A library that performs data mining and machine learning tasks.</description>
 	<url>https://github.com/TKnudsen/DMandML</url>
 
 	<licenses>
