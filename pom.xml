@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.tknudsen</groupId>
 	<artifactId>dm-and-ml</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<name>DMandML</name>
 	<description>A library that performs data mining and machine learning tasks</description>
