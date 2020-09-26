@@ -41,7 +41,7 @@ import weka.core.Instances;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
@@ -64,10 +64,7 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	 */
 	private boolean transformThroughPCASpaceBackToOriginalSpace = false;
 
-	private List<NumericalFeatureVector> featureVectors;
-
 	public PCA(List<NumericalFeatureVector> featureVectors, int outputDimensionality) {
-		this.featureVectors = featureVectors;
 		this.outputDimensionality = outputDimensionality;
 
 		this.normalize = false;

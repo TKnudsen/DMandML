@@ -3,7 +3,7 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.test;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.complexDataObject.ComplexDataObject;
-import com.github.TKnudsen.ComplexDataObject.data.dataFactory.DataFactory;
+import com.github.TKnudsen.ComplexDataObject.data.dataFactory.DataSets;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.processors.features.numericalData.MinMaxNormalization;
 import com.github.TKnudsen.ComplexDataObject.model.processors.features.numericalData.MissingValueRemover;
@@ -14,7 +14,7 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.AffinityPr
 public class AffinityPropagationTester {
 
 	public static void main(String[] args) {
-		List<ComplexDataObject> titanicData = DataFactory.createTitanicDataSet();
+		List<ComplexDataObject> titanicData = DataSets.titanicDataSet();
 
 		NumericalFeatureVectorDescriptor descriptor = new NumericalFeatureVectorDescriptor();
 		List<NumericalFeatureVector> fvs = descriptor.transform(titanicData);

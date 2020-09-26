@@ -7,7 +7,7 @@ import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixP
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixStatistics;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
-import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
+import com.github.TKnudsen.DMandML.data.cluster.Clusters;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplittingAlgorithm;
 
@@ -84,7 +84,6 @@ public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T
 
 		// create clusters
 		List<ICluster<T>> splitResult = new ArrayList<>();
-		ClusterFactory clusterFactory = new ClusterFactory();
 		int i = 0;
 		for (List<T> list : newDistribution) {
 			if (list == null || list.size() == 0) {
@@ -92,8 +91,7 @@ public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T
 				continue;
 			}
 
-			ICluster<T> c = clusterFactory.createCluster(list, distanceMatrix, cluster.getName() + "[" + i++ + "]",
-					"SplitCluster");
+			ICluster<T> c = Clusters.create(list, distanceMatrix, cluster.getName() + "[" + i++ + "]", "SplitCluster");
 			splitResult.add(c);
 		}
 

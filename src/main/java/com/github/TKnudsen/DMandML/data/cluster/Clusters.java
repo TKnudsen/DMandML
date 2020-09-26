@@ -8,22 +8,53 @@ import java.util.Map;
 
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
+import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
+import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
+import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
  * <p>
- * Description: some utility to ease the use of clusters. Replaces ClusterTools
+ * Utility to ease the use of clusters. Replaces ClusterTools and
+ * ClusterFactory.
  * </p>
  * 
  * <p>
- * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.03
  */
 public class Clusters {
+
+	@SuppressWarnings("unchecked")
+	public static <T> Cluster<T> create(List<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name,
+			String description) {
+
+		if (elements == null || elements.size() == 0)
+			return null;
+
+		T element = elements.get(0);
+
+		Cluster<T> cluster = null;
+		if (element instanceof NumericalFeatureVector) {
+			cluster = (Cluster<T>) new FeatureVectorCluster<NumericalFeatureVector>(
+					(List<NumericalFeatureVector>) elements, (IDistanceMeasure<NumericalFeatureVector>) distanceMeasure,
+					name, description);
+		} else if (element instanceof MixedDataFeatureVector) {
+			cluster = (Cluster<T>) new FeatureVectorCluster<MixedDataFeatureVector>(
+					(List<MixedDataFeatureVector>) elements, (IDistanceMeasure<MixedDataFeatureVector>) distanceMeasure,
+					name, description);
+		} else {
+			cluster = (Cluster<T>) new GeneralCluster<T>(elements, (IDistanceMeasure<T>) distanceMeasure, name,
+					description);
+		}
+
+		return cluster;
+	}
 
 	/**
 	 * converts the set of elements into a list. Just for convenient reasons.
@@ -165,6 +196,20 @@ public class Clusters {
 					values.add(distanceMeasure.getDistance(t1, t2));
 
 		return values;
+	}
+
+	/**
+	 * distance matrix storing the pairwise distances of instances.
+	 * 
+	 * @param <T>
+	 * @param <C>
+	 * @param cluster
+	 * @return distance matrix
+	 */
+	public static <T, C extends ICluster<T>> IDistanceMatrix<T> getDistanceMatrix(C cluster) {
+
+		return new DistanceMatrixParallel<T>(Clusters.getElementList(cluster), cluster.getDistanceMeasure(), true,
+				true);
 	}
 
 	/**

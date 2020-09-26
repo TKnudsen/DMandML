@@ -23,13 +23,24 @@ import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
  * </p>
  * 
  * @author Juergen Bernard
+ * @deprecated use Clusters instead
  * @version 1.03
  */
 public class ClusterFactory {
 
+	/**
+	 * 
+	 * @param <T>
+	 * @param elements
+	 * @param distanceMeasure
+	 * @param name
+	 * @param description
+	 * @deprecated use Clusters.create
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public <T> Cluster<T> createCluster(List<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name,
-			String description) {
+	public static <T> Cluster<T> createCluster(List<? extends T> elements, IDistanceMeasure<T> distanceMeasure,
+			String name, String description) {
 
 		if (elements == null || elements.size() == 0)
 			return null;

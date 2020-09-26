@@ -37,7 +37,7 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
  * </p>
  * 
  * @author Juergen Bernard, Christian Ritter
- * @version 1.06
+ * @version 1.07
  */
 public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
@@ -51,11 +51,6 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * optimization
 	 */
 	private IDistanceMatrix<X> distanceMatrix;
-
-	/**
-	 * feature vectors for the model creation and dimensionality reduction
-	 */
-	private List<X> featureVectors;
 
 	private double dmMin;
 	private double dmMax;
@@ -118,7 +113,7 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * @param fvs
 	 * @return
 	 */
-	private void calculateDistanceMatrix(List<X> fvs) {
+	private void calculateDistanceMatrix(List<? extends X> fvs) {
 		distanceMatrix = new DistanceMatrixParallel<>(fvs, distanceMeasure);
 	}
 
