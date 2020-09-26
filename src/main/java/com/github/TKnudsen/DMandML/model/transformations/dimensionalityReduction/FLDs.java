@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorTools;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
 
@@ -31,7 +30,7 @@ public class FLDs {
 	 */
 	public static FLD compute(List<NumericalFeatureVector> numericalFeatureVectors, String classAttributeName,
 			int outputDimensionality) {
-		double[][] x = NumericalFeatureVectorTools.createMatrixRepresentation(numericalFeatureVectors);
+		double[][] x = NumericalFeatureVectors.createMatrixRepresentation(numericalFeatureVectors);
 		int y[] = calculateClasses(numericalFeatureVectors, classAttributeName);
 
 		smile.classification.FLD fld = new smile.classification.FLD(x, y, outputDimensionality);

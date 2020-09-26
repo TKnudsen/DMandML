@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.tknudsen</groupId>
 	<artifactId>dm-and-ml</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 
 	<name>DMandML</name>
 	<description>A library that performs data mining and machine learning tasks</description>
@@ -46,15 +46,13 @@
 		<project.build.sourceEncoding>cp1250</project.build.sourceEncoding>
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
-		<commons-math3.version>3.4.1</commons-math3.version>
-		<weka.version>3.8.0</weka.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
 			<artifactId>weka-stable</artifactId>
-			<version>${weka.version}</version>
+			<version>3.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
@@ -100,7 +98,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-math3</artifactId>
-			<version>${commons-math3.version}</version>
+			<version>3.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -111,6 +109,17 @@
 			<groupId>de.javagl</groupId>
 			<artifactId>nd-tuples</artifactId>
 			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.javagl</groupId>
+			<artifactId>bh-tsne</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>29.0-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -135,7 +144,7 @@
 		<dependency>
 			<groupId>com.github.tknudsen</groupId>
 			<artifactId>complex-data-object</artifactId>
-			<version>0.2.5</version>
+			<version>0.2.11</version>
 		</dependency>
 
 		<dependency>

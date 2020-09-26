@@ -1,33 +1,25 @@
 package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import java.util.function.ToDoubleBiFunction;
+
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
- * Title: CompleteLinkageDistanceMeasure
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class CompleteLinkageDistanceMeasure extends ClusterDistanceMeasure<IDObject> {
+public class CompleteLinkageDistanceMeasure<T> extends ClusterDistanceMeasure<T> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1623946820035406623L;
 
-	public CompleteLinkageDistanceMeasure(IDistanceMeasure<IDObject> distanceMeasure) {
+	public CompleteLinkageDistanceMeasure(ToDoubleBiFunction<? super T, ? super T> distanceMeasure) {
 		super(distanceMeasure);
 	}
 
@@ -50,11 +42,11 @@ public class CompleteLinkageDistanceMeasure extends ClusterDistanceMeasure<IDObj
 	/**
 	 * TODO: identical with maximum distance. check if this is correct.
 	 */
-	public double getDistance(ICluster<IDObject> c1, ICluster<IDObject> c2) {
+	public double getDistance(ICluster<T> c1, ICluster<T> c2) {
 		double distance = Double.MAX_VALUE;
-		for (IDObject idObject1 : c1.getElements()) {
-			for (IDObject idObject2 : c1.getElements()) {
-				distance = Math.max(distance, getDistanceMeasure().getDistance(idObject1, idObject2));
+		for (T idObject1 : c1.getElements()) {
+			for (T idObject2 : c1.getElements()) {
+				distance = Math.max(distance, getDistanceMeasure().applyAsDouble(idObject1, idObject2));
 			}
 		}
 

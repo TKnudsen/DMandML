@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
-import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
+import com.github.TKnudsen.DMandML.data.cluster.ICluster;
+import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
  * <p>
@@ -23,10 +23,9 @@ import com.github.TKnudsen.DMandML.data.cluster.ClusteringResult;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.01
+ * @version 1.02
  */
-public class ClusterResultWithClusterLookupSupport<T extends IDObject, C extends Cluster<T>>
-		extends ClusteringResult<T, C> {
+public class ClusterResultWithClusterLookupSupport<T, C extends ICluster<T>> extends ClusteringResult<T, C> {
 
 	private Map<T, C> clusterLookup;
 
@@ -40,12 +39,14 @@ public class ClusterResultWithClusterLookupSupport<T extends IDObject, C extends
 		initializeClusterLookup();
 	}
 
-	public ClusterResultWithClusterLookupSupport(ClusteringResult<T, C> clusteringResult) {
+	public ClusterResultWithClusterLookupSupport(IClusteringResult<T, ? extends ICluster<T>> clusteringResult) {
 		this(clusteringResult, null);
 	}
 
-	public ClusterResultWithClusterLookupSupport(ClusteringResult<T, C> clusteringResult, String name) {
-		super(clusteringResult.getClusters(), name);
+	@SuppressWarnings("unchecked")
+	public ClusterResultWithClusterLookupSupport(IClusteringResult<T, ? extends ICluster<T>> clusteringResult,
+			String name) {
+		super((List<? extends C>) clusteringResult.getClusters(), name);
 
 		initializeClusterLookup();
 	}

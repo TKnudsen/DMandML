@@ -37,19 +37,12 @@ import com.jujutsu.utils.TSneUtils;
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.03
+ * @version 1.04
  */
 public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 
-	// Input data
 	/**
-	 * feature vectors for the model creation and dimensionality reduction
-	 */
-	private List<NumericalFeatureVector> featureVectors;
-
-	// Model parameters
-	/**
-	 * 
+	 * Model parameters
 	 */
 	private double perplexity = 20.0;
 

@@ -15,7 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
-import com.github.TKnudsen.DMandML.data.cluster.ClusterFactory;
+import com.github.TKnudsen.DMandML.data.cluster.Clusters;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
@@ -183,8 +183,8 @@ public class ClassificationResults {
 			IDistanceMeasure<FV> distanceMeasure) {
 		Map<String, ICluster<FV>> clusters = new HashMap<String, ICluster<FV>>();
 		for (String label : classificationResult.getLabelAlphabet()) {
-			ICluster<FV> cluster = new ClusterFactory().createCluster(
-					classificationResult.getClassDistributions().get(label), distanceMeasure, label, label);
+			ICluster<FV> cluster = Clusters.create(classificationResult.getClassDistributions().get(label),
+					distanceMeasure, label, label);
 			if (cluster != null)
 				clusters.put(label, cluster);
 		}

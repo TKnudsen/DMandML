@@ -1,27 +1,20 @@
 package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
+import java.util.function.ToDoubleBiFunction;
+
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
- * Title: AverageLinkageDistanceMeasure
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.04
+ * @version 1.05
  */
 public class AverageLinkageDistanceMeasure<T> extends ClusterDistanceMeasure<T> {
 
-	public AverageLinkageDistanceMeasure(IDistanceMeasure<T> distanceMeasure) {
+	public AverageLinkageDistanceMeasure(ToDoubleBiFunction<? super T, ? super T> distanceMeasure) {
 		super(distanceMeasure);
 	}
 
@@ -49,7 +42,7 @@ public class AverageLinkageDistanceMeasure<T> extends ClusterDistanceMeasure<T> 
 
 		for (T fv1 : c1.getElements())
 			for (T fv2 : c2.getElements())
-				distance += getDistanceMeasure().getDistance(fv1, fv2);
+				distance += getDistanceMeasure().applyAsDouble(fv1, fv2);
 
 		distance = distance / (c1.getElements().size() * c2.getElements().size());
 

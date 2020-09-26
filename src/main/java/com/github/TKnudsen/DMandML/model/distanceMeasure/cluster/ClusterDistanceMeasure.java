@@ -1,29 +1,23 @@
 package com.github.TKnudsen.DMandML.model.distanceMeasure.cluster;
 
+import java.util.function.ToDoubleBiFunction;
+
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
  * <p>
- * Title: ClusterDistanceMeasure
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
  * @author Juergen Bernard
- * @version 1.06
+ * @version 1.07
  */
 public abstract class ClusterDistanceMeasure<T> implements IDistanceMeasure<ICluster<T>> {
 
-	private IDistanceMeasure<T> distanceMeasure;
+	private ToDoubleBiFunction<? super T, ? super T> distanceMeasure;
 
-	public ClusterDistanceMeasure(IDistanceMeasure<T> distanceMeasure) {
+	public ClusterDistanceMeasure(ToDoubleBiFunction<? super T, ? super T> distanceMeasure) {
 		this.distanceMeasure = distanceMeasure;
 	}
 
@@ -32,7 +26,7 @@ public abstract class ClusterDistanceMeasure<T> implements IDistanceMeasure<IClu
 		return getDistance(t, u);
 	}
 
-	public IDistanceMeasure<T> getDistanceMeasure() {
+	public ToDoubleBiFunction<? super T, ? super T> getDistanceMeasure() {
 		return distanceMeasure;
 	}
 

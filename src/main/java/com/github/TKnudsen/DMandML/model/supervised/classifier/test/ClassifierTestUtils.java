@@ -8,7 +8,6 @@ import java.util.Set;
 import com.github.TKnudsen.ComplexDataObject.data.features.Feature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
-import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectorTools;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
@@ -59,7 +58,7 @@ class ClassifierTestUtils {
 		int dimensions = 10;
 		List<NumericalFeatureVector> vectors = createFeatureVectors(count, dimensions, random);
 		List<String> labels = createLables(count, numClasses, random);
-		NumericalFeatureVectorTools.addClassAttribute(vectors, labels, classAttribute);
+		NumericalFeatureVectors.addClassAttribute(vectors, labels, classAttribute);
 		return vectors;
 	}
 
