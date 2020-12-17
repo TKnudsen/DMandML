@@ -144,7 +144,7 @@
 		<dependency>
 			<groupId>com.github.tknudsen</groupId>
 			<artifactId>complex-data-object</artifactId>
-			<version>0.2.11</version>
+			<version>0.2.13-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

@@ -11,6 +11,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.model.processors.complexDataObject.DataTransformationCategory;
 import com.github.TKnudsen.ComplexDataObject.model.tools.WekaConversion;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReductions;
 
 import weka.attributeSelection.PrincipalComponents;
 import weka.core.Instance;
@@ -65,6 +66,7 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	private boolean transformThroughPCASpaceBackToOriginalSpace = false;
 
 	public PCA(List<NumericalFeatureVector> featureVectors, int outputDimensionality) {
+		this.featureVectors = featureVectors;
 		this.outputDimensionality = outputDimensionality;
 
 		this.normalize = false;
@@ -224,16 +226,13 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 				Instance transformed = transformedData.get(i);
 
 				NumericalFeatureVector outputFeatureVector = createNumericalFeatureVector(transformed);
+				NumericalFeatureVector inputFeatureVector = featureVectors.get(i);
 
-				for (String attribute : featureVectors.get(i).keySet())
-					outputFeatureVector.add(attribute, featureVectors.get(i).getAttribute(attribute));
-				outputFeatureVector.setMaster(featureVectors.get(i));
-				outputFeatureVector.setName(featureVectors.get(i).getName());
-				outputFeatureVector.setDescription(featureVectors.get(i).getDescription());
+				DimensionalityReductions.synchronizeFeatureVectorMetadata(inputFeatureVector, outputFeatureVector);
 
 				returnFVs.add(outputFeatureVector);
 
-				mapping.put(featureVectors.get(i), outputFeatureVector);
+				mapping.put(inputFeatureVector, outputFeatureVector);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

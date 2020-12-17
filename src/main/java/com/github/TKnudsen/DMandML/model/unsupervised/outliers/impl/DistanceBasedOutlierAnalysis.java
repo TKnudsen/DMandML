@@ -39,6 +39,12 @@ public class DistanceBasedOutlierAnalysis extends ElkiBasedOutlierAlgorithm {
 	 */
 	private double p;
 
+	/**
+	 * 
+	 * @param d radius parameter
+	 * @param p density threshold. minimum percentage of objects that must be
+	 *          outside the d-neighborhood of an instance to be marked an outlier
+	 */
 	public DistanceBasedOutlierAnalysis(double d, double p) {
 		this.d = d;
 		this.p = p;

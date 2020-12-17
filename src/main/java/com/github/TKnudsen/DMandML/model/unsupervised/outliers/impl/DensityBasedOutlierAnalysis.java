@@ -29,9 +29,9 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAl
  */
 public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV> {
 
-	private int kNN;
+	private final int kNN;
 
-	private IDistanceMeasure<FV> distanceMeasure;
+	private final IDistanceMeasure<FV> distanceMeasure;
 
 	public DensityBasedOutlierAnalysis(int kNN, IDistanceMeasure<FV> distanceMeasure) {
 		this.kNN = kNN;

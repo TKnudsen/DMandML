@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.PriorityQueue;
+import java.util.function.ToDoubleBiFunction;
 
-import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
 
 public class KNN<T> implements IRetrievalAlgorithm<T> {
 
 	private final int knn;
 
-	private final IDistanceMeasure<? super T> distanceMeasure;
+	private final ToDoubleBiFunction<? super T, ? super T> distanceMeasure;
 
 	private final Collection<T> elements;
 
-	public KNN(int knn, IDistanceMeasure<? super T> distanceMeasure, Collection<? extends T> elements) {
+	public KNN(int knn, ToDoubleBiFunction<? super T, ? super T> distanceMeasure, Collection<? extends T> elements) {
 		this.knn = knn;
 		this.distanceMeasure = Objects.requireNonNull(distanceMeasure, "The distanceMeasure may not be null");
 		this.elements = Collections.unmodifiableCollection(elements);
@@ -66,7 +66,7 @@ public class KNN<T> implements IRetrievalAlgorithm<T> {
 	}
 
 	@Override
-	public IDistanceMeasure<? super T> getDistanceMeasure() {
+	public ToDoubleBiFunction<? super T, ? super T> getDistanceMeasure() {
 		return distanceMeasure;
 	}
 }
