@@ -1,7 +1,6 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +15,7 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.DoubleDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReductions;
 
 /**
  * <p>
@@ -70,8 +70,8 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		if (distanceMeasure == null)
 			throw new IllegalArgumentException("Distance measure was null");
 
-		this.distanceMeasure = distanceMeasure;
 		this.featureVectors = featureVectors;
+		this.distanceMeasure = distanceMeasure;
 
 		this.outputDimensionality = outputDimensionality;
 	}
@@ -244,17 +244,14 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 		}
 
 		for (int i = 0; i < featureVectors.size(); i++) {
-			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(
-					lowDimensionalPoints.get(i), featureVectors.get(i).getName(),
-					featureVectors.get(i).getDescription());
-			fv.setMaster(featureVectors.get(i));
-			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
-			while (attributeIterator.hasNext()) {
-				String attribute = attributeIterator.next();
-				fv.add(attribute, featureVectors.get(i).getAttribute(attribute));
-			}
+			X inputFeatureVector = featureVectors.get(i);
 
-			mapping.put(featureVectors.get(i), fv);
+			NumericalFeatureVector outputFeatureVector = NumericalFeatureVectors.createNumericalFeatureVector(
+					lowDimensionalPoints.get(i), inputFeatureVector.getName(), inputFeatureVector.getDescription());
+
+			DimensionalityReductions.synchronizeFeatureVectorMetadata(inputFeatureVector, outputFeatureVector);
+
+			mapping.put(inputFeatureVector, outputFeatureVector);
 		}
 	}
 

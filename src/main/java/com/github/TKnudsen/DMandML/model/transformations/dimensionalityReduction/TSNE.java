@@ -1,12 +1,12 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReductions;
 import com.jujutsu.tsne.TSne;
 import com.jujutsu.tsne.barneshut.BHTSne;
 import com.jujutsu.tsne.barneshut.TSneConfiguration;
@@ -98,17 +98,12 @@ public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 		for (int i = 0; i < outputAsDoubleMatrix.length; i++) {
 			NumericalFeatureVector inputFeatureVector = featureVectors.get(i);
 
-			double[] outputVector = outputAsDoubleMatrix[i];
-			NumericalFeatureVector fv = NumericalFeatureVectors.createNumericalFeatureVector(outputVector,
-					inputFeatureVector.getName(), inputFeatureVector.getDescription());
-			fv.setMaster(inputFeatureVector);
-			Iterator<String> attributeIterator = featureVectors.get(i).iterator();
-			while (attributeIterator.hasNext()) {
-				String attribute = attributeIterator.next();
-				fv.add(attribute, featureVectors.get(i).getAttribute(attribute));
-			}
+			NumericalFeatureVector outputFeatureVector = NumericalFeatureVectors.createNumericalFeatureVector(
+					outputAsDoubleMatrix[i], inputFeatureVector.getName(), inputFeatureVector.getDescription());
 
-			mapping.put(featureVectors.get(i), fv);
+			DimensionalityReductions.synchronizeFeatureVectorMetadata(inputFeatureVector, outputFeatureVector);
+
+			mapping.put(featureVectors.get(i), outputFeatureVector);
 		}
 	}
 

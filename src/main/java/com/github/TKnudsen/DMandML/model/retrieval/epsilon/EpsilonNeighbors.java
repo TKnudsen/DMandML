@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.function.ToDoubleBiFunction;
 
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
@@ -15,7 +16,7 @@ public class EpsilonNeighbors<T> implements IRetrievalAlgorithm<T> {
 
 	private final double epsilon;
 
-	private final IDistanceMeasure<? super T> distanceMeasure;
+	private final ToDoubleBiFunction<? super T, ? super T> distanceMeasure;
 
 	private final Collection<T> elements;
 
@@ -54,7 +55,7 @@ public class EpsilonNeighbors<T> implements IRetrievalAlgorithm<T> {
 	}
 
 	@Override
-	public IDistanceMeasure<? super T> getDistanceMeasure() {
+	public ToDoubleBiFunction<? super T, ? super T> getDistanceMeasure() {
 		return distanceMeasure;
 	}
 }

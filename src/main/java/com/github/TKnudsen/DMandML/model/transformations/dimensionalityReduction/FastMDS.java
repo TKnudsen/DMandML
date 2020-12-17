@@ -1,6 +1,5 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReduction;
+import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReductions;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.generic.GenericMDS;
 
 public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
@@ -53,15 +53,13 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 		if (mapping == null) {
 			mapping = new LinkedHashMap<X, NumericalFeatureVector>();
 			for (int i = 0; i < featureVectors.size(); i++) {
-				X vector = featureVectors.get(i);
-				NumericalFeatureVector point = NumericalFeatureVectors.createNumericalFeatureVector(output[i],
-						vector.getName(), vector.getDescription());
-				Iterator<String> attributeIterator = vector.iterator();
-				while (attributeIterator.hasNext()) {
-					String attribute = attributeIterator.next();
-					point.add(attribute, vector.getAttribute(attribute));
-				}
-				mapping.put(vector, point);
+				X inputFeatureVector = featureVectors.get(i);
+				NumericalFeatureVector outputFeatureVector = NumericalFeatureVectors.createNumericalFeatureVector(
+						output[i], inputFeatureVector.getName(), inputFeatureVector.getDescription());
+
+				DimensionalityReductions.synchronizeFeatureVectorMetadata(inputFeatureVector, outputFeatureVector);
+
+				mapping.put(inputFeatureVector, outputFeatureVector);
 			}
 		}
 
