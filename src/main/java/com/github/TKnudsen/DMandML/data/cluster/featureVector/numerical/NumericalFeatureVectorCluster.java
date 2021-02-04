@@ -16,6 +16,7 @@ import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
+import com.github.TKnudsen.ComplexDataObject.model.tools.Threads;
 import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
@@ -319,11 +320,7 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 			return featureVectorRankingTreeSet;
 		} catch (ConcurrentModificationException e) {
 			System.out.println();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
+			Threads.sleep(100, 0);
 			if (featureVectorRankingTreeSet == null || featureVectorRankingTreeSet.size() != getElements().size())
 				refreshFeatureVectorDistances();
 			if (featureVectorRankingTreeSet == null)

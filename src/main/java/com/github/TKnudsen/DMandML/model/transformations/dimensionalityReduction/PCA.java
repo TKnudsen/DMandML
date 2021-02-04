@@ -26,7 +26,8 @@ import weka.core.Instances;
  * Description: Principal component analysis using WEKA's PrincipalComponents
  * algorithm. Default parameters:
  * 
- * -D Don't normalize input data.
+ * -D Don't normalize input data. TODO normalization flag does not apply to
+ * WEKA's PCA any more. Check
  * 
  * -R Retain enough PC attributes to account for this proportion of variance in
  * the original data. (default = 0.95)
@@ -73,12 +74,26 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 		this.minimumRemainingVariance = Double.NaN;
 	}
 
+	/**
+	 * @deprecated normalization flag is not provided with WEKA's PCA implementation
+	 *             (any more)
+	 * @param featureVectors
+	 * @param normalize
+	 * @param outputDimensionality
+	 */
 	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, int outputDimensionality) {
 		this(featureVectors, outputDimensionality);
 
 		this.normalize = normalize;
 	}
 
+	/**
+	 * @deprecated normalization flag is not provided with WEKA's PCA implementation
+	 *             (any more)
+	 * @param featureVectors
+	 * @param normalize
+	 * @param minimumRemainingVariance
+	 */
 	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance) {
 		this(featureVectors, -1);
 
