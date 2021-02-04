@@ -18,11 +18,16 @@ public class GenericMDS<T> {
 
 	public GenericMDS(List<? extends T> elementsH, ToDoubleBiFunction<? super T, ? super T> distanceFunctionH,
 			int outputDim) {
+		this(elementsH, distanceFunctionH, outputDim, 1000);
+	}
+
+	public GenericMDS(List<? extends T> elementsH, ToDoubleBiFunction<? super T, ? super T> distanceFunctionH,
+			int outputDim, int maxIterations) {
 		this.elementsH = Objects.requireNonNull(elementsH, "The elements may not be null");
 		this.distanceFunctionH = Objects.requireNonNull(distanceFunctionH, "The distanceFunction may not be null");
 		this.outputDim = outputDim;
 
-		this.maxIterations = 1000;
+		this.maxIterations = maxIterations;
 		this.stressDifferenceRateThreshold = 0.000001;
 		this.distanceFunctionL = GenericMDSUtils::euclideanDistance;
 	}

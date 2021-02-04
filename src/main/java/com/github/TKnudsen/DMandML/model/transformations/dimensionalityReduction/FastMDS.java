@@ -22,8 +22,15 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 
 	private double[][] output;
 
+	private final int maxIterations;
+
 	public FastMDS(List<? extends X> featureVectors, ToDoubleBiFunction<? super X, ? super X> distanceMeasure,
 			int outputDimensionality) {
+		this(featureVectors, distanceMeasure, outputDimensionality, 1000);
+	}
+
+	public FastMDS(List<? extends X> featureVectors, ToDoubleBiFunction<? super X, ? super X> distanceMeasure,
+			int outputDimensionality, int maxIterations) {
 
 		Objects.requireNonNull(featureVectors, "Feature vectors must not be null");
 		this.featureVectors = featureVectors;
@@ -32,6 +39,7 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 		this.distanceMeasure = distanceMeasure;
 
 		this.outputDimensionality = outputDimensionality;
+		this.maxIterations = maxIterations;
 	}
 
 	@Override
@@ -39,7 +47,7 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 		if (featureVectors == null)
 			throw new NullPointerException("FastMDS: feature vectors null");
 
-		model = new GenericMDS<X>(featureVectors, distanceMeasure, outputDimensionality);
+		model = new GenericMDS<X>(featureVectors, distanceMeasure, outputDimensionality, maxIterations);
 		output = model.compute();
 
 		mapping = null;
