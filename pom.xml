@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.tknudsen</groupId>
 	<artifactId>dm-and-ml</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.3</version>
 
 	<name>DMandML</name>
 	<description>A library that performs data mining and machine learning tasks</description>
@@ -138,7 +138,7 @@
 		<dependency>
 			<groupId>com.github.tknudsen</groupId>
 			<artifactId>complex-data-object</artifactId>
-			<version>0.2.13-SNAPSHOT</version>
+			<version>0.2.13</version>
 		</dependency>
 
 		<dependency>
@@ -246,7 +246,7 @@
 
 
 	<build>
-		<sourceDirectory>../src/main/java</sourceDirectory>
+		<!-- <sourceDirectory>../src/main/java</sourceDirectory> -->
 
 		<plugins>
 			<plugin>
