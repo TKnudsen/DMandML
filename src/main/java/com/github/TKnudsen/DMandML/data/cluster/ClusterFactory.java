@@ -14,8 +14,7 @@ import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
  * </p>
  * 
  * <p>
- * Description: can be used when instances of Cluster<Generic> have to be
- * created.
+ * Description: can be used when instances of Cluster have to be created.
  * </p>
  * 
  * <p>
@@ -30,13 +29,13 @@ public class ClusterFactory {
 
 	/**
 	 * 
-	 * @param <T>
-	 * @param elements
-	 * @param distanceMeasure
-	 * @param name
-	 * @param description
+	 * @param <T>             the object type that is used and determined at runtime
+	 * @param elements        the given elements to be combined in a cluster
+	 * @param distanceMeasure the distance measure for cluster-internal computations
+	 * @param name            name of the cluster
+	 * @param description     description of the cluster
 	 * @deprecated use Clusters.create
-	 * @return
+	 * @return the cluster
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Cluster<T> createCluster(List<? extends T> elements, IDistanceMeasure<T> distanceMeasure,

@@ -28,29 +28,25 @@ public interface IModelEvaluation<X, Y, L extends ILearningModel<X, Y>> extends 
 	/**
 	 * Evaluates the performance of a learning algorithm on a given dataset
 	 * 
-	 * @param learner
-	 *            the learning model
-	 * @param featureVectors
-	 *            the feature vectors of the data set
-	 * @param groundTruth
-	 *            the true value that should be assigned to each feature vector
-	 * @return a list containing a list with performance values for each iteration
-	 *         of evaluation
+	 * @param learner        the learning model
+	 * @param featureVectors the feature vectors of the data set
+	 * @param groundTruth    the true value that should be assigned to each feature
+	 *                       vector
 	 */
 	void evaluate(L learner, List<X> featureVectors, List<Y> groundTruth);
 
 	/**
 	 * provides a List of added/default performance measures
 	 * 
-	 * @return
+	 * @return performance measures provided with the model evaluation procedure
 	 */
 	List<IPerformanceMeasure<Y>> getPerformanceMeasures();
 
 	/**
 	 * retrieves the result of a particular PerformanceMeasure
 	 * 
-	 * @param performanceMeasure
-	 * @return
+	 * @param performanceMeasure the query performance measure
+	 * @return cumulative performance of one measure
 	 */
 	Double getCumulatedPerformance(IPerformanceMeasure<Y> performanceMeasure);
 
@@ -58,8 +54,8 @@ public interface IModelEvaluation<X, Y, L extends ILearningModel<X, Y>> extends 
 	 * retrieves the a List of results of a particular PerformanceMeasure
 	 * representing the distribution, etc.
 	 * 
-	 * @param performanceMeasure
-	 * @return
+	 * @param performanceMeasure the query performance measure
+	 * @return performance of one performance measure
 	 */
 	List<Double> getPerformance(IPerformanceMeasure<Y> performanceMeasure);
 }

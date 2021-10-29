@@ -19,8 +19,8 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
  * The algorithm originally used a normalized Manhattan distance on numerical
  * attributes, and Hamming distance on categorial attributes.
  * 
- * B. Yu, and M. Song, and L. Wang<br />
- * Local Isolation Coefficient-Based Outlier Mining Algorithm<br />
+ * B. Yu, and M. Song, and L. Wang
+ * Local Isolation Coefficient-Based Outlier Mining Algorithm
  * Int. Conf. on Information Technology and Computer Science (ITCS) 2009
  * </p>
  * 

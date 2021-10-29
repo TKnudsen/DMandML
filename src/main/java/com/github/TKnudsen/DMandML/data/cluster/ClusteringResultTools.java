@@ -35,10 +35,12 @@ public class ClusteringResultTools {
 	// }
 
 	/**
-	 * Retrieves the largest cluster from a ClusterResult.
+	 * Retrieves the largest cluster from a clustering result.
 	 * 
-	 * @param clusterResult
-	 * @return
+	 * @param <T>           the objects
+	 * @param <C>           the clusters
+	 * @param clusterResult the target clustering result
+	 * @return largest cluster from a clustering result
 	 */
 	public static <T, C extends ICluster<T>> C getLargestCluster(IClusteringResult<T, C> clusterResult) {
 		if (clusterResult == null)
@@ -55,10 +57,10 @@ public class ClusteringResultTools {
 	}
 
 	/**
-	 * retrieves all elements of all clusters in a ClusterResult.
+	 * retrieves all elements of all clusters in a clustering result.
 	 * 
-	 * @param clusterResult
-	 * @return
+	 * @param clusteringResult target clustering result
+	 * @return all elements of all clusters in a clustering result
 	 */
 	public static List<IDObject> getClusteredElements(
 			IClusteringResult<IDObject, ICluster<IDObject>> clusteringResult) {
@@ -76,11 +78,13 @@ public class ClusteringResultTools {
 	}
 
 	/**
-	 * retrieves all elements of all clusters in a ClusterResult.
+	 * retrieves all elements of all clusters in a clustering result.
 	 * 
 	 * @deprecated use ClusteringResults.getElements instead
-	 * @param clusterResult
-	 * @return
+	 * @param <T>           the objects
+	 * @param <C>           the clusters
+	 * @param clusterResult target clustering result
+	 * @return elements of all clusters in a clustering result
 	 */
 	public static <T, C extends ICluster<T>> List<T> getElements(
 			IClusteringResult<T, ? extends ICluster<T>> clusterResult) {
@@ -96,10 +100,11 @@ public class ClusteringResultTools {
 	 * Retrieves the cluster for a given object. The cluster name is used to
 	 * retrieve a particular cluster.
 	 * 
-	 * @param clusterResult
-	 * @param fv
-	 * @param clusterName
-	 * @return
+	 * @param <T>           the objects
+	 * @param <C>           the clusters
+	 * @param clusterResult target clustering result
+	 * @param clusterName   the name of the target cluster
+	 * @return the cluster
 	 */
 	public static <T, C extends ICluster<T>> C getCluster(IClusteringResult<T, C> clusterResult, String clusterName) {
 		if (clusterResult == null)
@@ -119,9 +124,12 @@ public class ClusteringResultTools {
 	 * retrieves the relative distribution of distances of a given object to the
 	 * clusters of a ClusteringResult.
 	 * 
-	 * @param clusteringResult
-	 * @param fv
-	 * @return
+	 * @param <T>                      the objects
+	 * @param <C>                      the clusters
+	 * @param clusteringResult         target clustering result
+	 * @param fv                       query object
+	 * @param normalizeToProbabilities normalize to probabilities?
+	 * @return relative distribution of distances of a given object to the clusters
 	 */
 	public static <T, C extends ICluster<T>> ClusterDistanceDistribution<T, C> getClusterDistances(
 			IClusteringResult<T, C> clusteringResult, T fv, boolean normalizeToProbabilities) {
@@ -154,11 +162,13 @@ public class ClusteringResultTools {
 	}
 
 	/**
-	 * retrieves the pairwise distances clusters in a ClusteringResult.
+	 * retrieves the pairwise distances clusters in a clustering result.
 	 * 
-	 * @param clusterResult
-	 * @param fv
-	 * @return
+	 * @param <T>                    the objects
+	 * @param <C>                    the clusters
+	 * @param clusterResult          target clustering result
+	 * @param clusterDistanceMeasure cluster distance measure
+	 * @return pairwise distances of clusters in a clustering result
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getClusterDistanceDistribution(
 			IClusteringResult<T, C> clusterResult, ClusterDistanceMeasure<T> clusterDistanceMeasure) {
@@ -181,10 +191,13 @@ public class ClusteringResultTools {
 	 * retrieves the distance of a given instance to the nearest cluster (centroid)
 	 * of a {@link IClusteringResult}
 	 * 
-	 * @param clusteringResult
-	 * @param fv
-	 * @param retrieveNearestClusterForUnassignedElements
-	 * @return
+	 * @param <T>                                         the objects
+	 * @param <C>                                         the clusters
+	 * @param clusteringResult                            target clustering result
+	 * @param fv                                          query feature vector
+	 *                                                    object
+	 * @param retrieveNearestClusterForUnassignedElements nearest cluster
+	 * @return distance
 	 */
 	public static <T, C extends ICluster<T>> double getDistanceToNearestClusterCentroid(
 			IClusteringResult<T, C> clusteringResult, T fv, boolean retrieveNearestClusterForUnassignedElements) {
@@ -212,8 +225,10 @@ public class ClusteringResultTools {
 	 * distances are, e.g., provided with instances in the environment of the
 	 * clustering result.
 	 * 
-	 * @param distanceDistribution
-	 * @return
+	 * @param <T>                  the objects
+	 * @param <C>                  the clusters
+	 * @param distanceDistribution distance distribution
+	 * @return probability distribution using distances to clusters
 	 */
 	public static <T, C extends ICluster<T>> ProbabilityDistribution<C> getProbabilityDistributionBasedOnDistanceDistribution(
 			ClusterDistanceDistribution<T, C> distanceDistribution) {
@@ -246,6 +261,13 @@ public class ClusteringResultTools {
 		return probabilityDistribution;
 	}
 
+	/**
+	 * 
+	 * @param <T>                  objects
+	 * @param <C>                  clusters
+	 * @param distanceDistribution distance distribution
+	 * @return probability distribution using distances to clusters
+	 */
 	public static <T, C extends ICluster<T>> ProbabilityDistribution<String> getProbabilityLabelDistributionBasedOnDistanceDistribution(
 			ClusterDistanceDistribution<T, C> distanceDistribution) {
 		ProbabilityDistribution<C> probabilities = getProbabilityDistributionBasedOnDistanceDistribution(

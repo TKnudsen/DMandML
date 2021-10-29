@@ -30,8 +30,8 @@ public class NumericalFeatureVectorClusterTools {
 	/**
 	 * Same as method above, only other type argument.
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param cluster input cluster
+	 * @return centroid
 	 */
 	public static Centroid<NumericalFeatureVector> calculateCentroid(NumericalFeatureVectorCluster cluster) {
 
@@ -60,6 +60,11 @@ public class NumericalFeatureVectorClusterTools {
 		return centroid;
 	}
 
+	/**
+	 * 
+	 * @param cluster input cluster
+	 * @return statistics
+	 */
 	public static StatisticsSupport getStatistics(NumericalFeatureVectorCluster cluster) {
 		if (cluster == null)
 			return null;

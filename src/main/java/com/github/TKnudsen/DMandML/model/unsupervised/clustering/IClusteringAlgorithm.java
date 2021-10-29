@@ -37,7 +37,7 @@ public interface IClusteringAlgorithm<F> extends ISelfDescription {
 	 * Note: don't forget to reset the internal state of the model such as previous
 	 * clustering results.
 	 * 
-	 * @param featureVectors
+	 * @param featureVectors feature vectors
 	 */
 	public void setFeatureVectors(List<? extends F> featureVectors);
 

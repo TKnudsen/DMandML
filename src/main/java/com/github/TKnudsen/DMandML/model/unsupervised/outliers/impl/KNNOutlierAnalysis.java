@@ -14,8 +14,8 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
  * Description: Outlier Detection based on the distance of an object to its k
  * nearest neighbor.
  * 
- * Reference: S. Ramaswamy, and R. Rastogi, and K. Shim<br />
- * Efficient Algorithms for Mining Outliers from Large Data Sets.<br />
+ * Reference: S. Ramaswamy, and R. Rastogi, and K. Shim
+ * Efficient Algorithms for Mining Outliers from Large Data Sets.
  * In: Proc. Int. Conf. on Management of Data, 2000.
  * </p>
  * 

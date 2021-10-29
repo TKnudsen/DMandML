@@ -33,14 +33,15 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 	List<C> clusters = new ArrayList<>();
 
 	/**
-	 * @param clusters
+	 * @param clusters the input clusters for the clustering result
 	 */
 	public ClusteringResult(List<? extends C> clusters) {
 		this(clusters, null);
 	}
 
 	/**
-	 * @param clusters
+	 * @param clusters the input clusters for the clustering result
+	 * @param name     the name of the clustering
 	 */
 	public ClusteringResult(List<? extends C> clusters, String name) {
 		this.clusters = new ArrayList<>(clusters);
@@ -72,7 +73,7 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 	 * require different implementations of cluster, e.g., in fuzzy clustering
 	 * situations.
 	 * 
-	 * @param cluster
+	 * @param cluster the cluster to be added
 	 */
 	public void addCluster(C cluster) {
 		for (C c : clusters) {
@@ -112,8 +113,8 @@ public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringRe
 	/**
 	 * retrieves a cluster by its name.
 	 * 
-	 * @param name
-	 * @return
+	 * @param name name of the query cluster
+	 * @return the cluster with the given name, if any
 	 */
 	public C getCluster(String name) {
 		for (int i = 0; i < this.clusters.size(); i++)

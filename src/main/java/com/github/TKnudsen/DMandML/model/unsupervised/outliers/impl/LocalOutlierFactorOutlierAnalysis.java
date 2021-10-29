@@ -14,8 +14,8 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
  * <p>
  * Description:
  * 
- * M. M. Breunig, H.-P. Kriegel, R. Ng, J. Sander:<br />
- * LOF: Identifying Density-Based Local Outliers.<br />
+ * M. M. Breunig, H.-P. Kriegel, R. Ng, J. Sander:
+ * LOF: Identifying Density-Based Local Outliers.
  * In: Proc. 2nd ACM SIGMOD Int. Conf. on Management of Data (SIGMOD'00),
  * Dallas, TX, 2000.
  * </p>

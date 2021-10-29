@@ -79,15 +79,17 @@ public class EnsembleClassifier<FV> implements IClassifier<FV> {
 				long beforeNs = System.nanoTime();
 				classifier.train(featureVectors);
 				long afterNs = System.nanoTime();
-				//System.out.println(
-				//		"EnsembleClassifier training took " + ((afterNs - beforeNs) / 1e6) + " ms for " + classifier);
+				// System.out.println(
+				// "EnsembleClassifier training took " + ((afterNs - beforeNs) / 1e6) + " ms for
+				// " + classifier);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
 		long totalAfterNs = System.nanoTime();
-		//System.out.println("EnsembleClassifier training took " + ((totalAfterNs - totalBeforeNs) / 1e6) + " ms");
+		// System.out.println("EnsembleClassifier training took " + ((totalAfterNs -
+		// totalBeforeNs) / 1e6) + " ms");
 	}
 
 	@Override
@@ -123,8 +125,10 @@ public class EnsembleClassifier<FV> implements IClassifier<FV> {
 
 			if (!ProbabilityDistribution.checkProbabilitySumMatchesHundredPercent(labelDistribution.values(),
 					ProbabilityDistribution.EPSILON, true)) {
-				//System.err.println(getName() + ": sum of given label probabilites (" + classifier.getName()
-				//		+ " classifier) was != 100% (" + MathFunctions.getSum(labelDistribution.values(), true) + ")");
+				// System.err.println(getName() + ": sum of given label probabilites (" +
+				// classifier.getName()
+				// + " classifier) was != 100% (" +
+				// MathFunctions.getSum(labelDistribution.values(), true) + ")");
 			}
 
 			for (String label : labelDistribution.keySet()) {
@@ -203,7 +207,7 @@ public class EnsembleClassifier<FV> implements IClassifier<FV> {
 	 * trained from outside. However, it brings advantage in the (visual) analysis
 	 * of individual classifier models / results.
 	 * 
-	 * @return
+	 * @return list of classifiers
 	 */
 	public List<IClassifier<FV>> getClassifiers() {
 		return classifiers;

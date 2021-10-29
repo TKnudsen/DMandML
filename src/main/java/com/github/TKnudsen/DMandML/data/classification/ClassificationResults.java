@@ -33,6 +33,12 @@ import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
  */
 public class ClassificationResults {
 
+	/**
+	 * 
+	 * @param <X>                  object type
+	 * @param labelDistributionMap map of label distribution
+	 * @return map with label distributions
+	 */
 	protected static <X> Map<X, LabelDistribution> createLabelDistributionMap(
 			Map<X, Map<String, Double>> labelDistributionMap) {
 		Map<X, LabelDistribution> tmpLabelDistributionMap = new LinkedHashMap<>();
@@ -55,8 +61,9 @@ public class ClassificationResults {
 	 * creates a LabelDistribution for every X, containing a distribution of 100% of
 	 * the label and 0% of the remaining n-1 labels of the label alphabet.
 	 * 
-	 * @param labels
-	 * @return
+	 * @param <X>    object type
+	 * @param labels input labels
+	 * @return label distribution
 	 */
 	protected static <X> Map<X, LabelDistribution> createDefaultLabelDistributionMap(Map<X, String> labels) {
 		if (labels == null)
@@ -142,9 +149,10 @@ public class ClassificationResults {
 	 * identifies the instance that is closest to the center of the class. This
 	 * (copy of the) instance will be returned as the representative.
 	 * 
-	 * @param classificationResult
-	 * @param distanceMeasure
-	 * @return
+	 * @param <FV>                 object type
+	 * @param classificationResult input classification result
+	 * @param distanceMeasure      distance measure
+	 * @return centers of gravity
 	 */
 	public static <FV> Map<String, FV> createCentersOfGravity(IClassificationResult<FV> classificationResult,
 			IDistanceMeasure<FV> distanceMeasure) {
@@ -175,9 +183,10 @@ public class ClassificationResults {
 	/**
 	 * converts a crisp classification result to a series of clusters.
 	 * 
-	 * @param classificationResult
-	 * @param distanceMeasure
-	 * @return
+	 * @param <FV>                 object type
+	 * @param classificationResult input classification result
+	 * @param distanceMeasure      distance measure
+	 * @return map of clusters gained from the classification result
 	 */
 	public static <FV> Map<String, ICluster<FV>> toClusters(IClassificationResult<FV> classificationResult,
 			IDistanceMeasure<FV> distanceMeasure) {
@@ -197,9 +206,10 @@ public class ClassificationResults {
 	 * equality is characterized using the assumption that two results are equal
 	 * when they return equal values from their most important methods
 	 * 
-	 * @param cr0 The first result
-	 * @param cr1 The second result
-	 * @return Whether the results are equal
+	 * @param <FV> object type
+	 * @param cr0  The first result
+	 * @param cr1  The second result
+	 * @return whether the results are equal
 	 */
 	public static <FV> boolean equal(IClassificationResult<FV> cr0, IClassificationResult<FV> cr1) {
 		if (cr0 == null && cr1 == null) {

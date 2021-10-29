@@ -20,12 +20,14 @@ public class ClassificationApplications {
 	}
 
 	/**
-	 * Creates a list of functions that encapsulate the
+	 * * Creates a list of functions that encapsulate the
 	 * {@link IClassifier#createClassificationResult(List)} call, to be forwarded to
 	 * the DOIs as a "read-only-view" on the classifiers
 	 * 
+	 * @param <T>         object type
 	 * @param classifiers The classifiers
 	 * @return The functions
+	 * @return
 	 */
 	public static <T> List<IClassificationApplicationFunction<T>> createFor(
 			List<? extends IClassifier<T>> classifiers) {

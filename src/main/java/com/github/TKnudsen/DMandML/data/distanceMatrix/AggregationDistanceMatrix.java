@@ -53,8 +53,8 @@ public class AggregationDistanceMatrix<T> implements IDistanceMatrix<T> {
 
 	/**
 	 * 
-	 * @param elements
-	 * @param distanceMeasure
+	 * @param elements                 input elements
+	 * @param distanceMeasure          distance measure
 	 * @param dimensionality           needed to guess an appropriate aggregation
 	 *                                 level
 	 * @param minObjectsForAggregation not recommended to use aggregation for less
@@ -69,10 +69,11 @@ public class AggregationDistanceMatrix<T> implements IDistanceMatrix<T> {
 
 	/**
 	 * 
-	 * @param elements
-	 * @param distanceMeasure
-	 * @param symmetric
-	 * @param parallel
+	 * @param elements                      input elements
+	 * @param distanceMeasure               distance measure
+	 * @param symmetric                     whether the distance matrix will be
+	 *                                      symmetric
+	 * @param parallel                      parallel computation support
 	 * @param minObjectsForAggregation      not recommended to use aggregation for
 	 *                                      less than 2000 elements
 	 * @param averageElementCountPerCluster not recommended to set this parameter

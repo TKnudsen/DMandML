@@ -40,8 +40,7 @@ public class BasicDecisionStump<FV extends IFeatureVectorObject<?, ?>> extends W
 	}
 
 	/**
-	 * @param doDebug
-	 *            the doDebug to set
+	 * @param debug the debug to set
 	 */
 	public void setDebug(boolean debug) {
 		this.debug = debug;

@@ -59,18 +59,21 @@ public class Clusters {
 	/**
 	 * converts the set of elements into a list. Just for convenient reasons.
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param <T>     the elements
+	 * @param <C>     the clusters
+	 * @param cluster the cluster
+	 * @return list of elements
 	 */
 	public static <T, C extends ICluster<T>> List<T> getElementList(ICluster<T> cluster) {
 		return new ArrayList<>(cluster.getElements());
 	}
 
 	/**
-	 * retrieves all elements in a list of clusters.
 	 * 
-	 * @param clusterResult
-	 * @return
+	 * @param <T>      elements
+	 * @param <C>      clusters
+	 * @param clusters list of clusters
+	 * @return all elements in a list of clusters
 	 */
 	public static <T, C extends ICluster<T>> List<T> getElementList(List<ICluster<T>> clusters) {
 		List<T> elements = new ArrayList<>();
@@ -84,8 +87,10 @@ public class Clusters {
 	/**
 	 * retrieves all centroids for a list of clusters
 	 * 
-	 * @param clusters
-	 * @return
+	 * @param <T>      the objects
+	 * @param <C>      the clusters
+	 * @param clusters clusters
+	 * @return centroids
 	 */
 	public static <T, C extends ICluster<T>> List<Centroid<T>> getCentroids(List<ICluster<T>> clusters) {
 		List<Centroid<T>> centroids = new ArrayList<>();
@@ -99,8 +104,10 @@ public class Clusters {
 	/**
 	 * clones a cluster (which is not possible with the ICluster interface).
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster target cluster
+	 * @return clone
 	 */
 	public static <T, C extends ICluster<T>> ICluster<T> clone(C cluster) {
 		if (cluster instanceof Cluster) {
@@ -110,6 +117,15 @@ public class Clusters {
 			throw new IllegalArgumentException("ClusterTools: unknown implementation of ICluster interface");
 	}
 
+	/**
+	 * 
+	 * @param <T>             the objects
+	 * @param <C>             the clusters
+	 * @param cluster         target cluster
+	 * @param element         query object
+	 * @param distanceMeasure distance measure
+	 * @return distance of an element to the cluster centroid
+	 */
 	public static <T, C extends ICluster<T>> double getCentroidDistance(C cluster, T element,
 			IDistanceMeasure<T> distanceMeasure) {
 		if (distanceMeasure == null)
@@ -124,9 +140,11 @@ public class Clusters {
 	/**
 	 * calculates/determines a centroid for a given Cluster.
 	 * 
-	 * @param cluster
-	 * @param distanceMeasure
-	 * @return
+	 * @param <T>             the objects
+	 * @param <C>             the clusters
+	 * @param cluster         cluster
+	 * @param distanceMeasure distance measure
+	 * @return the centroid
 	 */
 	public static <T, C extends ICluster<T>> Centroid<T> calculateCentroidLikeElement(C cluster,
 			IDistanceMeasure<T> distanceMeasure) {
@@ -157,6 +175,13 @@ public class Clusters {
 		return new Centroid<T>(cluster, candidate);
 	}
 
+	/**
+	 * 
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster target cluster
+	 * @return distances
+	 */
 	public static <T, C extends ICluster<T>> Collection<Double> getCentroidDistances(C cluster) {
 
 		List<Double> values = new ArrayList<>();
@@ -166,6 +191,14 @@ public class Clusters {
 		return values;
 	}
 
+	/**
+	 * 
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param t       query object
+	 * @param cluster target cluster
+	 * @return distances
+	 */
 	public static <T, C extends ICluster<T>> Collection<Double> getInstanceDistancesToOtherInstances(T t, C cluster) {
 
 		IDistanceMeasure<T> distanceMeasure = cluster.getDistanceMeasure();
@@ -182,8 +215,10 @@ public class Clusters {
 	 * collects distances between all instances of a cluster. adds dist(A,B) AND
 	 * dist(B,A)
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster target cluster
+	 * @return pairwise distances
 	 */
 	public static <T, C extends ICluster<T>> Collection<Double> getPairwiseInstanceDistances(C cluster) {
 
@@ -201,9 +236,9 @@ public class Clusters {
 	/**
 	 * distance matrix storing the pairwise distances of instances.
 	 * 
-	 * @param <T>
-	 * @param <C>
-	 * @param cluster
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster target cluster
 	 * @return distance matrix
 	 */
 	public static <T, C extends ICluster<T>> IDistanceMatrix<T> getDistanceMatrix(C cluster) {
@@ -216,8 +251,10 @@ public class Clusters {
 	 * calculates the diameter of a cluster, i.e., calculates the maximum of the
 	 * pairwise distances using any two elements within the cluster. O(n²)
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster target cluster
+	 * @return diameter
 	 */
 	public static <T, C extends ICluster<T>> double getDiameter(C cluster) {
 
@@ -228,8 +265,10 @@ public class Clusters {
 	 * calculates the median of the pairwise distances using any two elements within
 	 * the cluster. O(n²)
 	 * 
-	 * @param cluster
-	 * @return
+	 * @param <T>     the objects
+	 * @param <C>     the clusters
+	 * @param cluster the input cluster
+	 * @return the median pairwise distance
 	 */
 	public static <T, C extends ICluster<T>> double getMedianPairwiseDistance(C cluster) {
 

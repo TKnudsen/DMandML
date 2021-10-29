@@ -33,7 +33,7 @@ public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, I
 	 * 
 	 * @deprecated this should never be necessary. try to avoid and use cluster
 	 *             objects instead
-	 * @param object
+	 * @param object the query object
 	 * @return -1 if not assigned. else the cluster index w.r.t. the index of the
 	 *         internal cluster list.
 	 */
@@ -43,8 +43,8 @@ public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, I
 	 * Retrieves the cluster for a given object. Returns null if object was not
 	 * subject to the clustering routine, though.
 	 * 
-	 * @param object
-	 * @return
+	 * @param object the query object
+	 * @return the cluster of the query object
 	 */
 	C getCluster(T object);
 
@@ -54,10 +54,8 @@ public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, I
 	 * retrievNearestWhenUnassigned is set true, the method retrieves the nearest
 	 * cluster for the object.
 	 * 
-	 * @param fv
-	 * @param retrieveNearestWhenUnassigned if a cluster is retrieved in case no
-	 *                                      assignment is exists.
-	 * @return
+	 * @param object the query feature vector object
+	 * @return the cluster that is retrieved for the feature vector object, if any
 	 */
 	C retrieveCluster(T object);
 

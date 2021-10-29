@@ -109,7 +109,7 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	/**
 	 * Adds a data point. open question. should the classID of the FV also be set?!
 	 * 
-	 * @param feature
+	 * @param feature feature to be added
 	 */
 	public void addFeatureVector(NumericalFeatureVector feature) {
 		feature.add("ClusterIndex", ID);
@@ -158,8 +158,8 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 	/**
 	 * calculates the distance of a given FeatureVector to the cluster centroid
 	 * 
-	 * @param fv
-	 * @return
+	 * @param fv query feature vector object
+	 * @return distance to centroid
 	 */
 	public double getCentroidDistance(NumericalFeatureVector fv) {
 		if (this.featureVectorCentroidDistancesLong == null)

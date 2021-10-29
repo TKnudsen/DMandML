@@ -31,8 +31,8 @@ public class LabelDistributionTools {
 	/**
 	 * merges a series of LabelDistributions.
 	 * 
-	 * @param labelDistributions
-	 * @return
+	 * @param labelDistributions collection of label distributions
+	 * @return merged label distributions
 	 */
 	public static LabelDistribution mergeLabelDistributions(Collection<LabelDistribution> labelDistributions) {
 		if (labelDistributions == null)
@@ -63,7 +63,8 @@ public class LabelDistributionTools {
 	/**
 	 * Provides a new Map with distributions adding up to 1.
 	 * 
-	 * @return
+	 * @param distribution label distribution
+	 * @return normalized label distribution
 	 */
 	public static Map<String, Double> normalizeLabelDistribution(Map<String, Double> distribution) {
 		if (distribution == null)
@@ -86,6 +87,11 @@ public class LabelDistributionTools {
 		return normalized;
 	}
 
+	/**
+	 * 
+	 * @param labelDistribution label distribution
+	 * @return second highest label
+	 */
 	public static String getSecondHighestLabel(LabelDistribution labelDistribution) {
 		if (labelDistribution == null)
 			throw new NullPointerException("LabelDistributionTools.getSecondHighestLabel: labelDistribution was null");

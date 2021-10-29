@@ -40,8 +40,7 @@ public class BasicZeroR<FV extends IFeatureVectorObject<?, ?>> extends WekaRegre
 	}
 
 	/**
-	 * @param doDebug
-	 *            the doDebug to set
+	 * @param debug the debug to set
 	 */
 	public void setDebug(boolean debug) {
 		this.debug = debug;

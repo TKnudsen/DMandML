@@ -14,7 +14,6 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
  * 
  * Collection of functions used in different ClusterValidityMethods. Could later
  * be added to their respective class (as public method).
- * </p>
  * 
  * References: Peter J. Rousseeuw (1987). "Silhouettes: a Graphical Aid to the
  * Interpretation and Validation of Cluster Analysis". Computational and Applied
@@ -28,14 +27,16 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 public class ClusterValidityMethods {
 
 	/**
+	 * 
 	 * Dissimilarity of an element w.r.t. its cluster. Measure of class compactness.
 	 * 
 	 * For reference see Rousseeuw, 1987.
 	 * 
-	 * @param fv
-	 * @param cluster
-	 * @param distanceMeasure
-	 * @return
+	 * @param <FV>            object type
+	 * @param fv              input feature vector objects
+	 * @param cluster         cluster
+	 * @param distanceMeasure distance measure
+	 * @return Silhouette validity intra-class dissimilarity
 	 */
 	public static <FV> Double silhuetteValidityIntraClassDissimilarity(FV fv, ICluster<? extends FV> cluster,
 			IDistanceMeasure<FV> distanceMeasure) {
@@ -53,10 +54,11 @@ public class ClusterValidityMethods {
 	 * Dissimilarity of an element w.r.t. the nearest cluster (that it is not part
 	 * of). Measure of class separation.
 	 * 
-	 * @param fv
-	 * @param clusters
-	 * @param distanceMeasure
-	 * @return
+	 * @param <FV>             object type
+	 * @param fv               query feature vector object
+	 * @param clusteringResult target clusters in a clustering result
+	 * @param distanceMeasure  distance measure
+	 * @return dissimilarity
 	 */
 	public static <FV> Double silhuetteValidityInterClassDissimilarity(FV fv,
 			IClusteringResult<FV, ? extends ICluster<FV>> clusteringResult, IDistanceMeasure<FV> distanceMeasure) {

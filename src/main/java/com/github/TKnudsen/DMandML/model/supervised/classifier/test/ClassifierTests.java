@@ -23,7 +23,7 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
  * Some basic tests for the classifiers, namely for {@link IClassifier}.
  * 
  * TODO: This is supposed to become a set of unit tests, maybe, one day, by
- * replacing the "passed &= ..." lines with assertions.
+ * replacing the passed lines with assertions.
  */
 public class ClassifierTests {
 
@@ -32,19 +32,18 @@ public class ClassifierTests {
 		testAll(RandomForest.class);
 		testAll(BayesNet.class);
 		testAll(NaiveBayesMultinomial.class);
-		//testAll(GaussianProcesses.class);
-		//testAll(SMOSVN.class);
-		//testAll(SVMLinearClassifier.class);
-		//testAll(SVMPolynomialClassifier.class);
-		
+		// testAll(GaussianProcesses.class);
+		// testAll(SMOSVN.class);
+		// testAll(SVMLinearClassifier.class);
+		// testAll(SVMPolynomialClassifier.class);
+
 		// testUntrainedClassifier(RandomForest.class);
 	}
 
 	/**
 	 * Execute all tests
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testAll(Class<? extends IClassifier<NumericalFeatureVector>> classifierClass) {
@@ -61,8 +60,7 @@ public class ClassifierTests {
 	/**
 	 * Test that an untrained classifier returns sensible data
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testUntrainedClassifier(
@@ -103,8 +101,7 @@ public class ClassifierTests {
 	 * Test that the getLabelAlphabet method returns an empty list before the
 	 * training, and the proper label alphabet afterwards
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testTrainingUpdatesLabelAlphabet(
@@ -142,8 +139,7 @@ public class ClassifierTests {
 	 * Test that training the classifier with training vectors that only cover a
 	 * single class will not mess up things
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testTrainingWithSingleClassDoesNotMessUpThings(
@@ -192,8 +188,7 @@ public class ClassifierTests {
 	/**
 	 * A general test of the default usage of the classifier
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testCaseWhereEverythingShouldWork(
@@ -215,16 +210,13 @@ public class ClassifierTests {
 
 		return true;
 	}
-	
-	
-	
+
 	/**
-	 * Test whether performing a training and then performing a training with
-	 * an empty set "resets" the classifier so that it behaves as if it was
-	 * never trained at all
+	 * Test whether performing a training and then performing a training with an
+	 * empty set "resets" the classifier so that it behaves as if it was never
+	 * trained at all
 	 * 
-	 * @param classifierClass
-	 *            The classifier class
+	 * @param classifierClass The classifier class
 	 * @return Whether the test passed
 	 */
 	private static boolean testTrainingResetsClassifier(
@@ -246,7 +238,6 @@ public class ClassifierTests {
 		// behavior as if no training was performed at all
 		classifier.train(Collections.emptyList());
 
-		
 		Map<String, Double> labelDistribution = classifier.getLabelDistribution(testingVectors.get(0));
 		// System.out.println("labelDistribution: "+labelDistribution);
 
@@ -256,7 +247,7 @@ public class ClassifierTests {
 		IClassificationResult<NumericalFeatureVector> classificationResult = classifier
 				.createClassificationResult(testingVectors);
 		// System.out.println("classificationResult: "+classificationResult);
-		
+
 		boolean passed = true;
 		passed &= Collections.emptyList().equals(classifier.getLabelAlphabet());
 		passed &= Collections.emptyMap().equals(labelDistribution);
@@ -264,12 +255,9 @@ public class ClassifierTests {
 		passed &= containSameElementsDisregardingOrder(classificationResult.getFeatureVectors(), testingVectors);
 		passed &= Collections.emptyMap()
 				.equals(classificationResult.getLabelDistribution(testingVectors.get(0)).getProbabilityDistribution());
-		
+
 		return passed;
 	}
-
-	
-	
 
 	static <T extends IKeyValueProvider<Object>> void printTestingResults(IClassifier<T> classifier,
 			List<T> testingVectors) {

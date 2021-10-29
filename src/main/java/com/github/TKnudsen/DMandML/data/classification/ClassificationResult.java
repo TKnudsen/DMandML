@@ -39,7 +39,8 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	/**
 	 * constructor stores a reference on the object.
 	 * 
-	 * @param labelDistributionMap
+	 * @param labelDistributionMap map with the label distribution
+	 * @param labelAlphabet        label alphabet
 	 */
 	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, Set<String> labelAlphabet) {
 		this(labelDistributionMap, null, labelAlphabet);
@@ -48,7 +49,9 @@ public class ClassificationResult<X> implements IClassificationResult<X> {
 	/**
 	 * constructor stores a reference on the object.
 	 * 
-	 * @param labelDistributionMap
+	 * @param labelDistributionMap map with the label distribution
+	 * @param name                 name
+	 * @param labelAlphabet        label alphabet
 	 */
 	public ClassificationResult(Map<X, LabelDistribution> labelDistributionMap, String name,
 			Set<String> labelAlphabet) {

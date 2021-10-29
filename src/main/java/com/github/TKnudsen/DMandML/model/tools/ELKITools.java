@@ -18,8 +18,8 @@ public class ELKITools {
 	 * 
 	 * The database will be initialized as well.
 	 * 
-	 * @param featureVectors
-	 * @return
+	 * @param featureVectors input feature vectors
+	 * @return ELKI Database
 	 */
 	public static Database createAndInitializeELKIDatabase(List<? extends NumericalFeatureVector> featureVectors) {
 		Objects.requireNonNull(featureVectors);

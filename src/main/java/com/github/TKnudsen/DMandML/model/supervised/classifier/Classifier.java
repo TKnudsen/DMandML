@@ -59,6 +59,8 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	 * The method containing the implementation of the classifier training. It is
 	 * called in {@link #train(List)}, after the {@link #getLabelAlphabet() label
 	 * alphabet} has been updated
+	 * 
+	 * @param featureVectors feature vectors
 	 */
 	protected abstract void buildClassifier(List<FV> featureVectors);
 
@@ -66,8 +68,7 @@ public abstract class Classifier<FV extends IKeyValueProvider<Object>> implement
 	 * Updates the {@link #labelAlphabet} by collecting all unique values of all
 	 * values of the {@link #classAttribute} of the given feature vectors.
 	 * 
-	 * @param featureVectors
-	 *            The feature vectors
+	 * @param featureVectors The feature vectors
 	 */
 	protected final void updateLabelAlphabet(Iterable<? extends FV> featureVectors) {
 		this.labelAlphabet.clear();

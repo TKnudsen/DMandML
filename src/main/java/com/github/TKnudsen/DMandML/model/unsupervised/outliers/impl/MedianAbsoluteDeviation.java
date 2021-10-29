@@ -33,8 +33,6 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAl
  * 
  * @author Juergen Bernard
  * @version 1.01
- * 
- * @param <FV>
  */
 public class MedianAbsoluteDeviation<FV> extends OutlierAnalysisAlgorithm<FV> {
 
@@ -73,9 +71,9 @@ public class MedianAbsoluteDeviation<FV> extends OutlierAnalysisAlgorithm<FV> {
 	/**
 	 * default constructor. FVs are usually set later.
 	 * 
-	 * @param kNN
-	 * @param distanceMeasure
-	 * @param stringencyThreshold
+	 * @param kNN                 number of nearest neighbors
+	 * @param distanceMeasure     distance measure
+	 * @param stringencyThreshold must be between 2 and 3
 	 */
 	public MedianAbsoluteDeviation(int kNN, IDistanceMeasure<FV> distanceMeasure, double stringencyThreshold) {
 		if (kNN < 1)

@@ -14,8 +14,8 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
  * Description: An instance is an outlier if at least a fraction p of all data
  * objects has a distance above d.
  *
- * Reference: E.M. Knorr, R. T. Ng:<br />
- * Algorithms for Mining Distance-Based Outliers in Large Datasets,<br />
+ * Reference: E.M. Knorr, R. T. Ng:
+ * Algorithms for Mining Distance-Based Outliers in Large Datasets,
  * In: Procs Int. Conf. on Very Large Databases (VLDB'98), New York, USA, 1998.
  * </p>
  * 
