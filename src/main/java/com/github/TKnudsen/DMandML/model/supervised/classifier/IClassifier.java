@@ -40,11 +40,11 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	 * Returns an unmodifiable view on the label alphabet.<br>
 	 * <br>
 	 * This represents the set of unique labels that have been found in the feature
-	 * vectors that have been passed to the last call to
-	 * {@link #train(List, String)}, in an unspecified order.<br>
+	 * vectors that have been passed to the last call to the train method, in an
+	 * unspecified order.<br>
 	 * <br>
-	 * If no training has taken place yet, this will be the empty list,
-	 * but it will never be <code>null</code>
+	 * If no training has taken place yet, this will be the empty list, but it will
+	 * never be <code>null</code>
 	 * 
 	 * @return The label alphabet
 	 */
@@ -56,14 +56,13 @@ public interface IClassifier<X> extends ILearningModel<X, String> {
 	 * class.<br>
 	 * <br>
 	 * If the training set of the previous call to {@link #train(List)} contained
-	 * only a single class, then this map will always map this class label to
-	 * the value 1.0.<br>
+	 * only a single class, then this map will always map this class label to the
+	 * value 1.0.<br>
 	 * <br>
-	 * If the classifier was trained with an empty set or has not been trained 
-	 * yet, this will be an empty map, but it will never be <code>null</code>
+	 * If the classifier was trained with an empty set or has not been trained yet,
+	 * this will be an empty map, but it will never be <code>null</code>
 	 * 
-	 * @param featureVector
-	 *            The feature vector
+	 * @param featureVector The feature vector
 	 * @return The label distribution. LinkedHashMap preserves the order of labels,
 	 *         useful for larger contexts.
 	 */

@@ -49,9 +49,9 @@ public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObje
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationApplyFunction
-	 * @param parameterizedClassifier
-	 * @param trainingDataSupplier
+	 * @param classificationApplyFunction classification apply function
+	 * @param parameterizedClassifier     parameterized classifier
+	 * @param trainingDataSupplier        training data supplier
 	 */
 	public ExpectedInformationGainActiveLearning(
 			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplyFunction,
@@ -69,9 +69,9 @@ public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObje
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationApplyFunction
-	 * @param parameterizedClassifier
-	 * @param trainingDataSupplier
+	 * @param cassificationApplicationFunction classification apply function
+	 * @param parameterizedClassifier          classifier
+	 * @param trainingDataSupplier             training data supplier
 	 */
 	public ExpectedInformationGainActiveLearning(
 			IClassificationApplicationFunction<FV> cassificationApplicationFunction,

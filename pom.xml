@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.tknudsen</groupId>
 	<artifactId>dm-and-ml</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5-SNAPSHOT</version>
 
 	<name>DMandML</name>
 	<description>A library that performs data mining and machine learning tasks</description>
@@ -181,17 +181,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
-						<configuration>
-							<!-- TODO: fix javadoc and remove this -->
-							<additionalparam>-Xdoclint:none</additionalparam>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

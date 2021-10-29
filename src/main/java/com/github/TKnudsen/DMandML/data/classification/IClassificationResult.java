@@ -38,8 +38,7 @@ public interface IClassificationResult<X> extends ISelfDescription {
 	 * <code>null</code> if the given vector is not element of the
 	 * {@link #getFeatureVectors() feature vectors of this result}
 	 * 
-	 * @param featureVector
-	 *            The feature vector
+	 * @param featureVector The feature vector
 	 * @return The class
 	 */
 	public String getClass(X featureVector);
@@ -63,8 +62,7 @@ public interface IClassificationResult<X> extends ISelfDescription {
 	 * non-probabilistic classifiers the distribution is 100% w.r.t the winning
 	 * label.
 	 * 
-	 * @param x
-	 *            The feature vector
+	 * @param x The feature vector
 	 * @return The {@link LabelDistribution}
 	 */
 	public LabelDistribution getLabelDistribution(X x);
@@ -74,7 +72,7 @@ public interface IClassificationResult<X> extends ISelfDescription {
 	 * classification model in its current state. The label alphabet may be larger
 	 * than the predictions made in the concrete classification result.
 	 * 
-	 * @return
+	 * @return label alphabet
 	 */
 	public Set<String> getLabelAlphabet();
 }

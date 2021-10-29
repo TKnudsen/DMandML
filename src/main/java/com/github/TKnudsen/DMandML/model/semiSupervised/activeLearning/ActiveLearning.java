@@ -9,10 +9,12 @@ public class ActiveLearning {
 	/**
 	 * uses an active learner, a set of unlabeled data (candidates)
 	 * 
-	 * @param activeLearningModel
-	 * @param candidates
-	 * @param count
-	 * @return a list of cont candidates ranked according to the active learner
+	 * @param <FV>                feature vector objects
+	 * 
+	 * @param activeLearningModel the active learning model that is used
+	 * @param candidates          the candidate feature vectors
+	 * @param count               the number of candidates to be returned
+	 * @return a list of candidates ranked according to the active learner
 	 */
 	public static <FV extends IKeyValueProvider<Object>> List<FV> getActiveLearningSuggestions(
 			AbstractActiveLearningModel<FV> activeLearningModel, List<FV> candidates, int count) {

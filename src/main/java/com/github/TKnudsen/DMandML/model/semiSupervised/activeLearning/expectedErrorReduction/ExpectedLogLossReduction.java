@@ -49,9 +49,9 @@ public class ExpectedLogLossReduction<FV extends IFeatureVectorObject<?, ?>> ext
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationApplyFunction
-	 * @param parameterizedClassifier
-	 * @param trainingDataSupplier
+	 * @param classificationApplyFunction classification apply function
+	 * @param parameterizedClassifier     classifier
+	 * @param trainingDataSupplier        training data supplier
 	 */
 	public ExpectedLogLossReduction(Function<List<? extends FV>, IClassificationResult<FV>> classificationApplyFunction,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
@@ -68,9 +68,9 @@ public class ExpectedLogLossReduction<FV extends IFeatureVectorObject<?, ?>> ext
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationApplyFunction
-	 * @param parameterizedClassifier
-	 * @param trainingDataSupplier
+	 * @param cassificationApplicationFunction classification apply function
+	 * @param parameterizedClassifier          parameterized classifier
+	 * @param trainingDataSupplier             training data supplier
 	 */
 	public ExpectedLogLossReduction(IClassificationApplicationFunction<FV> cassificationApplicationFunction,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {
@@ -149,6 +149,11 @@ public class ExpectedLogLossReduction<FV extends IFeatureVectorObject<?, ?>> ext
 		System.out.println("ExpectedLogLossReduction: remaining uncertainty = " + remainingUncertainty);
 	}
 
+	/**
+	 * 
+	 * @param classificationResult classification result
+	 * @return log loss
+	 */
 	private Double calculatelogloss(IClassificationResult<FV> classificationResult) {
 		double loss = 0.0;
 		for (FV fv : candidates) {

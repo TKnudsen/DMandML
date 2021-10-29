@@ -24,7 +24,7 @@ import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
 public interface IOutlierAnalysisAlgorithm<FV> extends ISelfDescription {
 
 	public IOutlierAnalysisResult<FV> runOutlierAnalysis(List<? extends FV> data);
-	
+
 	public void setData(List<? extends FV> data);
 
 	/**
@@ -38,9 +38,9 @@ public interface IOutlierAnalysisAlgorithm<FV> extends ISelfDescription {
 	 * use of a relative value domain where 1.0 means the maximum likelihood to be
 	 * an outlier.
 	 * 
-	 * @param object
+	 * @param object the feature vector
 	 * @deprecated use getOutlierAnalysisResult()
-	 * @return
+	 * @return returns the score
 	 */
 	public double getOutlierScore(FV object);
 

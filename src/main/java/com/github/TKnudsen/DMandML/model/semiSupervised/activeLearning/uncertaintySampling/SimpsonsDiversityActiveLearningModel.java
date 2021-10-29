@@ -41,7 +41,8 @@ public class SimpsonsDiversityActiveLearningModel<FV extends IFeatureVectorObjec
 		super(classificationApplyFunction);
 	}
 
-	public SimpsonsDiversityActiveLearningModel(IClassificationApplicationFunction<FV> cassificationApplicationFunction) {
+	public SimpsonsDiversityActiveLearningModel(
+			IClassificationApplicationFunction<FV> cassificationApplicationFunction) {
 		super(cassificationApplicationFunction);
 	}
 
@@ -72,10 +73,10 @@ public class SimpsonsDiversityActiveLearningModel<FV extends IFeatureVectorObjec
 	/**
 	 * anticipates the Simpson's Diversity index. Challenge: a probability
 	 * distribution has to be abstracted to an array of integer-like values, all
-	 * >=1.
+	 * larger or equals 1.
 	 * 
-	 * @param labelDistribution
-	 * @return
+	 * @param labelDistribution label distribution
+	 * @return diversity
 	 */
 	public double getLabelProbabilityDiversity(Map<String, Double> labelDistribution) {
 		if (labelDistribution == null)

@@ -49,12 +49,11 @@ public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements 
 
 	/**
 	 * constructs a distance matrix for the FVs. Aggregation can be used to cope
-	 * with large matrix sizes. Recommendation: use aggregation for n >1000
+	 * with large matrix sizes. Recommendation: use aggregation for n larger than
+	 * 1000
 	 * 
-	 * @param cluster
-	 * @param sizeThresholdToUseAggregation above: an AggregationBasedDistanceMatrix
-	 *                                      is used
-	 * @return
+	 * @param cluster query cluster
+	 * @return distance matrix
 	 */
 	protected IDistanceMatrix<FV> getPairwiseDistances(Cluster<FV> cluster) {
 

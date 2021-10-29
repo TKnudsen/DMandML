@@ -105,7 +105,7 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 	 * {@link AbstractActiveLearningModel#suggestCandidate()} or
 	 * {@link AbstractActiveLearningModel#suggestCandidates(int)} instead.
 	 * 
-	 * @return
+	 * @return the ranking of objects according to the AL calculation
 	 */
 	@Deprecated
 	public Ranking<EntryWithComparableKey<Double, FV>> getRanking() {
@@ -148,7 +148,7 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 	/**
 	 * copy of the applicability scores. high means applicable for AL.
 	 * 
-	 * @return
+	 * @return returns the applicability of every object to be the next AL candidate
 	 */
 	public Map<FV, Double> getCandidateScores() {
 		if (queryApplicabilities == null && ranking != null)
@@ -182,7 +182,8 @@ public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<O
 		return classificationApplicationFunction;
 	}
 
-	public void setClassificationApplicationFunction(Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction) {
+	public void setClassificationApplicationFunction(
+			Function<List<? extends FV>, IClassificationResult<FV>> classificationApplicationFunction) {
 		this.classificationApplicationFunction = classificationApplicationFunction;
 	}
 }

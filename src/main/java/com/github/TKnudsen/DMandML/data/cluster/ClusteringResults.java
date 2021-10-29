@@ -9,8 +9,11 @@ public class ClusteringResults {
 	/**
 	 * retrieves all elements of all clusters in a ClusterResult.
 	 * 
-	 * @param clusterResult
-	 * @return
+	 * 
+	 * @param <T>           the objects
+	 * @param <C>           the clusters
+	 * @param clusterResult the clustering result
+	 * @return mapping of elements to their clusters
 	 */
 	public static <T, C extends ICluster<T>> List<T> getElements(
 			IClusteringResult<T, ? extends ICluster<T>> clusterResult) {
@@ -22,6 +25,14 @@ public class ClusteringResults {
 		return elements;
 	}
 
+	/**
+	 * 
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param instance         the query instance
+	 * @param clusteringResult the target clustering result
+	 * @return cluster of a query instance
+	 */
 	public static <T, C extends ICluster<T>> ICluster<T> retrieveCluster(T instance,
 			IClusteringResult<T, ? extends ICluster<T>> clusteringResult) {
 		if (instance == null)
@@ -75,9 +86,11 @@ public class ClusteringResults {
 	/**
 	 * Retrieves the distances of a cluster centroid to the other cluster centroids.
 	 * 
-	 * @param cluster
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param cluster          the query cluster
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getClusterCentroidToOtherCentroidsDistances(C cluster,
 			Collection<? extends C> clusteringResult) {
@@ -99,9 +112,11 @@ public class ClusteringResults {
 	/**
 	 * Retrieves the distances of a cluster centroid to the other cluster centroids.
 	 * 
-	 * @param cluster
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param cluster          the query cluster
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getClusterCentroidToOtherCentroidsDistances(C cluster,
 			IClusteringResult<T, ICluster<T>> clusteringResult) {
@@ -115,9 +130,11 @@ public class ClusteringResults {
 	 * Presumes that the instance is contained in any of the clusters. If not the
 	 * distances to all clusters are returned, instead of c-1.
 	 * 
-	 * @param instance
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param instance         query instance
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherCentroidsDistances(T instance,
 			Collection<? extends C> clusteringResult) {
@@ -140,9 +157,11 @@ public class ClusteringResults {
 	 * Presumes that the instance is contained in any of the clusters. If not the
 	 * distances to all clusters are returned, instead of c-1.
 	 * 
-	 * @param instance
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param instance         query instance
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherCentroidsDistances(T instance,
 			IClusteringResult<T, ICluster<T>> clusteringResult) {
@@ -156,9 +175,11 @@ public class ClusteringResults {
 	 * Presumes that the instance is contained in any of the clusters. If not the
 	 * distances of instances in all clusters are returned, instead of c-1 clusters.
 	 * 
-	 * @param instance
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param instance         query instance
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherClustersInstancesDistances(T instance,
 			Collection<? extends C> clusteringResult) {
@@ -182,9 +203,11 @@ public class ClusteringResults {
 	 * Presumes that the instance is contained in any of the clusters. If not the
 	 * distances of instances in all clusters are returned, instead of c-1 clusters.
 	 * 
-	 * @param instance
-	 * @param clusteringResult
-	 * @return
+	 * @param <T>              the objects
+	 * @param <C>              the clusters
+	 * @param instance         query instance
+	 * @param clusteringResult the target clustering result
+	 * @return the distances for any cluster
 	 */
 	public static <T, C extends ICluster<T>> List<Double> getInstanceToOtherClustersInstancesDistances(T instance,
 			IClusteringResult<T, ICluster<T>> clusteringResult) {

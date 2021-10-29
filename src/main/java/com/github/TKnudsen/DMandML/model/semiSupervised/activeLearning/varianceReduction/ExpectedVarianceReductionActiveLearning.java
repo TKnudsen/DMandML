@@ -50,9 +50,9 @@ public class ExpectedVarianceReductionActiveLearning<FV extends IFeatureVectorOb
 	 * {@link WekaClassifierWrapper} it is not changed during active learning (it
 	 * then uses a parameterized copy).
 	 * 
-	 * @param classificationResultSupplier
-	 * @param parameterizedClassifier
-	 * @param trainingDataSupplier
+	 * @param classificationResultSupplier classification result
+	 * @param parameterizedClassifier      classifier
+	 * @param trainingDataSupplier         training data
 	 */
 	public ExpectedVarianceReductionActiveLearning(IClassificationResultSupplier<FV> classificationResultSupplier,
 			Classifier<FV> parameterizedClassifier, Supplier<List<FV>> trainingDataSupplier) {

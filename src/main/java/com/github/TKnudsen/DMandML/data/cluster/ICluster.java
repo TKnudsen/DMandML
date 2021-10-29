@@ -26,7 +26,7 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	/**
 	 * number of elements in it
 	 * 
-	 * @return
+	 * @return the size of the cluster
 	 */
 	public int size();
 
@@ -36,14 +36,14 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	 * Discussion: remove distance measure from Cluster? a lot of convenient
 	 * functionality and context information will be gone.
 	 * 
-	 * @return
+	 * @return the distance measure that is used for distance computations
 	 */
 	public IDistanceMeasure<T> getDistanceMeasure();
 
 	/**
 	 * in most cases clusters can be represented with a centroid
 	 * 
-	 * @return
+	 * @return in most cases clusters can be represented with a centroid
 	 */
 	public Centroid<T> getCentroid();
 
@@ -54,37 +54,39 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	 * Discussion: remove distance measure from Cluster? a lot of convenient
 	 * functionality and context information will be gone.
 	 * 
-	 * @param element
-	 * @return
+	 * @param element query object
+	 * @return distance of a given T to the centroid
 	 */
 	public double getCentroidDistance(T element);
 
 	/**
 	 * in some cases T's may be added to a cluster
 	 * 
-	 * @param element
+	 * @param element the element
+	 * @return success
 	 */
 	public boolean add(T element);
 
 	/**
 	 * whether or not a cluster contains a particular element.
 	 * 
-	 * @param element
-	 * @return
+	 * @param element query object
+	 * @return whether or not a cluster contains a particular element.
 	 */
 	public boolean contains(Object element);
 
 	/**
 	 * in some cases T's may be removed from a cluster
 	 * 
-	 * @param element
+	 * @param element the object
+	 * @return success
 	 */
 	public boolean remove(Object element);
 
 	/**
 	 * alternative to the iterator.
 	 * 
-	 * @return
+	 * @return alternative to the element iterator
 	 */
 	public Set<T> getElements();
 
@@ -93,7 +95,7 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	 * 
 	 * @deprecated better use measures to calculate characteristics about the
 	 *             instances within the cluster
-	 * @return
+	 * @return variance information produced by the elements of the cluster
 	 */
 	public double getVariance();
 
@@ -101,8 +103,8 @@ public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 	 * we are interested in the T's that are contained in clusters. The
 	 * constellation of these guys should also determine the equals function
 	 * 
-	 * @param o
-	 * @return
+	 * @param o query object
+	 * @return whether another object (cluster) is equals this cluster instance
 	 */
 	public boolean equals(Object o);
 

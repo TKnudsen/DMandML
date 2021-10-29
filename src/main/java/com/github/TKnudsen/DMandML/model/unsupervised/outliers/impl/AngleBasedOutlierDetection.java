@@ -15,8 +15,8 @@ import de.lmu.ifi.dbs.elki.distance.similarityfunction.kernel.LinearKernelFuncti
  * <p>
  * Description:
  * 
- * * H.-P. Kriegel, M. Schubert, and A. Zimek:<br />
- * Angle-Based Outlier Detection in High-dimensional Data.<br />
+ * * H.-P. Kriegel, M. Schubert, and A. Zimek:
+ * Angle-Based Outlier Detection in High-dimensional Data.
  * In: Proc. 14th ACM SIGKDD Int. Conf. on Knowledge Discovery and Data Mining
  * (KDD '08), Las Vegas, NV, 2008.
  * </p>

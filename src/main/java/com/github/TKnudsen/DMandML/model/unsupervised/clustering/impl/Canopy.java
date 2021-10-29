@@ -23,10 +23,10 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * T2 distance. The T2 distance determines how many canopies (clusters) are
  * formed. When the user specifies a specific number (N) of clusters to
  * generate, the algorithm will return the top N canopies (as determined by T2
- * density) when N < number of canopies (this applies to both batch and
- * incremental learning); when N > number of canopies, the difference is made up
- * by selecting training instances randomly (this can only be done when batch
- * training). For more information see:
+ * density) when N smaller the number of canopies (this applies to both batch
+ * and incremental learning); when N greater the number of canopies, the
+ * difference is made up by selecting training instances randomly (this can only
+ * be done when batch training). For more information see:
  * 
  * A. McCallum, K. Nigam, L.H. Ungar: Efficient Clustering of High Dimensional
  * Data Sets with Application to Reference Matching. In: Proceedings of the

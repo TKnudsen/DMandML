@@ -77,9 +77,11 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	/**
 	 * @deprecated normalization flag is not provided with WEKA's PCA implementation
 	 *             (any more)
-	 * @param featureVectors
-	 * @param normalize
-	 * @param outputDimensionality
+	 * @param featureVectors       input feature vector objects
+	 * @param normalize            as to whether the data shall be normalized in
+	 *                             advanced (recommended)
+	 * @param outputDimensionality target dimensionality of the low-dimensional data
+	 *                             representation
 	 */
 	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, int outputDimensionality) {
 		this(featureVectors, outputDimensionality);
@@ -90,9 +92,11 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 	/**
 	 * @deprecated normalization flag is not provided with WEKA's PCA implementation
 	 *             (any more)
-	 * @param featureVectors
-	 * @param normalize
-	 * @param minimumRemainingVariance
+	 * @param featureVectors           input feature vector objects
+	 * @param normalize                as to whether the data shall be normalized in
+	 *                                 advanced (recommended)
+	 * @param minimumRemainingVariance percentage of variance that should be
+	 *                                 preserved
 	 */
 	public PCA(List<NumericalFeatureVector> featureVectors, boolean normalize, double minimumRemainingVariance) {
 		this(featureVectors, -1);
@@ -134,10 +138,10 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 		}
 	}
 
+	@Override
 	/**
 	 * provides a low-dimensional representation of X
 	 */
-	@Override
 	public List<NumericalFeatureVector> transform(List<NumericalFeatureVector> inputObjects) {
 		if (mapping == null || pca == null)
 			throw new NullPointerException("PCA: model not calculated yet.");

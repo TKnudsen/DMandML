@@ -13,7 +13,7 @@ package com.github.TKnudsen.DMandML.model.associations;
  * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
  * </p>
  * 
- * @inproceedings{Han2000, author = {J. Han and J.Pei and Y. Yin}, booktitle =
+ * inproceedings{Han2000, author = {J. Han and J.Pei and Y. Yin}, booktitle =
  *                         {Proceedings of the 2000 ACM-SIGMID International
  *                         Conference on Management of Data}, pages = {1-12},
  *                         title = {Mining frequent patterns without candidate
