@@ -3,24 +3,20 @@
 	<groupId>com.github.tknudsen</groupId>
 	<artifactId>dm-and-ml</artifactId>
 	<version>0.0.6-SNAPSHOT</version>
-
 	<name>DMandML</name>
 	<description>A library that performs data mining and machine learning tasks</description>
 	<url>https://github.com/TKnudsen/DMandML</url>
-
 	<licenses>
 		<license>
 			<name>Apache License 2.0</name>
 			<url>http://www.spdx.org/licenses/Apache-2.0</url>
 		</license>
 	</licenses>
-
 	<scm>
 		<url>https://github.com/TKnudsen/DMandML</url>
 		<connection>https://github.com/TKnudsen/DMandML.git</connection>
 		<developerConnection>https://github.com/TKnudsen/DMandML.git</developerConnection>
 	</scm>
-
 	<developers>
 		<developer>
 			<id>tknudsen</id>
@@ -28,7 +24,6 @@
 			<email>mail@juergen-bernard.de</email>
 		</developer>
 	</developers>
-
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -39,13 +34,11 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-
 	<properties>
 		<project.build.sourceEncoding>cp1250</project.build.sourceEncoding>
 		<maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>nz.ac.waikato.cms.weka</groupId>
@@ -107,11 +100,10 @@
 			<artifactId>bh-tsne</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+			<version>32.0.1-jre</version> <!-- was 29. before -->
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -139,7 +131,6 @@
 			<artifactId>complex-data-object</artifactId>
 			<version>0.2.15-SNAPSHOT</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.jujutsu</groupId>
 			<artifactId>tsne</artifactId>
@@ -151,7 +142,6 @@
 			<version>0.1.7</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -163,7 +153,6 @@
 					<target>${maven-compiler-plugin.target}</target>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -238,7 +227,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
 			<id>local</id>
@@ -256,7 +244,6 @@
 				</repository>
 			</repositories>
 		</profile>
-
 		<profile>
 			<id>release</id>
 			<properties>
