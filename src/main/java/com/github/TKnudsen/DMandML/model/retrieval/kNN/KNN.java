@@ -35,10 +35,17 @@ public class KNN<T> implements IRetrievalAlgorithm<T> {
 
 		List<Entry<T, Double>> result = new ArrayList<>();
 		for (T element : elements) {
-			if (element.equals(query)) {
+			if (element == null)
 				continue;
-			}
+			if (element.equals(query))
+				continue;
+
 			double distance = distanceMeasure.applyAsDouble(query, element);
+
+			if (highest.size() == knn)
+				if (highest.peek().getValue() < distance)
+					continue;
+
 			SimpleImmutableEntry<T, Double> entry = new SimpleImmutableEntry<>(element, distance);
 			highest.offer(entry);
 			while (highest.size() > knn) {
