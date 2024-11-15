@@ -59,8 +59,7 @@ public class FLDs {
 	 * @param classAttributeName The class attribute name
 	 * @return The classes
 	 */
-	private static int[] calculateClasses(List<? extends KeyValueObject<?>> keyValueObjects,
-			String classAttributeName) {
+	private static int[] calculateClasses(List<? extends KeyValueObject> keyValueObjects, String classAttributeName) {
 		List<Object> attributeValues = extractAttributeValues(keyValueObjects, classAttributeName);
 		Map<Object, Integer> classification = classify(attributeValues);
 		return attributeValues.stream().map(v -> classification.get(v)).mapToInt(Integer::intValue).toArray();
@@ -74,10 +73,10 @@ public class FLDs {
 	 * @param attributeName   The attribute name
 	 * @return The attribute values
 	 */
-	private static List<Object> extractAttributeValues(Collection<? extends KeyValueObject<?>> keyValueObjects,
+	private static List<Object> extractAttributeValues(Collection<? extends KeyValueObject> keyValueObjects,
 			String attributeName) {
 		List<Object> attributeValues = new ArrayList<Object>();
-		for (KeyValueObject<?> keyValueObject : keyValueObjects) {
+		for (KeyValueObject keyValueObject : keyValueObjects) {
 			Object attributeValue = keyValueObject.getAttribute(attributeName);
 			attributeValues.add(attributeValue);
 		}

@@ -150,7 +150,7 @@ public class NumericalFeatureVectorCluster extends FeatureVectorCluster<Numerica
 			resetCentroidDistances();
 
 			if (element instanceof KeyValueObject)
-				((KeyValueObject<Object>) element).removeAttribute("ClusterIndex");
+				((KeyValueObject) element).removeAttribute("ClusterIndex");
 		}
 		return modified;
 	}
