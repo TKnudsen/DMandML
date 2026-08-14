@@ -23,24 +23,14 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
 
 /**
  * <p>
- * Title: AffinityPropagation
+ * Implementation is based on ELKI.
+ * http://weka.sourceforge.net/doc.dev/weka/clusterers/Canopy.html: For more
+ * information see: Clustering by passing messages between data. Brendan J.
+ * Frey and Delbert Dueck. Science, 2007.
  * </p>
- * 
- * <p>
- * Description: Implementation is based on ELKI.
- * 
- * http://weka.sourceforge.net/doc.dev/weka/clusterers/Canopy.html:
- * 
- * For more information see: Clustering by passing messages between data.
- * Brendan J. Frey and Delbert Dueck. Science, 2007.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2017
  */
 public class AffinityPropagation implements IClusteringAlgorithm<NumericalFeatureVector> {
 

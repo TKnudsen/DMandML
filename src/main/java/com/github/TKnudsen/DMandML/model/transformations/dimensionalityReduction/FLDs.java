@@ -15,7 +15,9 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueObject;
 
 /**
- * Methods to create {@link FLD} instances
+ * <p>
+ * Methods to create {@link FLD} instances.
+ * </p>
  */
 public class FLDs {
 

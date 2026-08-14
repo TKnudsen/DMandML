@@ -22,18 +22,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
 
 /**
  * <p>
- * Title: ExpectedInformationGainActiveLearning
+ * Ranks potential learning candidates by estimating the expected information
+ * gain when labeling a candidate with its respective label distribution. This
+ * is an implementation of the method proposed in Section 6.1 (Equation (6.2))
+ * in "Active Learning", by Burr Settles (2012).
  * </p>
- * 
- * <p>
- * Description: Ranks potential learning candidates by estimating the expected
- * information gain when labeling a candidate with its respective label
- * distribution. This is an implementation of the method proposed in Section 6.1
- * (Equation (6.2)) in "Active Learning", by Burr Settles (2012).
- * </p>
- * 
- * @author Christian Ritter, Juergen Bernard,
- *         https://github.com/TKnudsen/DMandML
+ *
+ * @author Christian Ritter, Juergen Bernard
  * @version 1.06
  */
 public class ExpectedInformationGainActiveLearning<FV extends IFeatureVectorObject<?, ?>>

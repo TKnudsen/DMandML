@@ -8,20 +8,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
- * Title: ClassificationApplicationFunction
+ * wrapper class that can create classification results with a given
+ * classifier.
  * </p>
- * 
- * <p>
- * Description: wrapper class that can create classification results with a
- * given classifier.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2018
  */
 public class ClassificationApplicationFunction<FV> implements IClassificationApplicationFunction<FV>, ISelfDescription {
 

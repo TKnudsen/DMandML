@@ -7,21 +7,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
- * Title: ClassificationAccuracy
+ * Accuracy measure for a series of test objects. Accuracy is defined by the
+ * number of objects predicted correctly divided by the number of all tested
+ * objects.
  * </p>
- * 
- * <p>
- * Description: Accuracy measure for a series of test objects. Accuracy is
- * defined by the number of objects predicted correctly divided by the number of
- * all tested objects.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2017
  */
 public class ClassificationAccuracy implements IClassifierEvaluation<NumericalFeatureVector> {
 

@@ -7,20 +7,8 @@ import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
- * <p>
- * Title: IClusteringAlgorithm
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.11
+ * @since 2016
  */
 public interface IClusteringAlgorithm<F> extends ISelfDescription {
 

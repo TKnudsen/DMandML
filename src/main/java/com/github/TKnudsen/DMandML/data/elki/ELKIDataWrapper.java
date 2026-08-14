@@ -17,20 +17,11 @@ import de.lmu.ifi.dbs.elki.database.relation.Relation;
 
 /**
  * <p>
- * Title: ELKIDataWrapper
+ * eases the work with ELKI's data strucutes (NumberVector, Database, etc.)
  * </p>
- * 
- * <p>
- * Description: eases the work with ELKI's data strucutes (NumberVector,
- * Database, etc.)
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class ELKIDataWrapper {
 

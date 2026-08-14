@@ -15,20 +15,12 @@ import weka.core.Instances;
 
 /**
  * <p>
- * Title: WekaRegressionWrapper
+ * basic algorithmic model that wraps regression models from Weka.
  * </p>
- * 
- * <p>
- * Description: basic algorithmic model that wraps regression models from Weka.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
+ *
  * @author Juergen Bernard, Christian Ritter
  * @version 1.05
- * 
+ * @since 2016
  */
 public abstract class WekaRegressionWrapper<FV extends IFeatureVectorObject<?, ?>> extends Regression<FV> {
 

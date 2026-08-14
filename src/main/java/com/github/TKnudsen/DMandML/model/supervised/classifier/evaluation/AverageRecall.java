@@ -11,14 +11,6 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
- * <p>
- * Title: AverageRecall
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.03
  */

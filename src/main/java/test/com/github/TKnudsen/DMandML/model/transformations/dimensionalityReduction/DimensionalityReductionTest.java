@@ -4,41 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.Features;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.IDimensionalityReduction;
-import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
-import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.PCA;
-import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.TSNE;
+import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.FastMDS;
 
 /**
  * <p>
- * Title: DimensionalityReductionTest
+ * indicates PCA, MDS, tests tSNE.
  * </p>
- * 
- * <p>
- * Description: indicates PCA, MDS, tests tSNE.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public class DimensionalityReductionTest {
 
 	public static void main(String[] args) {
-		int dim = 10;
-		int n = 100;
+		int dim = 20;
+		int n = 1000;
 
 		List<NumericalFeatureVector> featureVectors = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			List<NumericalFeature> features = new ArrayList<>();
 			for (int d = 0; d < dim; d++) {
-				features.add(new NumericalFeature(d + "", Math.random() * d));
+				features.add(
+						new NumericalFeature(Features.DEFAULT_FEATURE_NAME_PREFIX + " " + (d + 1), Math.random() * d));
 			}
 			NumericalFeatureVector fv = new NumericalFeatureVector(features);
 			featureVectors.add(fv);
@@ -48,11 +40,12 @@ public class DimensionalityReductionTest {
 		int outputDimensionality = 2;
 
 		// PCA
-		dimRed = new PCA(featureVectors, outputDimensionality);
+		//dimRed = new PCA(featureVectors, outputDimensionality);
 		// MDS
-		dimRed = new MDS<>(featureVectors, new EuclideanDistanceMeasure(), outputDimensionality);
+		//dimRed = new MDS<>(featureVectors, new EuclideanDistanceMeasure(), outputDimensionality);
+		dimRed = new FastMDS<>(featureVectors, new EuclideanDistanceMeasure(), outputDimensionality);
 		// tSNE
-		dimRed = new TSNE(featureVectors, outputDimensionality);
+		//dimRed = new TSNE(featureVectors, outputDimensionality);
 
 		dimRed.calculateDimensionalityReduction();
 		Map<NumericalFeatureVector, NumericalFeatureVector> highDimToLowDim = dimRed.getMapping();

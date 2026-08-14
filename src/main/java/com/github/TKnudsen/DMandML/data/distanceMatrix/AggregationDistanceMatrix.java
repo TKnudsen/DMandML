@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.ToDoubleBiFunction;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.Clusters;
@@ -16,24 +16,8 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusteringAlgo
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
 
 /**
- * Distance matrix that uses aggregation to avoid space allocation problems. The
- * aggregation level can be steered by a parameter, but it is highly recommended
- * to let the {@link AggregationDistanceMatrix} implementation decide.
- * 
- * Important: aggregation reduces the precision of distance computation.
- * Depending on the aggregation level the distance results can be inaccurate by
- * several percent.
- * 
- * While earlier prototypes followed a lazy implementation, the class now
- * calculates the aggregation and downstream distance matrices on the fly.
- * Respective fields are set final.
- * 
- * <p>
- * Copyright: (c) 2017-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.04
+ * @since 2017
  */
 public class AggregationDistanceMatrix<T> implements IDistanceMatrix<T> {
 
@@ -94,7 +78,9 @@ public class AggregationDistanceMatrix<T> implements IDistanceMatrix<T> {
 
 		if (elements.size() < minObjectsForAggregation || averageElementCountPerCluster <= 1.0) {
 			// standard distance matrix procedure
-			this.distanceMatrixForSmallSizes = new DistanceMatrixParallel<T>(elements, distanceMeasure);
+			// this.distanceMatrixForSmallSizes = new DistanceMatrixParallel<T>(elements,
+			// distanceMeasure);
+			this.distanceMatrixForSmallSizes = new DistanceMatrixBlockedParallel<T>(elements, distanceMeasure);
 			this.clusteringAlgorithm = null;
 			this.clusteringResult = null;
 			this.distanceMatrixForClusters = null;
@@ -109,8 +95,10 @@ public class AggregationDistanceMatrix<T> implements IDistanceMatrix<T> {
 			this.clusteringResult = new ClusterResultWithClusterLookupSupport<T, Cluster<T>>(
 					this.clusteringAlgorithm.getClusteringResult());
 
-			this.distanceMatrixForClusters = new DistanceMatrixParallel<ICluster<T>>(clusteringResult.getClusters(),
-					new CentroidDistanceMeasure<T>(distanceMeasure), true, true);
+//			this.distanceMatrixForClusters = new DistanceMatrixParallel<ICluster<T>>(clusteringResult.getClusters(),
+//					new CentroidDistanceMeasure<T>(distanceMeasure), true, true);
+			this.distanceMatrixForClusters = new DistanceMatrixBlockedParallel<ICluster<T>>(
+					clusteringResult.getClusters(), new CentroidDistanceMeasure<T>(distanceMeasure), true, true);
 		}
 	}
 

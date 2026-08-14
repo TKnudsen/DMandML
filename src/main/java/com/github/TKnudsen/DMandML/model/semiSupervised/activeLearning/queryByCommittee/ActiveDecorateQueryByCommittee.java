@@ -9,26 +9,15 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.uncertain
 
 /**
  * <p>
- * Title: ActiveDecorateQueryByCommittee
+ * constructs diverse committees using artificial training data. Builds upon
+ * committees built with the Decorates classifiers. Measure: Kullback-Leibler
+ * Divergence. Divergence between models' label probability distribution and
+ * consensus distribution. Citation: Diverse Ensembles for Active Learning.
+ * Prem Melville and Raymond J. Mooney. Machine Learning, 2004.
  * </p>
- * 
- * <p>
- * Description: constructs diverse committees using artificial training data.
- * Builds upon committees built with the Decorates classifiers.
- * 
- * Measure: Kullback-Leibler Divergence. Divergence between models' label
- * probability distribution and consensus distribution.
- * 
- * Citation: Diverse Ensembles for Active Learning. Prem Melville and Raymond J.
- * Mooney. Machine Learning, 2004.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 
 public class ActiveDecorateQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>

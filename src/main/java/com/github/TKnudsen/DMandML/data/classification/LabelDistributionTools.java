@@ -11,20 +11,8 @@ import com.github.TKnudsen.ComplexDataObject.data.ranking.Ranking;
 import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
- * <p>
- * Title: LabelDistributionTools
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2015-2017
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2015
  */
 public class LabelDistributionTools {
 

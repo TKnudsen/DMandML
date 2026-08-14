@@ -6,20 +6,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClusteringResult;
 
 /**
- * <p>
- * Title: NumericalFeatureVectorClusterResult
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.02
+ * @since 2016
  */
 public class NumericalFeatureVectorClusterResult extends FeatureVectorClusteringResult<NumericalFeatureVector> {
 

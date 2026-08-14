@@ -5,12 +5,8 @@ import java.util.function.ToDoubleBiFunction;
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
 /**
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.02
+ * @since 2016
  */
 public class CompleteLinkageDistanceMeasure<T> extends ClusterDistanceMeasure<T> {
 

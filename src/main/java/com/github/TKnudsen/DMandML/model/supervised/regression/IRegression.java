@@ -4,20 +4,11 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
  * <p>
- * Title: IRegression
+ * basic algorithmic model that learns numerical label information.
  * </p>
- * 
- * <p>
- * Description: basic algorithmic model that learns numerical label information.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
- * 
+ * @since 2016
  */
 public interface IRegression<X> extends ILearningModel<X, Double> {
 }

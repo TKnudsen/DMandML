@@ -7,6 +7,13 @@ import java.util.function.Function;
 import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
+/**
+ * <p>
+ * Wraps {@link IClassifier} instances as classification-application
+ * functions, so downstream consumers can invoke classification without a
+ * direct dependency on the classifier objects themselves.
+ * </p>
+ */
 public class ClassificationApplications {
 
 	public static <FV> List<Function<List<? extends FV>, IClassificationResult<FV>>> createClassificationApplicationFunctions(

@@ -10,19 +10,11 @@ import weka.core.SelectedTag;
 
 /**
  * <p>
- * Title: LibSVMClassifier
+ * LibSVM classifier wrapped through the WEKA library.
  * </p>
- * 
- * <p>
- * Description: LibSVM classifier wrapped through the WEKA library.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public abstract class LibSVMClassifier extends WekaClassifierWrapper<NumericalFeatureVector> {
 

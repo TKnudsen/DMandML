@@ -15,29 +15,19 @@ import com.jujutsu.utils.TSneUtils;
 
 /**
  * <p>
- * Title: TSNE
+ * t-sne is a dimensionality reduction technique proposed by Laurens van der
+ * Maaten. The following description refers to his website:
+ * https://lvdmaaten.github.io/tsne/ t-Distributed Stochastic Neighbor
+ * Embedding (t-SNE) is a (prize-winning) technique for dimensionality
+ * reduction that is particularly well suited for the visualization of high-
+ * dimensional datasets. The technique can be implemented via Barnes-Hut
+ * approximations, allowing it to be applied on large real-world datasets. We
+ * applied it on data sets with up to 30 million examples. The technique and
+ * its variants are introduced in the following papers:
  * </p>
- * 
- * <p>
- * Description: t-sne is a dimensionality reduction technique proposed by
- * Laurens van der Maaten. The following description refers to his website:
- * https://lvdmaaten.github.io/tsne/
- * 
- * t-Distributed Stochastic Neighbor Embedding (t-SNE) is a (prize-winning)
- * technique for dimensionality reduction that is particularly well suited for
- * the visualization of high-dimensional datasets. The technique can be
- * implemented via Barnes-Hut approximations, allowing it to be applied on large
- * real-world datasets. We applied it on data sets with up to 30 million
- * examples. The technique and its variants are introduced in the following
- * papers:
- * 
- * 
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public class TSNE extends DimensionalityReduction<NumericalFeatureVector> {
 

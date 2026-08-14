@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * <p>
+ * Utility methods for working with {@link IClusteringResult} instances, such
+ * as retrieving all elements, looking up cluster membership, or computing
+ * distances between cluster centroids.
+ * </p>
+ */
 public class ClusteringResults {
 
 	/**

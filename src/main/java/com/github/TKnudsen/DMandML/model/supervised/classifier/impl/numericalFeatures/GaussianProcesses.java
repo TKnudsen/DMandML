@@ -8,20 +8,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: GaussianProcesses
+ * Gaussian processes for regression without hyperparameter-tuning. Cannot
+ * handle multi-valued nominal class.
  * </p>
- * 
- * <p>
- * Description: Gaussian processes for regression without hyperparameter-tuning.
- * Cannot handle multi-valued nominal class.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class GaussianProcesses extends WekaClassifierWrapper<NumericalFeatureVector> {
 

@@ -5,19 +5,11 @@ import java.util.Set;
 
 /**
  * <p>
- * Title: ClusterDistanceDistribution
+ * baseline data structure for modeling centroids.
  * </p>
- * 
- * <p>
- * Description: baseline data structure for modeling centroids.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2016
  */
 public class ClusterDistanceDistribution<T, C extends ICluster<T>> {
 

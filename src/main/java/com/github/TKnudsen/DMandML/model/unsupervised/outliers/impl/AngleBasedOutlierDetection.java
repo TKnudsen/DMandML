@@ -9,24 +9,13 @@ import de.lmu.ifi.dbs.elki.distance.similarityfunction.kernel.LinearKernelFuncti
 
 /**
  * <p>
- * Title: AngleBasedOutlierDetection
+ * * H.-P. Kriegel, M. Schubert, and A. Zimek: Angle-Based Outlier Detection
+ * in High-dimensional Data. In: Proc. 14th ACM SIGKDD Int. Conf. on Knowledge
+ * Discovery and Data Mining (KDD '08), Las Vegas, NV, 2008.
  * </p>
- * 
- * <p>
- * Description:
- * 
- * * H.-P. Kriegel, M. Schubert, and A. Zimek:
- * Angle-Based Outlier Detection in High-dimensional Data.
- * In: Proc. 14th ACM SIGKDD Int. Conf. on Knowledge Discovery and Data Mining
- * (KDD '08), Las Vegas, NV, 2008.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2018
  */
 public class AngleBasedOutlierDetection extends ElkiBasedOutlierAlgorithm {
 

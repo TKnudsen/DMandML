@@ -3,7 +3,7 @@ package com.github.TKnudsen.DMandML.model.unsupervised.clustering.splitting;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixStatistics;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
@@ -13,19 +13,11 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.IClusterSplitti
 
 /**
  * <p>
- * Title: MaximumDistanceSplitting
+ * splits a cluster into *n* clusters
  * </p>
- * 
- * <p>
- * Description: splits a cluster into *n* clusters
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T, ICluster<T>> {
 
@@ -42,7 +34,10 @@ public class MaximumDistanceSplitting<T> implements IClusterSplittingAlgorithm<T
 	public List<ICluster<T>> splitCluster(ICluster<T> cluster) {
 
 		// identify the two farthest elements (slow!)
-		IDistanceMatrix<T> distanceMatrix = new DistanceMatrixParallel<>(new ArrayList<>(cluster.getElements()),
+		// IDistanceMatrix<T> distanceMatrix = new DistanceMatrixParallel<>(new
+		// ArrayList<>(cluster.getElements()),
+		// distanceMeasure);
+		IDistanceMatrix<T> distanceMatrix = new DistanceMatrixBlockedParallel<>(new ArrayList<>(cluster.getElements()),
 				distanceMeasure);
 		DistanceMatrixStatistics<T> distanceMatrixStatistics = new DistanceMatrixStatistics<>(distanceMatrix);
 		List<T> farestElements = distanceMatrixStatistics.getFarestElements();

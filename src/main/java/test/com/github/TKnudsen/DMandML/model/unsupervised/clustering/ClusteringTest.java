@@ -15,19 +15,11 @@ import test.com.github.TKnudsen.DMandML.model.supervised.classifier.Classificati
 
 /**
  * <p>
- * Title: ClusteringTest
+ * Simple test/example of a clustering algorithm.
  * </p>
- * 
- * <p>
- * Description: Simple test/example of a clustering algorithm.
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2018
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2018
  */
 public class ClusteringTest {
 

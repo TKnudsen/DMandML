@@ -14,20 +14,12 @@ import weka.core.Instances;
 
 /**
  * <p>
- * Title: WekaClusteringTools
+ * little helpers supporting the clustering with WEKA and other WEKA-related
+ * capability.
  * </p>
- * 
- * <p>
- * Description: little helpers supporting the clustering with WEKA and other
- * WEKA-related capability.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.08
+ * @since 2016
  */
 public class WekaClusteringTools {
 	public static NumericalFeatureVectorClusterResult getClusterResultFromWekaClusterer(

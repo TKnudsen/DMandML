@@ -6,20 +6,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 
 /**
  * <p>
- * Title: ILearningModelEvaluation
+ * evaluator for learning models
  * </p>
- * 
- * <p>
- * Description: evaluator for learning models
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
- * 
+ * @since 2016
  */
 public interface ILearningModelEvaluation<X extends IFeatureVectorObject<?, ?>, Y> {
 

@@ -7,21 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueProvide
 
 /**
  * <p>
- * Title: Regressions
+ * provides additional functionality in the context of regression tasks.
  * </p>
- * 
- * <p>
- * Description: provides additional functionality in the context of regression
- * tasks.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
- * 
+ * @since 2018
  */
 public class Regressions {
 	public static <V, T extends IKeyValueProvider<V>> void setAttribute(String attributeName, List<? extends T> objects,

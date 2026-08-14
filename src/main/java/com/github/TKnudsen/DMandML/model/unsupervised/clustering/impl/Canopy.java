@@ -7,16 +7,10 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: Canopy
- * </p>
- * 
- * <p>
- * Description: Implementation is based on WEKAs Canopy.
- * 
- * http://weka.sourceforge.net/doc.dev/weka/clusterers/Canopy.html:
- * 
- * Cluster data using the capopy clustering algorithm, which requires just one
- * pass over the data. Can run in eitherbatch or incremental mode. Results are
+ * Implementation is based on WEKAs Canopy.
+ * http://weka.sourceforge.net/doc.dev/weka/clusterers/Canopy.html: Cluster
+ * data using the capopy clustering algorithm, which requires just one pass
+ * over the data. Can run in eitherbatch or incremental mode. Results are
  * generally not as good when running incrementally as the min/max for each
  * numeric attribute is not known in advance. Has a heuristic (based on
  * attribute std. deviations), that can be used in batch mode, for setting the
@@ -25,21 +19,16 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
  * generate, the algorithm will return the top N canopies (as determined by T2
  * density) when N smaller the number of canopies (this applies to both batch
  * and incremental learning); when N greater the number of canopies, the
- * difference is made up by selecting training instances randomly (this can only
- * be done when batch training). For more information see:
- * 
- * A. McCallum, K. Nigam, L.H. Ungar: Efficient Clustering of High Dimensional
- * Data Sets with Application to Reference Matching. In: Proceedings of the
- * sixth ACM SIGKDD internation conference on knowledge discovery and data
- * mining ACM-SIAM symposium on Discrete algorithms, 169-178, 2000.
+ * difference is made up by selecting training instances randomly (this can
+ * only be done when batch training). For more information see: A. McCallum,
+ * K. Nigam, L.H. Ungar: Efficient Clustering of High Dimensional Data Sets
+ * with Application to Reference Matching. In: Proceedings of the sixth ACM
+ * SIGKDD internation conference on knowledge discovery and data mining ACM-
+ * SIAM symposium on Discrete algorithms, 169-178, 2000.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2017
  */
 public class Canopy extends WekaClusteringAlgorithm {
 

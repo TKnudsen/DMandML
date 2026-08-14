@@ -30,24 +30,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.ToDoubleBiFunction;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrices;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 
 class GenericMDSUtils {
 	static <T> double[][] computeNormalizedDistanceMatrix(List<? extends T> elements,
 			ToDoubleBiFunction<? super T, ? super T> distanceFunction) {
 
-		double distanceMatrix[][] = DistanceMatrices.distanceMatrix(elements, distanceFunction, true);
+		DistanceMatrixBlockedParallel<T> dm = new DistanceMatrixBlockedParallel<T>(elements, distanceFunction, true,
+				true);
 
-		double min = Double.POSITIVE_INFINITY;
-		double max = Double.NEGATIVE_INFINITY;
-		for (int i = 0; i < elements.size(); i++) {
-			for (int j = i + 1; j < elements.size(); j++) {
-				double d = distanceMatrix[i][j];
-				min = Math.min(min, d);
-				max = Math.max(max, d);
-			}
-		}
-		return normalize(distanceMatrix, min, max, null);
+		return normalize(dm.getDistanceMatrix(), dm.getGlobalMinDistance(), dm.getGlobalMaxDistance(), null);
 	}
 
 	private static double[] normalize(double array[], double min, double max, double result[]) {
@@ -57,7 +49,11 @@ class GenericMDSUtils {
 		}
 		double normalization = 1.0 / (max - min);
 		for (int i = 0; i < array.length; i++) {
-			localResult[i] = (array[i] - min) * normalization;
+			if (!Double.isFinite(normalization))
+				System.err
+						.println("GenericMDSUtils.normalize: infinite normalization result detected: " + normalization);
+			// if infinite the maximum distance is assumed (introduces less harm)
+			localResult[i] = Double.isFinite(normalization) ? (array[i] - min) * normalization : 1.0;
 		}
 		return localResult;
 	}

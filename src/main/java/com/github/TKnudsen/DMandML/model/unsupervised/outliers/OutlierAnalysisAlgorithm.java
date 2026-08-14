@@ -7,20 +7,8 @@ import java.util.List;
 import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
 
 /**
- * <p>
- * Title: OutlierAnalysisAlgorithm
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.05
+ * @since 2017
  */
 public abstract class OutlierAnalysisAlgorithm<FV> implements IOutlierAnalysisAlgorithm<FV> {
 

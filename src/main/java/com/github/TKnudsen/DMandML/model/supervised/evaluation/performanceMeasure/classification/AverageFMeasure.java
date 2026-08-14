@@ -3,20 +3,9 @@ package com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasu
 import java.util.List;
 
 /**
- * <p>
- * Title: FMeasure
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
  * @author Christian Ritter
  * @version 1.01
+ * @since 2016
  */
 public class AverageFMeasure implements IClassificationPerformanceMeasure {
 

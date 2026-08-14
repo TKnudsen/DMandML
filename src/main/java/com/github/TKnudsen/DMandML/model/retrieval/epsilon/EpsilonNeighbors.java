@@ -12,6 +12,12 @@ import java.util.function.ToDoubleBiFunction;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
 
+/**
+ * <p>
+ * Retrieval algorithm that returns all elements within a fixed distance
+ * (epsilon) of a query, ordered by increasing distance.
+ * </p>
+ */
 public class EpsilonNeighbors<T> implements IRetrievalAlgorithm<T> {
 
 	private final double epsilon;

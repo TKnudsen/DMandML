@@ -14,10 +14,14 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
- * For more information see: An Analysis of Active Learning Strategies for
- * Sequence Labeling Tasks by Burr Settles and Mark Craven section 3.4
+ * <p>
+ * Active learning strategy that weights a base model's uncertainty ranking by
+ * information density, so that candidates representative of the overall data
+ * distribution are preferred. See "An Analysis of Active Learning Strategies
+ * for Sequence Labeling Tasks" by Burr Settles and Mark Craven, Section 3.4.
+ * </p>
  *
- * @author Christian Ritter, Jürgen Bernard
+ * @author Christian Ritter, Juergen Bernard
  */
 public class InformationDensityActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {
