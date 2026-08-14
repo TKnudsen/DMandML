@@ -7,28 +7,17 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: FarthestFirst
+ * implementation is based on WEKAs FarthestFirst. Hochbaum, Shmoys (1985). A
+ * best possible heuristic for the k-center problem. Mathematics of Operations
+ * Research. 10(2):180-184. Sanjoy Dasgupta: Performance Guarantees for
+ * Hierarchical Clustering. In: 15th Annual Conference on Computational
+ * Learning Theory, 351-363, 2002. Notes: - works as a fast simple approximate
+ * clusterer - modelled after SimpleKMeans, might be a useful initializer for
+ * it
  * </p>
- * 
- * <p>
- * Description: implementation is based on WEKAs FarthestFirst.
- * 
- * Hochbaum, Shmoys (1985). A best possible heuristic for the k-center problem.
- * Mathematics of Operations Research. 10(2):180-184.
- * 
- * Sanjoy Dasgupta: Performance Guarantees for Hierarchical Clustering. In: 15th
- * Annual Conference on Computational Learning Theory, 351-363, 2002.
- * 
- * Notes: - works as a fast simple approximate clusterer - modelled after
- * SimpleKMeans, might be a useful initializer for it
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2017
  */
 public class FarthestFirst extends WekaClusteringAlgorithm {
 

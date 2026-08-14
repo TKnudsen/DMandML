@@ -4,6 +4,12 @@ import java.util.function.ToDoubleBiFunction;
 
 import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 
+/**
+ * <p>
+ * A {@link ClusterDistanceMeasure} that computes the distance between two
+ * clusters as the distance between their centroids.
+ * </p>
+ */
 public class CentroidDistanceMeasure<T> extends ClusterDistanceMeasure<T> {
 
 	public CentroidDistanceMeasure(ToDoubleBiFunction<? super T, ? super T> distanceMeasure) {

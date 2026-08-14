@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IDObject;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
@@ -14,20 +14,12 @@ import com.github.TKnudsen.DMandML.data.cluster.Clusters;
 
 /**
  * <p>
- * Title: WithinClusterDistancesMeasure
+ * Interface for the series of measures that can be applied on a single
+ * cluster. Compactness is a prominent example.
  * </p>
- * 
- * <p>
- * Description: Interface for the series of measures that can be applied on a
- * single cluster. Compactness is a prominent example.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements IFeatureVectorClusterMeasure<FV> {
 
@@ -57,6 +49,7 @@ public abstract class ClusterCompactnessMeasure<FV extends IDObject> implements 
 	 */
 	protected IDistanceMatrix<FV> getPairwiseDistances(Cluster<FV> cluster) {
 
-		return new DistanceMatrixParallel<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
+		//return new DistanceMatrixParallel<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
+		return new DistanceMatrixBlockedParallel<>(Clusters.getElementList(cluster), cluster.getDistanceMeasure());
 	}
 }

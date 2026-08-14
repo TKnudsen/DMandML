@@ -8,20 +8,8 @@ import java.util.Set;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
- * <p>
- * Title: IClassificationResult
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.05
+ * @since 2016
  */
 public interface IClassificationResult<X> extends ISelfDescription {
 

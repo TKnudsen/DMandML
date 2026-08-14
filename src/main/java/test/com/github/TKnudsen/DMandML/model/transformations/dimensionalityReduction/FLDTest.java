@@ -7,6 +7,13 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.FLD;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.FLDs;
 
+/**
+ * <p>
+ * Manual smoke test that computes an {@link FLD} projection of
+ * {@link FLDTestData} and prints the mapping from high- to low-dimensional
+ * vectors.
+ * </p>
+ */
 public class FLDTest {
 	
 	static final String CLASS_ATTRIBUTE_NAME = "class";

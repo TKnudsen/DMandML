@@ -15,24 +15,14 @@ import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 
 /**
  * <p>
- * Title: ProbabilityDistanceBasedQueryByCommittee
+ * queries controversial instances/regions in the input space. Compares the
+ * label distributions of every candidate for a given set of models. The
+ * winning candidate poses those label distributions where the committee
+ * disagrees most. Measure: Euclidean distances of probability distributions
  * </p>
- * 
- * <p>
- * Description: queries controversial instances/regions in the input space.
- * Compares the label distributions of every candidate for a given set of
- * models. The winning candidate poses those label distributions where the
- * committee disagrees most.
- * 
- * Measure: Euclidean distances of probability distributions
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.06
+ * @since 2016
  */
 public class ProbabilityDistanceBasedQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractQueryByCommitteeActiveLearning<FV> {

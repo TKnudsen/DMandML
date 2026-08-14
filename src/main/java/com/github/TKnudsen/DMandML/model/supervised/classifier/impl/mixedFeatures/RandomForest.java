@@ -8,19 +8,11 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: BayesNet
+ * RandomForest implementation for MixedDataFeatureVectors.
  * </p>
- * 
- * <p>
- * Description: RandomForest implementation for MixedDataFeatureVectors.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class RandomForest extends WekaClassifierWrapper<MixedDataFeatureVector> {
 

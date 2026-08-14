@@ -11,6 +11,12 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.descriptors.n
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.AffinityPropagation;
 
+/**
+ * <p>
+ * Manual smoke test that runs {@link AffinityPropagation} on the Titanic
+ * dataset and prints the resulting clustering.
+ * </p>
+ */
 public class AffinityPropagationTester {
 
 	public static void main(String[] args) {

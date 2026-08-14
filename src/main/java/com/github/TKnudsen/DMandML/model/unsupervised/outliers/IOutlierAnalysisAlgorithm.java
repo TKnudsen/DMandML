@@ -6,20 +6,8 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 import com.github.TKnudsen.DMandML.data.outliers.IOutlierAnalysisResult;
 
 /**
- * <p>
- * Title: IOutlierAnalysisAlgorithm
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2017
  */
 public interface IOutlierAnalysisAlgorithm<FV> extends ISelfDescription {
 

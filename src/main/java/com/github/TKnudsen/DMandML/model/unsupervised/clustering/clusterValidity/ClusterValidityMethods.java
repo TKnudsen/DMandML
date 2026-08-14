@@ -5,24 +5,9 @@ import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
- * 
- * DMandML
- *
- * Copyright: (c) 2016-2018 Juergen Bernard,
- * https://github.com/TKnudsen/DMandML<br>
- * <br>
- * 
- * Collection of functions used in different ClusterValidityMethods. Could later
- * be added to their respective class (as public method).
- * 
- * References: Peter J. Rousseeuw (1987). "Silhouettes: a Graphical Aid to the
- * Interpretation and Validation of Cluster Analysis". Computational and Applied
- * Mathematics. 20: p. 53-65. doi:10.1016/0377-0427(87)90125-7.
- * 
- * @author Christian Ritter
- * @author Juergen Bernard
- * 
+ * @author Christian Ritter @author Juergen Bernard
  * @version 1.02
+ * @since 2016
  */
 public class ClusterValidityMethods {
 

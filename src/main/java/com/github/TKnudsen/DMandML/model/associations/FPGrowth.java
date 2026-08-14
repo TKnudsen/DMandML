@@ -2,25 +2,11 @@ package com.github.TKnudsen.DMandML.model.associations;
 
 /**
  * <p>
- * Title: FPGrowth
+ * FPGrowth Associator from Weka.
  * </p>
- * 
- * <p>
- * Description: FPGrowth Associator from Weka.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * inproceedings{Han2000, author = {J. Han and J.Pei and Y. Yin}, booktitle =
- *                         {Proceedings of the 2000 ACM-SIGMID International
- *                         Conference on Management of Data}, pages = {1-12},
- *                         title = {Mining frequent patterns without candidate
- *                         generation}, year = {2000} }
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public class FPGrowth extends WekaAssociator {
 

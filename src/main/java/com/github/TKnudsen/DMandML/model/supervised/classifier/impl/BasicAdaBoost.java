@@ -10,16 +10,11 @@ import weka.classifiers.meta.AdaBoostM1;
 
 /**
  * <p>
- * Title: BasicAdaBoost
+ * A generic wrapper class for weka's AdaBoost implementation.
  * </p>
- * 
- * <p>
- * Description: A generic wrapper class for weka's AdaBoost implementation.
- * </p>
- * 
+ *
  * @author Christian Ritter
  * @version 1.02
- * 
  */
 public class BasicAdaBoost<FV extends IFeatureVectorObject<?, ?>> extends WekaClassifierWrapper<FV> {
 

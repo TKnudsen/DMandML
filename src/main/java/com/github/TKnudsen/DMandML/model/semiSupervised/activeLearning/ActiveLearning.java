@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
 
+/**
+ * <p>
+ * Convenience entry point for applying an active learning model to a set of
+ * unlabeled candidates.
+ * </p>
+ */
 public class ActiveLearning {
 
 	/**

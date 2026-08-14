@@ -17,21 +17,12 @@ import com.github.TKnudsen.DMandML.data.classification.LabelDistribution;
 
 /**
  * <p>
- * Title: Classifier
+ * abstract basic class for all classifiers. The decision was made to have the
+ * probabilistic classifier interface as default.
  * </p>
- * 
- * <p>
- * Description: abstract basic class for all classifiers. The decision was made
- * to have the probabilistic classifier interface as default.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.05
- * 
+ * @since 2017
  */
 public abstract class Classifier<FV extends IKeyValueProvider<Object>> implements IClassifier<FV> {
 

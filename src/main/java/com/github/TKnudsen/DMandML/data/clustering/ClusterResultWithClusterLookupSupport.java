@@ -10,20 +10,12 @@ import com.github.TKnudsen.DMandML.data.cluster.IClusteringResult;
 
 /**
  * <p>
- * Title: ClusterResultWithClusterLookupSupport
+ * ClusterResult with an additional lookup of clusters for the baseline
+ * elements.
  * </p>
- * 
- * <p>
- * Description: ClusterResult with an additional lookup of clusters for the
- * baseline elements.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2017
  */
 public class ClusterResultWithClusterLookupSupport<T, C extends ICluster<T>> extends ClusteringResult<T, C> {
 

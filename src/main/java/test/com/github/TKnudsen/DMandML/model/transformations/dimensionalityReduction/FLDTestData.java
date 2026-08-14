@@ -7,6 +7,11 @@ import java.util.Random;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVectors;
 
+/**
+ * <p>
+ * Generates synthetic, class-labeled feature vector data for {@link FLDTest}.
+ * </p>
+ */
 public class FLDTestData {
 
 	static List<NumericalFeatureVector> createTestData() {

@@ -21,22 +21,8 @@ import com.github.TKnudsen.DMandML.data.classification.LabelDistributionTools;
 import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
- * <p>
- * Title: EnsembleClassifier
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * 
  * @version 1.03
- * 
+ * @since 2018
  */
 public class EnsembleClassifier<FV> implements IClassifier<FV> {
 

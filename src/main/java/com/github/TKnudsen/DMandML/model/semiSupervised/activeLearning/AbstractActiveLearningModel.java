@@ -18,21 +18,8 @@ import com.github.TKnudsen.DMandML.data.classification.IClassificationResultSupp
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
- * <p>
- * Title: AbstractActiveLearningModel
- * </p>
- * 
- * <p>
- * Abstract class for active learners. stores the candidate list as well as the
- * supplier of classification results.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2016
  */
 public abstract class AbstractActiveLearningModel<FV extends IKeyValueProvider<Object>>
 		implements IActiveLearningModelClassification<FV>, ISelfDescription {

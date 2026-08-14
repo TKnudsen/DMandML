@@ -9,27 +9,15 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
 
 /**
  * <p>
- * Title: AbstractQueryByCommitteeActiveLearning
- * </p>
- * 
- * <p>
- * Description: queries controversial instances/regions in the input space.
- * Compares the label distributions of every candidate for a given set of
- * models. The winning candidate poses those label distributions where the
- * committee disagrees most.
- * </p>
- * 
- * <p>
- * Degree of freedom: measure of disagreement among committee members. See the
- * inheriting classes.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
+ * queries controversial instances/regions in the input space. Compares the
+ * label distributions of every candidate for a given set of models. The
+ * winning candidate poses those label distributions where the committee
+ * disagrees most. Degree of freedom: measure of disagreement among committee
+ * members. See the inheriting classes.
  * </p>
  *
- * @author Juergen Bernard
  * @version 1.06
+ * @since 2016
  */
 public abstract class AbstractQueryByCommitteeActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {

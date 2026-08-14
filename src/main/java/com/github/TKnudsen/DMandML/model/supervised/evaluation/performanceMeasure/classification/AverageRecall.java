@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author Christian Ritter
+ * <p>
+ * Calculates the average recall over all classes of a classification result.
+ * </p>
  *
+ * @author Christian Ritter
  */
 public class AverageRecall implements IClassificationPerformanceMeasure {
 

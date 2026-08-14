@@ -7,20 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 
 /**
  * <p>
- * Title: ITrainingDataSupplier
+ * supplier for training data (e.g., used to train a learning model).
  * </p>
- * 
- * <p>
- * Description: supplier for training data (e.g., used to train a learning
- * model).
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2016
  */
 public interface ITrainingDataSupplier<FV extends IFeatureVectorObject<?, ?>> extends Supplier<List<FV>> {
 

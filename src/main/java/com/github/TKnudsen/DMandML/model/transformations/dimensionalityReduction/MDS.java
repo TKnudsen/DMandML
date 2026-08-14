@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixStatistics;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.AbstractFeatureVector;
@@ -19,25 +19,17 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
 
 /**
  * <p>
- * Title: MDS
+ * Multi-dimensional Scaling (MDS) is a non-linear dimension reduction
+ * algorithm proposed by Joseph B. KRUSKAL in 1964: "Multidimensional scaling
+ * by optimizing goodness of fit to a nonmetric hypothesis" In Psychometrika
+ * 29, 1 (1964). The principal idea is to iteratively optimize the low-
+ * dimensional (often 2D) positions of objects with respect to pairwise
+ * distances in the original space and a stress-minimization function.
  * </p>
- * 
- * <p>
- * Description: Multi-dimensional Scaling (MDS) is a non-linear dimension
- * reduction algorithm proposed by Joseph B. KRUSKAL in 1964: "Multidimensional
- * scaling by optimizing goodness of fit to a nonmetric hypothesis" In
- * Psychometrika 29, 1 (1964).
- * 
- * The principal idea is to iteratively optimize the low-dimensional (often 2D)
- * positions of objects with respect to pairwise distances in the original space
- * and a stress-minimization function.
- * 
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
+ *
  * @author Juergen Bernard, Christian Ritter
  * @version 1.07
+ * @since 2016
  */
 public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
@@ -114,7 +106,8 @@ public class MDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityRe
 	 * @return
 	 */
 	private void calculateDistanceMatrix(List<? extends X> fvs) {
-		distanceMatrix = new DistanceMatrixParallel<>(fvs, distanceMeasure);
+		// distanceMatrix = new DistanceMatrixParallel<>(fvs, distanceMeasure);
+		distanceMatrix = new DistanceMatrixBlockedParallel<>(fvs, distanceMeasure);
 	}
 
 	/**

@@ -7,19 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
- * Title: Centroid
+ * baseline data structure for modeling centroids.
  * </p>
- * 
- * <p>
- * Description: baseline data structure for modeling centroids.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2016
  */
 
 public class Centroid<T> implements ISelfDescription, IMasterProvider, IDObject {

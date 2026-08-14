@@ -16,20 +16,8 @@ import com.github.TKnudsen.DMandML.model.semiSupervised.activeLearning.AbstractA
 import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificationApplicationFunction;
 
 /**
- * <p>
- * Title: SimpsonsDiversityActiveLearningModel
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.04
+ * @since 2016
  */
 public class SimpsonsDiversityActiveLearningModel<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {

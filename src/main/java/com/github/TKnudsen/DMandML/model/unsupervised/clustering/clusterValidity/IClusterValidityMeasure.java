@@ -6,22 +6,8 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.IFeatureVectorClusteringResultSupplier;
 
 /**
- * <p>
- * Title: IClusterValidityMeasure
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @version 1.03
- * 
- * TODO_GENERIC The "getClusterResultSet" method does not seem to be used, and makes this very specific
+ * @version 1.03 TODO_GENERIC The "getClusterResultSet" method does not seem to be used, and makes this very specific
+ * @since 2016
  */
 public interface IClusterValidityMeasure<FV extends IFeatureVectorObject<?, ?>> extends ISelfDescription {
 

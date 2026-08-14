@@ -8,25 +8,13 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: DBScan
+ * implementation is based on WEKAs DBSCAN. Note: the epsilon parameter is
+ * relative not absolute. It is thus not necessary to assess distance values
+ * of the applied data set.
  * </p>
- * 
- * <p>
- * Description: implementation is based on WEKAs DBSCAN.
- * 
- * Note: the epsilon parameter is relative not absolute. It is thus not
- * necessary to assess distance values of the applied data set.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @version 1.05
- * 
- * @deprecated The Weka OPTICS and DBScan implementations are essentially buggy
- * and should not be used. See https://list.waikato.ac.nz/pipermail/wekalist/2010-December/050518.html
+ *
+ * @version 1.05 @deprecated The Weka OPTICS and DBScan implementations are essentially buggy and should not be used. See https://list.waikato.ac.nz/pipermail/wekalist/2010-December/050518.html
+ * @since 2017
  */
 public class DBScan extends WekaClusteringAlgorithm {
 

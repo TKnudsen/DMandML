@@ -5,19 +5,11 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 
 /**
  * <p>
- * Title: DynamicTimeWarping
+ * Euclidean's Distance Measure for NumericalFeatureVectors
  * </p>
- * 
- * <p>
- * Description: Euclidean's Distance Measure for NumericalFeatureVectors
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2017
  */
 public class DynamicTimeWarping implements IDistanceMeasure<NumericalFeatureVector> {
 

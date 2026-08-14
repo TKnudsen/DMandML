@@ -10,6 +10,11 @@ import de.lmu.ifi.dbs.elki.database.StaticArrayDatabase;
 import de.lmu.ifi.dbs.elki.datasource.ArrayAdapterDatabaseConnection;
 import de.lmu.ifi.dbs.elki.datasource.DatabaseConnection;
 
+/**
+ * <p>
+ * Utility methods for creating ELKI databases from feature vectors.
+ * </p>
+ */
 public class ELKITools {
 
 	/**

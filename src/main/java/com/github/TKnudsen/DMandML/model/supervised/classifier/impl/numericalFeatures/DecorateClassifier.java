@@ -8,28 +8,17 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: DecorateClassifier
+ * Ensemble classifier that tries to create diverse ensembles by using
+ * specially constructed artificial training examples. P. Melville, R. J.
+ * Mooney: Constructing Diverse Classifier Ensembles Using Artificial Training
+ * Examples. In: Eighteenth International Joint Conference on Artificial
+ * Intelligence, 505-510, 2003. P. Melville, R. J. Mooney (2004). Creating
+ * Diversity in Ensembles Using Artificial Data. Information Fusion: Special
+ * Issue on Diversity in Multiclassifier Systems..
  * </p>
- * 
- * <p>
- * Description: Ensemble classifier that tries to create diverse ensembles by
- * using specially constructed artificial training examples.
- * 
- * P. Melville, R. J. Mooney: Constructing Diverse Classifier Ensembles Using
- * Artificial Training Examples. In: Eighteenth International Joint Conference
- * on Artificial Intelligence, 505-510, 2003.
- * 
- * P. Melville, R. J. Mooney (2004). Creating Diversity in Ensembles Using
- * Artificial Data. Information Fusion: Special Issue on Diversity in
- * Multiclassifier Systems..
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class DecorateClassifier extends WekaClassifierWrapper<NumericalFeatureVector> {
 

@@ -8,29 +8,18 @@ import net.sf.javaml.distance.fastdtw.FastDTW;
 
 /**
  * <p>
- * Title: DynamicTimeWarping
+ * dynamic time warping distance measure for double arrays. Uses FastDTW from
+ * javaml. Implementation of the FastDTW algorithm as described by Salvador
+ * and Chan. Salvador and Philip Chan, FastDTW: Toward Accurate Dynamic Time
+ * Warping in Linear Time and Space, KDD Workshop on Mining Temporal and
+ * Sequential Data, pp. 70-80, 2004.
+ * http://www.cs.fit.edu/~pkc/papers/tdm04.pdf Stan Salvador and Philip Chan,
+ * Toward Accurate Dynamic Time Warping in Linear Time and Space, Intelligent
+ * Data Analysis, 11(5):561-580, 2007.
  * </p>
- * 
- * <p>
- * Description: dynamic time warping distance measure for double arrays. Uses
- * FastDTW from javaml.
- * 
- * Implementation of the FastDTW algorithm as described by Salvador and Chan.
- * Salvador and Philip Chan, FastDTW: Toward Accurate Dynamic Time Warping in
- * Linear Time and Space, KDD Workshop on Mining Temporal and Sequential Data,
- * pp. 70-80, 2004. http://www.cs.fit.edu/~pkc/papers/tdm04.pdf
- * 
- * Stan Salvador and Philip Chan, Toward Accurate Dynamic Time Warping in Linear
- * Time and Space, Intelligent Data Analysis, 11(5):561-580, 2007.
- * http://www.cs.fit.edu/~pkc/papers/ida07.pdf
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public class DynamicTimeWarping extends DoubleDistanceMeasure {
 

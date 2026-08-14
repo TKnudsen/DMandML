@@ -4,14 +4,6 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.DMandML.model.supervised.regression.BasicM5P;
 
 /**
- * <p>
- * Title: M5P
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
  * @author Christian Ritter
  * @version 1.02
  */

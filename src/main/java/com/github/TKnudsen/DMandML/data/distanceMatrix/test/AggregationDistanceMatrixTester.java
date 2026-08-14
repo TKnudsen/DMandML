@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector.EuclideanDistanceMeasure;
@@ -12,21 +12,8 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 import com.github.TKnudsen.DMandML.data.distanceMatrix.AggregationDistanceMatrix;
 
 /**
- * 
- * Experiment with lower number of elements shows that aggregation is not
- * necessary for less than 2k elements
- * 
- * See AggregationDistanceMatrixTestResults for test results
- * 
- * INSIGHT: error is max for many dimensions and few elements. In this case, the
- * data space is very large but weakly populated
- * 
- * <p>
- * Copyright: (c) 2017-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2017
  */
 public class AggregationDistanceMatrixTester {
 	public static void main(String[] args) {
@@ -41,7 +28,9 @@ public class AggregationDistanceMatrixTester {
 						.randomFeatureVectors(n, dim, random);
 
 				long before = System.nanoTime();
-				IDistanceMatrix<NumericalFeatureVector> dmConventional = new DistanceMatrixParallel<>(fvs,
+//				IDistanceMatrix<NumericalFeatureVector> dmConventional = new DistanceMatrixParallel<>(fvs,
+//						new EuclideanDistanceMeasure(), true, true);
+				IDistanceMatrix<NumericalFeatureVector> dmConventional = new DistanceMatrixBlockedParallel<>(fvs,
 						new EuclideanDistanceMeasure(), true, true);
 				long after = System.nanoTime();
 				double durationOldDm = (after - before) / 1e6;

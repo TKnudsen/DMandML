@@ -7,19 +7,11 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: ExpectationMaximization
+ * implementation is based on WEKAs EM.
  * </p>
- * 
- * <p>
- * Description: implementation is based on WEKAs EM.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2017
  */
 public class ExpectationMaximization extends WekaClusteringAlgorithm {
 

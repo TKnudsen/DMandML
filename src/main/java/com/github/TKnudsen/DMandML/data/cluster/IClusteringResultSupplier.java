@@ -4,21 +4,12 @@ import java.util.function.Supplier;
 
 /**
  * <p>
- * Title: IClusteringResultSupplier
+ * supplies a clustering result. the supplier maintains the clustering result,
+ * which may update according to the supplier's responsibility.
  * </p>
- * 
- * <p>
- * Description: supplies a clustering result. the supplier maintains the
- * clustering result, which may update according to the supplier's
- * responsibility.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public interface IClusteringResultSupplier<CR extends IClusteringResult<?, ?>> extends Supplier<CR> {
 

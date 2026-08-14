@@ -8,24 +8,13 @@ import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistance
 
 /**
  * <p>
- * Title: LocalOutlierFactorOutlierAnalysis
+ * M. M. Breunig, H.-P. Kriegel, R. Ng, J. Sander: LOF: Identifying Density-
+ * Based Local Outliers. In: Proc. 2nd ACM SIGMOD Int. Conf. on Management of
+ * Data (SIGMOD'00), Dallas, TX, 2000.
  * </p>
- * 
- * <p>
- * Description:
- * 
- * M. M. Breunig, H.-P. Kriegel, R. Ng, J. Sander:
- * LOF: Identifying Density-Based Local Outliers.
- * In: Proc. 2nd ACM SIGMOD Int. Conf. on Management of Data (SIGMOD'00),
- * Dallas, TX, 2000.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class LocalOutlierFactorOutlierAnalysis extends ElkiBasedOutlierAlgorithm {
 

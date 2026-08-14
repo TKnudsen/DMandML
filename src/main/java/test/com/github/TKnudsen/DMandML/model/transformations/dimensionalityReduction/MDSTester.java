@@ -9,20 +9,8 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.featureVector
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
 
 /**
- * <p>
- * Title: MDSTester
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2017
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.02
+ * @since 2017
  */
 
 public class MDSTester {

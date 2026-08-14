@@ -13,6 +13,12 @@ import java.util.function.ToDoubleBiFunction;
 
 import com.github.TKnudsen.DMandML.model.retrieval.IRetrievalAlgorithm;
 
+/**
+ * <p>
+ * Retrieval algorithm that returns the k nearest neighbors of a query,
+ * ordered by increasing distance.
+ * </p>
+ */
 public class KNN<T> implements IRetrievalAlgorithm<T> {
 
 	private final int knn;

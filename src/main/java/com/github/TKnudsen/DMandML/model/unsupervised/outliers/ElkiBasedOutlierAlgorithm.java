@@ -19,19 +19,11 @@ import de.lmu.ifi.dbs.elki.result.outlier.OutlierResult;
 
 /**
  * <p>
- * Title: ElkiBasedOutlierAlgorithm
+ * basic class for outlier algorithms from the elki framework.
  * </p>
- * 
- * <p>
- * Description: basic class for outlier algorithms from the elki framework.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2017
  */
 public abstract class ElkiBasedOutlierAlgorithm extends OutlierAnalysisAlgorithm<NumericalFeatureVector> {
 

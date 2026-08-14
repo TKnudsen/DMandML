@@ -8,20 +8,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: RandomForest
+ * RandomForest implementation for numerical features. Based on WEKA's
+ * RandomForest.
  * </p>
- * 
- * <p>
- * Description: RandomForest implementation for numerical features. Based on
- * WEKA's RandomForest.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2017
  */
 public class RandomForest extends WekaClassifierWrapper<NumericalFeatureVector> {
 

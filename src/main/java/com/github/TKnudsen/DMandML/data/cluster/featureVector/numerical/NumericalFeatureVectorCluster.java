@@ -21,20 +21,8 @@ import com.github.TKnudsen.DMandML.data.cluster.Centroid;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
 /**
- * <p>
- * Title: NumericalFeatureVectorCluster
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2016
  */
 public class NumericalFeatureVectorCluster extends FeatureVectorCluster<NumericalFeatureVector> {
 

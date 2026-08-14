@@ -11,20 +11,8 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.descriptors.n
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.MDS;
 
 /**
- * <p>
- * Title: MDSTesterWithIris
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2018
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.01
+ * @since 2018
  */
 
 public class MDSTesterWithIris {

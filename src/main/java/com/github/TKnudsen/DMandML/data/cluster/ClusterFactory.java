@@ -10,20 +10,12 @@ import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
  * <p>
- * Title: ClusterFactory
+ * can be used when instances of Cluster have to be created.
  * </p>
- * 
- * <p>
- * Description: can be used when instances of Cluster have to be created.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @deprecated use Clusters instead
+ *
+ * @author Juergen Bernard @deprecated use Clusters instead
  * @version 1.03
+ * @since 2016
  */
 public class ClusterFactory {
 

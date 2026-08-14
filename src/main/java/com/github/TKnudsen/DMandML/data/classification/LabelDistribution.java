@@ -7,20 +7,12 @@ import com.github.TKnudsen.ComplexDataObject.data.probability.ProbabilityDistrib
 
 /**
  * <p>
- * Title: LabelDistribution
+ * data model for distributions of labels. Must add up to 100% (probability
+ * distribution).
  * </p>
- * 
- * <p>
- * Description: data model for distributions of labels. Must add up to 100%
- * (probability distribution).
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2015-2018
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2015
  */
 public class LabelDistribution extends ProbabilityDistribution<String> {
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixParallel;
+import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.DistanceMatrixBlockedParallel;
 import com.github.TKnudsen.ComplexDataObject.data.distanceMatrix.IDistanceMatrix;
 import com.github.TKnudsen.ComplexDataObject.data.features.mixedData.MixedDataFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
@@ -16,17 +16,8 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorClust
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
- * <p>
- * Utility to ease the use of clusters. Replaces ClusterTools and
- * ClusterFactory.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2016
  */
 public class Clusters {
 
@@ -149,7 +140,10 @@ public class Clusters {
 	public static <T, C extends ICluster<T>> Centroid<T> calculateCentroidLikeElement(C cluster,
 			IDistanceMeasure<T> distanceMeasure) {
 
-		IDistanceMatrix<T> dm = new DistanceMatrixParallel<>(new ArrayList<>(cluster.getElements()), distanceMeasure);
+		// IDistanceMatrix<T> dm = new DistanceMatrixParallel<>(new
+		// ArrayList<>(cluster.getElements()), distanceMeasure);
+		IDistanceMatrix<T> dm = new DistanceMatrixBlockedParallel<>(new ArrayList<>(cluster.getElements()),
+				distanceMeasure);
 
 		Map<T, Double> distances = new HashMap<>();
 
@@ -243,13 +237,15 @@ public class Clusters {
 	 */
 	public static <T, C extends ICluster<T>> IDistanceMatrix<T> getDistanceMatrix(C cluster) {
 
-		return new DistanceMatrixParallel<T>(Clusters.getElementList(cluster), cluster.getDistanceMeasure(), true,
+//		return new DistanceMatrixParallel<T>(Clusters.getElementList(cluster), cluster.getDistanceMeasure(), true,
+//				true);
+		return new DistanceMatrixBlockedParallel<T>(Clusters.getElementList(cluster), cluster.getDistanceMeasure(), true,
 				true);
 	}
 
 	/**
 	 * calculates the diameter of a cluster, i.e., calculates the maximum of the
-	 * pairwise distances using any two elements within the cluster. O(n²)
+	 * pairwise distances using any two elements within the cluster. O(n^2)
 	 * 
 	 * @param <T>     the objects
 	 * @param <C>     the clusters
@@ -263,7 +259,7 @@ public class Clusters {
 
 	/**
 	 * calculates the median of the pairwise distances using any two elements within
-	 * the cluster. O(n²)
+	 * the cluster. O(n^2)
 	 * 
 	 * @param <T>     the objects
 	 * @param <C>     the clusters

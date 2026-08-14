@@ -9,20 +9,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
- * Title: ClassPredictionProbabilityScore
+ * Uses the probabilities of the classifier for the correct labels as a means
+ * to assess the classification score.
  * </p>
- * 
- * <p>
- * Description: Uses the probabilities of the classifier for the correct labels
- * as a means to assess the classification score.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2017
  */
 public class ClassPredictionProbabilityScore implements IClassifierEvaluation<NumericalFeatureVector> {
 

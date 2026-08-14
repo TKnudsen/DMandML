@@ -17,21 +17,14 @@ import weka.core.SelectedTag;
 
 /**
  * <p>
- * Title: We Description: abstract baseline routine for WEKA-base clustering
- * routines.
- * 
- * For more information see: Dan Pelleg, Andrew W. Moore: X-means: Extending
- * K-means with Efficient Estimation of the Number of Clusters. In: Seventeenth
+ * abstract baseline routine for WEKA-base clustering routines. For more
+ * information see: Dan Pelleg, Andrew W. Moore: X-means: Extending K-means
+ * with Efficient Estimation of the Number of Clusters. In: Seventeenth
  * International Conference on Machine Learning, 727-734, 2000.
- * 
  * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2017
  */
 public abstract class WekaClusteringAlgorithm implements INumericalClusteringAlgorithm {
 

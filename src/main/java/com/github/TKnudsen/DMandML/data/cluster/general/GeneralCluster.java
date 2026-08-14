@@ -6,6 +6,13 @@ import java.util.LinkedHashSet;
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
+/**
+ * <p>
+ * A generic {@link Cluster} implementation used as a fallback for element
+ * types that do not have a more specialized cluster representation. Does not
+ * support variance calculation.
+ * </p>
+ */
 public class GeneralCluster<T> extends Cluster<T> {
 
 	public GeneralCluster(Collection<? extends T> elements, IDistanceMeasure<T> distanceMeasure, String name,

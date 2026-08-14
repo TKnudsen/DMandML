@@ -21,21 +21,12 @@ import weka.core.Instances;
 
 /**
  * <p>
- * Title: WekaClassifierWrapper
+ * Abstract baseline class for wrapping WEKA classifiers. Thus, inherited WEKA
+ * classifiers will only require a few lines of code.
  * </p>
- * 
- * <p>
- * Description: Abstract baseline class for wrapping WEKA classifiers. Thus,
- * inherited WEKA classifiers will only require a few lines of code.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.06
- * 
+ * @since 2016
  */
 public abstract class WekaClassifierWrapper<FV extends IFeatureVectorObject<?, ?>> extends Classifier<FV> {
 

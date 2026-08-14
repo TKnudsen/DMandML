@@ -1,5 +1,6 @@
 package com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,12 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.DimensionalityReductions;
 import com.github.TKnudsen.DMandML.model.transformations.dimensionalityReduction.generic.GenericMDS;
 
+/**
+ * <p>
+ * Dimensionality reduction based on {@link GenericMDS}, applied to feature
+ * vector objects.
+ * </p>
+ */
 public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
 	/**
@@ -23,6 +30,8 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 	private double[][] output;
 
 	private final int maxIterations;
+
+	private boolean printout = true;
 
 	public FastMDS(List<? extends X> featureVectors, ToDoubleBiFunction<? super X, ? super X> distanceMeasure,
 			int outputDimensionality) {
@@ -48,6 +57,8 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 			throw new NullPointerException("FastMDS: feature vectors null");
 
 		model = new GenericMDS<X>(featureVectors, distanceMeasure, outputDimensionality, maxIterations);
+		model.setPrintout(printout);
+
 		output = model.compute();
 
 		mapping = null;
@@ -72,6 +83,24 @@ public class FastMDS<X extends AbstractFeatureVector<?, ?>> extends Dimensionali
 		}
 
 		return mapping;
+	}
+
+	public double[][] getOutput() {
+		if (output == null)
+			throw new NullPointerException("Output is null, calculate the dimensionality reduction first");
+
+		return Arrays.stream(output).map(row -> row == null ? null : row.clone()).toArray(double[][]::new);
+	}
+
+	public boolean isPrintout() {
+		return printout;
+	}
+
+	public void setPrintout(boolean printout) {
+		this.printout = printout;
+
+		if (model != null)
+			model.setPrintout(printout);
 	}
 
 }

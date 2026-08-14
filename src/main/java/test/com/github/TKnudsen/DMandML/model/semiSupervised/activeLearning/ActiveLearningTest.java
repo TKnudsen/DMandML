@@ -15,20 +15,12 @@ import test.com.github.TKnudsen.DMandML.model.supervised.classifier.Classificati
 
 /**
  * <p>
- * Title: ActiveLearningTest
+ * Simple test/example of an active learning model (Smallest Margin here)
+ * applied on a classifier (Random Forest here).
  * </p>
- * 
- * <p>
- * Description: Simple test/example of an active learning model (Smallest Margin
- * here) applied on a classifier (Random Forest here).
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2018
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2018
  */
 public class ActiveLearningTest {
 

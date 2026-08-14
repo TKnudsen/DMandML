@@ -13,20 +13,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifiers;
 import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
- * <p>
- * Title: RandomIterationsEvaluation
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.04
+ * @since 2016
  */
 public class RandomIterationsEvaluation<O, X extends IFeatureVectorObject<O, ? extends Feature<O>>, Y, L extends ILearningModel<X, Y>>
 		extends AbstractModelEvaluation<X, Y, L> {

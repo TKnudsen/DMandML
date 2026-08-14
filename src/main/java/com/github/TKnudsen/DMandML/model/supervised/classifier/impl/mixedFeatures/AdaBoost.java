@@ -5,14 +5,10 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.BasicAdaBoos
 
 /**
  * <p>
- * Title: AdaBoost
+ * A wrapper class for weka's AdaBoost implementation for {@link
+ * MixedDataFeatureVector}.
  * </p>
- * 
- * <p>
- * Description: A wrapper class for weka's AdaBoost implementation for
- * {@link MixedDataFeatureVector}.
- * </p>
- * 
+ *
  * @author Christian Ritter
  * @version 1.02
  */

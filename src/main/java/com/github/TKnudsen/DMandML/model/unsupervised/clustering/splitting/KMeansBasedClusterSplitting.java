@@ -13,19 +13,11 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.impl.KMeans;
 
 /**
  * <p>
- * Title: MaximumDistanceSplitting
+ * splits a cluster into *n* clusters
  * </p>
- * 
- * <p>
- * Description: splits a cluster into *n* clusters
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2016
  */
 public class KMeansBasedClusterSplitting
 		implements IClusterSplittingAlgorithm<NumericalFeatureVector, Cluster<NumericalFeatureVector>> {

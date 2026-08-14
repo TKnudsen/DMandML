@@ -7,19 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
  * <p>
- * Title: IClusteringResult
+ * interface for clustering results.
  * </p>
- * 
- * <p>
- * Description: interface for clustering results.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public interface IClusteringResult<T, C extends ICluster<T>> extends IDObject, ISelfDescription, Iterable<C> {
 

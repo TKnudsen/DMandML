@@ -5,20 +5,12 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>
- * Title: IClusterMeasure
+ * Interface for the series of measures that can be applied on a single
+ * cluster. Compactness is a prominent example.
  * </p>
- * 
- * <p>
- * Description: Interface for the series of measures that can be applied on a
- * single cluster. Compactness is a prominent example.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public interface IClusterMeasure<O extends IDObject> {
 

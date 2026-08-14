@@ -14,20 +14,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
 
 /**
  * <p>
- * Title: SmallestMarginActiveLearning
+ * a baseline active learning model seeking the smallest difference between
+ * the first and second most probable class labels among all instances.
  * </p>
- * 
- * <p>
- * Description: a baseline active learning model seeking the smallest difference
- * between the first and second most probable class labels among all instances.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public class SmallestMarginActiveLearning<FV extends IFeatureVectorObject<?, ?>>
 		extends AbstractActiveLearningModel<FV> {

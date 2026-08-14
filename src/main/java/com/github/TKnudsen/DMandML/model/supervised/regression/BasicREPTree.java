@@ -6,14 +6,6 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
- * <p>
- * Title: BasicREPTree
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
  * @author Juergen Bernard, Christian Ritter
  * @version 1.02
  */

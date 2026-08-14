@@ -9,20 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <p>
- * Title: ClassificationResult
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.05
+ * @since 2016
  */
 public class ClassificationResult<X> implements IClassificationResult<X> {
 

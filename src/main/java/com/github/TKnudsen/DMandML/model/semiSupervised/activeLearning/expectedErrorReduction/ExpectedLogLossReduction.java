@@ -22,18 +22,13 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
 
 /**
  * <p>
- * Title: ExpectedLogLossReduction
+ * Ranks potential learning candidates by estimating the expected error
+ * reduction when labeling a candidate with its respective label distribution.
+ * This is an implementation of the method proposed in Section 4.1 (Equation
+ * (4.2)) in "Active Learning", by Burr Settles (2012).
  * </p>
- * 
- * <p>
- * Description: Ranks potential learning candidates by estimating the expected
- * error reduction when labeling a candidate with its respective label
- * distribution. This is an implementation of the method proposed in Section 4.1
- * (Equation (4.2)) in "Active Learning", by Burr Settles (2012).
- * </p>
- * 
- * @author Christian Ritter, Juergen Bernard,
- *         https://github.com/TKnudsen/DMandML
+ *
+ * @author Christian Ritter, Juergen Bernard
  * @version 1.06
  */
 public class ExpectedLogLossReduction<FV extends IFeatureVectorObject<?, ?>> extends AbstractActiveLearningModel<FV> {

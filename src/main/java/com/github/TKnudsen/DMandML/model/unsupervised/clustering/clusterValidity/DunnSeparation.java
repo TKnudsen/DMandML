@@ -8,6 +8,12 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeasure;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
+/**
+ * <p>
+ * Computes, for each cluster, its Dunn separation: the smallest centroid
+ * distance to any other cluster.
+ * </p>
+ */
 public class DunnSeparation<FV extends IFeatureVectorObject<?, ?>> {
 
 	private List<Cluster<FV>> clusters;

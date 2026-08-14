@@ -7,20 +7,11 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.IClassifier;
 
 /**
  * <p>
- * Title: IClassifierEvaluation
+ * Interface for classification quality assessment
  * </p>
- * 
- * <p>
- * Description: Interface for classification quality assessment
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
- * 
+ * @since 2017
  */
 public interface IClassifierEvaluation<FV> extends ISelfDescription {
 

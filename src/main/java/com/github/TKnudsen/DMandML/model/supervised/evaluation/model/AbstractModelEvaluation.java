@@ -8,20 +8,9 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
- * <p>
- * Title: AbstractModelEvaluation
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.02
+ * @since 2016
  */
 public abstract class AbstractModelEvaluation<X, Y, L extends ILearningModel<X, Y>>
 		implements IModelEvaluation<X, Y, L> {

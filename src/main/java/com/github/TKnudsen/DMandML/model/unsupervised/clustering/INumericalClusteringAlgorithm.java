@@ -4,20 +4,8 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.numerical.NumericalFeatureVectorClusterResult;
 
 /**
- * <p>
- * Title: INumericalClusteringAlgorithm
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2018
  */
 public interface INumericalClusteringAlgorithm extends IClusteringAlgorithm<NumericalFeatureVector> {
 

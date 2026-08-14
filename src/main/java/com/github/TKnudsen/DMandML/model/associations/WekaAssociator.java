@@ -7,20 +7,8 @@ import weka.associations.AbstractAssociator;
 import weka.core.Instances;
 
 /**
- * <p>
- * Title: WekaAssociator
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.01
+ * @since 2016
  */
 public abstract class WekaAssociator implements IAssociator {
 

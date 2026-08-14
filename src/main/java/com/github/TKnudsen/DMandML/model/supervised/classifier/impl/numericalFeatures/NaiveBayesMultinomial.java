@@ -8,24 +8,14 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: NaiveBayesMultinomial
+ * Class for building and using a multinomial Naive Bayes classifier. For more
+ * information see, Andrew Mccallum, Kamal Nigam: A Comparison of Event Models
+ * for Naive Bayes Text Classification. In: AAAI-98 Workshop on 'Learning for
+ * Text Categorization', 1998.
  * </p>
- * 
- * <p>
- * Description: Class for building and using a multinomial Naive Bayes
- * classifier. For more information see,
- * 
- * Andrew Mccallum, Kamal Nigam: A Comparison of Event Models for Naive Bayes
- * Text Classification. In: AAAI-98 Workshop on 'Learning for Text
- * Categorization', 1998.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class NaiveBayesMultinomial extends WekaClassifierWrapper<NumericalFeatureVector> {
 

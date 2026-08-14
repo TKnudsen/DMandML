@@ -14,20 +14,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.use.IClassificati
 
 /**
  * <p>
- * Title: LeastSignificantConfidence
+ * a baseline active learning model seeking the lowest maximum likelihood
+ * among all instances.
  * </p>
- * 
- * <p>
- * Description: a baseline active learning model seeking the lowest maximum
- * likelihood among all instances.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.06
+ * @since 2016
  */
 public class LeastSignificantConfidence<FV extends IFeatureVectorObject<?, ?>> extends AbstractActiveLearningModel<FV> {
 	protected LeastSignificantConfidence() {

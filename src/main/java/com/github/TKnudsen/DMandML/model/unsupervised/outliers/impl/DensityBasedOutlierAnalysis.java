@@ -12,20 +12,8 @@ import com.github.TKnudsen.DMandML.data.outliers.OutlierAnalysisResult;
 import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAlgorithm;
 
 /**
- * <p>
- * Title: DensityBasedOutlierAnalysis
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.02
+ * @since 2017
  */
 public class DensityBasedOutlierAnalysis<FV> extends OutlierAnalysisAlgorithm<FV> {
 
