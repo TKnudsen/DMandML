@@ -13,26 +13,8 @@ import com.github.TKnudsen.DMandML.model.retrieval.kNN.KNN;
 import com.github.TKnudsen.DMandML.model.unsupervised.outliers.OutlierAnalysisAlgorithm;
 
 /**
- * 
- * Outlier analysis algorithm using the principles from the median absolute
- * deviation (MAD).
- * 
- * MAD is a robust measure of the variability of a univariate sample of
- * quantitative data. It can also refer to the population parameter that is
- * estimated by the MAD calculated from a sample. In the notion of the outlier
- * analysis algorithm, samples are the distances to the kNN.
- * 
- * The implementation builds upon the following reference: Leys, C.; et al.
- * (2013). "Detecting outliers: Do not use standard deviation around the mean,
- * use absolute deviation around the median" (PDF). Journal of Experimental
- * Social Psychology. 49 (4): 764–766. doi:10.1016/j.jesp.2013.03.013.
- * 
- * <p>
- * Copyright: (c) 2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.01
+ * @since 2020
  */
 public class MedianAbsoluteDeviation<FV> extends OutlierAnalysisAlgorithm<FV> {
 

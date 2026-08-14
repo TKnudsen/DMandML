@@ -7,26 +7,15 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: Cobweb
- * </p>
- * 
- * <p>
- * Description: incremental system for hierarchical conceptual clustering.
- * Implementation is based on WEKAs Cobweb.
- * 
- * D. Fisher (1987). Knowledge acquisition via incremental conceptual
- * clustering. Machine Learning. 2(2):139-172.
- * 
- * J. H. Gennari, P. Langley, D. Fisher (1990). Models of incremental concept
+ * incremental system for hierarchical conceptual clustering. Implementation
+ * is based on WEKAs Cobweb. D. Fisher (1987). Knowledge acquisition via
+ * incremental conceptual clustering. Machine Learning. 2(2):139-172. J. H.
+ * Gennari, P. Langley, D. Fisher (1990). Models of incremental concept
  * formation. Artificial Intelligence. 40:11-61.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2017
  */
 public class Cobweb extends WekaClusteringAlgorithm {
 

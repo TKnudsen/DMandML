@@ -7,7 +7,10 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.StatisticsSupport;
 import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
- * Computes the compactness as the median of all pairwise distances
+ * <p>
+ * Computes cluster compactness as the median of all pairwise distances
+ * between its elements.
+ * </p>
  */
 public class MedianPairwiseDistanceCompactnessMeasure<FV extends IDObject> extends ClusterCompactnessMeasure<FV> {
 

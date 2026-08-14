@@ -7,19 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.IDistanceMeas
 
 /**
  * <p>
- * Title: ICluster
+ * general behavior if a cluster data structure.
  * </p>
- * 
- * <p>
- * Description: general behavior if a cluster data structure.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public interface ICluster<T> extends Iterable<T>, ISelfDescription {
 

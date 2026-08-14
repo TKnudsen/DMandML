@@ -7,20 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
- * Title: OutlierAnalysisResult
+ * data structure that stores the result of outlier analysis algorithms.
  * </p>
- * 
- * <p>
- * Description: data structure that stores the result of outlier analysis
- * algorithms.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018-2019 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class OutlierAnalysisResult<FV> implements IOutlierAnalysisResult<FV> {
 

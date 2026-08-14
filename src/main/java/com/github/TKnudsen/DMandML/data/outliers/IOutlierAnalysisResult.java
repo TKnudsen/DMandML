@@ -5,19 +5,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.ISelfDescription;
 
 /**
  * <p>
- * Title: IOutlierAnalysisResult
+ * interface for clustering results.
  * </p>
- * 
- * <p>
- * Description: interface for clustering results.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public interface IOutlierAnalysisResult<FV> extends IDObject, ISelfDescription, Iterable<FV> {
 

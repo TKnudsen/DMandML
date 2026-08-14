@@ -6,17 +6,8 @@ import java.util.List;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObject;
 
 /**
- * <p>
- * Title: LinearRegression
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
  * @author Christian Ritter
  * @version 1.03
- * 
  */
 public class BasicLinearRegression<FV extends IFeatureVectorObject<?, ?>> extends WekaRegressionWrapper<FV> {
 

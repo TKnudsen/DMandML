@@ -12,6 +12,12 @@ import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalit
 
 import de.javagl.tsne.Tsne;
 
+/**
+ * <p>
+ * Dimensionality reduction based on Barnes-Hut t-SNE, wrapping the
+ * {@code de.javagl.tsne} implementation.
+ * </p>
+ */
 public class BhTSNE<X extends AbstractFeatureVector<?, ?>> extends DimensionalityReduction<X> {
 
 	private Tsne tsne;

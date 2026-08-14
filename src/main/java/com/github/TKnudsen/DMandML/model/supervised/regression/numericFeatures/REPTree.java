@@ -5,19 +5,11 @@ import com.github.TKnudsen.DMandML.model.supervised.regression.BasicREPTree;
 
 /**
  * <p>
- * Title: REPTree
+ * Weka's REPTree algorithm. Used for numerical feature vectors.
  * </p>
- * 
- * <p>
- * Description: Weka's REPTree algorithm. Used for numerical feature vectors.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2017
  */
 public class REPTree extends BasicREPTree<NumericalFeatureVector> {
 

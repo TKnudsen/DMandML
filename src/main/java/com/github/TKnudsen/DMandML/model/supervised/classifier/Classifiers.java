@@ -8,22 +8,13 @@ import com.github.TKnudsen.ComplexDataObject.data.keyValueObject.KeyValueProvide
 
 /**
  * <p>
- * Title: Classifiers
+ * provides additional functionality in the context of classification tasks.
+ * Little helpers that should not be contained in the classifier functionality
+ * in itself.
  * </p>
- * 
- * <p>
- * Description: provides additional functionality in the context of
- * classification tasks. Little helpers that should not be contained in the
- * classifier functionality in itself.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
- * 
+ * @since 2017
  */
 public class Classifiers {
 	public static <V, T extends IKeyValueProvider<V>> void setAttribute(String attributeName, List<? extends T> objects,

@@ -7,27 +7,15 @@ import com.github.TKnudsen.DMandML.model.unsupervised.clustering.WekaClusteringA
 
 /**
  * <p>
- * Title: OPTICS
+ * implementation is based on WEKAs OPTICS. Mihael Ankerst and Markus M.
+ * Breunig and Hans-Peter Kriegel and Joerg Sander}, booktitle = {ACM SIGMOD
+ * International Conference on Management of Data}, pages = {49-60}, publisher
+ * = {ACM Press}, title = {OPTICS: Ordering Points To Identify the Clustering
+ * Structure}, year = {1999}
  * </p>
- * 
- * <p>
- * Description: implementation is based on WEKAs OPTICS.
- * 
- * Mihael Ankerst and Markus M. Breunig and Hans-Peter Kriegel and Joerg
- * Sander}, booktitle = {ACM SIGMOD International Conference on Management of
- * Data}, pages = {49-60}, publisher = {ACM Press}, title = {OPTICS: Ordering
- * Points To Identify the Clustering Structure}, year = {1999}
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * @version 1.03
- * 
- * @deprecated The Weka OPTICS and DBScan implementations are essentially buggy
- * and should not be used. See https://list.waikato.ac.nz/pipermail/wekalist/2010-December/050518.html
+ *
+ * @version 1.03 @deprecated The Weka OPTICS and DBScan implementations are essentially buggy and should not be used. See https://list.waikato.ac.nz/pipermail/wekalist/2010-December/050518.html
+ * @since 2017
  */
 public class OPTICS extends WekaClusteringAlgorithm {
 

@@ -8,21 +8,12 @@ import com.github.TKnudsen.DMandML.model.supervised.ILearningModel;
 
 /**
  * <p>
- * Title: IClassifier
- * </p>
- * 
- * <p>
- * Description: basic classifier interface. Classifiers learn categorical label
+ * basic classifier interface. Classifiers learn categorical label
  * information.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.10
- * 
+ * @since 2016
  */
 public interface IClassifier<X> extends ILearningModel<X, String> {
 

@@ -7,19 +7,11 @@ import weka.core.SelectedTag;
 
 /**
  * <p>
- * Title: SVMLinear
+ * SVM classifier with a linear kernel.
  * </p>
- * 
- * <p>
- * Description: SVM classifier with a linear kernel.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class SVMLinearClassifier extends LibSVMClassifier {
 

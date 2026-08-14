@@ -15,28 +15,17 @@ import de.lmu.ifi.dbs.elki.database.ids.DBIDs;
 import de.lmu.ifi.dbs.elki.database.relation.DoubleRelation;
 import de.lmu.ifi.dbs.elki.database.relation.Relation;
 import de.lmu.ifi.dbs.elki.distance.distancefunction.minkowski.EuclideanDistanceFunction;
-import smile.math.Math;
 
 /**
  * <p>
- * Title: DynamicWindowOutlierFactorOutlierAnalysis
- * </p>
- * 
- * <p>
- * Description:
- * 
  * Rana Momtaz, Nesma Mohssen and Mohammad A. Gowayyed: DWOF: A Robust
- * Density-Based OutlierDetection Approach. <br>
- * In: Pattern Recognition and Image Analysis , Proc. 6th Iberian Conference,
- * IbPRIA 2013, Funchal, Madeira, Portugal, June 5-7, 2013.
+ * Density-Based OutlierDetection Approach. <br> In: Pattern Recognition and
+ * Image Analysis , Proc. 6th Iberian Conference, IbPRIA 2013, Funchal,
+ * Madeira, Portugal, June 5-7, 2013.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class DynamicWindowOutlierFactorOutlierAnalysis extends ElkiBasedOutlierAlgorithm {
 

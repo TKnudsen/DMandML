@@ -7,20 +7,11 @@ import com.github.TKnudsen.ComplexDataObject.data.interfaces.IFeatureVectorObjec
 
 /**
  * <p>
- * Title: Regression
+ * basic algorithmic model for regression tasks.
  * </p>
- * 
- * <p>
- * Description: basic algorithmic model for regression tasks.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
- * 
+ * @since 2016
  */
 public abstract class Regression<FV extends IFeatureVectorObject<?, ?>> implements IRegression<FV> {
 

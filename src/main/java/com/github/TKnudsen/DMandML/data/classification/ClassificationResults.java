@@ -20,16 +20,8 @@ import com.github.TKnudsen.DMandML.data.cluster.ICluster;
 import com.github.TKnudsen.DMandML.data.cluster.general.GeneralCluster;
 
 /**
- * <p>
- * ClassificationResult utility.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.04
+ * @since 2018
  */
 public class ClassificationResults {
 

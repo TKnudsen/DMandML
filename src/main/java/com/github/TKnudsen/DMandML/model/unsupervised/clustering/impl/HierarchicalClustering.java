@@ -11,19 +11,11 @@ import weka.core.SelectedTag;
 
 /**
  * <p>
- * Title: HierarchicalClustering
+ * implementation is based on WEKAs HierarchicalClustering.
  * </p>
- * 
- * <p>
- * Description: implementation is based on WEKAs HierarchicalClustering.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2017-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2017
  */
 public class HierarchicalClustering extends WekaClusteringAlgorithm {
 

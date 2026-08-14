@@ -9,20 +9,8 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 import com.github.TKnudsen.DMandML.data.cluster.featureVector.FeatureVectorCluster;
 
 /**
- * <p>
- * Title: MixedDataFeatureVectorCluster
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.03
+ * @since 2016
  */
 public class MixedDataFeatureVectorCluster extends FeatureVectorCluster<MixedDataFeatureVector> {
 

@@ -8,6 +8,12 @@ import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.Numeric
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.DMandML.model.supervised.regression.BasicLinearRegression;
 
+/**
+ * <p>
+ * Manual smoke test that fits a {@link BasicLinearRegression} to a small
+ * trend example and prints the predicted values and slope.
+ * </p>
+ */
 public class BasicLinearRegressionTest {
 
 	public static void main(String[] args) {

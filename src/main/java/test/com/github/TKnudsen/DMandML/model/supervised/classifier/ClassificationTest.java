@@ -15,20 +15,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
 
 /**
  * <p>
- * Title: ClassificationTest
+ * Simple test/example of a classifier applied on NumericalFeatureVectors
+ * extracted from the cars dataset.
  * </p>
- * 
- * <p>
- * Description: Simple test/example of a classifier applied on
- * NumericalFeatureVectors extracted from the cars dataset.
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2018
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2018
  */
 public class ClassificationTest {
 

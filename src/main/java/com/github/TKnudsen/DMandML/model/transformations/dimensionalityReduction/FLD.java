@@ -10,10 +10,11 @@ import com.github.TKnudsen.ComplexDataObject.model.processors.complexDataObject.
 import com.github.TKnudsen.ComplexDataObject.model.transformations.dimensionalityReduction.IDimensionalityReduction;
 
 /**
- * Implementation of Fisher's linear discriminant (FLD), a special form of LDA,
- * based on the "Smile" library from http://haifengl.github.io/smile/
- * 
- * Instances of this class may be created with the {@link FLDs} class
+ * <p>
+ * Implementation of Fisher's linear discriminant (FLD), a special form of
+ * LDA, based on the "Smile" library. Instances of this class are created via
+ * the {@link FLDs} class.
+ * </p>
  */
 public class FLD implements IDimensionalityReduction<NumericalFeatureVector, NumericalFeatureVector> {
 	private final int outputDimensionality;

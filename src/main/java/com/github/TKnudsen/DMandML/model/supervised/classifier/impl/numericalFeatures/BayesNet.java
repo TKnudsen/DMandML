@@ -8,20 +8,12 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.WekaClassifierWra
 
 /**
  * <p>
- * Title: BayesNet
+ * Bayes Network learning using various search algorithms and quality
+ * measures.
  * </p>
- * 
- * <p>
- * Description: Bayes Network learning using various search algorithms and
- * quality measures.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2018
  */
 public class BayesNet extends WekaClassifierWrapper<NumericalFeatureVector> {
 

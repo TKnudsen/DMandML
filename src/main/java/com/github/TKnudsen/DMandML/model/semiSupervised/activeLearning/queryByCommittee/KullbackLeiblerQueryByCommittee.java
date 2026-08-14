@@ -15,25 +15,15 @@ import com.github.TKnudsen.DMandML.data.classification.IClassificationResult;
 
 /**
  * <p>
- * Title: KullbackLeiblerQueryByCommittee
+ * queries controversial instances/regions in the input space. Compares the
+ * label distributions of every candidate for a given set of models. The
+ * winning candidate poses those label distributions where the committee
+ * disagrees most. Measure: Kullback-Leibler Divergence. Divergence between
+ * models' label probability distribution and consensus distribution.
  * </p>
- * 
- * <p>
- * Description: queries controversial instances/regions in the input space.
- * Compares the label distributions of every candidate for a given set of
- * models. The winning candidate poses those label distributions where the
- * committee disagrees most.
- * 
- * Measure: Kullback-Leibler Divergence. Divergence between models' label
- * probability distribution and consensus distribution.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 
 public class KullbackLeiblerQueryByCommittee<FV extends IFeatureVectorObject<?, ?>>

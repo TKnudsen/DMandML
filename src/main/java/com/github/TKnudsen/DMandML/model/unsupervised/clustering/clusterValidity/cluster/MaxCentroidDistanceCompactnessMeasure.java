@@ -6,20 +6,11 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>
- * Title: MaxCentroidDistanceCompactnessMeasure
+ * Compactess based on the maximum distance to the cluster centroid.
  * </p>
- * 
- * <p>
- * Description: Compactess based on the maximum distance to the cluster
- * centroid.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public class MaxCentroidDistanceCompactnessMeasure<FV extends IFeatureVectorObject<?, ?>> extends ClusterCompactnessMeasure<FV> {
 

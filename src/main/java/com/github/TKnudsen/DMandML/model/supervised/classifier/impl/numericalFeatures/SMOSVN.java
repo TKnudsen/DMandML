@@ -10,31 +10,18 @@ import weka.classifiers.functions.SMO;
 
 /**
  * <p>
- * Title: SMOSVN
- * </p>
- * 
- * <p>
- * Description: Implements John C. Platt's sequential minimal optimization
- * algorithm for training a support vector classifier using polynomial or RBF
- * kernels.
- * 
- * J. Platt (1998). Fast Training of Support Vector Machines using Sequential
+ * Implements John C. Platt's sequential minimal optimization algorithm for
+ * training a support vector classifier using polynomial or RBF kernels. J.
+ * Platt (1998). Fast Training of Support Vector Machines using Sequential
  * Minimal Optimization. Advances in Kernel Methods - Support Vector Learning,
- * B. Schölkopf, C. Burges, and A. Smola, eds., MIT Press.
- * 
- * S.S. Keerthi, S.K. Shevade, C. Bhattacharyya, K.R.K. Murthy, Improvements to
- * Platt's SMO Algorithm for SVM Classifier Design. Neural Computation, 13(3),
- * pp 637-649, 2001.
+ * B. Schoelkopf, C. Burges, and A. Smola, eds., MIT Press. S.S. Keerthi, S.K.
+ * Shevade, C. Bhattacharyya, K.R.K. Murthy, Improvements to Platt's SMO
+ * Algorithm for SVM Classifier Design. Neural Computation, 13(3), pp 637-649,
+ * 2001.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
- * 
+ *
  * @version 1.01
- * 
+ * @since 2018
  */
 public class SMOSVN extends WekaClassifierWrapper<NumericalFeatureVector> {
 

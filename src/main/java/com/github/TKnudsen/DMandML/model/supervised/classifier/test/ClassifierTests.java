@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.data.interfaces.IKeyValueProvider;
@@ -20,10 +18,11 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFea
 import com.github.TKnudsen.DMandML.model.supervised.classifier.impl.numericalFeatures.RandomForest;
 
 /**
- * Some basic tests for the classifiers, namely for {@link IClassifier}.
- * 
- * TODO: This is supposed to become a set of unit tests, maybe, one day, by
- * replacing the passed lines with assertions.
+ * <p>
+ * Manual smoke tests for {@link IClassifier} implementations. Currently
+ * prints results to stdout rather than asserting them; a candidate for
+ * conversion into proper unit tests.
+ * </p>
  */
 public class ClassifierTests {
 

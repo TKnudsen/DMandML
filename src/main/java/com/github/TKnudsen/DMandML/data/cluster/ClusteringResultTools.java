@@ -12,19 +12,11 @@ import com.github.TKnudsen.DMandML.model.distanceMeasure.cluster.ClusterDistance
 
 /**
  * <p>
- * Title: ClusteringResultTools
+ * convenient features for cluster results
  * </p>
- * 
- * <p>
- * Description: convenient features for cluster results
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.03
+ * @since 2016
  */
 public class ClusteringResultTools {
 

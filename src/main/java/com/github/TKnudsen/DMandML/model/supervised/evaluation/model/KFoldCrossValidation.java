@@ -11,21 +11,9 @@ import com.github.TKnudsen.DMandML.model.supervised.classifier.Classifiers;
 import com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasure.IPerformanceMeasure;
 
 /**
- * <p>
- * Title: KFoldCrossValidation
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Jürgen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
  * @author Christian Ritter, Juergen Bernard
  * @version 1.03
- * 
+ * @since 2016
  */
 public class KFoldCrossValidation<X extends IFeatureVectorObject<?, ?>, Y, L extends ILearningModel<X, Y>>
 		extends AbstractModelEvaluation<X, Y, L> {

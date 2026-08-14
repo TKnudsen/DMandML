@@ -8,22 +8,12 @@ import com.github.TKnudsen.DMandML.data.cluster.Cluster;
 
 /**
  * <p>
- * Title: MaxPairwiseDistanceCompactnessMeasure
- * </p>
- * 
- * <p>
- * Description: Compactess based on the average pairwise distance of all
- * instances.
- * 
+ * Compactess based on the average pairwise distance of all instances.
  * Disadvantage: time-consuming computation.
  * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2017 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.01
+ * @since 2016
  */
 public class MaxPairwiseDistanceCompactnessMeasure<FV extends IFeatureVectorObject<?, ?>>
 		extends ClusterCompactnessMeasure<FV> {

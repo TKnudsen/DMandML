@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.github.TKnudsen.ComplexDataObject.data.features.Features;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeature;
 import com.github.TKnudsen.ComplexDataObject.data.features.numericalData.NumericalFeatureVector;
 import com.github.TKnudsen.ComplexDataObject.model.processors.complexDataObject.DataTransformationCategory;
@@ -19,31 +20,17 @@ import weka.core.Instances;
 
 /**
  * <p>
- * Title: PrincipalComponentAnalysis
+ * Principal component analysis using WEKA's PrincipalComponents algorithm.
+ * Default parameters: -D Don't normalize input data. TODO normalization flag
+ * does not apply to WEKA's PCA any more. Check -R Retain enough PC attributes
+ * to account for this proportion of variance in the original data. (default =
+ * 0.95) -O Transform through the PC space and back to the original space. -A
+ * Maximum number of attributes to include in transformed attribute names. (-1
+ * = include all)
  * </p>
- * 
- * <p>
- * Description: Principal component analysis using WEKA's PrincipalComponents
- * algorithm. Default parameters:
- * 
- * -D Don't normalize input data. TODO normalization flag does not apply to
- * WEKA's PCA any more. Check
- * 
- * -R Retain enough PC attributes to account for this proportion of variance in
- * the original data. (default = 0.95)
- * 
- * -O Transform through the PC space and back to the original space.
- * 
- * -A Maximum number of attributes to include in transformed attribute names.
- * (-1 = include all)
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2020 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.05
+ * @since 2016
  */
 public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 
@@ -179,13 +166,14 @@ public class PCA extends DimensionalityReduction<NumericalFeatureVector> {
 		List<NumericalFeature> features = new ArrayList<>();
 
 		for (int d = 0; d < values.length; d++)
-			features.add(new NumericalFeature("Dim " + d, values[d]));
+			features.add(new NumericalFeature(Features.DEFAULT_FEATURE_NAME_PREFIX + " " + (d + 1), values[d]));
 
 		// if outputDimensionality was set (and not minimumRemainingVariance)
 		if (outputDimensionality > 0) {
 			while (features.size() < outputDimensionality) {
 				System.err.println("PCA: adding dimension to match outputDimensionality");
-				features.add(new NumericalFeature("Dim_" + features.size(), 0.0));
+				features.add(
+						new NumericalFeature(Features.DEFAULT_FEATURE_NAME_PREFIX + " " + (features.size() + 1), 0.0));
 			}
 
 			while (features.size() > outputDimensionality)

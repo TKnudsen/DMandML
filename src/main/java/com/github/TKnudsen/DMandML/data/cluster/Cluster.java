@@ -13,19 +13,11 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
- * Title: Cluster
+ * data structure for clusters.
  * </p>
- * 
- * <p>
- * Description: data structure for clusters.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.05
+ * @since 2016
  */
 public abstract class Cluster<T> implements ICluster<T>, IDObject {
 

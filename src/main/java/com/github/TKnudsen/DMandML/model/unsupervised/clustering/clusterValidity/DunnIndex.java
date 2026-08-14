@@ -13,27 +13,15 @@ import com.github.TKnudsen.DMandML.data.cluster.featureVector.IFeatureVectorClus
 
 /**
  * <p>
- * Title: DunnIndex
- * </p>
- * 
- * <p>
- * Description: Good clustering results contain well-separated clusters
- * (distances among clusters are large) as well as compact clusters (small
- * diameters).
- * 
+ * Good clustering results contain well-separated clusters (distances among
+ * clusters are large) as well as compact clusters (small diameters).
  * Disadvantages: a) time consuming calculation, b) sensitivity to noise
- * (maximum cluster diameter)
- * 
- * J. C. Dunn: Well Separated Clusters and Optimal Fuzzy Partitions, Journal of
- * Cybernetica, Vol. 4, pp. 95-104, 1974
+ * (maximum cluster diameter) J. C. Dunn: Well Separated Clusters and Optimal
+ * Fuzzy Partitions, Journal of Cybernetica, Vol. 4, pp. 95-104, 1974
  * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.02
+ * @since 2016
  */
 public class DunnIndex<FV extends IFeatureVectorObject<?, ?>> implements IClusterValidityMeasure<FV> {
 

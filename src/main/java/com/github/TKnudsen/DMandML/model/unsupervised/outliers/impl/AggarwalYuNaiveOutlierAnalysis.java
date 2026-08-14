@@ -5,20 +5,8 @@ import com.github.TKnudsen.DMandML.model.unsupervised.outliers.ElkiBasedOutlierA
 import de.lmu.ifi.dbs.elki.algorithm.outlier.subspace.AggarwalYuNaive;
 
 /**
- * <p>
- * Title: AggarwalYuNaiveOutlierAnalysis
- * </p>
- * 
- * <p>
- * Description:
- * </p>
- * 
- * <p>
- * Copyright: (c) 2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
  * @version 1.01
+ * @since 2018
  */
 public class AggarwalYuNaiveOutlierAnalysis extends ElkiBasedOutlierAlgorithm {
 

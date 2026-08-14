@@ -8,19 +8,11 @@ import com.github.TKnudsen.ComplexDataObject.model.tools.MathFunctions;
 
 /**
  * <p>
- * Title: ClusteringResult
+ * data structure for clustering results. Basic implementation.
  * </p>
- * 
- * <p>
- * Description: data structure for clustering results. Basic implementation.
- * </p>
- * 
- * <p>
- * Copyright: (c) 2016-2018 Juergen Bernard, https://github.com/TKnudsen/DMandML
- * </p>
- * 
- * @author Juergen Bernard
+ *
  * @version 1.04
+ * @since 2016
  */
 public class ClusteringResult<T, C extends ICluster<T>> implements IClusteringResult<T, C> {
 

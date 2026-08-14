@@ -5,6 +5,11 @@ import com.github.TKnudsen.ComplexDataObject.model.distanceMeasure.Double.Double
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
 
+/**
+ * <p>
+ * Wraps javaml's angular distance measure for double arrays.
+ * </p>
+ */
 public class AngularDistance extends DoubleDistanceMeasure {
 
 	/**

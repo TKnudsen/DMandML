@@ -3,8 +3,11 @@ package com.github.TKnudsen.DMandML.model.supervised.evaluation.performanceMeasu
 import java.util.List;
 
 /**
- * @author Christian Ritter
+ * <p>
+ * Calculates the accuracy of a classification result.
+ * </p>
  *
+ * @author Christian Ritter
  */
 public class Accuracy implements IClassificationPerformanceMeasure {
 
